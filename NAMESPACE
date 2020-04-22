@@ -1,0 +1,2 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("stats", "pt", "pf", "formula", "model.frame", "model.matrix", "terms")
