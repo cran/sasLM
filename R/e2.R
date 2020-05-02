@@ -1,10 +1,11 @@
-e2 = function(Formula, Data)
+e2 = function(Formula, Data, eps=1e-8)
 {
   x = ModelMatrix(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
   X = x$X
   nc = NCOL(X)
   XpX = crossprod(X)
-  M0 = getM(XpX)
+  M0 = G2SWEEP(XpX, Augmented=FALSE, eps=eps) %*% XpX
+  rownames(M0) = paste0("L", 1:ncol(XpX))
   Labels = labels(terms(x))
   nLabel = length(Labels)
   LLabel = strsplit(Labels, ":")
@@ -40,6 +41,6 @@ e2 = function(Formula, Data)
     L[,Col2] = gX1pMX1 %*% X1pM %*% X2
     Ls = rbind(Ls, L)
   }
-  dimnames(Ls) = list(rownames(XpX), paste0("L", 1:nc))
-  return(round(Ls,11))
+  rownames(Ls) = paste0("L", 1:nc)
+  return(Ls)
 }

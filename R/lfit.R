@@ -14,4 +14,3 @@ lfit = function(x, y, eps=1e-8)
   Result = list(coefficients=b, g2=iXpX, rank=attr(ag2, "rank"), DFr=DFr, SSE=SSE)
   return(Result)
 }
-

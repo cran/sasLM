@@ -1,4 +1,4 @@
-GLM = function(Formula, Data)
+GLM = function(Formula, Data, eps=1e-8)
 {
   y = model.frame(Formula, Data)[,1]
   x = ModelMatrix(Formula, Data, KeepOrder=TRUE)

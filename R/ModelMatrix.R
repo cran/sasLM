@@ -1,7 +1,7 @@
 ModelMatrix = function(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
 {
   OldOpt = options(contrasts=c("contr.treatment", "contr.poly"))
-  on.exit(options(OldOpt))          
+  on.exit(options(OldOpt))
   mf = model.frame(Formula, Data)
   Terms = terms(Formula, keep.order=KeepOrder)
   Labels = attr(Terms, "term.labels")
@@ -28,8 +28,11 @@ ModelMatrix = function(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
     L = cbind(L, Lp[, ColName2])
     colnames(L) = c(tCol, ColName2)
   }
-  
-  if (!NOINT) { names(termIndices) = c("(Intercept)", Labels)
-  } else { names(termIndices) = Labels }
+
+  if (!NOINT) { 
+    names(termIndices) = c("(Intercept)", Labels)
+  } else { 
+    names(termIndices) = Labels 
+  }
   return(list(X=as.matrix(L), terms=Terms, termIndices=termIndices, assign=vAssign))
 }

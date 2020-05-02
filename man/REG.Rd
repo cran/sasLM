@@ -1,16 +1,17 @@
 \name{REG}
 \alias{REG}
-\title{Regression of Linear Least sqaure}
+\title{Regression of Linear Least Square}
 \description{
   REG is similar to SAS PROC REG.
 }
 \usage{
-REG(Formula, Data, NOINT=FALSE)
+REG(Formula, Data, NOINT=FALSE, eps=1e-8)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model.}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{NOINT}{If NOINT is TRUE, no intercept model will be used. Always -1 or +0 will be ignored in the formula.}
+  \item{eps}{Less than this value is considered as zero.}
 }
 \details{
   It performs the core function of SAS PROC REG.

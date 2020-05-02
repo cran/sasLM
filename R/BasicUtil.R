@@ -2,10 +2,11 @@ G2SWEEP = function(A, Augmented=FALSE, eps=1e-8)
 {
   p = nrow(A)
   p0 = ifelse(Augmented, p - 1, p)
-  k = 1
   r = 0
   for (k in 1:p0) {
     d = A[k,k]
+#    CSS = crossprod(A[k,] - mean(A[k,]))
+#    DminK = ifelse(CSS > 0, eps*CSS, eps)
     if (abs(d) < eps) { A[k,] = 0 ; A[,k] = 0 ; next }
     A[k,] = A[k,]/d
     r = r + 1
@@ -22,22 +23,19 @@ G2SWEEP = function(A, Augmented=FALSE, eps=1e-8)
   return(A)
 }
 
-getM = function(XpX, eps=1e-8)
-{
-  Res = G2SWEEP(XpX, Augmented=FALSE, eps=eps) %*% XpX
-  rownames(Res) = paste0("L", 1:ncol(XpX))
-  return(Res)
-}
-
 pivotJ = function(M, j, clear=TRUE, eps=1e-8)
 {
   for (k in j) {
-    if (sum((abs(M[,k]) > eps)) > 0) {
+    if (any(abs(M[,k]) > eps) > 0) {
       Js = which(abs(as.vector(M[,k])) > eps)
       pivotRow = M[Js[1], ]/M[Js[1], k]
       nJ = length(Js)
       if (nJ > 1) for (i in 2:nJ) M[Js[i],] = M[Js[i],] - M[Js[i], k]*pivotRow
-      if (clear) M[Js[1],] = 0
+      if (clear) { 
+        M[Js[1],] = 0
+      } else {
+        M[Js[1],] = pivotRow
+      }
     }
   }
   return(M)
@@ -76,12 +74,14 @@ sumANOVA = function(r1, T1, SST, nObs, yName=NULL)
 
 sumREG = function(r1, X)
 {
-  bVar = r1$g2 %*% crossprod(X) %*% t(r1$g2) * r1$SSE/r1$DFr
-  bSE = sqrt(diag(bVar))
-  Tval = r1$coefficients/bSE
   if (r1$DFr > 0) {
+    bVar = r1$g2 %*% crossprod(X) %*% t(r1$g2) * r1$SSE/r1$DFr
+    bSE = sqrt(diag(bVar))
+    Tval = r1$coefficients/bSE
     Pval = 2*(1 - pt(abs(Tval), r1$DFr))
   } else {
+    bSE = NA
+    Tval = NA
     Pval = NA
   }
   Parameter = cbind(r1$coefficients, bSE, Tval, Pval)

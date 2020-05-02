@@ -5,11 +5,12 @@
   Calculates sum of squares of a contrast from a \code{lfit} result.
 }
 \usage{
-  cSS(K, rx)
+  cSS(K, rx, eps=1e-8)
 }
 \arguments{
   \item{K}{contrast matrix. Each column is a contrast.}
   \item{rx}{a result of \code{lfit} function}  
+  \item{eps}{Less than this value is considered as zero.}
 }
 \details{
   It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST.

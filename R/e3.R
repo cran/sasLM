@@ -3,7 +3,8 @@ e3 = function(Formula, Data, eps=1e-8)
   x = ModelMatrix(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
   nc = NCOL(x$X)
   XpX = crossprod(x$X)
-  M = getM(XpX)
+  M = G2SWEEP(XpX, Augmented=FALSE, eps=eps) %*% XpX  
+  rownames(M) = paste0("L", 1:ncol(XpX))
   Labels = labels(terms(x))
   nLabel = length(Labels)
   LLabel = strsplit(Labels, ":")
@@ -23,23 +24,32 @@ e3 = function(Formula, Data, eps=1e-8)
     }
     Col0 = setdiff(1:nc, c(Col1, Col2))
 
-    M1 = M
     if (!is.null(Col2)) {
-      R1 = t(M[Col1, , drop=FALSE])
-      R2 = t(M[Col2, , drop=FALSE])
-      if (sum(abs(R1[Col1,])) > eps & sum(abs(R2[Col2,])) > eps) {
-        R1 = R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1)
-        M1[Col1,] = t(R1)
+      Ms = pivotJ(M[c(Col1, Col2), , drop=FALSE], Col0, clear=TRUE)
+      Ms = pivotJ(Ms, Col1, clear=FALSE)
+      bazr = which(apply(abs(Ms[, Col1, drop=FALSE]), 1, max) < eps)
+      bnazr = which(apply(abs(Ms[, Col1, drop=FALSE]), 1, max) >= eps)
+      bnazr = setdiff(1:length(c(Col1, Col2)), bazr)
+      if (length(bnazr) == 0) {
+        tL = NULL
+      } else if (length(bnazr) > length(Col1)) {
+        R1 = t(M[Col1, , drop=FALSE])
+        R2 = t(M[Col2, , drop=FALSE])
+        tL = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
+      } else {
+        R1 = t(Ms[bnazr, , drop=FALSE])
+        R2 = t(Ms[bazr, , drop=FALSE])
+        tL = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
+        rownames(tL) = (rownames(M)[Col1])[1:NROW(tL)]
       }
     } else {
-      M1 = pivotJ(M1, Col1, clear=FALSE)
+      tL = pivotJ(M[Col1, , drop=FALSE], Col1, clear=FALSE)
+      tL = pivotJ(tL, Col0, clear=TRUE)
     }
-    M1 = pivotJ(M1, Col0, clear=TRUE)
-    R1 = t(M1[Col1, , drop=FALSE])
-    L = cbind(L, R1)
+    if (!is.null(tL)) L = rbind(L, tL)
   }
   M[1:nc,] = 0 # clear all
   M[1,1] = 1 # Intercept
-  if (!is.null(L)) M[colnames(L),] = t(L)
+  if (!is.null(L)) M[rownames(L),] = L
   return(M)
 }

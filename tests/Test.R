@@ -1,4 +1,7 @@
 require(sasLM)
+GLM(yield ~ block + N*P*K, npk)
+REG(yield ~ block + N*P*K, npk)
+ANOVA(yield ~ block + N*P*K, npk)
 GLM(weight ~ feed, chickwts)
 REG(weight ~ feed, chickwts)
 ANOVA(weight ~ feed, chickwts)

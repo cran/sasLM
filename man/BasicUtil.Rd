@@ -1,6 +1,5 @@
 \name{BasicUtil}
 \alias{G2SWEEP}
-\alias{getM}
 \alias{pivotJ}
 \alias{sumANOVA}
 \alias{sumREG}

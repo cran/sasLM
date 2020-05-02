@@ -4,8 +4,7 @@ SS = function(x, rx, L, eps=1e-8)
   nLabel = length(Labels)
   ColNames = c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")
   T1 = matrix(NA, nrow=nLabel, ncol=length(ColNames))
-  colnames(T1) = ColNames
-  rownames(T1) = Labels
+  dimnames(T1) = list(Labels, ColNames)
 
   for (i in 1:nLabel) {
     Li = L[x$termIndices[[Labels[i]]], , drop=FALSE]
@@ -13,7 +12,7 @@ SS = function(x, rx, L, eps=1e-8)
     if (NROW(Li) > 0) {
       Lb.i = Li %*% rx$coefficients
       T1[i, "Df"] = NROW(Li)
-      T1[i, "Sum Sq"] = as.vector(t(Lb.i) %*% G2SWEEP(Li %*% rx$g2 %*% t(Li)) %*% Lb.i)
+      T1[i, "Sum Sq"] = as.vector(t(Lb.i) %*% G2SWEEP(Li %*% rx$g2 %*% t(Li), eps=eps) %*% Lb.i)
     } else {
       T1[i, "Df"] = 0
       T1[i, "Sum Sq"] = NA      

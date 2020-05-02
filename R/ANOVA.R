@@ -1,15 +1,15 @@
-ANOVA = function(Formula, Data)
+ANOVA = function(Formula, Data, eps=1e-8)
 {
   y = model.frame(Formula, Data)[,1]
   x = ModelMatrix(Formula, Data, KeepOrder=TRUE)
-  r1 = lfit(x, y)
-  T1 = SS(x, r1, e1(Formula, Data))
+  r1 = lfit(x, y, eps=eps)
+  T1 = SS(x, r1, e1(Formula, Data, eps=eps))
 
   x2 = ModelMatrix(Formula, Data, KeepOrder=FALSE)
-  r2 = lfit(x2, y)
-  T2 = SS(x2, r2, e2(Formula, Data))[rownames(T1),,drop=FALSE]
+  r2 = lfit(x2, y, eps=eps)
+  T2 = SS(x2, r2, e2(Formula, Data, eps=eps))[rownames(T1),,drop=FALSE]
   class(T2) = "anova"
-  T3 = SS(x2, r2, e3(Formula, Data))[rownames(T1),,drop=FALSE]
+  T3 = SS(x2, r2, e3(Formula, Data), eps=eps)[rownames(T1),,drop=FALSE]
   if (sum(T3[,"Df"], na.rm=TRUE) != sum(T1[,"Df"], na.rm=TRUE)) attr(T3, "heading") = "CAUTION: Singularity Exists !"
   class(T3) = "anova"
 
