@@ -27,20 +27,22 @@ e3 = function(Formula, Data, eps=1e-8)
     if (!is.null(Col2)) {
       Ms = pivotJ(M[c(Col1, Col2), , drop=FALSE], Col0, clear=TRUE)
       Ms = pivotJ(Ms, Col1, clear=FALSE)
-      bazr = which(apply(abs(Ms[, Col1, drop=FALSE]), 1, max) < eps)
-      bnazr = which(apply(abs(Ms[, Col1, drop=FALSE]), 1, max) >= eps)
-      bnazr = setdiff(1:length(c(Col1, Col2)), bazr)
+
+      fbazr = apply(abs(Ms[, Col1, drop=FALSE]), 1, max) < eps
+      bazr = which(fbazr)
+      bnazr = which(!fbazr)
+
       if (length(bnazr) == 0) {
         tL = NULL
-      } else if (length(bnazr) > length(Col1)) {
-        R1 = t(M[Col1, , drop=FALSE])
-        R2 = t(M[Col2, , drop=FALSE])
-        tL = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
-      } else {
+      } else if (length(bnazr) <= length(Col1)) {
         R1 = t(Ms[bnazr, , drop=FALSE])
         R2 = t(Ms[bazr, , drop=FALSE])
         tL = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
         rownames(tL) = (rownames(M)[Col1])[1:NROW(tL)]
+      } else {
+        R1 = t(M[Col1, , drop=FALSE])
+        R2 = t(M[Col2, , drop=FALSE])
+        tL = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
       }
     } else {
       tL = pivotJ(M[Col1, , drop=FALSE], Col1, clear=FALSE)

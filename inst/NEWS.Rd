@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.1.4 (2020-06-13)}{
+  \itemize{
+    \item{Unnecessary lines in source removed}
+    \item{Contrast input for \code{cSS} changed from column vectors to row vectors.}
+    \item{\code{REG} can return \code{lfit} result with \code{summarize=FALSE} argument.}
+  }
+}
+
 \section{Version 0.1.3 (2020-05-13)}{
   \itemize{
     \item{Type III SS funtion improved}

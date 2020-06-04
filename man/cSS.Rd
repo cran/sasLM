@@ -8,7 +8,7 @@
   cSS(K, rx, eps=1e-8)
 }
 \arguments{
-  \item{K}{contrast matrix. Each column is a contrast.}
+  \item{K}{contrast matrix. Each row is a contrast.}
   \item{rx}{a result of \code{lfit} function}  
   \item{eps}{Less than this value is considered as zero.}
 }
@@ -27,7 +27,7 @@
   x = ModelMatrix(uptake ~ Type, CO2)
   y = model.frame(uptake ~ Type, CO2)[,1]
   rx = lfit(x, y)
-  cSS(c(0, -1, 1), rx) # sum of square 
+  cSS(t(c(0, -1, 1)), rx) # sum of square 
   ANOVA(uptake ~ Type, CO2) # compare with the above
 }
 \author{Kyun-Seop Bae k@acr.kr}
