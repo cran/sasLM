@@ -10,7 +10,8 @@
 \arguments{
   \item{x}{a result of ModelMatrix}
   \item{y}{a column vector of response, dependent variable}
-  \item{eps}{Less than this value is considered as zero.}}
+  \item{eps}{Less than this value is considered as zero.}
+}
 \details{
   Minimum version of least square fit of a linear model
 }

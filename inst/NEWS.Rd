@@ -1,7 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
-\section{Version 0.1.4 (2020-06-13)}{
+\section{Version 0.2.0 (2020-09-18)}{
+  \itemize{
+    \item{\code{e3} function revised for future RANDOM test functionality}
+    \item{\code{satt} added for Satterthwaite approximation}
+    \item{\code{T3MS} added for Type 3 Expected Mean Square formula}
+    \item{\code{T3test} added for hypothesis test with different error term}
+  }
+}
+
+\section{Version 0.1.4 (2020-06-02)}{
   \itemize{
     \item{Unnecessary lines in source removed}
     \item{Contrast input for \code{cSS} changed from column vectors to row vectors.}

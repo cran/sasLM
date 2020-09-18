@@ -8,7 +8,7 @@ SS = function(x, rx, L, eps=1e-8)
 
   for (i in 1:nLabel) {
     Li = L[x$termIndices[[Labels[i]]], , drop=FALSE]
-    Li = Li[!apply(Li, 1, function(x) all(x < eps)), , drop=FALSE]
+    Li = Li[!apply(Li, 1, function(x) all(abs(x) < eps)), , drop=FALSE]
     if (NROW(Li) > 0) {
       Lb.i = Li %*% rx$coefficients
       T1[i, "Df"] = NROW(Li)
