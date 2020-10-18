@@ -20,6 +20,6 @@
   A coefficient matrix for Type III expected mean square
 }
 \examples{
-  T3MS(yield ~ block + N*P*K, npk)
+  T3MS(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata)
 }
 \author{Kyun-Seop Bae k@acr.kr}

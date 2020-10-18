@@ -1,2 +1,2 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "pt", "pf", "formula", "model.frame", "model.matrix", "terms")
+importFrom("stats", "pt", "qt", "pf", "formula", "model.frame", "model.matrix", "terms")

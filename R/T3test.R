@@ -7,6 +7,16 @@ T3test = function(Formula, Data, Error="", eps=1e-8)
 
   L0 = e3(Formula, Data, eps=eps)
   T1 = SS(x, r1, L0)
+
+  if (!(Error %in% rownames(T1))) {
+    x2 = attr(x$terms, "term.labels")
+    xi = grep(":", x2)
+    msg1 = "Error term is not found!"
+    msg2 = "  Choose an error term among the following: "
+    msg3 = paste(x2[xi], collapse=", ")
+    stop(paste(msg1, msg2, msg3, sep="\n")) 
+  }
+
   T0 = T3MS(Formula, Data, L0)
 
   ToTest = setdiff(rownames(T0[which(T0[,Error] > 0),]), Error)
@@ -37,7 +47,7 @@ T3test = function(Formula, Data, Error="", eps=1e-8)
     }
     RESIDUALS = c(DF=r1$DFr, SS=r1$SSE, MS=r1$SSE/r1$DFr, Fval=NA, Pval=NA)
     names(RESIDUALS) = c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")
-    T2a = T1[setdiff(rownames(T1), ToTest),]
+    T2a = T1[setdiff(rownames(T1), ToTest),,drop=FALSE]
     T2b = rbind(T2a, RESIDUALS)
     rownames(T2b) = c(rownames(T2a), "RESIDUALS")
     class(T2b) = "anova"

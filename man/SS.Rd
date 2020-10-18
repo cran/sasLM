@@ -22,5 +22,5 @@
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{
   \code{\link{ModelMatrix}},
-  \code{\link{lfit}},
+  \code{\link{lfit}}
 }

@@ -1,9 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.2.1 (2020-09-27)}{
+  \itemize{
+    \item{\code{T3test} a bug fixed for one row table}
+    \item{\code{CIest} added for confidence interval estimation}
+  }
+}
+
 \section{Version 0.2.0 (2020-09-18)}{
   \itemize{
-    \item{\code{e3} function revised for future RANDOM test functionality}
+    \item{\code{e3} function revised for RANDOM test functionality}
     \item{\code{satt} added for Satterthwaite approximation}
     \item{\code{T3MS} added for Type 3 Expected Mean Square formula}
     \item{\code{T3test} added for hypothesis test with different error term}

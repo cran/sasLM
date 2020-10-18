@@ -1,6 +1,6 @@
 \name{REG}
 \alias{REG}
-\title{Regression of Linear Least Square}
+\title{Regression of Linear Least Square, similar to SAS PROC REG}
 \description{
   REG is similar to SAS PROC REG.
 }
