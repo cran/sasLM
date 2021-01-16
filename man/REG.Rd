@@ -8,7 +8,7 @@
 REG(Formula, Data, NOINT=FALSE, eps=1e-8, summarize=TRUE)
 }
 \arguments{
-  \item{Formula}{a conventional formula for a linear model.}
+  \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{NOINT}{If NOINT is TRUE, no intercept model will be used. Always -1 or +0 will be ignored in the formula.}
   \item{eps}{Less than this value is considered as zero.}

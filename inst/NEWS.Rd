@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.3.0 (2020-01-16)}{
+  \itemize{
+    \item{\code{regD} function added for rich diagnostics}
+  }
+}
+
 \section{Version 0.2.1 (2020-09-27)}{
   \itemize{
     \item{\code{T3test} a bug fixed for one row table}
@@ -27,7 +33,7 @@
 
 \section{Version 0.1.3 (2020-05-13)}{
   \itemize{
-    \item{Type III SS funtion improved}
+    \item{Type III SS function improved}
     \item{Miscellaneous errata corrected}
   }
 }

@@ -1,4 +1,4 @@
-31aa496ac007b588d48c4861c85187f0 *DESCRIPTION
+c538aa547991d8e05c1aa446507d13b9 *DESCRIPTION
 f171814eca1ada16456cac1d9c4fcca5 *NAMESPACE
 e0870f77f36f476fd186f9949cf20ec5 *R/ANOVA.R
 b8c505a869d2f26454d11bd28f9d9d80 *R/BasicUtil.R
@@ -19,18 +19,19 @@ e48a57c8356f01d05a4d541d2efd8006 *R/e1.R
 f49cac2e6214f0f0bd71a64e25760aee *R/e3.R
 47c8f5e2c68767d9e856bdd9b15fe29b *R/est.R
 13862dddf2097b97fa8432914a09f340 *R/lfit.R
+b50ec0f3e916c3cf6f097a96a4391c06 *R/regD.R
 f203b46cda3319ce62592b18f9fdb7c3 *R/satt.R
 6a90283b50603d1e8bec0f29100e82b0 *R/sysdata.rda
-e3f02b396f3caa48fe0fe579f59d5604 *inst/NEWS.Rd
-d95288e9cc055763cc50fb674c0fff38 *inst/doc/Validation-Report-GLM-2009221237.pdf
-53a73d6b2a3ed2d01f09d4fdd0af518a *inst/doc/sasLM-manual.pdf
+438d1fc1a6c45e482538f03bb5a9a983 *inst/NEWS.Rd
+8fd2260210ac59fdb0f8934e229219b7 *inst/doc/Validation-Report-GLM-2101161232.pdf
+616b2ed050fd40d2148c10713e24df40 *inst/doc/sasLM-manual.pdf
 f66db0a6f743d3a8aa7945ce1481667a *man/ANOVA.Rd
 f21f7c6dbb77ed5c0608f77f6f18672a *man/BEdata.Rd
 d88059f84cf09e1ab821bbe4c304102b *man/BasicUtil.Rd
 82fdec71e9cc663b70e6e717b271b9eb *man/CIest.Rd
 fb453cc32d24e959530bd0ce697def3f *man/GLM.Rd
 a6a2117aa2e3b118f37cae941c9c0e5d *man/ModelMatrix.Rd
-04ac11722ae653aad31b5afef06ca3c7 *man/REG.Rd
+249a9106aeb3b24cf724be0fa98deeb8 *man/REG.Rd
 989d40e4ef33769d760934fffcd7872d *man/SS.Rd
 b86cc2dded08daf8c2b59941a375242b *man/T3MS.Rd
 35169aefa91347a9bde329a797ac7537 *man/T3test.Rd
@@ -44,6 +45,7 @@ cb43a8313d1140a3f334ded130e94ea3 *man/cSS.Rd
 b76a18b1b52dc22d26da712d3cedf3b7 *man/e3.Rd
 bfc9fb551685188297b10720e812eecc *man/est.Rd
 a0b9e44eba4316411db8ebeb5d15cc66 *man/lfit.Rd
+3e9e3802e4b2be231b6402a1c4d04a04 *man/regD.Rd
 54bcbd0d007e4bdfa21f654f8cce6454 *man/sasLM-package.Rd
 c48cff1f5a29cdebee6afaedab72aa83 *man/satt.Rd
 6c7791d7c3266c5460ec4e0d2f51c61a *tests/Test.R
