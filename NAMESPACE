@@ -1,2 +1,4 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "pt", "qt", "pf", "formula", "model.frame", "model.matrix", "terms")
+importFrom("stats", "pt", "qt", "pf", "formula", "model.frame", "model.matrix", "terms", "IQR", "sd", "cor", "cov2cor", "qnorm", "as.formula", "lm", "complete.cases", "printCoefmat", "density", "fitted", "qqline", "qqnorm", "residuals", "rstandard", "predict", "coef", "lowess")
+importFrom("methods", "is")
+importFrom("graphics", "abline", "hist", "lines", "par", "title", "mtext", "matlines", "legend")

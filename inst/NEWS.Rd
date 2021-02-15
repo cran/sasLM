@@ -1,9 +1,44 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.5.0 (2020-02-15)}{
+  \itemize{
+    \item{\code{lr0} function for simple linear regressions with each independent variable}    
+  }
+}
+
+
+\section{Version 0.4.1 (2020-02-15)}{
+  \itemize{
+    \item{\code{lr} function for linear regression with g2 inverse}    
+    \item{\code{tsum} warpper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3}}    
+    \item{\code{bt} function removed to reomove dependency on \code{knitr}}
+    \item{\code{NOINT} option in REG, ModelMatrix is removed. Use conventional R formula.}
+    \item{Order of coefficients (parameters) changed to be more similar to SAS.}
+    \item{\code{T3MS} revived.}
+    \item{\code{EMS} has different arguments from T3MS.}
+  }
+}
+
+\section{Version 0.4.0 (2020-01-29)}{
+  \itemize{
+    \item{\code{GLM} function now has \code{lsm} option for least square mean}
+    \item{\code{LSM} function added for Least Square Means in SAS}
+    \item{\code{PDIFF} to do pairwise comparison}
+    \item{\code{BY} function to run functions by levels of a variable}
+    \item{\code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3} functions for the summary table of a continuous dependent variable}
+    \item{\code{bk} function to beautify the output of knitr::kable()}
+    \item{\code{bt} function to beautify the output of tsum2, tsum3}
+    \item{\code{G2SWEEP} function epxplained}
+    \item{\code{regD} function optimized}
+    \item{\code{T3MS} renamed as \code{EMS}, because it can handle other types also.}
+    \item{\code{CIest} function's arguments and return values changed.}
+  }
+}
+
 \section{Version 0.3.0 (2020-01-16)}{
   \itemize{
-    \item{\code{regD} function added for rich diagnostics}
+    \item{\code{regD} function added for influence diagnostics}
   }
 }
 
@@ -54,6 +89,6 @@
   \itemize{
     \item{First version}
     \item{TO DO: Function to be added - e4, aov4}
-    \item{TO DO: Items to be added - R2, R2ADJ}
+    \item{TO DO: Items to be added - R2, R2ADJ - v0.4.1 \code{lr} do this.}
   }
 }

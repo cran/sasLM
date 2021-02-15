@@ -1,6 +1,6 @@
 e2 = function(Formula, Data, eps=1e-8)
 {
-  x = ModelMatrix(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
+  x = ModelMatrix(Formula, Data, KeepOrder=FALSE)
   X = x$X
   nc = NCOL(X)
   XpX = crossprod(X)

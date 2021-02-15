@@ -2,7 +2,7 @@
 \alias{lfit}
 \title{Linear Fit}
 \description{
-  Fits a least square linear model. 
+  Fits a least square linear model.
 }
 \usage{
   lfit(x, y, eps=1e-8)
@@ -20,9 +20,19 @@
   \item{g2}{g2 inverse}
   \item{rank}{rank of the model matrix}
   \item{DFr}{degree of freedom for the residual}
-  \item{SSE}{sum of square error}
+  \item{SSE}{sum of squares error}
+  \item{SST}{sum of squares total}
+  \item{R2}{R-squared}
+  \item{n}{count of observations}
+  \item{R2ADJ}{Adjusted R-squared}
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{
   \code{\link{ModelMatrix}}
+}
+\examples{
+f1 = uptake ~ Type*Treatment + conc
+x = ModelMatrix(f1, CO2)
+y = model.frame(f1, CO2)[,1]
+lfit(x, y)
 }

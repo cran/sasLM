@@ -5,12 +5,11 @@
   This model matrix is similar to \code{model.matrix}. But it does not omit unnecessary columns.
 }
 \usage{
-  ModelMatrix(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
+  ModelMatrix(Formula, Data, KeepOrder=FALSE)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{NOINT}{If NOINT is TRUE, no intercept model will be used. Always -1 or +0 will be ignored in the formula.}
   \item{KeepOrder}{If \code{KeepOrder} is \code{TRUE}, terms in \code{Formula} will be kept. This is for Type I SS.}
 }
 \details{

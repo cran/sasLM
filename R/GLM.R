@@ -1,4 +1,4 @@
-GLM = function(Formula, Data, eps=1e-8)
+GLM = function(Formula, Data, lsm=FALSE, conf.level=0.95, eps=1e-8)
 {
   y = model.frame(Formula, Data)[,1]
   x = ModelMatrix(Formula, Data, KeepOrder=TRUE)
@@ -15,7 +15,13 @@ GLM = function(Formula, Data, eps=1e-8)
 
   ANOVA = sumANOVA(r1, T1=NULL, crossprod(y - mean(y)), nrow(x$X), rownames(attr(terms(x),"factors"))[1])
   Parameter = sumREG(r1, x$X)
-
+  
   Result = list(ANOVA=ANOVA, 'Type I'=T1, 'Type II'=T2, 'Type III'=T3, Parameter=Parameter)
+
+  if (lsm) {
+    Result[[6]] = lsm0(x2, r2, Formula, Data, conf.level = conf.level)
+    names(Result) = c("ANOVA", "Type I", "Type II", "Type III", "Parameter", "Least Square Mean")
+  }  
+
   return(Result)
 }

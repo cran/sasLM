@@ -7,13 +7,13 @@ regD = function(formula, data)
   p = qr(X)$rank
   if (p != ncol(X)) stop("Model matrix is not full rank. Consider other way!")
 
-  b = solve(crossprod(X), crossprod(X, y))
+  VIF = solve(crossprod(X))        # Variance Inflation Factor
+  b = VIF %*% crossprod(X, y)      # Beta Hat
   yhat = X %*% b                   # Predicted
   e = y - yhat                     # Residual
   SSE = sum(e*e)                   # e'e or as.numeric(crossprod(e))
   DFr = n - p                      # Degree of freedom
   MSE = SSE/DFr
-  VIF = solve(crossprod(X))        # Variance Inflation Factor
   bVar = VIF * MSE                 # Variance-Covariance Matrix of Beta Hat
   bSE = sqrt(diag(bVar))           # Standard Error of Beta Hat
 

@@ -1,6 +1,6 @@
 \name{regD}
 \alias{regD}
-\title{Regression of Conventional Way}
+\title{Regression of Conventional Way with Rich Diagnostics}
 \description{
   \code{regD} provides rich diagnostics such as student residual, leverage(hat), Cook's D, studentized deleted residual, DFFITS, and DFBETAS.
 }

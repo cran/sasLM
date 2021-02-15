@@ -5,12 +5,11 @@
   REG is similar to SAS PROC REG.
 }
 \usage{
-REG(Formula, Data, NOINT=FALSE, eps=1e-8, summarize=TRUE)
+REG(Formula, Data, eps=1e-8, summarize=TRUE)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{NOINT}{If NOINT is TRUE, no intercept model will be used. Always -1 or +0 will be ignored in the formula.}
   \item{eps}{Less than this value is considered as zero.}
   \item{summarize}{If this is \code{FALSE}, \code{REG} returns just \code{lfit} result.}
 }
@@ -32,6 +31,7 @@ REG(Formula, Data, NOINT=FALSE, eps=1e-8, summarize=TRUE)
   \item{SSE}{sum of square error}
 }
 \examples{
-  REG(uptake ~ Plant + Type + Treatment + conc, CO2)
+REG(uptake ~ Plant + Type + Treatment + conc, CO2)
+REG(uptake ~ conc, CO2, summarize=FALSE)
 }
 \author{Kyun-Seop Bae k@acr.kr}

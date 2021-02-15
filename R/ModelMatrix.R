@@ -1,5 +1,8 @@
-ModelMatrix = function(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
+ModelMatrix = function(Formula, Data, KeepOrder=FALSE)
 {
+  if ("(Intercept)" %in% colnames(model.matrix(Formula, Data))) { NOINT = FALSE
+  } else { NOINT = TRUE }
+  
   OldOpt = options(contrasts=c("contr.treatment", "contr.poly"))
   on.exit(options(OldOpt))
   mf = model.frame(Formula, Data)
@@ -24,7 +27,7 @@ ModelMatrix = function(Formula, Data, NOINT=FALSE, KeepOrder=FALSE)
     vAssign = c(vAssign, rep(i, ncol(Lp)))
     termIndices[[i + !NOINT]] = (1:length(vAssign))[vAssign==i]
     tCol = colnames(L) # In case of continuous variable, colname does not carry.
-    ColName2 = sort(colnames(Lp))
+    ColName2 = sortColName(colnames(Lp))
     L = cbind(L, Lp[, ColName2])
     colnames(L) = c(tCol, ColName2)
   }
