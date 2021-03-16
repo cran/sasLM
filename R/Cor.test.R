@@ -45,5 +45,6 @@ Cor.test = function(Data, conf.level=0.95)
     }
     if (cr > nr) break
   }
-  return(Res)
+  printCoefmat(Res)
+  invisible(Res)
 }

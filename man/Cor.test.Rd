@@ -26,5 +26,4 @@
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{
 Cor.test(mtcars)
-printCoefmat(Cor.test(mtcars))
 }

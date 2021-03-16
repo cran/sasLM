@@ -13,7 +13,7 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95)
   ColNames = substring(colnames(L0)[ti], nchar(Term) + 1)
   
   if (nti == 0) stop(paste(Term, "term not found!"))
-  if (nti == 1) return(est(Lx, rx))
+  if (nti == 1) return(est(L0, x$X, rx, conf.level=conf.level))
 
   nr = nti*(nti - 1)/2
   Lx = matrix(ncol=nc, nrow=nr)
@@ -29,8 +29,8 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95)
     if (iL1 > nr) break
   }
 
-  Res = est(Lx, rx, conf.level=conf.level)
+  Res = est(Lx, x$X, rx, conf.level=conf.level)
   rownames(Res) = RowNames
   printCoefmat(Res)
-  return(invisible(Res))  
+  invisible(Res)  
 }

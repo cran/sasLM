@@ -12,6 +12,7 @@ CIest = function(Formula, Data, Term, Contrast, conf.level=0.95)
   L = rep(0, length(r2$coefficients))
   L[colIndex] = Contrast
 
-  Res = est(t(L), r2)
-  return(Res)
+  Res = est(t(L), x$X, r2, conf.level=conf.level)
+  printCoefmat(Res)
+  invisible(Res)
 }

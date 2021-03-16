@@ -1,4 +1,4 @@
-est = function(L, rx, conf.level=0.95)
+est = function(L, X, rx, conf.level=0.95)
 {
   PE = L %*% rx$coefficients
   
@@ -20,6 +20,7 @@ est = function(L, rx, conf.level=0.95)
   
   Res = cbind(PE, LL, UL, SE, Tval, rx$DFr, Pval)
   colnames(Res) = c("Estimate", "Lower CL", "Upper CL", "Std. Error", "t value", "Df", "Pr(>|t|)")
+  attr(Res, "Estimability") = estmb(L, X, rx$g2)
   return(Res)
 }
 

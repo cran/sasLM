@@ -67,6 +67,9 @@ sumANOVA = function(r1, T1, SST, nObs, yName=NULL)
 
 sumREG = function(r1, X)
 {
+  np = ncol(X)
+  Est = r1$coefficients
+
   if (r1$DFr > 0) {
     bVar = r1$g2 %*% crossprod(X) %*% t(r1$g2) * r1$SSE/r1$DFr
     bSE = sqrt(diag(bVar))
@@ -77,8 +80,14 @@ sumREG = function(r1, X)
     Tval = NA
     Pval = NA
   }
-  Parameter = cbind(r1$coefficients, bSE, Tval, Pval)
-  colnames(Parameter) = c("Estimate", "Std. Error", "t value", "Pr(>|t|)")
+
+  Est[is.na(r1$DFr2)] = NA
+  bSE[is.na(r1$DFr2)] = NA
+  Tval[is.na(r1$DFr2)] = NA
+  Pval[is.na(r1$DFr2)] = NA
+
+  Parameter = cbind(Est, bSE, r1$DFr2, Tval, Pval)
+  colnames(Parameter) = c("Estimate", "Std. Error", "Df", "t value", "Pr(>|t|)")
   rownames(Parameter) = colnames(X)
   class(Parameter) = "anova"
 #  attr(Parameter, "R2") = r1$R2
@@ -105,129 +114,147 @@ lsm0 = function(x, rx, Formula, Data, conf.level=0.95)
 
   Res = cbind(PE, LL, UL, SE, rx$DFr)
   colnames(Res) = c("LSmean", "LowerCL", "UpperCL", "SE", "Df")
+  vne = attr(Lx, "nonEst")
+  Res[vne,] = NA
   return(Res)
 }
 
 llsm0 = function(Formula, Data)
 {
-  x = ModelMatrix(Formula, Data)
-  nc = NCOL(x$X)
-  XpX = crossprod(x$X)
-
+# Find continuous variables at model frame
   mf = model.frame(Formula, Data)
+  cn0 = colnames(mf)
+  nc0 = ncol(mf)
+  vc0 = rep(FALSE, nc0)        # vector continuous 0
+  for (i in 1:nc0) vc0[i] = is.numeric(mf[,i])
+  cv0 = cn0[vc0][-1]           # continuous x variable names
+  ncv0 = length(cv0)
 
+  x = ModelMatrix(Formula, Data)
   Labels = labels(terms(x))
   nLabel = length(Labels)
-  LLabel = strsplit(Labels, ":")
 
-  RowNames = rownames(XpX)
-  ine = which(diag(XpX) == 0) # index of not estimable
+  XpX = crossprod(x$X)
+  nc = ncol(XpX)
 
-  Lx = matrix(NA, nrow=nc, ncol=nc)
-  dimnames(Lx) = dimnames(XpX)
+  L0 = matrix(NA, nrow=nc, ncol=nc)
+  dimnames(L0) = dimnames(XpX)
 
-  vOrd = colSums(attr(x$terms, "factors") > 0) # orders of variable
-  vCont = rep(FALSE, nLabel)                   # continuous ?
+  L0[,1] = 1
 
-## First column (intercept)
-  Lx[,1] = 1
+  tN = attr(terms(x), "factors") # table for nest inforation
+  L1 = as.numeric(XpX[1,] > 0)
 
-## Block Diagnoal, check continuous variable, fill first row
+# First row (intercept)
   for (i in 1:nLabel) {
     cI = x$termIndices[Labels[i]][[1]]
-    if (length(cI) == 1) {
-      for (j in i:nLabel) if (LLabel[i][[1]] %in% LLabel[j][[1]]) vCont[j] = TRUE
+    if (sum(tN[,Labels[i]] > 1) > 0) {  # nested
+      nestF = rownames(tN)[tN[,Labels[i]] > 1]
+      nestF = paste(nestF, collapse=":")
+      nfCI = x$termIndices[[nestF]]
+      nnfCI = length(nfCI)
+      nCI = length(cI)
+      sG = nCI/nnfCI
+      if (sG > 1) {
+        for (j in 1:nnfCI) {
+          ccI = cI[((j - 1)*sG + 1):(j*sG)]
+          L0[1, ccI] = 1/sum(L1[ccI])*L0[1, nfCI[j]]
+        }
+      } else {
+        L0[1, cI] = 1/sum(L1[cI])
+      }
     } else {
-      Lx[cI, cI] = diag(nrow=length(cI)) # Self is always 1.
-    }
-  ## First row (intercept)
-    cnLevel = length(setdiff(cI, ine))
-    Lx[1, cI] = 1/cnLevel
-    Lx[1, ine] = 0
-  }
-  
-## Contained or Containing
-  for (i in 2:nc) {
-    for (j in 2:nc) {
-      if (i == j | !is.na(Lx[i,j])) next # Only for non-diagonal
-      cRow = strsplit(RowNames[i], ":")[[1]]
-      if (length(cRow) > 2) {
-        Lx[i,] = 0 # does not support
-        Lx[i,1] = NA
-      }
-      cCol = strsplit(RowNames[j], ":")[[1]]
-
-      cIs = x$termIndices[Labels[x$assign[i]]][[1]]
-      cJs = x$termIndices[Labels[x$assign[j]]][[1]]
-
-      if (all(cRow %in% cCol)) {
-        Lx[i, j] = length(cCol)    # Containing Flag, will be changed later
-        Lx[setdiff(cIs, i), j] = 0 # This should be filled with zero
-      } else if (all(cCol %in% cRow)) {
-        Lx[i,j] = 1                # Contained is always 1.
-        Lx[i, setdiff(cJs, j)] = 0 # This should be filled with zero
-      } else if (any(cRow %in% cCol)) {
-        cap = intersect(cRow, cCol)
-        lcn = strsplit(colnames(Lx[,cJs]), ":")
-        vcJ = rep(FALSE, length(cJs))
-        for (k in 1:length(lcn)) if (all(cap %in% lcn[[k]])) vcJ[k] = TRUE
-        Lx[i, cJs[vcJ]] = 1/sum(vcJ)
-        Lx[i, cJs[!vcJ]] = 0
-      }
+      L0[1, cI] = 1/sum(L1[cI])
     }
   }
 
-## Containing Flag (>1) to 1/(j*k)
-  for (i in 2:nc) {
+  for (i in 1:nLabel) {
     for (j in 1:nLabel) {
-      cI = x$termIndices[Labels[j]][[1]]
-      tI = which(Lx[i,] > 1)
-      cJ = setdiff(intersect(cI, tI), ine)
-      Lx[i, cJ] = 1/length(cJ)
+      Ls = bL(i, j, x, L0[1,,drop=FALSE])
+      L0[rownames(Ls), colnames(Ls)] = Ls
     }
   }
 
-## Remaining values from the intercept row
-  for (j in 2:nc) {
-    iL = x$assign[j]
-    if (length(LLabel[iL][[1]]) == 1) {
-      Lx[is.na(Lx[,j]), j] = Lx[1, j]
-    } else {
-      tL = strsplit(RowNames[j], ":")[[1]]
-      nL = length(tL)
+# Fill single continuous columns with mean
+  if (ncv0 > 0) {
+    for (i in 1:ncv0) L0[, cv0[i]] = mean(mf[, cv0[i]])
+  }
 
-      oN = paste(tL[-nL], collapse=":")
-      oN2 = paste(tL[-1], collapse=":")
-      oN3 = paste(tL[-2], collapse=":")
-      if (oN %in% RowNames) {
-        for (i in which(is.na(Lx[,j]))) Lx[i, j] = Lx[oN, j]*Lx[i, oN]
-      } else if (oN2 %in% RowNames) {
-        for (i in which(is.na(Lx[,j]))) Lx[i, j] = Lx[oN2, j]*Lx[i, oN2]
-      } else if (oN3 %in% RowNames) {
-        for (i in which(is.na(Lx[,j]))) Lx[i, j] = Lx[oN3, j]*Lx[i, oN3]
+# Two or more interaction columns with continuous variable
+  cn1 = colnames(XpX)
+  scn1 = strsplit(cn1, ":")
+  names(scn1) = cn1
+
+  for (i in 1:nc) {
+    ccn = scn1[[i]]           # splitted current column name
+    nccn = length(ccn)        # number of ccn
+    if (nccn == 1) next       # already treated above, no more need to consider for single name
+    cap = intersect(cv0, ccn)
+    ncap = length(cap)
+    if (ncap == 0) next       # no intersection -> no contiuous varaible
+    tv = L0[, ccn[1]]         # temporary vector
+    for (j in 2:nccn) tv = tv*L0[, ccn[j]] # it must be more than 1 column (nccn >= 2)
+    L0[, i] = tv
+  }
+
+# Check estimability  
+  iNE = (XpX[1,] == 0) # index of not estimable
+  nNE = sum(iNE)
+  if (nNE > 0) {
+    sNE = strsplit(cn1[iNE], ":")
+    for (i in 1:nNE) {
+      cStr = sNE[[i]]
+      for (j in 2:nc) {
+        cCol = scn1[[j]]
+        if (all(cCol %in% cStr) & length(cCol) < length(cStr)) iNE[j] = TRUE
       }
     }
   }
 
-## Handle continuous (one level) variables and its interactions
-  for (i in 1:nLabel) {
-    cI = x$termIndices[Labels[i]][[1]]
-    tL = strsplit(Labels[i], ":")[[1]]
-    if (length(cI) == 1 &  length(tL) == 1) {
-      Lx[,cI] = mean(mf[,Labels[i]])
-    }
-    if (i %in% which(vCont) & length(tL) > 1) {
-      cName = colnames(Lx[,cI])
-      for (j in 1:length(cName)) {
-        tL2 = strsplit(cName[j], ":")[[1]]
-        cVec = Lx[, tL2[1]]
-        for (k in 2:length(tL2)) cVec = cVec * Lx[, tL2[k]]
-        Lx[,cName[j]] = cVec
-      }
-    }
-  }
-
-  Lx[,ine] = 0
-  Lx[ine, ] = NaN
-  return(Lx[!is.na(Lx[,1]),])
+  L0[, diag(XpX) == 0] = 0 # No observation columns
+  attr(L0, "nonEst") = iNE
+  return(L0)
 }
+
+bL = function(m, n, x, L1)
+{
+  Labels = labels(terms(x))
+  tLabel = Labels[m]
+  cLabel = Labels[n]
+
+  sLabel = strsplit(Labels, ":")
+  fCap = intersect(sLabel[[m]], sLabel[[n]])
+
+  XpX = crossprod(x$X)
+  cn = colnames(XpX)
+  iNO = (1:ncol(XpX))[diag(XpX) == 0]
+  cI = x$termIndices[[tLabel]]
+  cJ = setdiff(x$termIndices[[cLabel]], iNO)
+
+  nr = length(cI)
+  nc = length(cJ)
+  Lx = matrix(0, nrow=nr, ncol=nc)
+  dimnames(Lx) = list(cn[cI], cn[cJ])
+
+  if (length(fCap) == 0) {
+    for (i in 1:nr) Lx[i, ] = L1[1, setdiff(cJ, iNO)]
+  } else if (m == n) {
+    Lx = diag(1, nrow=length(cI))
+    dimnames(Lx) = list(cn[cI], cn[cI])
+  } else {
+    tLevels = strsplit(cn[cI], ":")
+    cLevels = strsplit(cn[cJ], ":")
+    iLevels = intersect(unlist(tLevels), unlist(cLevels))
+
+    tNames = rep("", nr)
+    cNames = rep("", nc)
+    for (i in 1:nr) tNames[i] = paste(intersect(tLevels[[i]], iLevels), collapse=":")
+    for (j in 1:nc) cNames[j] = paste(intersect(cLevels[[j]], iLevels), collapse=":")
+    for (i in 1:nr) for (j in 1:nc) if (tNames[i] == cNames[j]) Lx[i, j] = 1
+
+    Lx = Lx/rowSums(Lx)
+  }
+
+  return(Lx)
+}
+

@@ -29,5 +29,6 @@ Pcor.test = function(Data, x, y)
     }
     if (cr > nr) break
   }
-  return(Res)
+  printCoefmat(Res)
+  invisible(Res)
 }

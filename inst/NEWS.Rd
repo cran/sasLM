@@ -1,12 +1,18 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.5.1 (2020-03-15)}{
+  \itemize{
+    \item{\code{LSM} does not show estimates which are not estimable, and supports more models}
+    \item{\code{est} has more arguments to test estimability}  
+  }
+}
+
 \section{Version 0.5.0 (2020-02-15)}{
   \itemize{
     \item{\code{lr0} function for simple linear regressions with each independent variable}    
   }
 }
-
 
 \section{Version 0.4.1 (2020-02-15)}{
   \itemize{

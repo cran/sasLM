@@ -5,10 +5,11 @@
   Estimates Linear Contrast(s) with a given GLM result.
 }
 \usage{
-  est(L, rx, conf.level=0.95)
+  est(L, X, rx, conf.level=0.95)
 }
 \arguments{
   \item{L}{a matrix of linear contrast rows to be tested}
+  \item{X}{a model (design) matrix from \code{ModelMatrix}}
   \item{rx}{a result of \code{lfit} function}
   \item{conf.level}{confidence level of confidence limit}
 }
@@ -28,7 +29,7 @@
   x = ModelMatrix(uptake ~ Type, CO2)
   y = model.frame(uptake ~ Type, CO2)[,1]
   rx = lfit(x, y)
-  est(t(c(0, -1, 1)), rx) # Quevec - Mississippi 
+  est(t(c(0, -1, 1)), x$X, rx) # Quevec - Mississippi 
   t.test(uptake ~ Type, CO2) # compare with the above
 }
 \author{Kyun-Seop Bae k@acr.kr}
