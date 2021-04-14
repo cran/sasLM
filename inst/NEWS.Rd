@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.5.2 (2020-04-15)}{
+  \itemize{
+    \item{Some errata in help/manual are corrected.}
+    \item{\code{CV} (coefficient of variation) in percentage added.}
+    \item{\code{cSS} has now \code{m} arguments for non-zero mean hypothesis.}
+    \item{A bug with no intercept model in \code{lr} fixed.}
+    \item{Incomplete interaction term names of \code{PDIFF} fixed.}
+  }
+}
+
 \section{Version 0.5.1 (2020-03-15)}{
   \itemize{
     \item{\code{LSM} does not show estimates which are not estimable, and supports more models}

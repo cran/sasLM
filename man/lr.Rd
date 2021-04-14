@@ -20,7 +20,7 @@ lr(Formula, Data, eps=1e-8)
   \item{Estimate}{point estimate of parameters, coefficients}
   \item{Std. Error}{standard error of the point estimate}
   \item{t value}{value for t distribution}
-  \item{Pr(>|t|}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
+  \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
 }
 \examples{
 lr(uptake ~ Plant + Type + Treatment + conc, CO2)

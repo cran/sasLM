@@ -95,7 +95,7 @@ sumREG = function(r1, X)
   return(Parameter)
 }
 
-lsm0 = function(x, rx, Formula, Data, conf.level=0.95)
+lsm0 = function(x, rx, Formula, Data, conf.level=0.95, hideNonEst=TRUE)
 {
   Lx = llsm0(Formula, Data)
 
@@ -114,8 +114,7 @@ lsm0 = function(x, rx, Formula, Data, conf.level=0.95)
 
   Res = cbind(PE, LL, UL, SE, rx$DFr)
   colnames(Res) = c("LSmean", "LowerCL", "UpperCL", "SE", "Df")
-  vne = attr(Lx, "nonEst")
-  Res[vne,] = NA
+  if (hideNonEst) Res[attr(Lx, "nonEst"),] = NA
   return(Res)
 }
 
@@ -142,7 +141,7 @@ llsm0 = function(Formula, Data)
 
   L0[,1] = 1
 
-  tN = attr(terms(x), "factors") # table for nest inforation
+  tN = attr(terms(x), "factors") # table for nest information
   L1 = as.numeric(XpX[1,] > 0)
 
 # First row (intercept)
@@ -198,7 +197,7 @@ llsm0 = function(Formula, Data)
   }
 
 # Check estimability  
-  iNE = (XpX[1,] == 0) # index of not estimable
+  iNE = (diag(XpX) == 0) # index of not estimable
   nNE = sum(iNE)
   if (nNE > 0) {
     sNE = strsplit(cn1[iNE], ":")
@@ -206,13 +205,21 @@ llsm0 = function(Formula, Data)
       cStr = sNE[[i]]
       for (j in 2:nc) {
         cCol = scn1[[j]]
-        if (all(cCol %in% cStr) & length(cCol) < length(cStr)) iNE[j] = TRUE
+#        if (all(cCol %in% cStr) & length(cCol) < length(cStr) & tN[x$assign[j] + 1, x$assign[iNE][i]] == 1) iNE[j] = TRUE
+        C1 = all(cCol %in% cStr) & length(cCol) < length(cStr)
+        C2 = length(cCol)
+        if (C2 > 1) {
+          if (C1) iNE[j] = TRUE
+        } else if (C2 == 1) {
+           if (C1 & tN[x$assign[j] + 1, x$assign[iNE][i]] < 2) iNE[j] = TRUE
+        }
       }
     }
   }
 
   L0[, diag(XpX) == 0] = 0 # No observation columns
   attr(L0, "nonEst") = iNE
+
   return(L0)
 }
 

@@ -5,15 +5,16 @@
   Calculates sum of squares of a contrast from a \code{lfit} result.
 }
 \usage{
-  cSS(K, rx, eps=1e-8)
+  cSS(K, rx, m=0, eps=1e-8)
 }
 \arguments{
   \item{K}{contrast matrix. Each row is a contrast.}
   \item{rx}{a result of \code{lfit} function}  
+  \item{m}{a vector of mu for the hypothesis K. The length should be equal to the row count of K.}  
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
-  It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST.
+  It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST. This can test the hypotheis that the linear combination (function)'s mean vector is m.
 }
 \value{
   Returns sum of square and its F value and p-value.

@@ -15,12 +15,13 @@ lr = function(Formula, Data, eps=1e-8)
   np = attr(ag2, "rank")
   DFr = nr - np
   SSE = ag2[(nc + 1), (nc + 1)]
-  SST = as.numeric(crossprod(y - mean(y)))
+  fIntercept = attr(x$terms, "intercept")
+  SST = as.numeric(crossprod(y - fIntercept*mean(y)))
 
   if (DFr > 0) {
     MSE = SSE/DFr
     bVar = iXpX %*% XpX %*% t(iXpX) * MSE
-    bVar[bVar < eps] = NA_real_
+    bVar[abs(bVar) < eps] = NA_real_
     bSE = sqrt(diag(bVar))
     Tval = b/bSE
     Pval = 2*(1 - pt(abs(Tval), DFr))
@@ -47,17 +48,18 @@ lr = function(Formula, Data, eps=1e-8)
   options(DefOpt)
   Res$coefficients = coef1
   Res$aliased = !is.numeric(coef1[,"Estimate"])
+
   Res$df = c(np, DFr, nc)
   Res$r.squared = 1 - SSE/SST
 
   if (DFr > 0) {
     Res$sigma = sqrt(MSE)
-    Res$adj.r.squared = 1 - (1 - Res$r.squared) * (nr - 1)/DFr
-    Res$fstatistic = c(value=(SST - SSE)/(np - 1)/MSE, numdf=(np - 1), dendf=DFr)
+    Res$adj.r.squared = 1 - (1 - Res$r.squared) * (nr - fIntercept)/DFr
+    Res$fstatistic = c(value=(SST - SSE)/(np - fIntercept)/MSE, numdf=(np - fIntercept), dendf=DFr)
   } else {
     Res$sigma = NaN
     Res$adj.r.squared = NaN
-    Res$fstatistic = c(NaN, numdf=(np - 1), dendf=DFr)
+    Res$fstatistic = c(NaN, numdf=(np - fIntercept), dendf=DFr)
   }
   class(Res) = "summary.lm"
   return(Res)

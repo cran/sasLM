@@ -14,7 +14,7 @@
   \item{eps}{absolute value less than this is considered to be zero.}
 }
 \details{
-  It checks estimability of L, row vectors of coefficients. This corresponds to SAS PROC GLM ESTIMATE.
+  It checks estimability of L, row vectors of coefficients. This corresponds to SAS PROC GLM ESTIMATE. See <Kennedy Jr. WJ, Gentle JE. Statistical Computing. 1980> p361 or <Golub GH, Styan GP. Numerical Computations for Univariate Linear Models. 1971>.
 }
 \value{
   a vector of logical values indicating which row is estimable (as TRUE)

@@ -20,8 +20,8 @@ lr0(Formula, Data)
   \item{SE(Intercept)}{standard error of the intercept}
   \item{Slope}{estimate of the slope}
   \item{SE(Slope)}{standard error of the slope}
-  \item{Rsq)}{R-squared for the simple linear model}
-  \item{Pr(>F}{p-value of slope or the model}
+  \item{Rsq}{R-squared for the simple linear model}
+  \item{Pr(>F)}{p-value of slope or the model}
 }
 \examples{
 lr0(uptake ~ Plant + Type + Treatment + conc, CO2)

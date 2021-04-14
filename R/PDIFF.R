@@ -10,8 +10,23 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95)
   Labels = labels(terms(x))
   ti = x$termIndices[Term][[1]]
   nti = length(ti)
-  ColNames = substring(colnames(L0)[ti], nchar(Term) + 1)
-  
+
+  sTerm = strsplit(Term, ":")[[1]]
+  if (length(sTerm) > 1) {
+    ColNames = vector()
+    for (i in 1:nti) {
+      cCol = colnames(L0)[ti[i]]
+      cStr = strsplit(cCol, ":")[[1]]
+      tStr = vector()
+      for (j in 1:length(sTerm)) {
+        tStr[j] = substring(cStr[j], nchar(sTerm[j]) + 1)
+      }
+      ColNames[i] = paste(tStr, collapse=":")
+    }
+  } else {
+    ColNames = substring(colnames(L0)[ti], nchar(Term) + 1)
+  }
+
   if (nti == 0) stop(paste(Term, "term not found!"))
   if (nti == 1) return(est(L0, x$X, rx, conf.level=conf.level))
 
@@ -32,5 +47,5 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95)
   Res = est(Lx, x$X, rx, conf.level=conf.level)
   rownames(Res) = RowNames
   printCoefmat(Res)
-  invisible(Res)  
+  invisible(Res)
 }
