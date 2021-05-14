@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.5.3 (2020-05-15)}{
+  \itemize{
+    \item{\code{aov2} and \code{e2} support no intercept model.}
+    \item{\code{aov1}, \code{aov3}, \code{ANOVA}, \code{GLM} handle no intercept model properly.}
+    \item{A column of estimability will be shown when some cofficients are not estimable in \code{REG} and \code{GLM}.}
+  }
+}
+
 \section{Version 0.5.2 (2020-04-15)}{
   \itemize{
     \item{Some errata in help/manual are corrected.}

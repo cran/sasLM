@@ -19,6 +19,7 @@ REG(Formula, Data, eps=1e-8, summarize=TRUE)
 \value{
   The result is comparable to that of SAS PROC REG.
   \item{Estimate}{point estimate of parameters, coefficients}
+  \item{Estimable}{estimability: 1=TRUE, 0=FALSE. This appears only when inestimability occurs.}
   \item{Std. Error}{standard error of the point estimate}
   \item{t value}{value for t distribution}
   \item{Pr(>|t|}{probability of larger than absolute t value from t distribution with residual's degree of freedom}

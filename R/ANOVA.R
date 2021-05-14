@@ -13,7 +13,13 @@ ANOVA = function(Formula, Data, eps=1e-8)
   if (sum(T3[,"Df"], na.rm=TRUE) != sum(T1[,"Df"], na.rm=TRUE)) attr(T3, "heading") = "CAUTION: Singularity Exists !"
   class(T3) = "anova"
 
-  ANOVA = sumANOVA(r1, T1=NULL, crossprod(y - mean(y)), nrow(x$X), rownames(attr(terms(x),"factors"))[1])
+  if ("(Intercept)" %in% colnames(x$X)) {
+    SST = crossprod(y - mean(y))
+  } else {
+    SST = crossprod(y)
+  }
+
+  ANOVA = sumANOVA(r1, T1=NULL, SST, nrow(x$X), rownames(attr(terms(x),"factors"))[1])
 
   Result = list(ANOVA=ANOVA, 'Type I'=T1, 'Type II'=T2, 'Type III'=T3)
   return(Result)

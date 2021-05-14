@@ -41,6 +41,13 @@ e2 = function(Formula, Data, eps=1e-8)
     L[,Col2] = gX1pMX1 %*% X1pM %*% X2
     Ls = rbind(Ls, L)
   }
-  rownames(Ls) = paste0("L", 1:nc)
+
+  if ("(Intercept)" %in% colnames(XpX)) {
+    rownames(Ls) = paste0("L", 1:nc)
+  } else {
+    Ls = Ls[-1,]
+    rownames(Ls) = paste0("L", 1:nc)
+  }
+
   return(Ls)
 }

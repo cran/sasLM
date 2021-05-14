@@ -13,15 +13,21 @@ GLM = function(Formula, Data, lsm=FALSE, conf.level=0.95, eps=1e-8)
   if (sum(T3[,"Df"], na.rm=TRUE) != sum(T1[,"Df"], na.rm=TRUE)) attr(T3, "heading") = "CAUTION: Singularity Exists !"
   class(T3) = "anova"
 
-  ANOVA = sumANOVA(r1, T1=NULL, crossprod(y - mean(y)), nrow(x$X), rownames(attr(terms(x),"factors"))[1])
+  if ("(Intercept)" %in% colnames(x$X)) {
+    SST = crossprod(y - mean(y))
+  } else {
+    SST = crossprod(y)
+  }
+
+  ANOVA = sumANOVA(r1, T1=NULL, SST, nrow(x$X), rownames(attr(terms(x),"factors"))[1])
   Parameter = sumREG(r1, x$X)
-  
+
   Result = list(ANOVA=ANOVA, 'Type I'=T1, 'Type II'=T2, 'Type III'=T3, Parameter=Parameter)
 
   if (lsm) {
     Result[[6]] = lsm0(x2, r2, Formula, Data, conf.level = conf.level)
     names(Result) = c("ANOVA", "Type I", "Type II", "Type III", "Parameter", "Least Square Mean")
-  }  
+  }
 
   return(Result)
 }

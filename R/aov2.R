@@ -4,5 +4,10 @@ aov2 = function(Formula, Data, eps=1e-8)
   x = ModelMatrix(Formula, Data, KeepOrder=FALSE)
   r1 = lfit(x, y, eps=eps)
   T1 = SS(x, r1, e2(Formula, Data, eps=eps))
-  return(sumANOVA(r1, T1, crossprod(y - mean(y)), nrow(x$X), rownames(attr(terms(x),"factors"))[1]))
+  if ("(Intercept)" %in% colnames(x$X)) {
+    SST = crossprod(y - mean(y))
+  } else {
+    SST = crossprod(y)
+  }
+  return(sumANOVA(r1, T1, SST, nrow(x$X), rownames(attr(terms(x),"factors"))[1]))
 }

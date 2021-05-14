@@ -36,7 +36,11 @@ sortColName = function(ColNames)
 
 sumANOVA = function(r1, T1, SST, nObs, yName=NULL)
 {
-  DF = c(r1$rank - 1, r1$DFr, nObs - 1)
+  if ("(Intercept)" %in% colnames(r1$g2)) {
+    DF = c(r1$rank - 1, r1$DFr, nObs - 1)
+  } else {
+    DF = c(r1$rank, r1$DFr, nObs)
+  }
   SS = c(SST - r1$SSE, r1$SSE, SST)
   if (DF[2] > 0) {
     MS = c(SS[1:2]/DF[1:2], NA)
@@ -53,7 +57,12 @@ sumANOVA = function(r1, T1, SST, nObs, yName=NULL)
 
   ANOVA = cbind(DF, SS, MS, Fval, Pval)
   colnames(ANOVA) = c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")
-  rownames(ANOVA) = c("MODEL", "RESIDUALS", "CORRECTED TOTAL")
+  
+  if ("(Intercept)" %in% colnames(r1$g2)) {
+    rownames(ANOVA) = c("MODEL", "RESIDUALS", "CORRECTED TOTAL")
+  } else {
+    rownames(ANOVA) = c("MODEL", "RESIDUALS", "UNCORRECTED TOTAL")    
+  }
   if (!is.null(T1)) {
     rownames(T1) = paste0(" ", rownames(T1))
     ANOVA = rbind(ANOVA[1,,drop=FALSE], T1, ANOVA[2:3,])
@@ -86,8 +95,14 @@ sumREG = function(r1, X)
   Tval[is.na(r1$DFr2)] = NA
   Pval[is.na(r1$DFr2)] = NA
 
-  Parameter = cbind(Est, bSE, r1$DFr2, Tval, Pval)
-  colnames(Parameter) = c("Estimate", "Std. Error", "Df", "t value", "Pr(>|t|)")
+  ESTM = estmb(diag(np), X, r1$g2)
+  if (sum(ESTM) == np) {
+    Parameter = cbind(Est, bSE, r1$DFr2, Tval, Pval)
+    colnames(Parameter) = c("Estimate", "Std. Error", "Df", "t value", "Pr(>|t|)")    
+  } else {
+    Parameter = cbind(Est, ESTM, bSE, r1$DFr2, Tval, Pval)
+    colnames(Parameter) = c("Estimate", "Estimable", "Std. Error", "Df", "t value", "Pr(>|t|)")
+  }
   rownames(Parameter) = colnames(X)
   class(Parameter) = "anova"
 #  attr(Parameter, "R2") = r1$R2
