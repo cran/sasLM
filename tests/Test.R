@@ -5,26 +5,35 @@ GLM(f1, npk)
 REG(f1, npk)
 ANOVA(f1, npk)
 EMS(f1, npk)
+lr(f1, npk)
+lr0(f1, npk)
 
-f2 = weight ~ feed 
+f1b = yield ~ block + N*P*K - 1
+GLM(f1b, npk[-1,])
+REG(f1b, npk[-1,])
+ANOVA(f1b, npk[-1,])
+EMS(f1b, npk[-1,])
+lr(f1b, npk[-1,])
+lr0(f1b, npk[-1,])
+
+f2 = weight ~ feed
 GLM(f2, chickwts)
 REG(f2, chickwts)
 ANOVA(f2, chickwts)
 EMS(f2, chickwts)
+lr(f2, chickwts)
+lr0(f2, chickwts)
 
-m = mtcars
-m[1, "mpg"] = NA
-m[2, "disp"] = NA
-m[3, "hp"] = NA
-m[4, "drat"] = NA
-m[5, "qsec"] = NA
-m[6, "wt"] = NA
+f3 = uptake ~ conc - 1
+GLM(f3, CO2)
+REG(f3, CO2)
+lr(f3, CO2)
+lr0(f3, CO2)
+ANOVA(f3, CO2)
+EMS(f3, CO2)
+aov1(f3, CO2)
+aov2(f3, CO2)
+aov3(f3, CO2)
 
-Cor.test(m)
-Pcor.test(m, c("mpg", "hp", "disp", "qsec"), c("drat", "wt"))
-
-tsum(lh)
-t(tsum(CO2))
-t(tsum(uptake ~ Treatment, CO2))
-tsum(uptake ~ Type + Treatment, CO2)
-tsum(uptake ~ conc + Type + Treatment, CO2)
+Coll(mpg ~ disp + hp + drat + wt + qsec, mtcars)
+Coll(mpg ~ disp + hp + drat + wt + qsec - 1, mtcars)

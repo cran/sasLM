@@ -24,5 +24,8 @@ lr(Formula, Data, eps=1e-8)
 }
 \examples{
 lr(uptake ~ Plant + Type + Treatment + conc, CO2)
+lr(uptake ~ Plant + Type + Treatment + conc - 1, CO2)
+lr(uptake ~ Type, CO2)
+lr(uptake ~ Type - 1, CO2)
 }
 \author{Kyun-Seop Bae k@acr.kr}

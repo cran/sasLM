@@ -25,5 +25,7 @@ aov2(Formula, Data, eps=1e-8)
 }
 \examples{
   aov2(uptake ~ Plant + Type + Treatment + conc, CO2)
+  aov2(uptake ~ Type, CO2)
+  aov2(uptake ~ Type - 1, CO2)
 }
 \author{Kyun-Seop Bae k@acr.kr}

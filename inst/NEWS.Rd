@@ -1,6 +1,22 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.6.0 (2020-06-15)}{
+  \itemize{
+    \item{\code{Diffogram} added}
+    \item{\code{PLOT} option added to \code{LSM} and \code{PDIFF}}
+    \item{\code{LSM} supports grouping when a term is specified.}
+    \item{\code{PDIFF} and \code{est} support common multiple comparison methods, such as "lsd"(no adj), "bon", "tukey", "scheffe", "duncan", and "dunnett".}
+    \item{\code{ESTM} function added.}
+    \item{\code{CONTR} function added.}
+    \item{\code{SLICE} function added.}
+    \item{\code{satt} changed the way of weights calculation. Now, one can give integer weights.}
+    \item{\code{lsm} now properly supports models without intercept.}
+    \item{\code{e2} now properly supports single factor models (Type II SS of Oneway ANOVA) without intercept.}
+    \item{Checks inputs and errors during calculation more.}
+  }
+}
+
 \section{Version 0.5.3 (2020-05-15)}{
   \itemize{
     \item{\code{aov2} and \code{e2} support no intercept model.}

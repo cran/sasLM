@@ -10,7 +10,12 @@ e2 = function(Formula, Data, eps=1e-8)
   nLabel = length(Labels)
   LLabel = strsplit(Labels, ":")
 
-  Ls = c(1, rep(0, nc - 1)) # interecept
+  if (attr(x$terms, "intercept")) {
+    Ls = c(1, rep(0, nc - 1))
+  } else {
+    Ls = NULL
+  } 
+
   for (i in 1:nLabel) {
     Label1 = Labels[i]
     Label2 = NULL
@@ -28,10 +33,14 @@ e2 = function(Formula, Data, eps=1e-8)
     X0 = X[,Col0]
     X1 = X[,Col1]
     X2 = X[,Col2]
-    Mx = X0 %*% G2SWEEP(crossprod(X0)) %*% t(X0)
-    M = diag(NCOL(Mx)) - Mx
-
-    X1pM  = crossprod(X1, M)
+    
+    if (NCOL(X0) > 0) {
+      Mx = X0 %*% G2SWEEP(crossprod(X0)) %*% t(X0)
+      M = diag(NCOL(Mx)) - Mx
+      X1pM  = crossprod(X1, M)
+    } else {
+      X1pM = t(X1)
+    }
     X1pMX1 = X1pM %*% X1
     gX1pMX1 = G2SWEEP(X1pMX1)
 
@@ -42,12 +51,6 @@ e2 = function(Formula, Data, eps=1e-8)
     Ls = rbind(Ls, L)
   }
 
-  if ("(Intercept)" %in% colnames(XpX)) {
-    rownames(Ls) = paste0("L", 1:nc)
-  } else {
-    Ls = Ls[-1,]
-    rownames(Ls) = paste0("L", 1:nc)
-  }
-
+  rownames(Ls) = paste0("L", 1:NCOL(Ls))
   return(Ls)
 }

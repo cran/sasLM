@@ -19,5 +19,5 @@
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{
-pD(lm(uptake ~ Plant + Type + Treatment + conc, CO2), "Diagnostic Plot")
+  pD(lm(uptake ~ Plant + Type + Treatment + conc, CO2), "Diagnostic Plot")
 }

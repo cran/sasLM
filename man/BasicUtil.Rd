@@ -6,6 +6,9 @@
 \alias{lsm0}
 \alias{llsm0}
 \alias{bL}
+\alias{GrpCode}
+\alias{plotDiff}
+\alias{plotDunnett}
 \title{Internal Functions}
 \description{Internal functions}
 \details{These are not to be called by the user.}

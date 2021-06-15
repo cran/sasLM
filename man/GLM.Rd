@@ -23,7 +23,7 @@ GLM(Formula, Data, lsm=FALSE, conf.level=0.95, eps=1e-8)
   \item{Type I}{Type I sum of square table}
   \item{Type II}{Type II sum of square table}
   \item{Type III}{Type III sum of square table}
-  \item{Parameter}{Parameter table with standard error, t value, p value}
+  \item{Parameter}{Parameter table with standard error, t value, p value. \code{TRUE} is 1, and \code{FALSE} is 0 in the \code{Estimable} column.}
   \item{Least Square Mean}{Least square mean table with confindence limit}
 }
 \examples{

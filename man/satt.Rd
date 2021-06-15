@@ -5,12 +5,12 @@
   Calculates pooled variance and degree of freedom using Satterthwaite equation. 
 }
 \usage{
-  satt(ws, vars, dfs) 
+  satt(vars, dfs, ws=c(1, 1)) 
 }
 \arguments{
-  \item{ws}{a vector of weights}
   \item{vars}{a vector of variances}
   \item{dfs}{a vector of degree of freedoms}
+  \item{ws}{a vector of weights}
 }
 \details{
   The input can be more than two variances.

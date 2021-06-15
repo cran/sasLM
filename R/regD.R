@@ -1,7 +1,11 @@
-regD = function(formula, data)
+regD = function(Formula, Data)
 {
-  X = model.matrix(formula, data)
-  y = model.frame(formula, data)[,1]
+  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
+
+  y = model.frame(Formula, Data)[,1]
+  if (!is.numeric(y)) stop("Dependent variable should be numeric!")
+
+  X = model.matrix(Formula, Data)
 
   n = nrow(X)
   p = qr(X)$rank

@@ -1,12 +1,15 @@
 T3MS = function(Formula, Data, L0, eps=1e-8) 
 {
+  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   x = ModelMatrix(Formula, Data)
+  y = model.frame(Formula, Data)[,1]
+  if (!is.numeric(y)) stop("Dependent variable should be numeric!")
+
   Terms = labels(terms(x))
   nTerm = length(Terms)
 
   if (missing(L0)) L0 = e3(Formula, Data)
 
-  y = model.frame(Formula, Data)[,1]
   r0 = lfit(x, y)
   b = r0$coefficients
 

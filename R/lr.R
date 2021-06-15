@@ -1,9 +1,10 @@
 lr = function(Formula, Data, eps=1e-8)
 {
+  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   x = ModelMatrix(Formula, Data)
   y = model.frame(Formula, Data)[,1]
+  if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
-  if (NCOL(y) > 1) stop("This supports only y with 1 column.")
   nc = ncol(x$X)
   XpX = crossprod(x$X)
   XpY = crossprod(x$X, y)
@@ -44,7 +45,7 @@ lr = function(Formula, Data, eps=1e-8)
   coef1 = Parameter
   coef1[is.na(bSE) & b == 0, "Estimate"] = NA_real_
   DefOpt = options(contrasts=c("contr.SAS", "contr.SAS"))
-  coef1 = coef1[colnames(model.matrix(Formula, Data)),]
+  coef1 = coef1[colnames(model.matrix(Formula, Data)), , drop=FALSE]
   options(DefOpt)
   Res$coefficients = coef1
   Res$aliased = !is.numeric(coef1[,"Estimate"])

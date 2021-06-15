@@ -5,11 +5,11 @@
   \code{regD} provides rich diagnostics such as student residual, leverage(hat), Cook's D, studentized deleted residual, DFFITS, and DFBETAS.
 }
 \usage{
-regD(formula, data)
+regD(Formula, Data)
 }
 \arguments{
-  \item{formula}{a conventional formula for a linear model}
-  \item{data}{a \code{data.frame} to be analyzed}
+  \item{Formula}{a conventional formula for a linear model}
+  \item{Data}{a \code{data.frame} to be analyzed}
 }
 \details{
   It performs the conventional regression analysis. This does not use g2 inverse, therefore it cannot handle singular matrix. If the model(design) matrix is not full rank, use \code{REG} or less parameters.

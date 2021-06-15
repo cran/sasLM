@@ -8,7 +8,7 @@ lfit = function(x, y, eps=1e-8)
   ag2 = G2SWEEP(aXpX, Augmented=TRUE, eps=eps)
 
   b = ag2[1:nc,(nc + 1)]
-  iXpX = ag2[1:nc, 1:nc]
+  iXpX = ag2[1:nc, 1:nc, drop=FALSE]
   SSE = max(0, ag2[(nc + 1), (nc + 1)]) # SSE cannot be negative
   DFr = nrow(x$X) - attr(ag2, "rank")
   DFr2 = rep(DFr, nc)

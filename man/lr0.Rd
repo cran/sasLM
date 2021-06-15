@@ -8,7 +8,7 @@
 lr0(Formula, Data)
 }
 \arguments{
-  \item{Formula}{a conventional formula for a linear model}
+  \item{Formula}{a conventional formula for a linear model. Intercept will be added always.}
   \item{Data}{a \code{data.frame} to be analyzed}
 }
 \details{

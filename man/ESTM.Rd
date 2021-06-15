@@ -1,21 +1,21 @@
-\name{CIest}
-\alias{CIest}
-\title{Confidence Interval Estimation}
+\name{ESTM}
+\alias{ESTM}
+\alias{ESTMIMATE}
+\title{Estimate Linear Function}
 \description{
-  Get point estimate and its confidence interval with given contrast and alpha value using t distribution.
+  Estimates Linear Function with a formula and a dataset.
 }
 \usage{
-  CIest(Formula, Data, Term, Contrast, conf.level=0.95) 
+  ESTM(L, Formula, Data, conf.level=0.95)
 }
 \arguments{
+  \item{L}{a matrix of linear functions rows to be tested}
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{Term}{a factor name to be estimated}
-  \item{Contrast}{a level vector. Level is alphabetically ordered by default.}
-  \item{conf.level}{confidence level of confidence interval}
+  \item{conf.level}{confidence level of confidence limit}
 }
 \details{
-  Get point estimate and its confidence interval with given contrast and alpha value using t distribution.
+  It tests rows of linear functions. Linear function means linear combination of estimated coefficients. It is similar to SAS PROC GLM ESTIMATE. This is a little convenient version of \code{est} function.
 }
 \value{
   \item{Estimate}{point estimate of the input linear constrast}
@@ -27,6 +27,7 @@
   \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
 }
 \examples{
-CIest(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, "TRT", c(-1, 1), 0.90) # 90% CI
+  ESTM(t(c(0, -1, 1)), uptake ~ Type, CO2) # Quevec - Mississippi 
 }
+\seealso{\code{\link{est}}}
 \author{Kyun-Seop Bae k@acr.kr}

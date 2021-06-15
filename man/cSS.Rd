@@ -5,16 +5,16 @@
   Calculates sum of squares of a contrast from a \code{lfit} result.
 }
 \usage{
-  cSS(K, rx, m=0, eps=1e-8)
+  cSS(K, rx, mu=0, eps=1e-8)
 }
 \arguments{
   \item{K}{contrast matrix. Each row is a contrast.}
   \item{rx}{a result of \code{lfit} function}  
-  \item{m}{a vector of mu for the hypothesis K. The length should be equal to the row count of K.}  
+  \item{mu}{a vector of mu for the hypothesis K. The length should be equal to the row count of K.}  
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
-  It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST. This can test the hypotheis that the linear combination (function)'s mean vector is m.
+  It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST. This can test the hypotheis that the linear combination (function)'s mean vector is mu.
 }
 \value{
   Returns sum of square and its F value and p-value.
@@ -25,10 +25,11 @@
   \item{Pr(>F)}{proability of larger than F value}
 }
 \examples{
-  x = ModelMatrix(uptake ~ Type, CO2)
-  y = model.frame(uptake ~ Type, CO2)[,1]
-  rx = lfit(x, y)
+  rx = REG(uptake ~ Type, CO2, summarize=FALSE)
   cSS(t(c(0, -1, 1)), rx) # sum of square 
   ANOVA(uptake ~ Type, CO2) # compare with the above
+}
+\seealso{
+  \code{\link{CONTR}}
 }
 \author{Kyun-Seop Bae k@acr.kr}

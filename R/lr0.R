@@ -1,6 +1,10 @@
 lr0 = function(Formula, Data)
 {
+  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
+
   mf = model.frame(Formula, Data)
+  if (!is.numeric(mf[,1])) stop("Dependent variable should be numeric!")
+
   cn = colnames(mf)[-1]
   ni = ncol(mf) - 1
   my = mean(mf[,1])

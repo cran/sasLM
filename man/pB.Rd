@@ -5,12 +5,13 @@
   It plots bands of confidence interval and prediction interval for simple linear regression.
 }
 \usage{
-  pB(Formula, Data, Resol=300, lx, ly, ...)
+  pB(Formula, Data, Resol=300, conf.level=0.95, lx, ly, ...)
 }
 \arguments{
   \item{Formula}{a formula}
   \item{Data}{a data.frame}
   \item{Resol}{resolution for the output}
+  \item{conf.level}{confidence level}
   \item{lx}{x position of legend}
   \item{ly}{y position of legend}
   \item{...}{arguments to be passed to \code{plot}}

@@ -22,7 +22,7 @@
   \item{t value}{t value of the t distribution}
   \item{Pr(>|t|)}{probability with the t distribution}
 }
-\author{Kyun-Seop Bae k@acr.kr}
 \examples{
 Pcor.test(mtcars, c("mpg", "hp", "qsec"), c("drat", "wt"))
 }
+\author{Kyun-Seop Bae k@acr.kr}

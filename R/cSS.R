@@ -1,8 +1,8 @@
-cSS = function(K, rx, m = 0, eps=1e-8)
+cSS = function(K, rx, mu = 0, eps=1e-8)
 {
   b = rx$coefficients
   iiv = G2SWEEP(K %*% rx$g2 %*% t(K), Augmented=FALSE, eps=eps)
-  Kb = K %*% b - m
+  Kb = K %*% b - mu
   Q = t(Kb) %*% iiv %*% Kb
   Df = attr(iiv, "rank")
   MS = ifelse(Df > 0, Q/Df, NA)

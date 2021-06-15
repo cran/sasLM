@@ -20,5 +20,7 @@
 }
 \examples{
   round(e2(uptake ~ Plant + Type + Treatment + conc, CO2), 12)
+  round(e2(uptake ~ Type, CO2), 12)
+  round(e2(uptake ~ Type - 1, CO2), 12)
 }
 \author{Kyun-Seop Bae k@acr.kr}

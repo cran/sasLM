@@ -14,6 +14,8 @@ tsum = function(Formula=NULL, Data=NULL, ColNames=NULL, MaxLevel=30, ...)
 
   if (is(Formula, "formula")) {
     mf = model.frame(Formula, Data)
+    if (!is.numeric(mf[,1])) stop("Dependent variable should be numeric!")
+  
     nc = ncol(mf)
     if (nc > 4) stop("Too many independent variables.")
     cn = colnames(mf)

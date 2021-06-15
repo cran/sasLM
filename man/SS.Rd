@@ -19,8 +19,8 @@
 \value{
   \item{ANOVA table}{a classical ANOVA table without the residual(Error) part.}
 }
-\author{Kyun-Seop Bae k@acr.kr}
 \seealso{
   \code{\link{ModelMatrix}},
   \code{\link{lfit}}
 }
+\author{Kyun-Seop Bae k@acr.kr}
