@@ -1,8 +1,8 @@
 Median = function(x)
 {
-  if (!(is.numeric(x) & is.vector(x))) stop("Input should be a numeric vector!")
+  if (!(is.numeric(x) & is.vector(x))) return(NA) # stop("Input should be a numeric vector!")
   x = x[!is.na(x)]
   n = length(x)
-  if (n < 1) return(NA)
-  median(x)
+  if (n == 0) return(NA)
+  median(x, na.rm=TRUE)
 }

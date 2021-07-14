@@ -1,4 +1,4 @@
-tsum0 = function(d, y, e=c("mean", "sd", "length"), repl=list(c("length"), c("n")))
+tsum0 = function(d, y, e=c("Mean", "SD", "N"), repl=list(c("length"), c("n")))
 {
   y0 = d[!is.na(d[,y]), y]
 

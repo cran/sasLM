@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.6.1 (2020-07-15)}{
+  \itemize{
+    \item{Descriptive statistic functions (Mean, SD, ...) return NA with inappropriate inputs.}
+    \item{\code{geoMean} and \code{geoCV} added}
+    \item{\code{reverse} option added to \code{PDIFF}}
+  }
+}
+
 \section{Version 0.6.0 (2020-06-15)}{
   \itemize{
     \item{\code{Diffogram} added}

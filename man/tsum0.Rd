@@ -5,7 +5,7 @@
   Summarize a continuous dependent(y) variable without any independent(x) variable.   
 }
 \usage{
-  tsum0(d, y, e=c("mean", "sd", "length"), repl=list(c("length"), c("n")))
+  tsum0(d, y, e=c("Mean", "SD", "N"), repl=list(c("length"), c("n")))
 }
 \arguments{
   \item{d}{a data.frame or matrix with colnames}

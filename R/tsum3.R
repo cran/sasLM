@@ -1,4 +1,4 @@
-tsum3 = function(d, y, l, u, e=c("mean", "sd", "length"), h=NULL, ol1="", ol2="", ou="", rm.dup=TRUE, repl=list(c("length"), c("n")))
+tsum3 = function(d, y, l, u, e=c("Mean", "SD", "N"), h=NULL, ol1="", ol2="", ou="", rm.dup=TRUE, repl=list(c("length"), c("n")))
 {
   if (length(d)*length(y)*length(l)*length(u)*length(e)==0) stop("Check arugments!")
   if (length(l) != 2) stop("length(l) should be 2!")

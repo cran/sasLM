@@ -1,6 +1,5 @@
 \name{CONTR}
 \alias{CONTR}
-\alias{CONTRAST}
 \title{F Test with a Set of Contrasts}
 \description{
   Do F test with a given set of contrasts.

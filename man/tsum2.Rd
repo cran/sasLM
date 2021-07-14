@@ -5,7 +5,7 @@
   Summarize a continuous dependent(y) variable with two independent(x) variables.   
 }
 \usage{
-  tsum2(d, y, l, u, e=c("mean", "sd", "length"), h=NULL, ol="", ou="", rm.dup=TRUE, 
+  tsum2(d, y, l, u, e=c("Mean", "SD", "N"), h=NULL, ol="", ou="", rm.dup=TRUE, 
         repl=list(c("length"), c("n")))
 }
 \arguments{

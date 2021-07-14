@@ -5,7 +5,7 @@
   Summarize a continuous dependent(y) variable with three independent(x) variables.   
 }
 \usage{
-  tsum3(d, y, l, u, e=c("mean", "sd", "length"), h=NULL, ol1="", ol2="", ou="", 
+  tsum3(d, y, l, u, e=c("Mean", "SD", "N"), h=NULL, ol1="", ol2="", ou="", 
         rm.dup=TRUE, repl=list(c("length"), c("n")))
 }
 \arguments{

@@ -5,8 +5,7 @@
   Summarize a continuous dependent(y) variable with one independent(x) variable.   
 }
 \usage{
-  tsum1(d, y, u, e=c("mean", "sd", "length"), ou="", 
-        repl=list(c("length"), ("n")))
+  tsum1(d, y, u, e=c("Mean", "SD", "N"), ou="", repl=list(c("length"), ("n")))
 }
 \arguments{
   \item{d}{a data.frame or matrix with colnames}

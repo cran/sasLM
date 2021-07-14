@@ -1,4 +1,4 @@
-PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE)
+PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE, reverse=FALSE)
 {
   if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   x = ModelMatrix(Formula, Data)
@@ -43,11 +43,16 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
     for (j in (i + 1):nti) {
       if (j == i) next
       Lx[iL1, ] = L0[ti[i], ] - L0[ti[j], ]
-      RowNames[iL1] = paste(ColNames[i], "-", ColNames[j])
+      if (reverse) {
+        RowNames[iL1] = paste(ColNames[j], "-", ColNames[i])        
+      } else {
+        RowNames[iL1] = paste(ColNames[i], "-", ColNames[j])
+      }
       iL1 = iL1 + 1
     }
     if (iL1 > nr) break
   }
+  if (reverse) Lx = -Lx
 
   if (tolower(adj) == "dunnett") { # adjust Lx
     nL = nrow(Lx)
