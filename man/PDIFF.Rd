@@ -5,17 +5,19 @@
   Estimates pairwise difference by a common method.
 }
 \usage{
-  PDIFF(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE, reverse=FALSE)
+  PDIFF(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE, 
+        reverse=FALSE, ...)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{Term}{a factor name to be estimated}
   \item{conf.level}{confidence level of confidence interval}
-  \item{adj}{"lsd", "tukey", "scheffe", "bon", "duncan", or "dunnett" to adjust p-value and confidence limit}  
-  \item{ref}{reference or control level for Dunnett test}  
-  \item{PLOT}{whether to plot or not the diffogram}  
-  \item{reverse}{reverse A - B to B - A}  
+  \item{adj}{"lsd", "tukey", "scheffe", "bon", "duncan", or "dunnett" to adjust p-value and confidence limit}
+  \item{ref}{reference or control level for Dunnett test}
+  \item{PLOT}{whether to plot or not the diffogram}
+  \item{reverse}{reverse A - B to B - A}
+  \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
   It corresponds to PDIFF option of SAS PROC GLM.

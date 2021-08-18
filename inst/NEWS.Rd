@@ -3,6 +3,13 @@
 
 \section{Version 0.6.1 (2020-07-15)}{
   \itemize{
+    \item{\code{Diffogram} and \code{plotDiff} option 'Title' removed. Use 'main' option instead.}
+  }
+}
+
+
+\section{Version 0.6.1 (2020-07-15)}{
+  \itemize{
     \item{Descriptive statistic functions (Mean, SD, ...) return NA with inappropriate inputs.}
     \item{\code{geoMean} and \code{geoCV} added}
     \item{\code{reverse} option added to \code{PDIFF}}

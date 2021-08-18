@@ -1,4 +1,4 @@
-PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE, reverse=FALSE)
+PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE, reverse=FALSE, ...)
 {
   if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   x = ModelMatrix(Formula, Data)
@@ -127,10 +127,9 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
     r1 = est(L1, x$X, rx, conf.level=conf.level, adj="lsd") # for LSMeans, do not adjust.
     r1 = r1[order(r1[,1], decreasing=TRUE),]
     if (tolower(adj) == "dunnett") {
-      plotDunnett(r1)
+      plotDunnett(r1, ...)
     } else {    
-      Title = paste("Diffogram of", Term)
-      plotDiff(r1[,1], Res, conf.level=conf.level, Title=Title)
+      plotDiff(r1[,1], Res, conf.level=conf.level, ...)
     }
   }
 

@@ -363,7 +363,7 @@ GrpCode = function(NamesInOrder, rPDIFF, conf.level=0.95)
   return(gCode)
 }
 
-plotDiff = function(lSM, m0, conf.level=0.95, Title="Diffogram", ...)
+plotDiff = function(lSM, m0, conf.level=0.95, ...)
 {
   nL = nrow(m0)
   nc = ncol(m0)
@@ -379,7 +379,7 @@ plotDiff = function(lSM, m0, conf.level=0.95, Title="Diffogram", ...)
   xmin = min(lSM) - hDL0
   xmax = max(lSM) + hDL0
 
-  plot(0, 0, xlim=c(xmin, xmax), ylim=c(xmin, xmax), xlab="", ylab="", type="n", main=Title, ...)
+  plot(0, 0, xlim=c(xmin, xmax), ylim=c(xmin, xmax), xlab="", ylab="", type="n", ...)
   abline(a=0, b=1, lty=2)
   abline(h=lSM, lty=3)
   abline(v=lSM, lty=3)
@@ -429,7 +429,7 @@ plotDunnett = function(m0, ...)
   
   ymax = max(abs(m0[,2:3]))
   
-  plot(x=0, y=0, xlim=c(0.5, nL+0.5), ylim=c(-ymax, ymax), type="n", xaxt="n", xlab=Xlab, ylab=Ylab, main=Title, ...)
+  plot(x=0, y=0, xlim=c(0.5, nL+0.5), ylim=c(-ymax, ymax), type="n", xaxt="n", xlab=Xlab, ylab=Ylab, ...)
   abline(h=0)
   axis(1, at=1:nL, labels=xNames)
   points(x=1:nL, y=m0[,1], pch=16)

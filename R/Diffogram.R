@@ -1,4 +1,4 @@
-Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", Title, ...)
+Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
 {
   if (!attr(terms(Formula, data = Data), "response"))  stop("Dependent variable should be provided!")
   x = ModelMatrix(Formula, Data)
@@ -41,9 +41,8 @@ Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", Title, ...
 
   m0 = PDIFF(Formula, Data, Term, conf.level=conf.level, adj=adj)
   if (tolower(adj) == "dunnett") {
-    plotDunnett(m0)
+    plotDunnett(m0, ...)
   } else {
-    Title = paste("Diffogram of", Term)
-    plotDiff(r1[,1], m0, conf.level=conf.level, Title=Title, ...)
+    plotDiff(r1[,1], m0, conf.level=conf.level, ...)
   }
 }
