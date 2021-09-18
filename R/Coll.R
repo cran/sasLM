@@ -6,7 +6,9 @@ Coll = function(Formula, Data)
   np = length(rx$coefficients)
 
   mf = model.frame(Formula, Data)
-  if (!is.numeric(mf[, 1])) stop("Dependent variable should be numeric!")
+  for (i in 1:ncol(mf)) {
+    if (!is.numeric(mf[, i])) stop("All variables should be numeric!")
+  }
 
   d1 = mf[, -1, drop=FALSE]
   Names = colnames(d1)

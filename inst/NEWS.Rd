@@ -1,12 +1,17 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
-\section{Version 0.6.1 (2020-07-15)}{
+\section{Version 0.6.3 (2020-09-18)}{
+  \itemize{
+    \item{\code{REG} function warns in case of completely aliased model and data and increases epsilon tolerance to 1e-5.}
+  }
+}
+
+\section{Version 0.6.2 (2020-08-19)}{
   \itemize{
     \item{\code{Diffogram} and \code{plotDiff} option 'Title' removed. Use 'main' option instead.}
   }
 }
-
 
 \section{Version 0.6.1 (2020-07-15)}{
   \itemize{

@@ -436,3 +436,24 @@ plotDunnett = function(m0, ...)
   for (i in 1:nL) arrows(x0=i, y0=m0[i,2], x1=i, y1=m0[i,3], length=0.1, angle=90, code=3)
 }
 
+CheckAlias = function(Formula, Data)
+{
+	Res = list(Model = Formula)
+  QR = qr(model.matrix(Formula, Data)) 
+	Rank = QR$rank
+	np = dim(QR$qr)[2]
+
+	if (is.null(np) || Rank == np) {
+	  Aliased = NULL
+	} else {
+		ip = 1:Rank
+		dn = dimnames(QR$qr)[[2]]
+		Aliased = backsolve(QR$qr[ip, ip], QR$qr[ip, -ip, drop=F])
+		dimnames(Aliased) = list(dn[ip], dn[-ip])
+		Aliased = t(zapsmall(Aliased))
+	}
+	Res$Complete = Aliased
+
+  return(Res)
+}
+
