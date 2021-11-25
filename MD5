@@ -1,4 +1,4 @@
-24ff2b51a92b37d4186c04518a56d628 *DESCRIPTION
+43dbabccb8bd120acc3b9b7deb8c8d8e *DESCRIPTION
 2f3a5feb3bfb0102746f15b68bba166d *NAMESPACE
 31b8270c75447c2cca9f794251ce1a63 *R/ANOVA.R
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
@@ -11,7 +11,7 @@ a7bb210ed0cdf5be485e34a23078c786 *R/Cor.test.R
 03b61878e73f3f497cb0758aa3941477 *R/Diffogram.R
 ce50e4ff6749f98494dc835c99bbaaf2 *R/EMS.R
 da590ba59914fa2ee6f06770c6bda876 *R/ESTM.R
-5eaea117ddfa933611cf3dbdf1c11542 *R/G2SWEEP.R
+2972dc3825223271f2c1c485f0d6f1f2 *R/G2SWEEP.R
 a65efa6f0561bf5e9926e90e6d2237fc *R/GLM.R
 e3a2ed9fc98f485c7dffcda193ae4ef1 *R/Kurtosis.R
 f58c6a8b3bfc338a3f1368b0c911944d *R/KurtosisSE.R
@@ -65,12 +65,12 @@ f85200b23b13f6bdb47a95f33c03075d *R/satt.R
 dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 3bdfcada19bcb6f524dd64a35a24eb68 *R/tsum2.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
-b3f811e855b6cd44cc4419ac501f6fd5 *inst/NEWS.Rd
-234004a7828c24601803659284009676 *inst/doc/Report-Different-Simplest2109171802.pdf
-8417c73bbe1eb8c277e25265ff113ccc *inst/doc/Report-NOT-OKs2109171810.pdf
-f2fd0c86ee03c10f9a2c5e4193651c5d *inst/doc/Validation-Report-ANOVA-2109171803.pdf
-83e16e72077ce54bb885f7aa49a239f1 *inst/doc/Validation-Report-GLM-2109171806.pdf
-9eacab0bfa16e82c53bd8f7281c7a7a6 *inst/doc/sasLM-manual.pdf
+3ef94de2c1fd3cee929ae5f79d03cfbe *inst/NEWS.Rd
+3c3885513e3c5be3304301a96e4da058 *inst/doc/Report-Different-Simplest2111251803.pdf
+9430b196eb8d0c1703f0017a6192d5af *inst/doc/Report-NOT-OKs2111251804.pdf
+931cba52bcfcb0cead79ecbc209a6935 *inst/doc/Validation-Report-ANOVA-2111251805.pdf
+a335c85f571d46b56d00639ad0c49201 *inst/doc/Validation-Report-GLM-2111251808.pdf
+1d6ac391236c566358956898da476509 *inst/doc/sasLM-manual.pdf
 f66db0a6f743d3a8aa7945ce1481667a *man/ANOVA.Rd
 f21f7c6dbb77ed5c0608f77f6f18672a *man/BEdata.Rd
 070a149261caa7fa9b84dffc586c6271 *man/BY.Rd

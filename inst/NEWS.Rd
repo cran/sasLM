@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.6.4 (2020-11-25)}{
+  \itemize{
+    \item{\code{G2SWEEP} became faster for large sparse matrix}
+  }
+}
+
 \section{Version 0.6.3 (2020-09-18)}{
   \itemize{
     \item{\code{REG} function warns in case of completely aliased model and data and increases epsilon tolerance to 1e-5.}
