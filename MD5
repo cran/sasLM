@@ -1,5 +1,5 @@
-43dbabccb8bd120acc3b9b7deb8c8d8e *DESCRIPTION
-2f3a5feb3bfb0102746f15b68bba166d *NAMESPACE
+9e40642d938345cce60fd08a6b9bcd06 *DESCRIPTION
+5485e534591d227fb6cf0d38ffbbb911 *NAMESPACE
 31b8270c75447c2cca9f794251ce1a63 *R/ANOVA.R
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 114d12434601f89d554493ca4902533d *R/BasicUtil.R
@@ -37,6 +37,7 @@ c8ac2df0a23573d26f5365cbd617248a *R/Pcor.test.R
 e95037e3bd17d491b3e7a8fdc3b29516 *R/T3MS.R
 794286d796ef5a47fbef9e51b7863996 *R/T3test.R
 972f24b7260178611fafb6012723b59b *R/UCL.R
+e142e0670173ece4936f5749c7eee08c *R/UNIV.R
 1a89a33e1b793bfc4f1e6b7db430dfd9 *R/af.R
 9121e6b76069137472277592d2dffa0d *R/aov1.R
 b96536fb77dd170354218d003a175a27 *R/aov2.R
@@ -65,12 +66,12 @@ f85200b23b13f6bdb47a95f33c03075d *R/satt.R
 dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 3bdfcada19bcb6f524dd64a35a24eb68 *R/tsum2.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
-3ef94de2c1fd3cee929ae5f79d03cfbe *inst/NEWS.Rd
-3c3885513e3c5be3304301a96e4da058 *inst/doc/Report-Different-Simplest2111251803.pdf
-9430b196eb8d0c1703f0017a6192d5af *inst/doc/Report-NOT-OKs2111251804.pdf
-931cba52bcfcb0cead79ecbc209a6935 *inst/doc/Validation-Report-ANOVA-2111251805.pdf
-a335c85f571d46b56d00639ad0c49201 *inst/doc/Validation-Report-GLM-2111251808.pdf
-1d6ac391236c566358956898da476509 *inst/doc/sasLM-manual.pdf
+f698d087be9306f68c45b1ac7ca6cd4b *inst/NEWS.Rd
+fcb38cba8e00ba1d43a2c346e07cfe72 *inst/doc/Report-Different-Simplest2201201617.pdf
+eb2df3196c62d17418c14aff3a2ac8e3 *inst/doc/Report-NOT-OKs2201201618.pdf
+c05ccc15efdf1bd91c4d336e815e88a1 *inst/doc/Validation-Report-ANOVA-2201201619.pdf
+3e425a1b6bdcf71f334daeca4b3edd41 *inst/doc/Validation-Report-GLM-2201201622.pdf
+4a68cbd1f2e935ec2282fee6fd2a0bdd *inst/doc/sasLM-manual.pdf
 f66db0a6f743d3a8aa7945ce1481667a *man/ANOVA.Rd
 f21f7c6dbb77ed5c0608f77f6f18672a *man/BEdata.Rd
 070a149261caa7fa9b84dffc586c6271 *man/BY.Rd
@@ -109,6 +110,7 @@ d6e779598349027bca4ec192bb3ea7cf *man/SkewnessSE.Rd
 b86cc2dded08daf8c2b59941a375242b *man/T3MS.Rd
 35169aefa91347a9bde329a797ac7537 *man/T3test.Rd
 37804009b8cee5729d08efc5ba0905f7 *man/UCL.Rd
+dc12a04b2209de1769b633e79096019d *man/UNIV.Rd
 fc2cbb3cebc057e3de1971a16fbff27e *man/af.Rd
 0d9e84acfcd93f87490f9db138063ad2 *man/aov1.Rd
 21dc9e42dd855c7a0738f6397ce06244 *man/aov2.Rd

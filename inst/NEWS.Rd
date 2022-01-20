@@ -1,25 +1,31 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
-\section{Version 0.6.4 (2020-11-25)}{
+\section{Version 0.6.5 (2022-01-20)}{
+  \itemize{
+    \item{\code{UNIV} added for descriptive statistics}
+  }
+}
+
+\section{Version 0.6.4 (2021-11-25)}{
   \itemize{
     \item{\code{G2SWEEP} became faster for large sparse matrix}
   }
 }
 
-\section{Version 0.6.3 (2020-09-18)}{
+\section{Version 0.6.3 (2021-09-18)}{
   \itemize{
     \item{\code{REG} function warns in case of completely aliased model and data and increases epsilon tolerance to 1e-5.}
   }
 }
 
-\section{Version 0.6.2 (2020-08-19)}{
+\section{Version 0.6.2 (2021-08-19)}{
   \itemize{
     \item{\code{Diffogram} and \code{plotDiff} option 'Title' removed. Use 'main' option instead.}
   }
 }
 
-\section{Version 0.6.1 (2020-07-15)}{
+\section{Version 0.6.1 (2021-07-15)}{
   \itemize{
     \item{Descriptive statistic functions (Mean, SD, ...) return NA with inappropriate inputs.}
     \item{\code{geoMean} and \code{geoCV} added}
@@ -27,7 +33,7 @@
   }
 }
 
-\section{Version 0.6.0 (2020-06-15)}{
+\section{Version 0.6.0 (2021-06-15)}{
   \itemize{
     \item{\code{Diffogram} added}
     \item{\code{PLOT} option added to \code{LSM} and \code{PDIFF}}
@@ -43,7 +49,7 @@
   }
 }
 
-\section{Version 0.5.3 (2020-05-15)}{
+\section{Version 0.5.3 (2021-05-15)}{
   \itemize{
     \item{\code{aov2} and \code{e2} support no intercept model.}
     \item{\code{aov1}, \code{aov3}, \code{ANOVA}, \code{GLM} handle no intercept model properly.}
@@ -51,7 +57,7 @@
   }
 }
 
-\section{Version 0.5.2 (2020-04-15)}{
+\section{Version 0.5.2 (2021-04-15)}{
   \itemize{
     \item{Some errata in help/manual are corrected.}
     \item{\code{CV} (coefficient of variation) in percentage added.}
@@ -61,20 +67,20 @@
   }
 }
 
-\section{Version 0.5.1 (2020-03-15)}{
+\section{Version 0.5.1 (2021-03-15)}{
   \itemize{
     \item{\code{LSM} does not show estimates which are not estimable, and supports more models}
     \item{\code{est} has more arguments to test estimability}  
   }
 }
 
-\section{Version 0.5.0 (2020-02-15)}{
+\section{Version 0.5.0 (2021-02-15)}{
   \itemize{
     \item{\code{lr0} function for simple linear regressions with each independent variable}    
   }
 }
 
-\section{Version 0.4.1 (2020-02-15)}{
+\section{Version 0.4.1 (2021-02-15)}{
   \itemize{
     \item{\code{lr} function for linear regression with g2 inverse}    
     \item{\code{tsum} warpper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3}}    
@@ -86,7 +92,7 @@
   }
 }
 
-\section{Version 0.4.0 (2020-01-29)}{
+\section{Version 0.4.0 (2021-01-29)}{
   \itemize{
     \item{\code{GLM} function now has \code{lsm} option for least square mean}
     \item{\code{LSM} function added for Least Square Means in SAS}
@@ -102,7 +108,7 @@
   }
 }
 
-\section{Version 0.3.0 (2020-01-16)}{
+\section{Version 0.3.0 (2021-01-16)}{
   \itemize{
     \item{\code{regD} function added for influence diagnostics}
   }
