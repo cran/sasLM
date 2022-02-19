@@ -16,4 +16,7 @@
 \value{
   geometric mean value
 }
+\seealso{
+  \code{\link{geoCV}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

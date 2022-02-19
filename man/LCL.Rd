@@ -17,4 +17,7 @@
 \value{
   The estimate of the lower bound of confidence limit using t-distribution
 }
+\seealso{
+  \code{\link{UCL}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

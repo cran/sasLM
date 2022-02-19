@@ -16,4 +16,7 @@
 \value{
   Standard error of the estimated skewness
 }
+\seealso{
+  \code{\link{Skewness}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

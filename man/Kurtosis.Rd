@@ -16,4 +16,7 @@
 \value{
   Estimate of kurtosis
 }
+\seealso{
+  \code{\link{KurtosisSE}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

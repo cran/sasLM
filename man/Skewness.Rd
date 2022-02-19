@@ -16,4 +16,7 @@
 \value{
   Estimate of skewness
 }
+\seealso{
+  \code{\link{SkewnessSE}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

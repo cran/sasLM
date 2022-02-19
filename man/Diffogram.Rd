@@ -16,12 +16,15 @@
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
-  This usually shows the shortest interval. It corresponds to SAS PROC GLM PDIFF.
+  This usually shows the shortest interval. It corresponds to SAS PROC GLM PDIFF. For adjustmethod method "dunnett", see \code{PDIFF} function.
 }
 \value{
   no return value, but a plot on the current device
 }
 \examples{
   Diffogram(uptake ~ Type*Treatment + as.factor(conc), CO2, "as.factor(conc)")
+}
+\seealso{
+  \code{\link{LSM}}, \code{\link{PDIFF}}
 }
 \author{Kyun-Seop Bae k@acr.kr}

@@ -348,7 +348,7 @@ GrpCode = function(NamesInOrder, rPDIFF, conf.level=0.95)
     if (fInc) {
       for (i in j:nLevel) if (m1[i,j] > 0) m1[i,j] = m1[i, j - 1]
     } else {
-      for (i in j:nLevel) if (m1[i,j] > 0) m1[i,j] = m1[j - 1, j - 1] + 1      
+      for (i in j:nLevel) if (m1[i,j] > 0) m1[i,j] = m1[j - 1, j - 1] + 1
     }
   }
 
@@ -373,13 +373,27 @@ plotDiff = function(lSM, m0, conf.level=0.95, ...)
   rowNames = rownames(m0)
   Names = strsplit(rowNames, " - ")
   Lnames = sort(unique(unlist(Names)))
-  
+
   hDL0 = max((m0[,3] - m0[,2])/4) # Half DL is necessary
   if (is.na(hDL0) | is.nan(hDL0)) stop("SE is not available!")
   xmin = min(lSM) - hDL0
   xmax = max(lSM) + hDL0
 
-  plot(0, 0, xlim=c(xmin, xmax), ylim=c(xmin, xmax), xlab="", ylab="", type="n", ...)
+  Args = list(...)
+  nArgs = names(Args)
+
+  Args$x = 0
+  Args$y = 0
+  Args$xlim = c(xmin, xmax)
+  Args$ylim = c(xmin, xmax)
+  Args$type = "n"
+
+  if ("ref" %in% nArgs) Args$ref = NULL # remove ref argument before calling plot
+  if (!("xlab" %in% nArgs)) Args$xlab = "Levels"
+  if (!("ylab" %in% nArgs)) Args$ylab = "Difference from the reference level"
+
+  do.call(plot, Args)
+
   abline(a=0, b=1, lty=2)
   abline(h=lSM, lty=3)
   abline(v=lSM, lty=3)
@@ -419,17 +433,24 @@ plotDunnett = function(m0, ...)
   xNames = vector(length=nL)
   for (i in 1:nL) xNames[i] = Names[[i]][1]
 
-  pArg = names(list(...))
-  if ("xlab" %in% pArg) { Xlab = list(...)$xlab
-  } else { Xlab = "Levels" }
-  if ("ylab" %in% pArg) { Ylab = list(...)$ylab
-  } else { Ylab = "Difference from the reference level" }
-  if ("main" %in% pArg) { Title = list(...)$main
-  } else { Title = paste("Difference from the reference level:", Names[[1]][2]) }
-  
   ymax = max(abs(m0[,2:3]))
-  
-  plot(x=0, y=0, xlim=c(0.5, nL+0.5), ylim=c(-ymax, ymax), type="n", xaxt="n", xlab=Xlab, ylab=Ylab, ...)
+
+  Args = list(...)
+  nArgs = names(Args)
+
+  Args$x = 0
+  Args$y = 0
+  Args$xlim = c(0.5, nL + 0.5)
+  Args$ylim = c(-ymax, ymax)
+  Args$type = "n"
+  Args$xaxt = "n"
+
+  if ("ref" %in% nArgs) Args$ref = NULL # remove ref argument before calling plot
+  if (!("xlab" %in% nArgs)) Args$xlab = "Levels"
+  if (!("ylab" %in% nArgs)) Args$ylab = "Difference from the reference level"
+  if (!("main" %in% nArgs)) Args$main = paste("Difference from the reference level:", Names[[1]][2])
+
+  do.call(plot, Args)
   abline(h=0)
   axis(1, at=1:nL, labels=xNames)
   points(x=1:nL, y=m0[,1], pch=16)
@@ -439,7 +460,7 @@ plotDunnett = function(m0, ...)
 CheckAlias = function(Formula, Data)
 {
 	Res = list(Model = Formula)
-  QR = qr(model.matrix(Formula, Data)) 
+  QR = qr(model.matrix(Formula, Data))
 	Rank = QR$rank
 	np = dim(QR$qr)[2]
 

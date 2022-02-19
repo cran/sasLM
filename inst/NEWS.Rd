@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.6.6 (2022-02-19)}{
+  \itemize{
+    \item{A bug at "adj" option in \code{LSM} fixed, which also affects GLM.}
+    \item{\code{PLOT} option related codes are revised.}
+  }
+}
+
 \section{Version 0.6.5 (2022-01-20)}{
   \itemize{
     \item{\code{UNIV} added for descriptive statistics}
@@ -70,20 +77,20 @@
 \section{Version 0.5.1 (2021-03-15)}{
   \itemize{
     \item{\code{LSM} does not show estimates which are not estimable, and supports more models}
-    \item{\code{est} has more arguments to test estimability}  
+    \item{\code{est} has more arguments to test estimability}
   }
 }
 
 \section{Version 0.5.0 (2021-02-15)}{
   \itemize{
-    \item{\code{lr0} function for simple linear regressions with each independent variable}    
+    \item{\code{lr0} function for simple linear regressions with each independent variable}
   }
 }
 
 \section{Version 0.4.1 (2021-02-15)}{
   \itemize{
-    \item{\code{lr} function for linear regression with g2 inverse}    
-    \item{\code{tsum} warpper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3}}    
+    \item{\code{lr} function for linear regression with g2 inverse}
+    \item{\code{tsum} warpper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3}}
     \item{\code{bt} function removed to reomove dependency on \code{knitr}}
     \item{\code{NOINT} option in REG, ModelMatrix is removed. Use conventional R formula.}
     \item{Order of coefficients (parameters) changed to be more similar to SAS.}

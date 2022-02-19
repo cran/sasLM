@@ -83,8 +83,8 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
     if (rx$DFr > 0) {
       Var = Lx %*% rx$g2 %*% t(Lx) * rx$SSE/rx$DFr
       SE2 = sqrt(diag(Var))/sqrt(2)
-      Tval = abs(PE)/SE2
-      Pval = 1 - ptukey(Tval, n, rx$DFr)^(1/(n - 1))
+      Tval2 = PE/SE2
+      Pval = 1 - ptukey(abs(Tval2), n, rx$DFr)^(1/(n - 1))
       DL = qtukey(conf.level^(n - 1), n, rx$DFr)*SE2
       LL =  PE - DL
       UL =  PE + DL
@@ -93,11 +93,11 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
       LL = NA
       UL = NA
     }
-    Res = cbind(PE, LL, UL, Pval)
-    colnames(Res) = c("Estimate", "Lower CL", "Upper CL", "Pr(>|t|)")
+    Res = cbind(PE, LL, UL, SE2, Tval2, rx$DFr, Pval)
+    colnames(Res) = c("Estimate", "Lower CL", "Upper CL", "Std. Error", "t value", "Df", "Pr(>|t|)")
     attr(Res, "Estimability") = estmb(Lx, x$X, rx$g2)
   } else {
-    Res = est(Lx, x$X, rx, conf.level=conf.level, adj=adj)
+    Res = est(Lx, x$X, rx, conf.level=conf.level, adj=adj, paired=T)
   }
   
   class(Res) = "anova"
@@ -126,8 +126,8 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
 
     r1 = est(L1, x$X, rx, conf.level=conf.level, adj="lsd") # for LSMeans, do not adjust.
     r1 = r1[order(r1[,1], decreasing=TRUE),]
-    if (tolower(adj) == "dunnett") {
-      plotDunnett(r1, ...)
+    if (tolower(trimws(adj)) == "dunnett") {
+      plotDunnett(Res, ...)
     } else {    
       plotDiff(r1[,1], Res, conf.level=conf.level, ...)
     }

@@ -16,4 +16,7 @@
 \value{
   Standard error of the estimated kurtosis
 }
+\seealso{
+  \code{\link{Kurtosis}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

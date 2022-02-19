@@ -36,4 +36,7 @@
   PDIFF(uptake ~ Type*Treatment + as.factor(conc), CO2, "as.factor(conc)")
   PDIFF(uptake ~ Type*Treatment + as.factor(conc), CO2, "as.factor(conc)", adj="tukey")
 }
+\seealso{
+  \code{\link{LSM}}, \code{\link{Diffogram}}
+}
 \author{Kyun-Seop Bae k@acr.kr}

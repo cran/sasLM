@@ -1,6 +1,8 @@
 Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
 {
   if (!attr(terms(Formula, data = Data), "response"))  stop("Dependent variable should be provided!")
+  if (!(tolower(trimws(adj)) %in% c("lsd", "tukey", "bon", "duncan", "scheffe"))) stop(paste("Adjustment method", adj, "is not supported with Diffogram function!"))
+
   x = ModelMatrix(Formula, Data)
   y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
@@ -41,7 +43,8 @@ Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
 
   m0 = PDIFF(Formula, Data, Term, conf.level=conf.level, adj=adj)
   if (tolower(adj) == "dunnett") {
-    plotDunnett(m0, ...)
+#    plotDunnett(m0, ...)
+    return(NULL)
   } else {
     plotDiff(r1[,1], m0, conf.level=conf.level, ...)
   }
