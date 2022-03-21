@@ -27,7 +27,7 @@
 \examples{
   rx = REG(uptake ~ Type, CO2, summarize=FALSE)
   cSS(t(c(0, -1, 1)), rx) # sum of square 
-  ANOVA(uptake ~ Type, CO2) # compare with the above
+  GLM(uptake ~ Type, CO2) # compare with the above
 }
 \seealso{
   \code{\link{CONTR}}

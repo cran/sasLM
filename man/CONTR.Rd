@@ -26,7 +26,7 @@
 }
 \examples{
   CONTR(t(c(0, -1, 1)), uptake ~ Type, CO2) # sum of square 
-  ANOVA(uptake ~ Type, CO2) # compare with the above
+  GLM(uptake ~ Type, CO2) # compare with the above
 }
 \seealso{\code{\link{cSS}}}
 \author{Kyun-Seop Bae k@acr.kr}

@@ -52,5 +52,5 @@ e2 = function(Formula, Data, eps=1e-8)
   }
 
   rownames(Ls) = paste0("L", 1:NCOL(Ls))
-  return(Ls)
+  return(Ls) # Do not use zapsmall !
 }

@@ -13,10 +13,10 @@
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
-  It makes a contrast matrix for type II SS.
+  It makes a contrast matrix for type II SS. If zapsmall is used, the result becomes more inaccurate.
 }
 \value{
-  Returns a contrast matrix for type II SS.
+  A contrast matrix for type II SS.
 }
 \examples{
   round(e2(uptake ~ Plant + Type + Treatment + conc, CO2), 12)

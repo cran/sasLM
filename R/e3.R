@@ -86,7 +86,7 @@ e3 = function(Formula, Data, eps=1e-8)
     if (!is.null(tL)) L = rbind(L, tL)
   }
   M[1:nc,] = 0 # clear all
-  M[1,1] = 1 # Intercept
+  if (attr(x$terms, "intercept")) M[1,1] = 1 # Intercept
   if (!is.null(L)) M[rownames(L),] = L
-  return(M)
+  return(M) # Do not use zapsmall !
 }

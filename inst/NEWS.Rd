@@ -1,6 +1,26 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.8.0 (2022-03-21)}{
+  \itemize{
+    \item{GLM function's arguments changed: SOLUTION to BETA, LSMEANS to EMEAN}
+  }
+}
+
+\section{Version 0.7.0 (2022-03-14)}{
+  \itemize{
+    \item{ANOVA funciton is removed, because it is almost a duplicate of GLM function.}
+    \item{GLM function's arguments changed.}
+  }
+}
+
+\section{Version 0.6.7 (2022-03-12)}{
+  \itemize{
+    \item{Descriptive statistics functions such as N, Mean, SD, SEM, Min, Max, Median, UCL, LCL, trimmedMean, Range, QuartileRange, Skweness, SkewnessSE, Kurtosis, KurtosisSE now accept a non-numeric vector that can be converted to a numeric vector.}
+    \item{A bug with no incercept model in \code{e3} is fixed.}
+  }
+}
+
 \section{Version 0.6.6 (2022-02-19)}{
   \itemize{
     \item{A bug at "adj" option in \code{LSM} fixed, which also affects GLM.}

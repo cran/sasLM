@@ -13,7 +13,7 @@
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
-  It makes a contrast matrix for type I SS.
+  It makes a contrast matrix for type I SS. If zapsmall is used, the result becomes more inaccurate.
 }
 \value{
   A contrast matrix for type I SS.

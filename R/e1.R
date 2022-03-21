@@ -14,5 +14,5 @@ e1 = function(Formula, Data, eps=1e-8)
     XpX[1,1] = 1
   }
   rownames(XpX) = paste0("L", 1:nrow(XpX))
-  return(XpX)
+  return(XpX) # Do not use zapsmall !
 }

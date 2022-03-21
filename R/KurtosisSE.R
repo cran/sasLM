@@ -1,5 +1,6 @@
 KurtosisSE = function(x)
 {
+  x = as.numeric(x)
   if (!(is.numeric(x) & is.vector(x))) return(NA)
   x = x[!is.na(x)]
   n = length(x)

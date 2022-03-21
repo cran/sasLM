@@ -1,18 +1,20 @@
-GLM = function(Formula, Data, lsm=FALSE, conf.level=0.95, eps=1e-8)
+GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, eps=1e-8)
 {
   if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   x = ModelMatrix(Formula, Data, KeepOrder=TRUE)
-  y = model.frame(Formula, Data)[,1]
+  mf0 = model.frame(Formula, Data)
+  y = mf0[, 1]
+  yName = names(mf0)[1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
-  r1 = lfit(x, y)
-  T1 = SS(x, r1, e1(Formula, Data))
+  r1 = lfit(x, y, eps=eps)
+  T1 = SS(x, r1, e1(Formula, Data, eps=eps), eps=eps)
 
   x2 = ModelMatrix(Formula, Data, KeepOrder=FALSE)
-  r2 = lfit(x2, y)
-  T2 = SS(x2, r2, e2(Formula, Data))[rownames(T1),,drop=FALSE]
+  r2 = lfit(x2, y, eps=eps)
+  T2 = SS(x2, r2, e2(Formula, Data, eps=eps), eps=eps)[rownames(T1),,drop=FALSE]
   class(T2) = "anova"
-  T3 = SS(x2, r2, e3(Formula, Data))[rownames(T1),,drop=FALSE]
+  T3 = SS(x2, r2, e3(Formula, Data, eps=eps), eps=eps)[rownames(T1),,drop=FALSE]
   if (sum(T3[,"Df"], na.rm=TRUE) != sum(T1[,"Df"], na.rm=TRUE)) attr(T3, "heading") = "CAUTION: Singularity Exists !"
   class(T3) = "anova"
 
@@ -23,13 +25,27 @@ GLM = function(Formula, Data, lsm=FALSE, conf.level=0.95, eps=1e-8)
   }
 
   ANOVA = sumANOVA(r1, T1=NULL, SST, nrow(x$X), rownames(attr(terms(x),"factors"))[1])
-  Parameter = sumREG(r1, x$X)
 
-  Result = list(ANOVA=ANOVA, 'Type I'=T1, 'Type II'=T2, 'Type III'=T3, Parameter=Parameter)
+  Rsq = ANOVA["MODEL", "Sum Sq"]/ANOVA[3, "Sum Sq"] # Corrected total or uncorrected total
+  RMSE = sqrt(ANOVA["RESIDUALS", "Mean Sq"])
+  MeanY = mean(y, na.rm=T)
+  CV = 100*RMSE/MeanY
+  Fit = data.frame(Rsq, CV, RMSE, MeanY)
+  colnames(Fit) = c("R-square", "Coef Var", "Root MSE", paste(yName, "Mean"))
+  rownames(Fit) = ""
 
-  if (lsm) {
-    Result[[6]] = lsm0(x2, r2, Formula, Data, conf.level = conf.level)
-    names(Result) = c("ANOVA", "Type I", "Type II", "Type III", "Parameter", "Least Square Mean")
+  Result = list(ANOVA=ANOVA, Fitness=Fit, 'Type I'=T1, 'Type II'=T2, 'Type III'=T3)
+  iNext = 6
+  
+  if (BETA) {
+    Result[[iNext]] = sumREG(r1, x$X)
+    names(Result)[iNext] = "Parameter"
+    iNext = iNext + 1
+  }
+
+  if (EMEAN) {
+    Result[[iNext]] = lsm0(x2, r2, Formula, Data, conf.level = conf.level)
+    names(Result)[iNext] = "Expected Mean"
   }
 
   return(Result)
