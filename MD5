@@ -1,4 +1,4 @@
-e99bbbcffe551b7687dc484a2a7cc408 *DESCRIPTION
+9bf6a532128aa25945458c3ef086f867 *DESCRIPTION
 5485e534591d227fb6cf0d38ffbbb911 *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 85f07758ba6c361318bfebda5efae120 *R/BasicUtil.R
@@ -65,11 +65,11 @@ f85200b23b13f6bdb47a95f33c03075d *R/satt.R
 dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 3bdfcada19bcb6f524dd64a35a24eb68 *R/tsum2.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
-9eee9107c69cb44d5f468753f2c8e9e0 *inst/NEWS.Rd
+d7a1114fe7119e454dde7809e7fa9f74 *inst/NEWS.Rd
 cc2b1c1f046d2ca3286981b586db4cd6 *inst/doc/Report-Different-Simplest2203211206.pdf
 26e7eff3594e024408aa489e27eda947 *inst/doc/Report-NOT-OKs2203211207.pdf
 dc4accbc17b50f4022733e2a3fd97041 *inst/doc/Validation-Report-GLM-2203211208.pdf
-e935e943add1c416311ce6f4384b823c *inst/doc/sasLM-manual.pdf
+bf9309023a8e8edaf88a9e21fe8d719e *inst/doc/sasLM-manual.pdf
 f21f7c6dbb77ed5c0608f77f6f18672a *man/BEdata.Rd
 070a149261caa7fa9b84dffc586c6271 *man/BY.Rd
 9115095c95a382627b4604715b31c8fd *man/BasicUtil.Rd
@@ -129,7 +129,7 @@ bfb61d55bb4ffca74514924f9a3fa3df *man/pB.Rd
 e815393968bde662225fe5fb30290028 *man/pD.Rd
 1069597291d382c26e0b2ca1a265e622 *man/regD.Rd
 d08e50706677ec10c443151e26f13e54 *man/sasLM-package.Rd
-fd2e7e4b72e68434e34d8eef1092339e *man/satt.Rd
+6e2cbea5485346ccae8f72593c1300e6 *man/satt.Rd
 9605475a0c14c599c595e4ce68f7ce7d *man/trimmedMean.Rd
 f1b4a021fd64415ebebc5800dcd910dd *man/tsum.Rd
 0426e8b2b8a730e0e861018ed0cd2c60 *man/tsum0.Rd

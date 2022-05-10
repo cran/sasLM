@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.8.1 (2022-05-10)}{
+  \itemize{
+    \item{Description corrected in satt help.}
+  }
+}
+
 \section{Version 0.8.0 (2022-03-21)}{
   \itemize{
     \item{GLM function's arguments changed: SOLUTION to BETA, LSMEANS to EMEAN}

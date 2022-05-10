@@ -1,6 +1,6 @@
 \name{satt}
 \alias{satt}
-\title{Satterthwaite Approximation of Pooled Variance and Degree of Freedom}
+\title{Satterthwaite Approximation of Variance and Degree of Freedom}
 \description{
   Calculates pooled variance and degree of freedom using Satterthwaite equation. 
 }
@@ -16,7 +16,7 @@
   The input can be more than two variances.
 }
 \value{
-  \item{Variance}{pooled variance}
+  \item{Variance}{approximated variance}
   \item{Df}{degree of freedom}
 }
 \author{Kyun-Seop Bae k@acr.kr}
