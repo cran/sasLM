@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.0 (2022-07-24)}{
+  \itemize{
+    \item{RD, RR, OR, RDmn1, RRmn1, ORmn1, RDmn, RRmn, ORmn functions for 2x2 table with or without stratification are added.}
+  }
+}
+
 \section{Version 0.8.1 (2022-05-10)}{
   \itemize{
     \item{Description corrected in satt help.}
