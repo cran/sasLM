@@ -1,4 +1,4 @@
-lr = function(Formula, Data, eps=1e-8)
+lr = function(Formula, Data, eps=1e-16)
 {
   if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   if ("Complete" %in% names(CheckAlias(Formula, Data))) {

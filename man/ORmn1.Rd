@@ -1,6 +1,6 @@
 \name{ORmn1}
 \alias{ORmn1}
-\title{Odds Ratio and Score CI of two groups}
+\title{Odds Ratio and Score CI of two groups by MN method}
 \description{
   Odds ratio and its score confidence interval of two groups without stratification
 }
@@ -15,7 +15,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates odds ratio and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function.
+  It calculates odds ratio and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 siginicant digits.
 }
 \value{
   The result is a data.frame. There is no standard error.
@@ -29,7 +29,7 @@
   ORmn1(104, 11037, 189, 11034)
 }
 \seealso{
-  \code{\link{OR}}, \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}
+  \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}
 }
 \references{
 Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26

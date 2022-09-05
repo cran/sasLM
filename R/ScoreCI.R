@@ -1,4 +1,4 @@
-ScoreCI = function(y, n, conf.level=0.95) # by Wilson
+ScoreCI = function(y, n, conf.level=0.95)
 {
   if (any(c(y, n, n - y) < 0) | any(n == 0)) stop("Check the input!")
   z = qnorm(0.5 + conf.level/2)

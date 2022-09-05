@@ -18,7 +18,8 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, eps=1e-8
   if (sum(T3[,"Df"], na.rm=TRUE) != sum(T1[,"Df"], na.rm=TRUE)) attr(T3, "heading") = "CAUTION: Singularity Exists !"
   class(T3) = "anova"
 
-  if ("(Intercept)" %in% colnames(x$X)) {
+  fIntercept = attr(x$terms, "intercept")
+  if (fIntercept) {
     SST = crossprod(y - mean(y))
   } else {
     SST = crossprod(y)
@@ -30,13 +31,20 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, eps=1e-8
   RMSE = sqrt(ANOVA["RESIDUALS", "Mean Sq"])
   MeanY = mean(y, na.rm=T)
   CV = 100*RMSE/MeanY
-  Fit = data.frame(Rsq, CV, RMSE, MeanY)
-  colnames(Fit) = c("R-square", "Coef Var", "Root MSE", paste(yName, "Mean"))
+
+  if (r1$DFr > 0) {
+    Rsq.adj = 1 - (1 - Rsq)*(nrow(x$X) - fIntercept)/r1$DFr
+    Fit = data.frame(RMSE, MeanY, CV, Rsq, Rsq.adj)
+    colnames(Fit) = c("Root MSE", paste(yName, "Mean"), "Coef Var", "R-square", "Adj R-sq")
+  } else {
+    Fit = data.frame(RMSE, MeanY, CV, Rsq)
+    colnames(Fit) = c("Root MSE", paste(yName, "Mean"), "Coef Var", "R-square")
+  }
   rownames(Fit) = ""
 
   Result = list(ANOVA=ANOVA, Fitness=Fit, 'Type I'=T1, 'Type II'=T2, 'Type III'=T3)
   iNext = 6
-  
+
   if (BETA) {
     Result[[iNext]] = sumREG(r1, x$X)
     names(Result)[iNext] = "Parameter"

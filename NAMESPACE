@@ -1,5 +1,5 @@
 exportPattern("^[[:alpha:]]+")
-importFrom("stats", "pt", "qt", "pf", "formula", "model.frame", "model.matrix", "terms", "IQR", "sd", "cor", "cov2cor", "qnorm", "as.formula", "lm", "complete.cases", "printCoefmat", "density", "fitted", "qqline", "qqnorm", "residuals", "rstandard", "predict", "coef", "lowess", "ptukey", "qtukey", "qf", "uniroot", "median", "var", "quantile", "dbinom", "nlminb", "qchisq")
+importFrom("stats", "pt", "qt", "pf", "formula", "model.frame", "model.matrix", "terms", "IQR", "sd", "cor", "cov2cor", "qnorm", "as.formula", "lm", "complete.cases", "printCoefmat", "density", "fitted", "qqline", "qqnorm", "residuals", "rstandard", "predict", "coef", "lowess", "ptukey", "qtukey", "qf", "uniroot", "median", "var", "quantile", "dbinom", "nlminb", "qchisq", "pchisq", "vcov", "cooks.distance", "hatvalues", "mad")
 importFrom("methods", "is")
 importFrom("graphics", "abline", "hist", "lines", "par", "title", "mtext", "matlines", "legend", "points", "text", "arrows", "axis")
 importFrom("mvtnorm", "pmvt", "qmvt")

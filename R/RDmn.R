@@ -1,4 +1,4 @@
-RDmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
+RDmn = function(d0, conf.level=0.95, eps=1e-8)
 {
   y1 = d0[, "y1"]
   n1 = d0[, "n1"]
@@ -43,7 +43,7 @@ RDmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
     p1 = p[, 1]
     p2 = p[, 2]
     v = (p1*(1 - p1)/n1 + p2*(1 - p2)/n2)*(n1 + n2)/(n1 + n2 - 1)
-    if (weight == "MN") w = wrd(rd)
+    w = wrd(rd)
     return((sum(w*(rd - RD))^2/sum(w*w*v) - v0)^2)
   }
 

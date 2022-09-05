@@ -23,6 +23,8 @@ UNIV = function(x, conf.level = 0.95)
           Q3 = quantile(x, 0.75, na.rm=T, names=F),
           Max = Max(x),
           Range = Max(x) - Min(x),
+          IQR = IQR(x, na.rm=T, type=2), # SAS default
+          MAD = mad(x, na.rm=T),
           Skewness = Skewness(x),
           SkewnessSE = SkewnessSE(x),
           Kurtosis = Kurtosis(x),

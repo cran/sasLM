@@ -31,6 +31,8 @@
   \item{Q3}{third quartile value}
   \item{Max}{maximum value}
   \item{Range}{range of finite numbers. maximum - minimum}
+  \item{IQR}{inter-quartile range type 2 which is SAS default}
+  \item{MAD}{mean absolute deviation}
   \item{Skewness}{skewness}
   \item{SkewnessSE}{standard error of skewness}
   \item{Kurtosis}{kurtosis}

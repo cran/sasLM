@@ -1,4 +1,4 @@
-RRmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
+RRmn = function(d0, conf.level=0.95, eps=1e-8)
 {
   y1 = d0[, "y1"]
   n1 = d0[, "n1"]
@@ -38,7 +38,7 @@ RRmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
     p = p1p2rr(rr)
     r1 = p[, 1]
     r2 = p[, 2]
-    if (weight == "MN") w = wrr(rr)
+    w = wrr(rr)
     w = w/sum(w)
     r1s = sum(w*r1)
     r2s = sum(w*r2)

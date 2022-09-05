@@ -22,9 +22,7 @@
   \item{DFr}{degree of freedom for the residual}
   \item{SSE}{sum of squares error}
   \item{SST}{sum of squares total}
-  \item{R2}{R-squared}
-  \item{n}{count of observations}
-  \item{R2ADJ}{Adjusted R-squared}
+  \item{DFr2}{degree of freedom of the residual for beta coefficient}
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{

@@ -1,6 +1,6 @@
 \name{RDmn1}
 \alias{RDmn1}
-\title{Risk Difference and Score CI between two groups}
+\title{Risk Difference and Score CI between two groups by MN method}
 \description{
   Risk difference and its score confidence interval between two groups without stratification
 }
@@ -29,7 +29,7 @@
   RDmn1(104, 11037, 189, 11034)
 }
 \seealso{
-  \code{\link{RD}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}
+  \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}
 }
 \references{
 Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26

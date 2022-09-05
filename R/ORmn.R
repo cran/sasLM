@@ -1,4 +1,4 @@
-ORmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
+ORmn = function(d0, conf.level=0.95, eps=1e-8)
 {
   y1 = d0[, "y1"]
   n1 = d0[, "n1"]
@@ -42,7 +42,7 @@ ORmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
     p = p1p2or(or)
     r1 = p[, 1]
     r2 = p[, 2]
-    if (weight == "MN") w = wor(or)    
+    w = wor(or)    
     nume = sum(w*((p1 - r1)/(r1*(1 - r1)) - (p2 - r2)/(r2*(1 - r2))))
     v = (1/(n1*r1*(1 - r1)) + 1/(n2*r2*(1 - r2)))*(n1 + n2)/(n1 + n2 - 1)
 #    return((nume^2/sum(w*w*v) - v0)^2)  # for nlminb
@@ -50,11 +50,12 @@ ORmn = function(d0, conf.level=0.95, weight="MN", eps=1e-8)
   }
 
   options(warn=-1)
+  OR0 = ORcmh(d0, conf.level=conf.level)$Common$OR
 #  lower = nlminb(OR, Obj, lower=0+eps, upper=OR-eps)$par
 #  upper = nlminb(OR, Obj, lower=OR+eps)$par
-  if (OR < eps) lower = 0
-  else lower = uniroot(Obj, interval=c(eps, OR - eps))$root
-  upper = uniroot(Obj, interval=c(OR + eps, 1e9))$root
+  if (OR0 < eps) lower = 0
+  else lower = uniroot(Obj, interval=c(eps, OR0 - eps))$root
+  upper = uniroot(Obj, interval=c(OR0 + eps, 1e9))$root
   options(warn=1)
 
   nr = nrow(d0)

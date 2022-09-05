@@ -4,9 +4,8 @@ pD = function(rx, Title=NULL)
   y = yhat + residuals(rx)
   sRes = rstandard(rx)
 
-#  dev.new()
-  oPar = par(mfrow=c(2,2))
-  if(!is.null(Title)) par(oma=c(1, 1, 2, 1))
+  oPar = par(mfrow=c(2, 2))
+  if (!is.null(Title)) par(oma=c(1, 1, 2, 1))
 
   y0 = min(c(y, yhat))
   y1 = max(c(y, yhat))
@@ -29,7 +28,7 @@ pD = function(rx, Title=NULL)
   qqline(sRes, lty=3)
   mtext("Q-Q Plot of Standardized Res.", line=0.5)
 
-  if(!is.null(Title)) title(Title, outer=TRUE)
+  if (!is.null(Title)) title(Title, outer=TRUE)
   par(oPar)
 }
 

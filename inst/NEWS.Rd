@@ -1,7 +1,18 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
-\section{Version 0.9.0 (2022-07-24)}{
+\section{Version 0.9.1 (2022-09-05)}{
+  \itemize{
+    \item{RDinv, RRinv, ORinv, ORcmh for stratified or meta analysis of 2x2 are added.}
+    \item{GLM reports adjusted R-squared}
+    \item{QuartileRange returns type 2 IQR by default.}
+    \item{UNIV returns also MAD and type 2 IQR.}
+    \item{Coll caculates like SAS not like SPSS}
+    \item{lfit help updated}
+  }
+}
+
+\section{Version 0.9.0 (2022-08-05)}{
   \itemize{
     \item{RD, RR, OR, RDmn1, RRmn1, ORmn1, RDmn, RRmn, ORmn functions for 2x2 table with or without stratification are added.}
   }

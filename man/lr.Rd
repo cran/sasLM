@@ -5,7 +5,7 @@
   Coefficients calculated with g2 inverse. Output is similar to \code{summary(lm())}.
 }
 \usage{
-lr(Formula, Data, eps=1e-8)
+lr(Formula, Data, eps=1e-16)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}

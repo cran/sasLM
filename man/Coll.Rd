@@ -19,7 +19,7 @@
   \item{VIF}{variance inflation factor of independent variables}
   \item{Eigenvalue}{eigenvalue of Z'Z (crossproduct) of standardized independent variables}
   \item{Cond. Index}{condition index}
-  \item{under the names of coefficients}{proportions of variances}
+  \item{Proportions of variances}{under the names of coefficients}
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{

@@ -1,8 +1,8 @@
 \name{ScoreCI}
 \alias{ScoreCI}
-\title{Score CI of a proportion by Wilson}
+\title{Score CI of a proportion}
 \description{
-  Score confidence of a proportion in one group by Wilson
+  Score confidence of a proportion in one group
 }
 \usage{
   ScoreCI(y, n, conf.level=0.95)
@@ -13,7 +13,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates score confidence interval of a proportion in one group as Wilson suggested. If you need percent scale, multiply the output by 100.
+  It calculates score confidence interval of a proportion in one group. The confidence interval is asymmetric and there is no standard error in the output. If you need percent scale, multiply the output by 100.
 }
 \value{
   The result is a data.frame. There is no standard error.
