@@ -1,6 +1,15 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.2 (2022-10-05)}{
+  \itemize{
+    \item{corFisher function for correlation test by Fisher's Z transformation is added.}
+    \item{RDmn, RRmn, ORmn use MN weights for point estimates also.}
+    \item{RDmn1 finds confidence interval better.}
+    \item{Some typo fixed.}
+  }
+}
+
 \section{Version 0.9.1 (2022-09-05)}{
   \itemize{
     \item{RDinv, RRinv, ORinv, ORcmh for stratified or meta analysis of 2x2 are added.}

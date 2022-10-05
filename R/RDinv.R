@@ -4,7 +4,7 @@ RDinv = function(d0, conf.level=0.95)
   n1 = d0[, "n1"]
   y2 = d0[, "y2"]
   n2 = d0[, "n2"]
-  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(c(n1, n2) == 0)) stop("Check the input!")
+  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(n1*n2 == 0)) stop("Check the input!")
 
   r1 = RD(y1, n1, y2, n2, conf.level=conf.level)
   wi = 1/(r1$SE)^2

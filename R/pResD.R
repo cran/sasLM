@@ -39,6 +39,7 @@ pResD = function(rx, Title=NULL)
 
   rngY = range(yhat - mean(y))
   qqnorm(yhat - mean(y), ylim=rngY, main="Plot H", cex.main=0.9)
+  qqline(yhat - mean(y), lty=3)
 
   qqnorm(e, ylim=rngY, xlab="Residual", main="Plot I", cex.main=0.9)
 

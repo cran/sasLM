@@ -1,8 +1,8 @@
-ORmn1 = function(y1, n1, y2, n2, conf.level=0.95)
+ORmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 {
   if (length(y1) > 1) stop("This does not support multiple strata!")
-  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(c(n1, n2) == 0)) stop("Check the input!")
-  if (any(c(n1 - y1, n2 - y2) == 0)) stop("Check the input!")
+  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | n1*n2 == 0) stop("Check the input!")
+  if ((n1 - y1)*(n2 - y2) == 0) stop("Check the input!")
   p1 = y1/n1
   p2 = y2/n2
   o1 = y1/(n1 - y1)          # odd of test (active) group
@@ -13,7 +13,7 @@ ORmn1 = function(y1, n1, y2, n2, conf.level=0.95)
   Obj = function(or) {  # find or points of increased obj fx value (ofv) by v0
 #    mLL = function(p2d) {
 #      p1d = p2d*or/(1 + p2d*(or - 1))
-#      -(log(dbinom(y1, n1, p1d)) + log(dbinom(y2, n2, p2d)))
+#      -dbinom(y1, n1, p1d, log=T) + dbinom(y2, n2, p2d, log=T)
 #    }
 #    p2d = nlminb(p2, mLL, lower=0, upper=1)$par
 #    p1d = p2d*or/(1 + p2d*(or - 1))   # MLE p1d, p2d with fixed odds ratio or
@@ -29,9 +29,9 @@ ORmn1 = function(y1, n1, y2, n2, conf.level=0.95)
   }
 
   options(warn=-1)
-  LL = nlminb(OR, Obj, lower=0, upper=OR)$par
-  UL = nlminb(OR, Obj, lower=OR)$par
+  LL = nlminb(max(eps, OR - eps), Obj, lower=0, upper=OR)$par
+  UL = nlminb(OR + eps, Obj, lower=OR)$par
   options(warn=1)
 
-  return(data.frame(odd1 = o1, odd2 = o2, OR = OR, lower = LL, upper = UL))
+  return(c(odd1 = o1, odd2 = o2, OR = OR, lower = LL, upper = UL))
 }

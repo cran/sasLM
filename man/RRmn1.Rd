@@ -1,11 +1,11 @@
 \name{RRmn1}
 \alias{RRmn1}
-\title{Relative Risk and Score CI of two groups by MN method}
+\title{Relative Risk and Score CI of two groups without strata by MN method}
 \description{
   Relative risk and its score confidence interval of two groups without stratification
 }
 \usage{
-  RRmn1(y1, n1, y2, n2, conf.level=0.95)
+  RRmn1(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 }
 \arguments{
   \item{y1}{positive event count of test (the first) group}
@@ -13,6 +13,7 @@
   \item{y2}{positive event count of control (the second) group}
   \item{n2}{total count of control (the second) group}
   \item{conf.level}{confidence level}
+  \item{eps}{absolute value less than eps is regarded as negligible}    
 }
 \details{
   It calculates relative risk and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 siginicant digits.

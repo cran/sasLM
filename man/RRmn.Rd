@@ -10,7 +10,7 @@
 \arguments{
   \item{d0}{A data.frame or matrix, of which each row means a strata. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each strata. The second group is usually the control group.}
   \item{conf.level}{confidence level}
-  \item{eps}{absolute value less than eps is regarded as 0}
+  \item{eps}{absolute value less than eps is regarded as negligible}
 }
 \details{
   It calculates relative risk and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 siginicant digits.
@@ -19,7 +19,7 @@
   The following output will be returned for each strata and common value. There is no standard error.
   \item{p1}{proportion from the first group, y1/n1}
   \item{p2}{proportion from the second group, y2/n2}
-  \item{RR}{relative risk, p1/p2. Point estimate of common RR is calculated with MH weight.}
+  \item{RR}{relative risk, p1/p2. Point estimate of common RR is calculated with MN weight.}
   \item{lower}{lower confidence limit of RR}
   \item{upper}{upper confidence limit of RR}
 }

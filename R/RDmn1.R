@@ -1,14 +1,14 @@
-RDmn1 = function(y1, n1, y2, n2, conf.level=0.95)
+RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 {
   if (length(y1) > 1) stop("This does not support multiple strata!")
-  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(c(n1, n2) == 0)) stop("Check the input!")
+  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | n1*n2 == 0) stop("Check the input!")
   p1 = y1/n1                 # p of test (active) group
   p2 = y2/n2                 # p of control (placebo) group
   RD = p1 - p2               # point estimate of risk difference
   v0 = qchisq(conf.level, 1) # delta ofv for confidence interval
 
   Obj = function(rd) {  # find rd points of increased obj fx value (ofv) by v0
-#    mLL = function(p1t) -(log(dbinom(y1, n1, p1t)) + log(dbinom(y2, n2, p1t - rd)))
+#    mLL = function(p1t) -dbinom(y1, n1, p1t, log=T) + dbinom(y2, n2, p1t - rd, log=T)
 #    p1t = nlminb(p1, mLL, lower=max(0, RD), upper=min(1, RD + 1))$par
 #    p2t = max(0, min(p1t - rd, 1)) # MLE p1t, p2t with fixed delta p (rd)
     L3 = n1 + n2                                   # eq 27
@@ -26,9 +26,9 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95)
   }
 
   options(warn=-1)
-  LL = nlminb(RD, Obj, lower=max(-1, RD - 1), upper=RD)$par
-  UL = nlminb(RD, Obj, lower=RD, upper=min(RD + 1, 1))$par
+  LL = nlminb(max(-1 + eps, RD - eps), Obj, lower=max(-1, RD - 1), upper=RD)$par
+  UL = nlminb(min(1 - eps, RD + eps), Obj, lower=RD, upper=min(RD + 1, 1))$par
   options(warn=1)
 
-  return(data.frame(p1 = p1, p2 = p2, RD = RD, lower = LL, upper = UL))
+  return(c(p1 = p1, p2 = p2, RD = RD, lower = LL, upper = UL))
 }

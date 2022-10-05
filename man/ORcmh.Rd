@@ -1,6 +1,6 @@
 \name{ORcmh}
 \alias{ORcmh}
-\title{Odds Ratio and Score CI of two groups with strata by CMH method}
+\title{Odds Ratio of two groups with strata by CMH method}
 \description{
   Odds ratio and its score confidence interval of two groups with stratification by Cochran-Mantel-Haenszel method
 }
@@ -28,6 +28,6 @@
   ORcmh(d1)
 }
 \seealso{
-  \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{RDinv}},\code{\link{RRinv}}, \code{\link{ORinv}}
+  \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RDinv}}, \code{\link{RRinv}}, \code{\link{ORinv}}
 }
 \author{Kyun-Seop Bae k@acr.kr}

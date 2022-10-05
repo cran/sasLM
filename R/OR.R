@@ -1,7 +1,7 @@
 OR = function(y1, n1, y2, n2, conf.level=0.95) # Odds Ratio
 {
   ta = c(y1, n1 - y1, y2, n2 - y2)
-  if (any(ta < 0) | any(c(n1, n2) == 0)) stop("Check the input!")
+  if (any(ta < 0) | any(n1*n2 == 0)) stop("Check the input!")
   if (any(ta == 0)) {
     y1 = y1 + 0.5
     n1 = n1 + 1

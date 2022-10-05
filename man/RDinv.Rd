@@ -1,6 +1,6 @@
 \name{RDinv}
 \alias{RDinv}
-\title{Risk Difference and Score CI between two groups with strata by inverse variance method}
+\title{Risk Difference between two groups with strata by inverse variance method}
 \description{
   Risk difference and its score confidence interval between two groups with stratification by inverse variance method
 }
@@ -28,7 +28,7 @@
   RDinv(d1)
 }
 \seealso{
-  \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RRinv}}, \code{\link{ORinv}}, \code{\link{ORcmh}}
+  \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RRinv}}, \code{\link{ORinv}}, \code{\link{ORcmh}}
 }
 \references{
 Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26

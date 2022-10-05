@@ -1,6 +1,6 @@
 RD = function(y1, n1, y2, n2, conf.level=0.95) # Risk Difference
 {
-  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(c(n1, n2) == 0)) stop("Check the input!")
+  if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(n1*n2 == 0)) stop("Check the input!")
   p1 = y1/n1
   p2 = y2/n2
   pe = p1 - p2
