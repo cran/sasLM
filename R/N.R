@@ -1,7 +1,7 @@
-N = function(x)
+N = function(y)
 {
-  x = as.numeric(x)  
-  if (!(is.numeric(x) & is.vector(x))) stop("Input should be a numeric vector!")
-  x = x[!is.na(x)]
-  length(x)
+  y = as.numeric(y)  
+  if (!(is.numeric(y) & is.vector(y))) stop("Input should be a numeric vector!")
+  y = y[!is.na(y)]
+  length(y)
 }

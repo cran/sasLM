@@ -5,10 +5,10 @@
   Trimmed mean wrapping \code{mean} function .
 }
 \usage{
-  trimmedMean(x, Trim=0.05)
+  trimmedMean(y, Trim=0.05)
 }
 \arguments{
-  \item{x}{a vector of numerics}
+  \item{y}{a vector of numerics}
   \item{Trim}{trimming proportion. Default is 0.05}
 }
 \details{

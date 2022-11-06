@@ -1,6 +1,6 @@
-QuartileRange = function(x, Type=2) 
+QuartileRange = function(y, Type=2) 
 {
-  x = as.numeric(x)  
-  if (!(is.numeric(x) & is.vector(x))) stop("Input should be a numeric vector!")   
-  IQR(x, na.rm=TRUE, type=Type)
+  y = as.numeric(y)  
+  if (!(is.numeric(y) & is.vector(y))) stop("Input should be a numeric vector!")   
+  IQR(y, na.rm=TRUE, type=Type)
 }

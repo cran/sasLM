@@ -5,7 +5,7 @@
   GLM is the main function of this package.
 }
 \usage{
-GLM(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, eps=1e-8)
+GLM(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, Weights=1)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model.}
@@ -13,7 +13,7 @@ GLM(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, eps=1e-8)
   \item{BETA}{if \code{TRUE}, coefficients (parameters) of \code{REG} will be returned. This is equivalent to SOLUTION option of SAS PROC GLM}
   \item{EMEAN}{if \code{TRUE}, least square means (or expected means) will be returned. This is equivalent to LSMEANS clause of SAS PROC GLM}
   \item{conf.level}{confidence level for the confidence limit of the least square mean}
-  \item{eps}{Less than this value is considered as zero.}
+  \item{Weights}{weights for the weighted least square}
 }
 \details{
   It performs the core function of SAS PROC GLM. Least square means for the tnteraction term of three variables is not supported yet.

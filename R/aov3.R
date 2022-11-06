@@ -1,16 +1,27 @@
-aov3 = function(Formula, Data, eps=1e-8)
+aov3 = function(Formula, Data)
 {
-  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
-  x = ModelMatrix(Formula, Data, KeepOrder=FALSE)
-  y = model.frame(Formula, Data)[,1]
+  if (!attr(terms(Formula, data=Data), "response")) {
+    stop("Dependent variable should be provided!")
+  }
+
+  y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
-  r1 = lfit(x, y, eps=eps)
-  T1 = SS(x, r1, e3(Formula, Data, eps=eps))
-  if ("(Intercept)" %in% colnames(x$X)) {
-    SST = crossprod(y - mean(y))
-  } else {
-    SST = crossprod(y)
+  x = ModelMatrix(Formula, Data, KeepOrder=FALSE)
+  Lx = e3(x)
+
+  if ("Complete" %in% names(alias(Formula, Data))) {
+    aNames = rownames(alias(Formula, Data)$Complete)
+    if (any(colnames(Data) %in% aNames)) {
+      Data[, colnames(Data) %in% aNames] = 0
+      x = ModelMatrix(Formula, Data, KeepOrder=FALSE)
+    }
   }
-  return(sumANOVA(r1, T1, SST, nrow(x$X), rownames(attr(terms(x),"factors"))[1]))
+
+  rx = lfit(x, y)
+  Tx = SS(x, rx, Lx)
+
+  SST = as.numeric(crossprod(y - attr(x$terms, "intercept")*mean(y)))
+
+  return(sumANOVA(rx, Tx, SST, nrow(x$X), rownames(attr(terms(x), "factors"))[1]))
 }

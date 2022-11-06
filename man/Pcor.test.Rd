@@ -9,7 +9,7 @@
 }
 \arguments{
   \item{Data}{a numeric matrix or data.frame}
-  \item{x}{names of to be tested columns}
+  \item{x}{names of columns to be tested}
   \item{y}{names of control columns}
 }
 \details{

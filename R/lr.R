@@ -1,26 +1,29 @@
-lr = function(Formula, Data, eps=1e-16)
+lr = function(Formula, Data, eps=1e-8)
 {
-  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
-  if ("Complete" %in% names(CheckAlias(Formula, Data))) {
-    warning("Complete aliased variable(s) exist(s)!")
-    eps = 1e-5
+  if (!attr(terms(Formula, data=Data), "response")) {
+    stop("Dependent variable should be provided!")
   }
 
-  x = ModelMatrix(Formula, Data)
-  y = model.frame(Formula, Data)[,1]
+  if ("Complete" %in% names(alias(Formula, Data))) {
+    warning("Complete aliased variable(s) exist(s)!")
+    Data[, rownames(alias(Formula, Data)$Complete)] = 0
+  }
+
+  y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
+  x = ModelMatrix(Formula, Data)
   nc = ncol(x$X)
   XpX = crossprod(x$X)
   XpY = crossprod(x$X, y)
   aXpX = rbind(cbind(XpX, XpY), cbind(t(XpY), crossprod(y)))
-  ag2 = G2SWEEP(aXpX, Augmented = TRUE, eps = eps)
+  ag2 = G2SWEEP(aXpX, Augmented=TRUE, eps=eps)
   b = ag2[1:nc, (nc + 1)]
-  iXpX = ag2[1:nc, 1:nc]
+  iXpX = ag2[1:nc, 1:nc, drop=FALSE]
   nr = nrow(x$X)
   np = attr(ag2, "rank")
   DFr = nr - np
-  SSE = ag2[(nc + 1), (nc + 1)]
+  SSE = max(0, ag2[(nc + 1), (nc + 1)])
   fIntercept = attr(x$terms, "intercept")
   SST = as.numeric(crossprod(y - fIntercept*mean(y)))
 

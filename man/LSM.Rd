@@ -30,19 +30,19 @@
   \item{SE}{standard error of the point estimate}
   \item{Df}{degree of freedom of point estimate}
 }
-\examples{
-LSM(uptake ~ Type, CO2[-1,])
-LSM(uptake ~ Type - 1, CO2[-1,])
-LSM(uptake ~ Type*Treatment + conc, CO2[-1,])
-LSM(uptake ~ Type*Treatment + conc - 1, CO2[-1,])
-LSM(log(uptake) ~ Type*Treatment + log(conc), CO2[-1,])
-LSM(log(uptake) ~ Type*Treatment + log(conc) - 1, CO2[-1,])
-LSM(log(uptake) ~ Type*Treatment + as.factor(conc), CO2[-1,])
-LSM(log(uptake) ~ Type*Treatment + as.factor(conc) - 1, CO2[-1,])
-LSM(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata)
-LSM(log(CMAX) ~ SEQ/SUBJ + PRD + TRT - 1, BEdata)
-}
 \seealso{
   \code{\link{PDIFF}}, \code{\link{Diffogram}}
 }
 \author{Kyun-Seop Bae k@acr.kr}
+\examples{
+  LSM(uptake ~ Type, CO2[-1,])
+  LSM(uptake ~ Type - 1, CO2[-1,])
+  LSM(uptake ~ Type*Treatment + conc, CO2[-1,])
+  LSM(uptake ~ Type*Treatment + conc - 1, CO2[-1,])
+  LSM(log(uptake) ~ Type*Treatment + log(conc), CO2[-1,])
+  LSM(log(uptake) ~ Type*Treatment + log(conc) - 1, CO2[-1,])
+  LSM(log(uptake) ~ Type*Treatment + as.factor(conc), CO2[-1,])
+  LSM(log(uptake) ~ Type*Treatment + as.factor(conc) - 1, CO2[-1,])
+  LSM(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata)
+  LSM(log(CMAX) ~ SEQ/SUBJ + PRD + TRT - 1, BEdata)
+}

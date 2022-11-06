@@ -22,11 +22,11 @@
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{\code{\link{tsum0}}, \code{\link{tsum1}}, \code{\link{tsum2}}, \code{\link{tsum3}}}
-\examples{
-tsum(lh)
-t(tsum(CO2))
-t(tsum(uptake ~ Treatment, CO2))
-tsum(uptake ~ Type + Treatment, CO2)
-print(tsum(uptake ~ conc + Type + Treatment, CO2), digits=3)
-}
 \keyword{Table Summary}
+\examples{
+  tsum(lh)
+  t(tsum(CO2))
+  t(tsum(uptake ~ Treatment, CO2))
+  tsum(uptake ~ Type + Treatment, CO2)
+  print(tsum(uptake ~ conc + Type + Treatment, CO2), digits=3)
+}

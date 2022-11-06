@@ -5,12 +5,11 @@
   ANOVA with Type II SS.
 }
 \usage{
-aov2(Formula, Data, eps=1e-8)
+  aov2(Formula, Data)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model.}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{eps}{Less than this value is considered as zero.}
 }
 \details{
   It performs the core function of SAS PROC ANOVA.

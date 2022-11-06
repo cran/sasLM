@@ -17,7 +17,7 @@
   It performs F test with a given slice term. It is similar to the SLICE option SAS PROC GLM.
 }
 \value{
-  Returns sum of square and its F value and p-value.
+  Returns sum of square and its F value and p-value. Row names are the levels of the slice term.
   \item{Df}{degree of freedom}
   \item{Sum Sq}{sum of square for the set of contrasts}
   \item{Mean Sq}{mean square}

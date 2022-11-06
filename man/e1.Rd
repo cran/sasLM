@@ -5,11 +5,10 @@
   Makes a contrast matrix for type I SS using forward Doolittle method.
 }
 \usage{
-  e1(Formula, Data, eps=1e-8)
+  e1(XpX, eps=1e-8)
 }
 \arguments{
-  \item{Formula}{a conventional formula for a linear model}
-  \item{Data}{a \code{data.frame} to be analyzed}
+  \item{XpX}{crossprodut of a design or model matrix.This should have appropriate column names.}
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
@@ -19,6 +18,7 @@
   A contrast matrix for type I SS.
 }
 \examples{
-  round(e1(uptake ~ Plant + Type + Treatment + conc, CO2), 12)
+  x = ModelMatrix(uptake ~ Plant + Type + Treatment + conc, CO2)
+  round(e1(crossprod(x$X)), 12)
 }
 \author{Kyun-Seop Bae k@acr.kr}

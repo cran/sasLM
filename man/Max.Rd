@@ -5,10 +5,10 @@
   maximum without \code{NA} values.
 }
 \usage{
-  Max(x)
+  Max(y)
 }
 \arguments{
-  \item{x}{a vector of numerics}
+  \item{y}{a vector of numerics}
 }
 \details{
   It removes \code{NA} in the input vector. 

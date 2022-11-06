@@ -29,8 +29,8 @@
   \code{\link{ModelMatrix}}
 }
 \examples{
-f1 = uptake ~ Type*Treatment + conc
-x = ModelMatrix(f1, CO2)
-y = model.frame(f1, CO2)[,1]
-lfit(x, y)
+  f1 = uptake ~ Type*Treatment + conc
+  x = ModelMatrix(f1, CO2)
+  y = model.frame(f1, CO2)[,1]
+  lfit(x, y)
 }

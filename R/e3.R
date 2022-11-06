@@ -1,9 +1,10 @@
-e3 = function(Formula, Data, eps=1e-8)
+e3 = function(x, eps=1e-8)
 {
-  x = ModelMatrix(Formula, Data, KeepOrder=FALSE)
+  eps2 = eps/max(abs(x$X))
   nc = NCOL(x$X)
   XpX = crossprod(x$X)
   M = G2SWEEP(XpX, Augmented=FALSE, eps=eps) %*% XpX  
+  M[abs(M) < eps2] = 0
   rownames(M) = paste0("L", 1:ncol(XpX))
   Labels = labels(terms(x))
   nLabel = length(Labels)
@@ -26,10 +27,11 @@ e3 = function(Formula, Data, eps=1e-8)
 
     if (!is.null(Col2)) {
 ## Get Degree of Freedom (DF) using e2 method      
-      X0 = x$X[,Col0]
-      X1 = x$X[,Col1]
-      X2 = x$X[,Col2]
+      X0 = x$X[, Col0]
+      X1 = x$X[, Col1]
+      X2 = x$X[, Col2]
       Mx = X0 %*% G2SWEEP(crossprod(X0)) %*% t(X0)
+      Mx[abs(Mx) < eps] = 0
       M0 = diag(NCOL(Mx)) - Mx
 
       X1pM  = crossprod(X1, M0)
@@ -37,9 +39,10 @@ e3 = function(Formula, Data, eps=1e-8)
       gX1pMX1 = G2SWEEP(X1pMX1)
 
       Lx = M[x$termIndices[Label1][[1]], , drop=FALSE]
-      Lx[,Col0] = 0
-      Lx[,Col1] = gX1pMX1 %*% X1pMX1
-      Lx[,Col2] = gX1pMX1 %*% X1pM %*% X2
+      Lx[, Col0] = 0
+      Lx[, Col1] = gX1pMX1 %*% X1pMX1
+      Lx[, Col2] = gX1pMX1 %*% X1pM %*% X2
+      Lx[abs(Lx) < eps] = 0
       Lx = Lx[!apply(Lx, 1, function(x) all(abs(x) < eps)), , drop=FALSE]
       DF1 = NROW(Lx)   
 ## End of getting DF
@@ -83,10 +86,12 @@ e3 = function(Formula, Data, eps=1e-8)
       tL = pivotJ(M[Col1, , drop=FALSE], Col1, clear=FALSE)
       tL = pivotJ(tL, Col0, clear=TRUE)
     }
+    tL = tL[!apply(tL, 1, function(x) all(abs(x) < eps)), , drop=FALSE]
     if (!is.null(tL)) L = rbind(L, tL)
   }
-  M[1:nc,] = 0 # clear all
-  if (attr(x$terms, "intercept")) M[1,1] = 1 # Intercept
-  if (!is.null(L)) M[rownames(L),] = L
+  M[1:nc, ] = 0 # clear all
+  if (attr(x$terms, "intercept")) M[1, 1] = 1 # Intercept
+  if (!is.null(L)) M[rownames(L), ] = L
+  M[abs(M) < eps2] = 0
   return(M) # Do not use zapsmall !
 }

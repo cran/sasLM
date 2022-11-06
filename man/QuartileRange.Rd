@@ -5,10 +5,10 @@
   Interquartile range (Q3 - Q1) with a conventional formula.
 }
 \usage{
-  QuartileRange(x, Type=2)
+  QuartileRange(y, Type=2)
 }
 \arguments{
-  \item{x}{a vector of numerics}
+  \item{y}{a vector of numerics}
   \item{Type}{a type specifier to be passed to \code{IQR} function}
 }
 \details{

@@ -10,6 +10,8 @@
 \alias{plotDiff}
 \alias{plotDunnett}
 \alias{CheckAlias}
+\alias{ex}
+\alias{WhiteH}
 \title{Internal Functions}
 \description{Internal functions}
 \details{These are not to be called by the user.}

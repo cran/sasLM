@@ -5,10 +5,10 @@
   The estimate of the lower bound of confidence limit using t-distribution
 }
 \usage{
-  LCL(x, conf.level=0.95)
+  LCL(y, conf.level=0.95)
 }
 \arguments{
-  \item{x}{a vector of numerics}
+  \item{y}{a vector of numerics}
   \item{conf.level}{confidence level}
 }
 \details{

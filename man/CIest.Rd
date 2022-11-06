@@ -27,6 +27,6 @@
   \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
 }
 \examples{
-CIest(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, "TRT", c(-1, 1), 0.90) # 90% CI
+  CIest(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, "TRT", c(-1, 1), 0.90) # 90% CI
 }
 \author{Kyun-Seop Bae k@acr.kr}

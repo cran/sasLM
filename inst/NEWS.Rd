@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.3 (2022-11-04)}{
+  \itemize{
+    \item{GLM and REG supports weighted regression with WEIGHTS option.}
+    \item{REG displays tests using HC0, HC3, and White's first and second moment specification test.}
+    \item{Code refactored to cope better with singular or ill-conditioned matrix.}
+    \item{Some unused arguments such as eps (in GLM, REG, aov1, aov2, and aov3) are removed.}
+    \item{\code{e1}, \code{e2}, \code{e3} arguments are simplified to reduce unnecessary calculation.}
+  }
+}
+
 \section{Version 0.9.2 (2022-10-05)}{
   \itemize{
     \item{corFisher function for correlation test by Fisher's Z transformation is added.}

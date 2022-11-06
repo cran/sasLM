@@ -23,5 +23,5 @@
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{
-Coll(mpg ~ disp + hp + drat + wt + qsec, mtcars) 
+  Coll(mpg ~ disp + hp + drat + wt + qsec, mtcars) 
 }

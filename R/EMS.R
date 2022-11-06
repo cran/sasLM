@@ -1,7 +1,10 @@
 EMS = function(Formula, Data, Type=3, eps=1e-8)
 {
-  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
-  y = model.frame(Formula, Data)[,1]
+  if (!attr(terms(Formula, data=Data), "response")) {
+    stop("Dependent variable should be provided!")
+  }
+      
+  y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
   x = ModelMatrix(Formula, Data)
@@ -9,9 +12,9 @@ EMS = function(Formula, Data, Type=3, eps=1e-8)
   nTerm = length(Terms)
 
   L0 = switch(as.character(Type),
-              "1" = e1(Formula, Data, eps=eps),
-              "2" = e2(Formula, Data, eps=eps),
-              "3" = e3(Formula, Data, eps=eps),
+              "1" = e1(crossprod(x$X), eps=eps),
+              "2" = e2(x, eps=eps),
+              "3" = e3(x, eps=eps),
               stop(paste("Type", Type, "is not supported!")))
 
   r0 = lfit(x, y)
@@ -26,13 +29,12 @@ EMS = function(Formula, Data, Type=3, eps=1e-8)
       xC = t(L) %*% G2SWEEP(L %*% G2SWEEP(crossprod(x$X)) %*% t(L)) %*% L
 #      M = qr.solve(t(chol(L %*% G2SWEEP(crossprod(x$X)) %*% t(L)))) # Frequent crash
 #      xC = crossprod(M %*% L)
-      for (j in 1:nTerm) Res[i,j] = sum(diag(xC[x$assign==j, x$assign==j, drop=FALSE]))/NROW(L)
+      for (j in 1:nTerm) Res[i, j] = sum(diag(xC[x$assign==j, x$assign==j, drop=FALSE]))/NROW(L)
     } else {
-#      Res[1,] = NA
-      Res[i,] = 0
-#      Res[i,i] = 1
-    }
+       Res[i, ] = 0
+     }
   }
 
-  return(round(Res, abs(log10(eps)) + 1))
+  Res[abs(Res) < eps] = 0
+  return(Res)
 }

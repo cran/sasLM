@@ -1,8 +1,8 @@
-Range = function(x)
+Range = function(y)
 {
-  x = as.numeric(x)  
-  if (!(is.numeric(x) & is.vector(x))) return(NA) # stop("Input should be a numeric vector!")
-  x = x[!is.na(x)]
-  if (length(x) == 0) return(NA)
-  max(x, na.rm=TRUE) - min(x, na.rm=TRUE)
+  y = as.numeric(y)  
+  if (!(is.numeric(y) & is.vector(y))) return(NA) # stop("Input should be a numeric vector!")
+  y = y[!is.na(y)]
+  if (length(y) == 0) return(NA)
+  max(y, na.rm=TRUE) - min(y, na.rm=TRUE)
 }

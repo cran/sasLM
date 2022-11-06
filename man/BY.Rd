@@ -5,7 +5,7 @@
   GLM, REG, aov1 etc. functions can be run by levels of a variable.
 }
 \usage{
-BY(FUN, Formula, Data, By, ...)
+  BY(FUN, Formula, Data, By, ...)
 }
 \arguments{
   \item{FUN}{Function name to be called such as GLM, REG}
@@ -22,6 +22,6 @@ BY(FUN, Formula, Data, By, ...)
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{
-BY(GLM, uptake ~ Treatment + as.factor(conc), CO2, By="Type")
-BY(REG, uptake ~ conc, CO2, By="Type")
+  BY(GLM, uptake ~ Treatment + as.factor(conc), CO2, By="Type")
+  BY(REG, uptake ~ conc, CO2, By="Type")
 }

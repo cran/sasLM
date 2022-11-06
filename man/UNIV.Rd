@@ -5,10 +5,10 @@
   Returns descriptive statistics of a numeric vector. 
 }
 \usage{
-  UNIV(x, conf.level = 0.95)
+  UNIV(y, conf.level = 0.95)
 }
 \arguments{
-  \item{x}{a numeric vector}
+  \item{y}{a numeric vector}
   \item{conf.level}{confidence level for confidence limit}
 }
 \details{
@@ -41,8 +41,7 @@
   \item{GeometricCV}{geometric coefficient of variation in percent, calculated only when all given values are positive.}
 }
 \author{Kyun-Seop Bae k@acr.kr}
+\keyword{Descriptive Statistics}
 \examples{
   UNIV(lh)
 }
-\keyword{Descriptive Statistics}
-

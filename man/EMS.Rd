@@ -11,7 +11,7 @@
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{Type}{type of sum of squares. The default is 3. Type 4 is not supported yet.}
-  \item{eps}{Less than this value is considered as zero.}
+  \item{eps}{Less than this value is considered as zero.}  
 }
 \details{
   This is necessary for further hypothesis test of nesting factors.
@@ -19,10 +19,10 @@
 \value{
   A coefficient matrix for Type III expected mean square
 }
-\examples{
-f1 = log(CMAX) ~ SEQ/SUBJ + PRD + TRT
-EMS(f1, BEdata)
-EMS(f1, BEdata, Type=1)
-EMS(f1, BEdata, Type=2)
-}
 \author{Kyun-Seop Bae k@acr.kr}
+\examples{
+  f1 = log(CMAX) ~ SEQ/SUBJ + PRD + TRT
+  EMS(f1, BEdata)
+  EMS(f1, BEdata, Type=1)
+  EMS(f1, BEdata, Type=2)
+}

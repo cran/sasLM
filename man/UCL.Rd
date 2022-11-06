@@ -5,10 +5,10 @@
   The estimate of the upper bound of confidence limit using t-distribution
 }
 \usage{
-  UCL(x, conf.level=0.95)
+  UCL(y, conf.level=0.95)
 }
 \arguments{
-  \item{x}{a vector of numerics}
+  \item{y}{a vector of numerics}
   \item{conf.level}{confidence level}
 }
 \details{

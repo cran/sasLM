@@ -5,10 +5,10 @@
   Coefficient of variation in percentage.
 }
 \usage{
-  CV(x)
+  CV(y)
 }
 \arguments{
-  \item{x}{a numeric vector}
+  \item{y}{a numeric vector}
 }
 \details{
   It removes \code{NA}.
@@ -18,5 +18,5 @@
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{
-CV(mtcars$mpg)
+ CV(mtcars$mpg)
 }

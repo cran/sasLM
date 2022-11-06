@@ -5,7 +5,7 @@
   Coefficients calculated with g2 inverse. Output is similar to \code{summary(lm())}.
 }
 \usage{
-lr(Formula, Data, eps=1e-16)
+  lr(Formula, Data, eps=1e-8)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
@@ -22,10 +22,10 @@ lr(Formula, Data, eps=1e-16)
   \item{t value}{value for t distribution}
   \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
 }
-\examples{
-lr(uptake ~ Plant + Type + Treatment + conc, CO2)
-lr(uptake ~ Plant + Type + Treatment + conc - 1, CO2)
-lr(uptake ~ Type, CO2)
-lr(uptake ~ Type - 1, CO2)
-}
 \author{Kyun-Seop Bae k@acr.kr}
+\examples{
+  lr(uptake ~ Plant + Type + Treatment + conc, CO2)
+  lr(uptake ~ Plant + Type + Treatment + conc - 1, CO2)
+  lr(uptake ~ Type, CO2)
+  lr(uptake ~ Type - 1, CO2)
+}

@@ -5,7 +5,7 @@
   Usually the first step to mulitple linear regression is the simple linear regressions with single independent variable.
 }
 \usage{
-lr0(Formula, Data)
+  lr0(Formula, Data)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model. Intercept will be added always.}
@@ -23,8 +23,8 @@ lr0(Formula, Data)
   \item{Rsq}{R-squared for the simple linear model}
   \item{Pr(>F)}{p-value of slope or the model}
 }
-\examples{
-lr0(uptake ~ Plant + Type + Treatment + conc, CO2)
-lr0(mpg ~ ., mtcars)
-}
 \author{Kyun-Seop Bae k@acr.kr}
+\examples{
+  lr0(uptake ~ Plant + Type + Treatment + conc, CO2)
+  lr0(mpg ~ ., mtcars)
+}

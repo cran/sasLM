@@ -25,5 +25,5 @@
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \examples{
-Cor.test(mtcars)
+  Cor.test(mtcars)
 }

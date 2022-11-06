@@ -1,6 +1,9 @@
 T3test = function(Formula, Data, Error="", eps=1e-8)
 {
-  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
+  if (!attr(terms(Formula, data=Data), "response")) {
+    stop("Dependent variable should be provided!")
+  }
+
   x = ModelMatrix(Formula, Data, KeepOrder = FALSE)
   if (!(Error %in% attr(x$terms, "term.labels"))) stop(paste("Error term is not found!"))
 
@@ -8,8 +11,7 @@ T3test = function(Formula, Data, Error="", eps=1e-8)
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
   r1 = lfit(x, y, eps=eps)
-
-  L0 = e3(Formula, Data, eps=eps)
+  L0 = e3(x, eps=eps)
   T1 = SS(x, r1, L0)
 
   if (!(Error %in% rownames(T1))) {

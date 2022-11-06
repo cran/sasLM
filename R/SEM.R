@@ -1,9 +1,9 @@
-SEM = function(x)
+SEM = function(y)
 {
-  x = as.numeric(x)  
-  if (!(is.numeric(x) & is.vector(x))) return(NA) # stop("Input should be a numeric vector!")
-  x = x[!is.na(x)]
-  n = length(x)
+  y = as.numeric(y)  
+  if (!(is.numeric(y) & is.vector(y))) return(NA) # stop("Input should be a numeric vector!")
+  y = y[!is.na(y)]
+  n = length(y)
   if (n < 2) return(NA) # stop("The length of the input vector should be larger than 1.")
-  sd(x, na.rm=TRUE)/sqrt(n)
+  sd(y, na.rm=TRUE)/sqrt(n)
 }

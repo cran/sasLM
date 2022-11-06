@@ -1,6 +1,6 @@
-CV = function(x)
+CV = function(y)
 {
-  x = x[!is.na(x)]
-  if (length(x) == 0) return(NA)
-  sd(x, na.rm=TRUE)/mean(x, na.rm=TRUE) * 100
+  y = y[!is.na(y)]
+  if (length(y) == 0) return(NA)
+  sd(y, na.rm=TRUE)/mean(y, na.rm=TRUE)*100
 }

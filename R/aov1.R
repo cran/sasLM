@@ -1,16 +1,33 @@
-aov1 = function(Formula, Data, eps=1e-8)
+aov1 = function(Formula, Data)
 {
-  if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
-  x = ModelMatrix(Formula, Data, KeepOrder=TRUE)
-  y = model.frame(Formula, Data)[,1]
+  if (!attr(terms(Formula, data=Data), "response")) {
+    stop("Dependent variable should be provided!")
+  }
+
+  y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
-  r1 = lfit(x, y, eps=eps)
-  T1 = SS(x, r1, e1(Formula, Data, eps=eps))
-  if ("(Intercept)" %in% colnames(x$X)) {
-    SST = crossprod(y - mean(y))
-  } else {
-    SST = crossprod(y)
+  x0 = ModelMatrix(Formula, Data, KeepOrder=TRUE)
+  Lx = e1(crossprod(x0$X))
+  rx = lfit(x0, y)
+
+  x1 = x0
+  fAdj = FALSE
+  if ("Complete" %in% names(alias(Formula, Data))) {
+    aNames = rownames(alias(Formula, Data)$Complete)
+    if (any(colnames(Data) %in% aNames)) {
+      Data[, colnames(Data) %in% aNames] = 0
+      x1 = ModelMatrix(Formula, Data, KeepOrder=TRUE)
+      Lx = e1(crossprod(x1$X))
+      rx = lfit(x1, y)
+      fAdj = TRUE
+    }
   }
-  return(sumANOVA(r1, T1, SST, nrow(x$X), rownames(attr(terms(x),"factors"))[1]))
+
+  if (fAdj) rx$coefficients = rx$coefficients*estmb(diag(NCOL(x1$X)), x1$X, rx$g2)
+  Tx = SS(x1, rx, Lx)
+
+  SST = as.numeric(crossprod(y - attr(x0$terms, "intercept")*mean(y)))
+
+  return(sumANOVA(rx, Tx, SST, nrow(x0$X), rownames(attr(terms(x0), "factors"))[1]))
 }

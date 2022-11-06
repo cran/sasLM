@@ -23,11 +23,11 @@ regD = function(Formula, Data)
 
   h = diag(X %*% VIF %*% t(X))     # hat
   Rse = sqrt(MSE*(1 - h))          # SE of RStudent residual
-  Rst = e/Rse                      # RStudent residual
+  Rst = e/Rse                      # Student Residual, internally studentized
   CooksD = e*e/(p*MSE)*h/(1 - h)^2 # CooksD
 
   MSEi = (SSE - e*e/(1 - h))/(DFr - 1)
-  sdr = e/sqrt(MSEi*(1 - h))       # Studentized Deleted Residual
+  sdr = e/sqrt(MSEi*(1 - h))       # Studentized Deleted Residual, externally
   DFFITS = sdr*sqrt(h/(1 - h))
 
   COVRATIO = matrix(nrow=n)
@@ -50,7 +50,7 @@ regD = function(Formula, Data)
   class(Res0) = "anova"
 
   Res1 = cbind(yhat, e, Rse, Rst, h, CooksD, sdr, DFFITS, COVRATIO)
-  colnames(Res1) = c("Predicted", "Residual", "se_resid", "RStudent", "Leverage", "Cook's D", "sdResid", "DFFITS", "COVRATIO")
+  colnames(Res1) = c("Predicted", "Residual", "SE_Resid", "Student_Res", "Leverage", "Cook's D", "RStudent", "DFFITS", "COVRATIO")
 
   Res = list(Res0, Res1, DFBETAS)
   names(Res) = c("Coefficients", "Diagnostics", "DFBETAS")

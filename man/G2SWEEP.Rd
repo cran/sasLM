@@ -25,19 +25,19 @@
   \code{\link{lfit}}, \code{\link{ModelMatrix}}
 }
 \examples{
-f1 =   uptake ~ Type + Treatment # formula
-x = ModelMatrix(f1, CO2)  # Model matrix and relevant information
-y = model.frame(f1, CO2)[,1] # observation vector
-nc = ncol(x$X) # number of columns of model matrix
-XpY = crossprod(x$X, y)
-aXpX = rbind(cbind(crossprod(x$X), XpY), cbind(t(XpY), crossprod(y)))
-ag2 = G2SWEEP(aXpX, Augmented=TRUE)
-b = ag2[1:nc, (nc + 1)] ; b # Beta hat
-iXpX = ag2[1:nc, 1:nc] ; iXpX # g2 inverse of X'X
-SSE = ag2[(nc + 1), (nc + 1)] ; SSE # Sum of Square Error
-DFr = nrow(x$X) - attr(ag2, "rank") ; DFr # Degree of freedom for the residual
+  f1 = uptake ~ Type + Treatment # formula
+  x = ModelMatrix(f1, CO2)  # Model matrix and relevant information
+  y = model.frame(f1, CO2)[, 1] # observation vector
+  nc = ncol(x$X) # number of columns of model matrix
+  XpY = crossprod(x$X, y)
+  aXpX = rbind(cbind(crossprod(x$X), XpY), cbind(t(XpY), crossprod(y)))
+  ag2 = G2SWEEP(aXpX, Augmented=TRUE)
+  b = ag2[1:nc, (nc + 1)] ; b # Beta hat
+  iXpX = ag2[1:nc, 1:nc] ; iXpX # g2 inverse of X'X
+  SSE = ag2[(nc + 1), (nc + 1)] ; SSE # Sum of Square Error
+  DFr = nrow(x$X) - attr(ag2, "rank") ; DFr # Degree of freedom for the residual
 
 # Compare the below with the above
-REG(f1, CO2)
-aov1(f1, CO2)
+  REG(f1, CO2)
+  aov1(f1, CO2)
 }

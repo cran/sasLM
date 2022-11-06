@@ -5,10 +5,10 @@
   mean without \code{NA} values.
 }
 \usage{
-  geoMean(x)
+  geoMean(y)
 }
 \arguments{
-  \item{x}{a vector of numerics}
+  \item{y}{a vector of numerics}
 }
 \details{
   It removes \code{NA} in the input vector. 
@@ -20,3 +20,6 @@
   \code{\link{geoCV}}
 }
 \author{Kyun-Seop Bae k@acr.kr}
+\examples{
+  geoMean(mtcars$mpg)
+}

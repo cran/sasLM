@@ -1,4 +1,4 @@
-ModelMatrix = function(Formula, Data, KeepOrder=FALSE)
+ModelMatrix = function(Formula, Data, KeepOrder=FALSE, XpX=FALSE)
 {
   if ("(Intercept)" %in% colnames(model.matrix(Formula, Data))) { 
     fIntercept = 1
@@ -40,5 +40,14 @@ ModelMatrix = function(Formula, Data, KeepOrder=FALSE)
   } else { 
     names(termIndices) = Labels 
   }
-  return(list(X=as.matrix(L), terms=Terms, termIndices=termIndices, assign=vAssign))
+  
+  if (XpX) {
+    Result = list(XpX=crossprod(as.matrix(L)), terms=Terms, 
+                  termIndices=termIndices, assign=vAssign)    
+  } else {
+    Result = list(X=as.matrix(L), terms=Terms, termIndices=termIndices, 
+                  assign=vAssign)
+  }
+  
+  return(Result)
 }

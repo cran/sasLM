@@ -19,7 +19,7 @@
 \value{
   A coefficient matrix for Type III expected mean square
 }
+\author{Kyun-Seop Bae k@acr.kr}
 \examples{
   T3MS(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata)
 }
-\author{Kyun-Seop Bae k@acr.kr}

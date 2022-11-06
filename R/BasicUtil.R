@@ -1,15 +1,15 @@
 pivotJ = function(M, j, clear=TRUE, eps=1e-8)
 {
   for (k in j) {
-    if (any(abs(M[,k]) > eps) > 0) {
-      Js = which(abs(as.vector(M[,k])) > eps)
+    if (any(abs(M[, k]) > eps) > 0) {
+      Js = which(abs(as.vector(M[, k])) > eps)
       pivotRow = M[Js[1], ]/M[Js[1], k]
       nJ = length(Js)
-      if (nJ > 1) for (i in 2:nJ) M[Js[i],] = M[Js[i],] - M[Js[i], k]*pivotRow
+      if (nJ > 1) for (i in 2:nJ) M[Js[i], ] = M[Js[i] ,] - M[Js[i], k]*pivotRow
       if (clear) {
-        M[Js[1],] = 0
+        M[Js[1], ] = 0
       } else {
-        M[Js[1],] = pivotRow
+        M[Js[1], ] = pivotRow
       }
     }
   }
@@ -95,12 +95,12 @@ sumREG = function(r1, X)
   Tval[is.na(r1$DFr2) | is.nan(Tval)] = NA
   Pval[is.na(r1$DFr2) | is.nan(Pval)] = NA
 
-  ESTM = estmb(diag(np), X, r1$g2)
-  if (sum(ESTM) == np) {
+  vESTM = estmb(diag(np), X, r1$g2)
+  if (sum(vESTM) == np) {
     Parameter = cbind(Est, bSE, r1$DFr2, Tval, Pval)
     colnames(Parameter) = c("Estimate", "Std. Error", "Df", "t value", "Pr(>|t|)")
   } else {
-    Parameter = cbind(Est, ESTM, bSE, r1$DFr2, Tval, Pval)
+    Parameter = cbind(Est, vESTM, bSE, r1$DFr2, Tval, Pval)
     colnames(Parameter) = c("Estimate", "Estimable", "Std. Error", "Df", "t value", "Pr(>|t|)")
   }
   rownames(Parameter) = colnames(X)
@@ -478,3 +478,158 @@ CheckAlias = function(Formula, Data)
   return(Res)
 }
 
+ex = function(x1, x2, g2, eps=1e-8)
+{
+  eps2 = eps/max(abs(x1$X))
+  Res = NULL
+
+  L1 = crossprod(x1$X)
+  nc = NCOL(L1)
+  if (nc > 1) {
+    for (i in 1:(nc - 1)) {
+      if (abs(L1[i, i]) < eps) { L1[i, ] = 0 ; L1[i:nc, i] = 0 ; next }
+      for (j in (i + 1):nc)  L1[j, ] = L1[j, ] - L1[j, i]/L1[i, i]*L1[i, ]
+      if (abs(L1[i, i]) > eps) L1[i, ] = L1[i, ]/L1[i, i]
+    }
+  } else {
+    L1[1, 1] = 1
+  }
+  rownames(L1) = paste0("L", 1:nrow(L1))
+  L1[abs(L1) < eps2] = 0
+  Res$e1 = L1
+
+  XpX = crossprod(x2$X)
+  M0 = G2SWEEP(XpX, Augmented=FALSE, eps=eps) %*% XpX
+  M0[abs(M0) < eps2] = 0
+  rownames(M0) = paste0("L", 1:nc)
+  Labels = labels(terms(x2))
+  nLabel = length(Labels)
+  LLabel = strsplit(Labels, ":")
+
+  if (attr(x2$terms, "intercept")) { re2 = c(1, rep(0, nc - 1))
+  } else { re2 = NULL }
+  re3 = NULL
+
+  for (i in 1:nLabel) {
+    Label1 = Labels[i]
+    Label2 = NULL
+    for (j in 1:nLabel) {
+      if (i != j & all(LLabel[[i]] %in% LLabel[[j]])) Label2 = c(Label2, Labels[j])
+    }
+
+    Col1 = x2$termIndices[Label1][[1]]
+    Col2 = NULL
+    if (length(Label2) > 0) {
+      for (j in 1:length(Label2)) Col2 = c(Col2, x2$termIndices[Label2[j]][[1]])
+    }
+    Col0 = setdiff(1:nc, c(Col1, Col2))
+
+    X0 = x2$X[, Col0]
+    X1 = x2$X[, Col1]
+    X2 = x2$X[, Col2]
+
+    if (NCOL(X0) > 0) {
+      Mx = X0 %*% G2SWEEP(crossprod(X0), Augmented=FALSE, eps=eps) %*% t(X0)
+      Mx[abs(Mx) < eps] = 0
+      M = diag(NCOL(Mx)) - Mx
+      X1pM  = crossprod(X1, M)
+    } else {
+      X1pM = t(X1)
+    }
+    X1pMX1 = X1pM %*% X1
+    gX1pMX1 = G2SWEEP(X1pMX1, Augmented=FALSE, eps=eps)
+
+    L2 = M0[x2$termIndices[Label1][[1]], , drop=FALSE]
+    L2[, Col0] = 0
+    L2[, Col1] = gX1pMX1 %*% X1pMX1
+    L2[, Col2] = gX1pMX1 %*% X1pM %*% X2
+    L2[abs(L2) < eps] = 0
+
+    DF1 = NROW(L2[!apply(L2, 1, function(x) all(abs(x) < eps)), , drop=FALSE])
+
+    R1 = t(M0[Col1, , drop=FALSE])
+    R2 = t(M0[Col2, , drop=FALSE])
+    L3 = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
+    if (NROW(L3) > 0) {
+      L3 = pivotJ(L3, Col0, clear=TRUE)
+      L3 = L3[!apply(L3, 1, function(x) all(abs(x) < eps)), , drop=FALSE]
+    }
+    DF2 = NROW(L3)
+
+    if (DF2 != DF1) {
+      if (!is.null(Col2)) {
+        Ms = pivotJ(M0[c(Col1, Col2), , drop=FALSE], Col0, clear=TRUE)
+        Ms = pivotJ(Ms, Col1, clear=FALSE)
+
+        fbazr = apply(abs(Ms[, Col1, drop=FALSE]), 1, max) < eps
+        bazr = which(fbazr)
+        bnazr = which(!fbazr)
+
+        if (length(bnazr) == 0) {
+          L3 = NULL
+        } else if (length(bnazr) <= length(Col1)) {
+          R1 = t(Ms[bnazr, , drop=FALSE])
+          R2 = t(Ms[bazr, , drop=FALSE])
+          L3 = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
+          rownames(L3) = (rownames(M0)[Col1])[1:NROW(L3)]
+        } else {
+          R1 = t(M0[Col1, , drop=FALSE])
+          R2 = t(M0[Col2, , drop=FALSE])
+          L3 = t(R1 - R2 %*% G2SWEEP(crossprod(R2)) %*% crossprod(R2, R1))
+        }
+      } else {
+        L3 = pivotJ(M0[Col1, , drop=FALSE], Col1, clear=FALSE)
+        L3 = pivotJ(L3, Col0, clear=TRUE)
+      }
+      if (NROW(L3) > 0) {
+        L3 = L3[!apply(L3, 1, function(x) all(abs(x) < eps)), , drop=FALSE]
+      }
+      DF3 = NROW(L3)
+    } else {
+      DF3 = DF1
+    }
+
+    if (DF3 == 0) L2 = matrix(0, nrow(L2), ncol(L2))
+    re2 = rbind(re2, L2)
+
+    if (!is.null(L3)) re3 = rbind(re3, L3)
+  }
+
+  rownames(re2) = paste0("L", 1:NCOL(re2))
+  re2[abs(re2) < eps2] = 0
+  Res$e2 = re2
+
+  M0[, ] = 0 # clear all
+  if (attr(x2$terms, "intercept")) M0[1, 1] = 1 # Intercept
+  if (!is.null(re3)) M0[rownames(re3), ] = re3
+  M0[abs(M0) < eps2] = 0
+  Res$e3 = M0
+
+  return(Res) # Do not use zapsmall !
+}
+
+WhiteH = function(X, we2) # we2 = weight * e^2
+{
+  n = NROW(X)
+  K = NCOL(X)
+  Df = K*(K + 1)/2
+
+  e2.in = scale(we2, scale=F)
+
+  psi.i = matrix(nrow=n, ncol=Df)
+  for (i in 1:n) psi.i[i, ] = crossprod(X[i, , drop=F])[lower.tri(diag(K), T)]
+  psi.in = scale(psi.i, scale=F)
+
+  Dn = apply(psi.in, 2, function(x) mean(e2.in*x))
+
+  sumB = matrix(0, nrow=Df, ncol=Df)
+  for (i in 1:n) sumB = sumB + e2.in[i]^2*crossprod(psi.in[i, , drop=F])
+
+  iBn = G2SWEEP(sumB/n)
+  Df1 = attr(iBn, "rank")
+
+  White = n*t(Dn) %*% iBn %*% Dn
+  p.val = 1 - pchisq(White, Df1)
+
+  return(c(Chisq=White, Df=Df1, p=p.val))
+}

@@ -1,8 +1,8 @@
-geoCV = function(x)
+geoCV = function(y)
 {
-  x = x[!is.na(x) & x > 0]
-  if (length(x) == 0) return(NA)
-  lx = log(x)
-  vlx = var(lx, na.rm=T)
-  return(sqrt(exp(vlx) - 1)*100)
+  y = y[!is.na(y) & y > 0]
+  if (length(y) == 0) return(NA)
+  ly = log(y)
+  vly = var(ly, na.rm=T)
+  return(sqrt(exp(vly) - 1)*100)
 }
