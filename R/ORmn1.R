@@ -2,7 +2,7 @@ ORmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 {
   if (length(y1) > 1) stop("This does not support multiple strata!")
   if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | n1*n2 == 0) stop("Check the input!")
-  if ((n1 - y1)*(n2 - y2) == 0) stop("Check the input!")
+  if (any((n1 - y1)*(n2 - y2) == 0)) stop("OR is 0 or infinity or NaN(not a number)! Consider substracting a tiny number from the numerator.")
   p1 = y1/n1
   p2 = y2/n2
   o1 = y1/(n1 - y1)          # odd of test (active) group

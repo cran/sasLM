@@ -457,8 +457,8 @@ plotDunnett = function(m0, ...)
   for (i in 1:nL) arrows(x0=i, y0=m0[i,2], x1=i, y1=m0[i,3], length=0.1, angle=90, code=3)
 }
 
-CheckAlias = function(Formula, Data)
-{
+CheckAlias = function(Formula, Data) # Why did I use this instead of 'alias' function? -> Maybe alias() requires MASS package.
+{ # 'alias' seems more pecise, because it uses fractional number (i.e. a/b).
 	Res = list(Model = Formula)
   QR = qr(model.matrix(Formula, Data))
 	Rank = QR$rank

@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.4 (2023-01-07)}{
+  \itemize{
+    \item{ORmn: Special cases of OR - 0, infinity or NaN - are checked in the input.}
+  }
+}
+
 \section{Version 0.9.3 (2022-11-04)}{
   \itemize{
     \item{GLM and REG supports weighted regression with WEIGHTS option.}

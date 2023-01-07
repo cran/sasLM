@@ -5,6 +5,7 @@ ORmn = function(d0, conf.level=0.95, eps=1e-8)
   y2 = d0[, "y2"]
   n2 = d0[, "n2"]
   if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(n1*n2 == 0)) stop("Check the input!")
+  if (any((n1 - y1)*(n2 - y2) == 0)) stop("OR is 0 or infinity or NaN(not a number)! Consider substracting a tiny number from the numerator.")
   v0 = qchisq(conf.level, 1)
   p1 = y1/n1
   p2 = y2/n2
