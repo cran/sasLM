@@ -61,9 +61,9 @@ RDmn = function(d0, conf.level=0.95, eps=1e-8)
 #  if (RD > 1 - eps) { upper = 1
 #  } else { upper = nlminb(RD, Obj, lower= RD + eps, upper = 1 - eps)$par }
   if (RD < -1 + eps) { lower = -1
-  } else { lower = uniroot(Obj, interval=c(-1 + eps, RD - eps))$root }
+  } else { lower = uniroot(Obj, interval=c(-1 + eps, RD - eps/2))$root }
   if (RD > 1 - eps) { upper = 1
-  } else { upper = uniroot(Obj, interval=c(RD + eps, 1 - eps))$root }
+  } else { upper = uniroot(Obj, interval=c(RD + eps/2, 1 - eps))$root }
   options(warn=1)
 
   nr = nrow(d0)

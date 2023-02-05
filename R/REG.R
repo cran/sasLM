@@ -1,4 +1,4 @@
-REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Weights=1, summarize=TRUE)
+REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1, summarize=TRUE)
 {
   if (!attr(terms(Formula, data=Data), "response")) {
     stop("Dependent variable should be provided!")
@@ -42,7 +42,9 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Weights=1, summarize=TR
     RMSE = sqrt(ANOVA["RESIDUALS", "Mean Sq"])
     CV = 100*RMSE/MeanY
 
-    we2 = as.numeric((y - x$X %*% r0$coefficients)^2) # we2 = weighted residual^2
+    yhat = as.numeric(x$X %*% r0$coefficients)
+    Residual = y - yhat
+    we2 = (Residual)^2 # we2 = weighted residual^2
     iXpX = r0$g2
     hii = diag(x$X %*% iXpX %*% t(x$X))
     PRESS = sum(we2/(1 - hii)^2)
@@ -71,7 +73,10 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Weights=1, summarize=TR
     Res0 = cbind(Res0, 'Lower CL'=LCL0, 'Upper CL'=UCL0)
     Res0 = Res0[, c("Estimate", "Std. Error", "Df", "Lower CL", "Upper CL", "t value", "Pr(>|t|)"), drop=F]
     class(Res0) = "anova"
-    
+
+    Result = list(ANOVA=ANOVA, Fitness=Fit, Coefficients=Res0)
+    iNext = 4
+
 ## HC
     if (HC) {
       Res1 = Res0
@@ -118,10 +123,21 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Weights=1, summarize=TR
       Res5 = WhiteH(x$X, we2)
 
 #    Result = list(Default=Res0, HC0=Res1, HC1=Res2, HC2=Res3, HC3=Res4, WhiteTest=Res5)
-      Result = list(ANOVA=ANOVA, Fitness=Fit, Homoscedastic=Res0, HC0=Res1, HC3=Res4, WhiteTest=Res5)
-    } else {
-      Result = list(ANOVA=ANOVA, Fitness=Fit, Coefficients=Res0)
+      Result[[iNext]] = Res1
+      Result[[iNext + 1]] = Res4
+      Result[[iNext + 2]] = Res5
+      names(Result)[iNext:(iNext + 2)] = c("HC0", "HC3", "White Test")
+      iNext = iNext + 3
     }
+
+    if (Resid) {
+      Result[[iNext]] = yhat
+      names(Result)[iNext] = "Fitted"
+
+      Result[[iNext + 1]] = Residual
+      names(Result)[iNext + 1] = "Residual"
+    }
+
     return(Result)
   } else {
     return(r0)

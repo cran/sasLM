@@ -10,7 +10,7 @@
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{Error}{an error term. Term name should be exactly same one listed the ANOVA output.}
+  \item{Error}{a vector of error terms.}
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
@@ -21,6 +21,6 @@
   Returns one or more ANOVA table(s) of type III SS.
 }
 \examples{
-  T3test(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, "SEQ:SUBJ")
+  T3test(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, Error=c("SEQ:SUBJ"))
 }
 \author{Kyun-Seop Bae k@acr.kr}

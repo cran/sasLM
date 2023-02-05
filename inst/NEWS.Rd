@@ -1,6 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.5 (2023-02-06)}{
+  \itemize{
+    \item{GLM, REG, aov1, aov2, aov3 functions returns yhat and residuals with Resid=TRUE option.}
+    \item{aov1, aov2, aov3 functions returns beta coefficients with BETA=TRUE option.}
+    \item{T3test is significantly improved for complex cases.}
+    \item{RDmn handles more extreme values.}
+    \item{LSM plotting order is ascending by default.}
+  }
+}
+
 \section{Version 0.9.4 (2023-01-07)}{
   \itemize{
     \item{ORmn: Special cases of OR - 0, infinity or NaN - are checked in the input.}

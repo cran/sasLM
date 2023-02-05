@@ -1,10 +1,10 @@
-LSM = function(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE, PLOT=FALSE, ...)
+LSM = function(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE, PLOT=FALSE, descend=FALSE, ...)
 {
   if (!attr(terms(Formula, data=Data), "response")) stop("Dependent variable should be provided!")
   if (!(tolower(trimws(adj)) %in% c("lsd", "tukey", "bon", "duncan", "scheffe"))) stop(paste("Adjustment method", adj, "is not supported with LSM function!"))
 
   x = ModelMatrix(Formula, Data)
-  y = model.frame(Formula, Data)[,1]
+  y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
   rx = lfit(x, y)
 
@@ -20,7 +20,7 @@ LSM = function(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE,
     ti = x$termIndices[Term][[1]]
     nti = length(ti)
 
-    L1 = L0[ti,,drop=F]
+    L1 = L0[ti, , drop=F]
     nL = NROW(L1)
     rowNames = rownames(L1)
     newRowNames = vector(length=nL)
@@ -42,15 +42,15 @@ LSM = function(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE,
     rownames(L1) = newRowNames
 
     r1 = est(L1, x$X, rx, conf.level=conf.level, adj="lsd") # confidence interval is based on "lsd", adj affects only grouping!!!
-    r1 = r1[order(r1[,1], decreasing=TRUE),]
+    r1 = r1[order(r1[, 1], decreasing=TRUE), ]
     r2 = PDIFF(Formula, Data, Term=Term, conf.level=conf.level, adj=adj)
 
-    Res = data.frame(GrpCode(rownames(r1), r2), r1[,c(1,2,3,4,6)])
+    Res = data.frame(GrpCode(rownames(r1), r2), r1[, c(1, 2, 3, 4, 6)])
     colnames(Res) = c("Group", "LSmean", "LowerCL", "UpperCL", "SE", "Df")
 
     if (PLOT) {
-      ymin = min(r1[,2])
-      ymax = max(r1[,3])
+      ymin = min(r1[, 2])
+      ymax = max(r1[, 3])
       Range = ymax - ymin
 
       Args = list(...)
@@ -68,9 +68,10 @@ LSM = function(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE,
       if (!("ylab" %in% nArgs)) Args$ylab = as.character(Formula)[2]
 
       do.call(plot, Args)
+      r1 = r1[order(r1[, 1], decreasing = descend), ]
       axis(1, at=1:nL, labels=rownames(r1))
-      points(x=1:nL, y=r1[,1], pch=16)
-      for (i in 1:nL) arrows(x0=i, y0=r1[i,2], x1=i, y1=r1[i,3], length=0.1, angle=90, code=3)
+      points(x=1:nL, y=r1[, 1], pch=16)
+      for (i in 1:nL) arrows(x0=i, y0=r1[i, 2], x1=i, y1=r1[i, 3], length=0.1, angle=90, code=3)
     }
   }
   return(Res)

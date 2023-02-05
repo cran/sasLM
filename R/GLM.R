@@ -1,4 +1,4 @@
-GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, Weights=1)
+GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0.95, Weights=1)
 {
   if (!attr(terms(Formula, data=Data), "response")) {
     stop("Dependent variable should be provided!")
@@ -57,7 +57,7 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, Weights=
 
   fIntercept = attr(x0a$terms, "intercept")
   if (length(Weights) == 1 & Weights[1] == 1) { MeanY = mean(mf0[, 1], na.rm=T)
-  } else { MeanY = sum(Weights*mf0[, 1], na.rm=T)/sum(Weights) } ## weighted mean 
+  } else { MeanY = sum(Weights*mf0[, 1], na.rm=T)/sum(Weights) } ## weighted mean
   SST = sum(T1[T1[, "Df"] > 0, "Sum Sq"]) + r1x$SSE ##
 
   ANOVA = sumANOVA(r1, T1=NULL, SST, nObs, rownames(attr(terms(x0a), "factors"))[1])
@@ -88,6 +88,16 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, conf.level=0.95, Weights=
   if (EMEAN) {
     Result[[iNext]] = lsm0(x2, r2, Formula, Data, conf.level=conf.level)
     names(Result)[iNext] = "Expected Mean"
+    iNext = iNext + 1
+  }
+
+  if (Resid) {
+    yhat = as.numeric(x1$X %*% r1$coefficients)
+    Result[[iNext]] = yhat
+    names(Result)[iNext] = "Fitted"
+
+    Result[[iNext + 1]] = y - yhat
+    names(Result)[iNext + 1] = "Residual"
   }
 
   return(Result)

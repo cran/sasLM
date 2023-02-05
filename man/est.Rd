@@ -32,7 +32,7 @@
 \examples{
   x = ModelMatrix(uptake ~ Type, CO2)
   rx = REG(uptake ~ Type, CO2, summarize=FALSE)
-  est(t(c(0, -1, 1)), x$X, rx) # Quevec - Mississippi 
+  est(t(c(0, -1, 1)), x$X, rx) # Quebec - Mississippi 
   t.test(uptake ~ Type, CO2) # compare with the above
 }
 \seealso{\code{\link{ESTM}}, \code{\link{PDIFF}}}

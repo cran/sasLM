@@ -6,7 +6,7 @@
 }
 \usage{
   LSM(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE, 
-      PLOT=FALSE, ...)
+      PLOT=FALSE, descend=FALSE, ...)
 }
 \arguments{
   \item{Formula}{a conventional formula of model}
@@ -14,8 +14,9 @@
   \item{Term}{term name to be returned. If there is only one independent variable, this can be omitted.}
   \item{conf.level}{confidence level for the confidence limit}
   \item{adj}{adjustment method for grouping, "lsd"(default), "tukey", "bon", "duncan", "scheffe" are available. This does not affects SE, Lower CL, Upper CL of the output table.}  
-  \item{hideNonEst}{hide non-estimables}
-  \item{PLOT}{whether to plot LSMs and their confidence intervals}
+  \item{hideNonEst}{logical. hide non-estimables}
+  \item{PLOT}{logical. whether to plot LSMs and their confidence intervals}
+	\item{descend}{logical. This specifies the plotting order be ascending or descending.}
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
