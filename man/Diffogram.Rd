@@ -16,7 +16,7 @@
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
-  This usually shows the shortest interval. It corresponds to SAS PROC GLM PDIFF. For adjustmethod method "dunnett", see \code{PDIFF} function.
+  This usually shows the shortest interval. It corresponds to SAS PROC GLM PDIFF. For adjust method "dunnett", see \code{PDIFF} function.
 }
 \value{
   no return value, but a plot on the current device

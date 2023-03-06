@@ -20,7 +20,7 @@
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
-  It corresponds to SAS PROC GLM LSMEANS. The result of the second example below may be different from \code{emmeans}. This is because SAS or this function calculates mean of the transformed continuous variable. However, \code{emmeans} calculates the average before the transformation. Interaction of three variables is not supported yet. For adjustmethod method "dunnett", see \code{PDIFF} function.
+  It corresponds to SAS PROC GLM LSMEANS. The result of the second example below may be different from \code{emmeans}. This is because SAS or this function calculates mean of the transformed continuous variable. However, \code{emmeans} calculates the average before the transformation. Interaction of three variables is not supported yet. For adjust method "dunnett", see \code{PDIFF} function.
 }
 \value{
   Returns a table of expectations, t values and p-values.

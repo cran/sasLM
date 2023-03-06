@@ -8,7 +8,7 @@
   e1(XpX, eps=1e-8)
 }
 \arguments{
-  \item{XpX}{crossprodut of a design or model matrix.This should have appropriate column names.}
+  \item{XpX}{crossprodut of a design or model matrix. This should have appropriate column names.}
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{

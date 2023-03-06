@@ -14,14 +14,14 @@
   \item{l}{x variable name to be shown on the left side}
   \item{u}{x variable name to be shown on the upper side}
   \item{e}{a vector of summarize function names}
-  \item{h}{a vector of summarize function names for the horizontal subgroup. If \code{NULL}, it becomes same to \code{e} argument.}
+  \item{h}{a vector of summarize function names for the horizontal subgroup. If \code{NULL}, it becomes the same as \code{e} argument.}
   \item{ol}{order of levels of left side x variable}
   \item{ou}{order of levels of upper side x variable}
-  \item{rm.dup}{if \code{TRUE}, duplicated name of levels are specified on the first occurrence only.}
-  \item{repl}{list of strings to replace after summarize. Length of list should be 2, and both should have the same length.}
+  \item{rm.dup}{if \code{TRUE}, duplicated names of levels are specified on the first occurrence only.}
+  \item{repl}{list of strings to replace after summarize. The length of list should be 2, and both should have the same length.}
 }
 \details{
-  A convenient summarization function for a continuous variable with two x varaibles; one on the left side, the other on the upper side.
+  A convenient summarization function for a continuous variable with two x variables; one on the left side, the other on the upper side.
 }
 \value{
   A data.frame of summarized values. Column names are from the levels of \code{u}. Row names are basically from the levels of \code{l}. 

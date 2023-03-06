@@ -15,6 +15,6 @@
   It removes \code{NA} in the input vector. Type 2 is SAS default, while Type 6 is SPSS default.
 }
 \value{
-  The value of interquartile range
+  The value of an interquartile range
 }
 \author{Kyun-Seop Bae k@acr.kr}

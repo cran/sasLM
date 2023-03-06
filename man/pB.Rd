@@ -2,7 +2,7 @@
 \alias{pB}
 \title{Plot Confidence and Prediction Bands for Simple Linear Regression}
 \description{
-  It plots bands of confidence interval and prediction interval for simple linear regression.
+  It plots bands of the confidence interval and prediction interval for simple linear regression.
 }
 \usage{
   pB(Formula, Data, Resol=300, conf.level=0.95, lx, ly, ...)
@@ -17,7 +17,7 @@
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
-  It plots. Discard return values. If \code{lx} or \code{ly} is missing, legend position is calculated automatically.
+  It plots. Discard return values. If \code{lx} or \code{ly} is missing, the legend position is calculated automatically.
 }
 \value{
   Ignore return values.

@@ -14,7 +14,7 @@
   \item{conf.level}{confidence level for the confidence limit}
   \item{HC}{heteroscedasticity related output is required such as HC0, HC3, White's first and second moment specification test}
   \item{Resid}{if \code{TRUE}, fitted values (y hat) and residuals will be returned}
-  \item{Weights}{weights for the each observation or residual square. This is usually the inverse of each variance.}
+  \item{Weights}{weights for each observation or residual square. This is usually the inverse of each variance.}
   \item{summarize}{If this is \code{FALSE}, \code{REG} returns just \code{lfit} result.}
 }
 \details{
@@ -27,7 +27,7 @@
 
   The second part is measures about fitness.
 
-  The third part is the esimates of coefficients.
+  The third part is the estimates of coefficients.
   \item{Estimate}{point estimate of parameters, coefficients}
   \item{Estimable}{estimability: 1=TRUE, 0=FALSE. This appears only when at least one inestimability occurs.}
   \item{Std. Error}{standard error of the point estimate}
@@ -38,7 +38,7 @@
   \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
 
   The above result is repeated using HC0 and HC3, with following White's first and second moment specification test, if HC option is specified.
-  The statstic t values and their p values with HC1 and HC2 are between those of HC0 and H3.
+  The t values and their p values with HC1 and HC2 are between those of HC0 and H3.
 
   \item{Fitted}{Fitted value or y hat. This is returned only with Resid=TRUE option.}
   \item{Residual}{Weighted residuals. This is returned only with Resid=TRUE option.}

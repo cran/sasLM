@@ -45,7 +45,7 @@ T3test = function(Formula, Data, Error="", eps=1e-8)
       if (W0[i, j] > 0) {
         for (k in 1:ncol(W0)) {
           if (k == j) next
-          if (all(ColNames[[j]] %in% ColNames[[k]])) W0[i, k] = 0
+          if (all(ColNames[[j]] %in% ColNames[[k]])) W0[i, k] = W0[i, k] - 1
         }
       }
     }
@@ -64,7 +64,7 @@ T3test = function(Formula, Data, Error="", eps=1e-8)
       v1 = T2[ToTest[i], "Mean Sq"]
       df1 = T2[ToTest[i], "Df"]
 
-      df2 = T2[union(colnames(W0)[W0[ToTest[i], ] > 0], "MSE"), "Df"]
+      df2 = T2[union(colnames(W0)[abs(W0[ToTest[i], ]) > eps], "MSE"), "Df"]
       v2 = T2[names(df2), "Mean Sq"]
       w2 = W0[ToTest[i], ][names(df2)]
       v4 = satt(vars=v2, dfs=df2, ws=w2)
@@ -80,8 +80,11 @@ T3test = function(Formula, Data, Error="", eps=1e-8)
       rownames(T3) = c(ToTest[i], "Error")
 
       nErrLen = length(w2)
-      strErr = paste(paste0(round(w2[-nErrLen], 4), "*", names(w2)[-nErrLen]), collapse=" + ")
-      strErr = paste0(strErr, ifelse(w2[nErrLen] < 0, " - ", " + "), round(abs(w2[nErrLen]), 4), "*MSE")
+      wName = names(w2)
+      strErr = paste0(round(w2[1], 4), "*", wName[1])
+      for (j in 2:nErrLen) {
+        strErr = paste0(strErr, ifelse(w2[[j]] >= 0, " + ", " - "), round(abs(w2[[j]]), 4), "*", wName[j])
+      }
       attr(T3, "heading") = paste("Error:", strErr)
       class(T3) = "anova"
       Result[[i]] = T3

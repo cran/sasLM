@@ -12,7 +12,7 @@
   \item{Title}{title to be printed on the plot}
 }
 \details{
-  Most frequently used diagnostic plots are 'observed vs. fitted', 'standarized residual vs. fitted', 'distribution plot of standard residuals', and 'Q-Q plot of standardized residuals'.
+  Most frequently used diagnostic plots are 'observed vs. fitted', 'standardized residual vs. fitted', 'distribution plot of standard residuals', and 'Q-Q plot of standardized residuals'.
 }
 \value{
   Four diagnostic plots in a page.

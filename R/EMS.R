@@ -7,7 +7,11 @@ EMS = function(Formula, Data, Type=3, eps=1e-8)
   y = model.frame(Formula, Data)[, 1]
   if (!is.numeric(y)) stop("Dependent variable should be numeric!")
 
-  x = ModelMatrix(Formula, Data)
+  if (Type == 1) {
+    x = ModelMatrix(Formula, Data, KeepOrder = TRUE)
+  } else {
+    x = ModelMatrix(Formula, Data, KeepOrder = FALSE)    
+  }
   Terms = labels(terms(x))
   nTerm = length(Terms)
 
@@ -24,7 +28,8 @@ EMS = function(Formula, Data, Type=3, eps=1e-8)
   rownames(Res) = Terms
   colnames(Res) = Terms
   for (i in 1:nTerm) {
-    L = L0[(x$assign == i) & (abs(b) > eps), , drop=FALSE]
+    L = L0[x$assign == i, , drop=FALSE]
+    L = L[!apply(L, 1, function(x) all(abs(x) < eps)), , drop=FALSE]
     if (NROW(L) > 0) {
       xC = t(L) %*% G2SWEEP(L %*% G2SWEEP(crossprod(x$X)) %*% t(L)) %*% L
 #      M = qr.solve(t(chol(L %*% G2SWEEP(crossprod(x$X)) %*% t(L)))) # Frequent crash

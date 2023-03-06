@@ -22,6 +22,6 @@
   \item{XpX}{cross-product of the design matrix, X'X}
   \item{terms}{detailed information about terms such as formula and labels}
   \item{termsIndices}{term indices}
-  \item{assign}{assignemnt of columns for each terms in order, different way of expressing term indices}
+  \item{assign}{assignemnt of columns for each term in order, different way of expressing term indices}
 }
 \author{Kyun-Seop Bae k@acr.kr}

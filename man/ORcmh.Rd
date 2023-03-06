@@ -15,10 +15,10 @@
   It calculates odds ratio and its score confidence interval of two groups. This can be also used for meta-analysis.
 }
 \value{
-  The following output will be returned for each strata and common value. There is no standard error.
+  The following output will be returned for each stratum and common value. There is no standard error.
   \item{odd1}{odd from the first group, y1/(n1 - y1)}
   \item{odd2}{odd from the second group, y2/(n2 - y2)}
-  \item{OR}{odds ratio, odd1/odd2. Point estimate of common OR is calculated with MH weight.}
+  \item{OR}{odds ratio, odd1/odd2. The point estimate of common OR is calculated with MH weight.}
   \item{lower}{lower confidence limit of OR}
   \item{upper}{upper confidence limit of OR}
 }

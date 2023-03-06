@@ -8,17 +8,17 @@
   ORinv(d0, conf.level=0.95)
 }
 \arguments{
-  \item{d0}{A data.frame or matrix, of which each row means a strata. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each strata. The second group is usually the control group.}
+  \item{d0}{A data.frame or matrix, of which each row means a stratum. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each strata. The second group is usually the control group.}
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates odds ratio and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 siginicant digits.
+  It calculates odds ratio and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 significant digits.
 }
 \value{
-  The following output will be returned for each strata and common value. There is no standard error.
+  The following output will be returned for each stratum and common value. There is no standard error.
   \item{odd1}{odd from the first group, y1/(n1 - y1)}
   \item{odd2}{odd from the second group, y2/(n2 - y2)}
-  \item{OR}{odds ratio, odd1/odd2. Point estimate of common OR is calculated with MH weight.}
+  \item{OR}{odds ratio, odd1/odd2. The point estimate of common OR is calculated with MH weight.}
   \item{lower}{lower confidence limit of OR}
   \item{upper}{upper confidence limit of OR}
 }

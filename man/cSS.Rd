@@ -14,7 +14,7 @@
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
-  It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST. This can test the hypotheis that the linear combination (function)'s mean vector is mu.
+  It calculates sum of squares with given a contrast matrix and a \code{lfit} result. It corresponds to SAS PROC GLM CONTRAST. This can test the hypothesis that the linear combination (function)'s mean vector is mu.
 }
 \value{
   Returns sum of square and its F value and p-value.

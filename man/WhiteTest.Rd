@@ -14,7 +14,7 @@
   This is also called as White's general test for heteroskedasticity.
 }
 \value{
-  Returns a direct test results by more coomplex theorem 2 , not by simpler corollary 1.
+  Returns a direct test result by more coomplex theorem 2 , not by simpler corollary 1.
 }
 \examples{
   WhiteTest(lm(mpg ~ disp, mtcars))

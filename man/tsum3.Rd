@@ -11,18 +11,18 @@
 \arguments{
   \item{d}{a data.frame or matrix with colnames}
   \item{y}{y variable name. a continuous variable}
-  \item{l}{a vector of two x variable name to be shown on the left side. The length should be 2.}
+  \item{l}{a vector of two x variable names to be shown on the left side. The length should be 2.}
   \item{u}{x variable name to be shown on the upper side}
   \item{e}{a vector of summarize function names}
-  \item{h}{a list of two vectors of summarize function names for the first and second horizontal subgroups. If \code{NULL}, it becomes same to \code{e} argument.}
+  \item{h}{a list of two vectors of summarize function names for the first and second horizontal subgroups. If \code{NULL}, it becomes the same as \code{e} argument.}
   \item{ol1}{order of levels of 1st left side x variable}
   \item{ol2}{order of levels of 2nd left side x variable}
   \item{ou}{order of levels of upper side x variable}
-  \item{rm.dup}{if \code{TRUE}, duplicated name of levels are specified on the first occurrence only.}
-  \item{repl}{list of strings to replace after summarize. Length of list should be 2, and both should have the same length.}
+  \item{rm.dup}{if \code{TRUE}, duplicated names of levels are specified on the first occurrence only.}
+  \item{repl}{list of strings to replace after summarize. The length of list should be 2, and both should have the same length.}
 }
 \details{
-  A convenient summarization function for a continuous variable with three x varaibles; two on the left side, the other on the upper side.
+  A convenient summarization function for a continuous variable with three x variables; two on the left side, the other on the upper side.
 }
 \value{
   A data.frame of summarized values. Column names are from the levels of \code{u}. Row names are basically from the levels of \code{l}. 

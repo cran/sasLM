@@ -1,6 +1,6 @@
 \name{RDmn1}
 \alias{RDmn1}
-\title{Risk Difference and Score CI between two groups without strata by MN method}
+\title{Risk Difference and Score CI between two groups without strata by the MN method}
 \description{
   Risk difference and its score confidence interval between two groups without stratification
 }
@@ -16,7 +16,7 @@
   \item{eps}{absolute value less than eps is regarded as negligible}  
 }
 \details{
-  It calculates risk difference and its score confidence interval between two groups. The confidence interval is asymmetric and there is no standard error in the output. If you need percent scale, multiply the output by 100. This does not support stratification. This implementation uses nlminb minimization function.
+  It calculates risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This does not support stratification. This implementation uses nlminb minimization function.
 }
 \value{
   The result is a data.frame. There is no standard error.

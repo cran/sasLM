@@ -5,13 +5,13 @@
   Do F test with a given slice term.
 }
 \usage{
-  SLICE(Formula, Data, mTerm, sTerm)
+  SLICE(Formula, Data, Term, By)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{mTerm}{a factor name (not interaction) to calculate sum of square and do F test with least square means}
-  \item{sTerm}{a factor name to be used for slice}  
+  \item{Term}{a factor name (not interaction) to calculate the sum of square and do F test with least square means}
+  \item{By}{a factor name to be used for slice}  
 }
 \details{
   It performs F test with a given slice term. It is similar to the SLICE option SAS PROC GLM.

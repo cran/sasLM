@@ -2,7 +2,7 @@
 \alias{bk}
 \title{Beautify the output of knitr::kable}
 \description{
-  Trailing zeros after integer is somwwhat annoying. This removes those in the vector of strings.   
+  Trailing zeros after integer is somewhat annoying. This removes those in the vector of strings.   
 }
 \usage{
   bk(ktab, rpltag=c("n", "N"), dig=10)

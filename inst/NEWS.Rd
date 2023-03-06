@@ -1,10 +1,19 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.6 (2023-03-08)}{
+  \itemize{
+    \item{RanTest function added for test with random effect.}
+    \item{T3MS will be deprecated soon. Use EMS instead.}
+    \item{SLICE function's options are renamed.}
+    \item{Typos in manual are corrected.}
+  }
+}
+
 \section{Version 0.9.5 (2023-02-06)}{
   \itemize{
-    \item{GLM, REG, aov1, aov2, aov3 functions returns yhat and residuals with Resid=TRUE option.}
-    \item{aov1, aov2, aov3 functions returns beta coefficients with BETA=TRUE option.}
+    \item{GLM, REG, aov1, aov2, aov3 functions return yhat and residuals with Resid=TRUE option.}
+    \item{aov1, aov2, aov3 functions return beta coefficients with BETA=TRUE option.}
     \item{T3test is significantly improved for complex cases.}
     \item{RDmn handles more extreme values.}
     \item{LSM plotting order is ascending by default.}
@@ -21,7 +30,7 @@
   \itemize{
     \item{GLM and REG supports weighted regression with WEIGHTS option.}
     \item{REG displays tests using HC0, HC3, and White's first and second moment specification test.}
-    \item{Code refactored to cope better with singular or ill-conditioned matrix.}
+    \item{Code refactored to cope better with a singular or ill-conditioned matrix.}
     \item{Some unused arguments such as eps (in GLM, REG, aov1, aov2, and aov3) are removed.}
     \item{\code{e1}, \code{e2}, \code{e3} arguments are simplified to reduce unnecessary calculation.}
   }
@@ -38,11 +47,11 @@
 
 \section{Version 0.9.1 (2022-09-05)}{
   \itemize{
-    \item{RDinv, RRinv, ORinv, ORcmh for stratified or meta analysis of 2x2 are added.}
+    \item{RDinv, RRinv, ORinv, ORcmh for stratified or meta-analysis of 2x2 are added.}
     \item{GLM reports adjusted R-squared}
     \item{QuartileRange returns type 2 IQR by default.}
-    \item{UNIV returns also MAD and type 2 IQR.}
-    \item{Coll caculates like SAS not like SPSS}
+    \item{UNIV returns MAD and type 2 IQR too.}
+    \item{Coll calculates like SAS, not like SPSS}
     \item{lfit help updated}
   }
 }
@@ -67,7 +76,7 @@
 
 \section{Version 0.7.0 (2022-03-14)}{
   \itemize{
-    \item{ANOVA funciton is removed, because it is almost a duplicate of GLM function.}
+    \item{ANOVA function is removed, because it is almost a duplicate of GLM function.}
     \item{GLM function's arguments changed.}
   }
 }
@@ -138,7 +147,7 @@
   \itemize{
     \item{\code{aov2} and \code{e2} support no intercept model.}
     \item{\code{aov1}, \code{aov3}, \code{ANOVA}, \code{GLM} handle no intercept model properly.}
-    \item{A column of estimability will be shown when some cofficients are not estimable in \code{REG} and \code{GLM}.}
+    \item{A column of estimability will be shown when some coefficients are not estimable in \code{REG} and \code{GLM}.}
   }
 }
 
@@ -168,8 +177,8 @@
 \section{Version 0.4.1 (2021-02-15)}{
   \itemize{
     \item{\code{lr} function for linear regression with g2 inverse}
-    \item{\code{tsum} warpper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3}}
-    \item{\code{bt} function removed to reomove dependency on \code{knitr}}
+    \item{\code{tsum} wrapper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3}}
+    \item{\code{bt} function removed to remove dependency on \code{knitr}}
     \item{\code{NOINT} option in REG, ModelMatrix is removed. Use conventional R formula.}
     \item{Order of coefficients (parameters) changed to be more similar to SAS.}
     \item{\code{T3MS} revived.}
@@ -245,7 +254,7 @@
 \section{Version 0.1.0 (2020-04-08)}{
   \itemize{
     \item{First version}
-    \item{TO DO: Function to be added - e4, aov4}
-    \item{TO DO: Items to be added - R2, R2ADJ - v0.4.1 \code{lr} do this.}
+    \item{TO DO: Function to add - e4, aov4}
+    \item{TO DO: Items to add - R2, R2ADJ - v0.4.1 \code{lr} does this.}
   }
 }

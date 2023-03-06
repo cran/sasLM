@@ -2,7 +2,7 @@
 \alias{pResD}
 \title{Residual Diagnostic Plot for Regression}
 \description{
-  Nine residual diagnostics plot.
+  Nine residual diagnostics plots.
 }
 \usage{
   pResD(rx, Title=NULL)
@@ -12,7 +12,7 @@
   \item{Title}{title to be printed on the plot}
 }
 \details{
-  SAS style residual diagnostic plots.
+  SAS-style residual diagnostic plots.
 }
 \value{
   Nine residual diagnostic plots in a page.

@@ -18,7 +18,7 @@
   \item{Weights}{weights for the weighted least square}
 }
 \details{
-  It performs the core function of SAS PROC GLM. Least square means for the tnteraction term of three variables is not supported yet.
+  It performs the core function of SAS PROC GLM. Least square means for the interaction term of three variables is not supported yet.
 }
 \value{
   The result is comparable to that of SAS PROC GLM.
@@ -28,7 +28,7 @@
   \item{Type II}{Type II sum of square table}
   \item{Type III}{Type III sum of square table}
   \item{Parameter}{Parameter table with standard error, t value, p value. \code{TRUE} is 1, and \code{FALSE} is 0 in the \code{Estimable} column. This is returned only with BETA=TRUE option.}
-  \item{Expected Mean}{Least square (or expected) mean table with confindence limit. This is returned only with EMEAN=TRUE option.}
+  \item{Expected Mean}{Least square (or expected) mean table with confidence limit. This is returned only with EMEAN=TRUE option.}
   \item{Fitted}{Fitted value or y hat. This is returned only with Resid=TRUE option.}
   \item{Residual}{Weigthed residuals. This is returned only with Resid=TRUE option.}
 }

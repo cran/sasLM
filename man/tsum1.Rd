@@ -13,10 +13,10 @@
   \item{u}{x variable name, upper side variable}
   \item{e}{a vector of summarize function names}
   \item{ou}{order of levels of upper side x variable}
-  \item{repl}{list of strings to replace after summarize. Length of list should be 2, and both should have the same length.}
+  \item{repl}{list of strings to replace after summarize. The length of list should be 2, and both should have the same length.}
 }
 \details{
-  A convenient summarization function for a continuous variable with one x varaible.
+  A convenient summarization function for a continuous variable with one x variable.
 }
 \value{
   A data.frame of summarized values. Row names are from \code{e} names. Column names are from the levels of x variable. 

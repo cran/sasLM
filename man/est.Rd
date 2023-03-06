@@ -19,7 +19,7 @@
   It tests rows of linear function. Linear function means linear combination of estimated coefficients. It corresponds to SAS PROC GLM ESTIMATE. Same sample size per group is assumed for the Tukey adjustment. 
 }
 \value{
-  \item{Estimate}{point estimate of the input linear constrast}
+  \item{Estimate}{point estimate of the input linear contrast}
   \item{Lower CL}{lower confidence limit by "lsd" method}
   \item{Upper CL}{upper confidence limit by "lsd" method}
   \item{Std. Error}{standard error of the point estimate}

@@ -2,7 +2,7 @@
 \alias{PDIFF}
 \title{Pairwise Difference}
 \description{
-  Estimates pairwise difference by a common method.
+  Estimates pairwise differences by a common method.
 }
 \usage{
   PDIFF(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALSE, 
@@ -23,8 +23,8 @@
   It corresponds to PDIFF option of SAS PROC GLM.
 }
 \value{
-  Returns a table of expectations, t values and p-values. Outpuc columns may vary according to the adjustment option.
-  \item{Estimate}{point estimate of the input linear constrast}
+  Returns a table of expectations, t values and p-values. Output columns may vary according to the adjustment option.
+  \item{Estimate}{point estimate of the input linear contrast}
   \item{Lower CL}{lower confidence limit}
   \item{Upper CL}{upper confidence limit}
   \item{Std. Error}{standard error of the point estimate}

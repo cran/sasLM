@@ -1,8 +1,8 @@
 \name{RR}
 \alias{RR}
-\title{Relative Risk of two groups}
+\title{Relative Risk of the two groups}
 \description{
-  Relative Risk between two groups
+  Relative Risk between the two groups
 }
 \usage{
   RR(y1, n1, y2, n2, conf.level=0.95)
@@ -15,7 +15,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates relative risk of two groups. No continuity correction here. If you need percent scale, multiply the output by 100.
+  It calculates relative risk of the two groups. No continuity correction here. If you need percent scale, multiply the output by 100.
 }
 \value{
   The result is a data.frame.

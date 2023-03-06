@@ -2,17 +2,17 @@
 \alias{lr0}
 \title{Simple Linear Regressions with Each Independent Variable}
 \description{
-  Usually the first step to mulitple linear regression is the simple linear regressions with single independent variable.
+  Usually, the first step to multiple linear regression is simple linear regressions with a single independent variable.
 }
 \usage{
   lr0(Formula, Data)
 }
 \arguments{
-  \item{Formula}{a conventional formula for a linear model. Intercept will be added always.}
+  \item{Formula}{a conventional formula for a linear model. Intercept will always be added.}
   \item{Data}{a \code{data.frame} to be analyzed}
 }
 \details{
-  It performs .
+  It performs simple linear regression for each independent variable.
 }
 \value{
   Each row means one simple linear regression with that row name as the only independent variable.

@@ -2,7 +2,7 @@
 \alias{UCL}
 \title{Upper Confidence Limit}
 \description{
-  The estimate of the upper bound of confidence limit using t-distribution
+  The estimate of the upper bound of the confidence limit using t-distribution
 }
 \usage{
   UCL(y, conf.level=0.95)
@@ -15,6 +15,6 @@
   It removes \code{NA} in the input vector. 
 }
 \value{
-  The estimate of the upper bound of confidence limit using t-distribution
+  The estimate of the upper bound of the confidence limit using t-distribution
 }
 \author{Kyun-Seop Bae k@acr.kr}

@@ -14,7 +14,7 @@
   \item{rho}{population correlation rho under null hypothesis}  
 }
 \details{
-  This only accept two numeric vectors.
+  This accepts only two numeric vectors.
 }
 \value{
   \item{N}{sample size, length of input vectors}
@@ -23,8 +23,8 @@
   \item{bias}{bias to correct}
   \item{rho.hat}{point estimate of population rho}
   \item{conf.level}{confidence level for the confidence interval}
-  \item{lower}{lower limit of condidence interval}
-  \item{upper}{upper limit of condidence interval}
+  \item{lower}{lower limit of confidence interval}
+  \item{upper}{upper limit of confidence interval}
   \item{rho0}{population correlation rho under null hypothesis}
   \item{p.value}{p value under the null hypothesis}
 }

@@ -14,7 +14,7 @@
   \item{mu}{a vector of mu for the hypothesis L. The length should be equal to the row count of L.}  
 }
 \details{
-  It performs F test with a given set of contrasts (a matrix). It is similar to the CONTRAST clause of SAS PROC GLM. This can test the hypotheis that the linear combination (function)'s mean vector is mu.
+  It performs F test with a given set of contrasts (a matrix). It is similar to the CONTRAST clause of SAS PROC GLM. This can test the hypothesis that the linear combination (function)'s mean vector is mu.
 }
 \value{
   Returns sum of square and its F value and p-value.

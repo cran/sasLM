@@ -1,6 +1,6 @@
 \name{ORmn1}
 \alias{ORmn1}
-\title{Odds Ratio and Score CI of two groups without strata by MN method}
+\title{Odds Ratio and Score CI of two groups without strata by the MN method}
 \description{
   Odds ratio and its score confidence interval of two groups without stratification
 }
@@ -16,7 +16,7 @@
   \item{eps}{absolute value less than eps is regarded as negligible}  
 }
 \details{
-  It calculates odds ratio and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 siginicant digits.
+  It calculates odds ratio and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 significant digits.
 }
 \value{
   The result is a data.frame. There is no standard error.

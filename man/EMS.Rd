@@ -14,7 +14,7 @@
   \item{eps}{Less than this value is considered as zero.}  
 }
 \details{
-  This is necessary for further hypothesis test of nesting factors.
+  This is necessary for further hypothesis tests of nesting factors.
 }
 \value{
   A coefficient matrix for Type III expected mean square

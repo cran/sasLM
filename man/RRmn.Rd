@@ -1,19 +1,19 @@
 \name{RRmn}
 \alias{RRmn}
-\title{Relative Risk and Score CI of two groups with strata by MN method}
+\title{Relative Risk and Score CI of two groups with strata by the MN method}
 \description{
-  Relative risk and its score confidence interval of two groups with stratification by Miettinen and Nurminen method
+  Relative risk and its score confidence interval of two groups with stratification by the Miettinen and Nurminen method
 }
 \usage{
   RRmn(d0, conf.level=0.95, eps=1e-8)
 }
 \arguments{
-  \item{d0}{A data.frame or matrix, of which each row means a strata. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each strata. The second group is usually the control group.}
+  \item{d0}{A data.frame or matrix, of which each row means a strata. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each stratum. The second group is usually the control group.}
   \item{conf.level}{confidence level}
   \item{eps}{absolute value less than eps is regarded as negligible}
 }
 \details{
-  It calculates relative risk and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 siginicant digits.
+  It calculates relative risk and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 significant digits.
 }
 \value{
   The following output will be returned for each strata and common value. There is no standard error.

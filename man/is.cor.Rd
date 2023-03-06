@@ -1,6 +1,6 @@
 \name{is.cor}
 \alias{is.cor}
-\title{Is it a corrleation matrix?}
+\title{Is it a correlation matrix?}
 \description{
   Testing if the input matrix is a correlation matrix or not
 }
@@ -9,10 +9,10 @@
 }
 \arguments{
   \item{m}{a presumed correlation matrix}
-  \item{eps}{epsilon value. Absolute value less than this is considered as zero.}
+  \item{eps}{epsilon value. An absolute value less than this is considered as zero.}
 }
 \details{
-  Diagonal component should not be necessarily 1. But it should be close to 1.
+  A diagonal component should not be necessarily 1. But it should be close to 1.
 }
 \value{
   TRUE or FALSE

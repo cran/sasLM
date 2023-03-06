@@ -2,7 +2,7 @@
 \alias{G2SWEEP}
 \title{Generalized inverse matrix of type 2, g2 inverse}
 \description{
-  Generalized inserve is usually not unique. Some programs use this algorithm to get a uniuqe generalized inverse matrix.
+  Generalized inverse is usually not unique. Some programs use this algorithm to get a unique generalized inverse matrix.
 }
 \usage{
   G2SWEEP(A, Augmented=FALSE, eps=1e-08) 
@@ -13,7 +13,7 @@
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
-  Generalized inverse of g2-type is used by some softwares to do linear regression. See 'SAS Techinical Report R106, The Sweep Operator: Its importance in Statistical Computing' by J. H. Goodnight for the detail.
+  Generalized inverse of g2-type is used by some softwares to do linear regression. See 'SAS Technical Report R106, The Sweep Operator: Its importance in Statistical Computing' by J. H. Goodnight for the detail.
 }
 \value{
   \item{when Augmented=FALSE}{ordinary g2 inverse}

@@ -20,7 +20,8 @@ T3MS = function(Formula, Data, L0, eps=1e-8)
   rownames(Res) = Terms
   colnames(Res) = Terms
   for (i in 1:nTerm) {
-    L = L0[(x$assign == i) & (abs(b) > eps), , drop=FALSE]
+    L = L0[x$assign == i, , drop=FALSE]
+    L = L[!apply(L, 1, function(x) all(abs(x) < eps)), , drop=FALSE]    
     if (NROW(L) > 0) {
       xC = t(L) %*% G2SWEEP(L %*% G2SWEEP(crossprod(x$X)) %*% t(L)) %*% L
 #      M = qr.solve(t(chol(L %*% G2SWEEP(crossprod(x$X)) %*% t(L)))) # Frequent crash

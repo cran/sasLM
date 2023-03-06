@@ -2,7 +2,7 @@
 \alias{SD}
 \title{Standard Deviation}
 \description{
-  Standard deviation of sample.
+  Standard deviation of a sample.
 }
 \usage{
   SD(y)

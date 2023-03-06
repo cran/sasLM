@@ -15,7 +15,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates risk difference between two groups. No continuity correction here. If you need percent scale, multiply the output by 100.
+  It calculates risk difference between the two groups. No continuity correction here. If you need percent scale, multiply the output by 100.
 }
 \value{
   The result is a data.frame.

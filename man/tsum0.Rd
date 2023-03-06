@@ -11,7 +11,7 @@
   \item{d}{a data.frame or matrix with colnames}
   \item{y}{y variable name, a continuous variable}
   \item{e}{a vector of summarize function names}
-  \item{repl}{list of strings to replace after summarize. Length of list should be 2, and both should have the same length.}
+  \item{repl}{list of strings to replace after summarize. The length of list should be 2, and both should have the same length.}
 }
 \details{
   A convenient summarization function for a continuous variable.

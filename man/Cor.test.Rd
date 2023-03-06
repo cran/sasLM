@@ -2,7 +2,7 @@
 \alias{Cor.test}
 \title{Correlation test of multiple numeric columns}
 \description{
-  Testing correlation between numerics columns of data with Pearson method.
+  Testing correlation between numeric columns of data with Pearson method.
 }
 \usage{
   Cor.test(Data, conf.level=0.95)

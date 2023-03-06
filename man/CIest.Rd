@@ -18,7 +18,7 @@
   Get point estimate and its confidence interval with given contrast and alpha value using t distribution.
 }
 \value{
-  \item{Estimate}{point estimate of the input linear constrast}
+  \item{Estimate}{point estimate of the input linear contrast}
   \item{Lower CL}{lower confidence limit}
   \item{Upper CL}{upper confidence limit}
   \item{Std. Error}{standard error of the point estimate}

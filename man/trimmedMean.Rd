@@ -2,7 +2,7 @@
 \alias{trimmedMean}
 \title{Trimmed Mean}
 \description{
-  Trimmed mean wrapping \code{mean} function .
+  Trimmed mean wrapping \code{mean} function.
 }
 \usage{
   trimmedMean(y, Trim=0.05)

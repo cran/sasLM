@@ -1,8 +1,8 @@
 \name{RRmn1}
 \alias{RRmn1}
-\title{Relative Risk and Score CI of two groups without strata by MN method}
+\title{Relative Risk and Score CI of two groups without strata by by MN method}
 \description{
-  Relative risk and its score confidence interval of two groups without stratification
+  Relative risk and its score confidence interval of the two groups without stratification
 }
 \usage{
   RRmn1(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
@@ -16,7 +16,7 @@
   \item{eps}{absolute value less than eps is regarded as negligible}    
 }
 \details{
-  It calculates relative risk and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 siginicant digits.
+  It calculates the relative risk and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This does not support stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 significant digits.
 }
 \value{
   The result is a data.frame. There is no standard error.

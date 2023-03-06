@@ -15,10 +15,10 @@
   \item{conf.level}{confidence level of confidence limit}
 }
 \details{
-  It tests rows of linear functions. Linear function means linear combination of estimated coefficients. It is similar to SAS PROC GLM ESTIMATE. This is a little convenient version of \code{est} function.
+  It tests rows of linear functions. Linear function means linear combination of estimated coefficients. It is similar to SAS PROC GLM ESTIMATE. This is a convenient version of \code{est} function.
 }
 \value{
-  \item{Estimate}{point estimate of the input linear constrast}
+  \item{Estimate}{point estimate of the input linear contrast}
   \item{Lower CL}{lower confidence limit}
   \item{Upper CL}{upper confidence limit}
   \item{Std. Error}{standard error of the point estimate}

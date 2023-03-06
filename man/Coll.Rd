@@ -2,7 +2,7 @@
 \alias{Coll}
 \title{Collinearity Diagnostics}
 \description{
-  Collearity digsnotics with tolerance, VIF, eigenvalue, condition index, variance proportions
+  Collearity diagnostics with tolerance, VIF, eigenvalue, condition index, variance proportions
 }
 \usage{
   Coll(Formula, Data)
