@@ -12,7 +12,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates odds ratio and its score confidence interval of two groups. The confidence interval is asymmetric and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 significant digits.
+  It calculates odds ratio and its confidence interval of two groups by inverse variance method. This supports stratification. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.
@@ -30,8 +30,4 @@
 \seealso{
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RDinv}}, \code{\link{RRinv}}, \code{\link{ORcmh}}
 }
-\references{
-Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
-}
-
 \author{Kyun-Seop Bae k@acr.kr}

@@ -1,7 +1,15 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
-\section{Version 0.9.6 (2023-03-08)}{
+\section{Version 0.9.7 (2023-04-05)}{
+  \itemize{
+    \item{Skewness function revised.}
+    \item{Bugs of some cases at RDmn1, RDmn, ORmn1, ORmn are fixed.}
+    \item{LIbin, LIpois, LInorm, and RDLI are introduced.}
+  }
+}
+
+\section{Version 0.9.6 (2023-03-06)}{
   \itemize{
     \item{RanTest function added for test with random effect.}
     \item{T3MS will be deprecated soon. Use EMS instead.}

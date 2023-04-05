@@ -1,6 +1,6 @@
 \name{ScoreCI}
 \alias{ScoreCI}
-\title{Score CI of a proportion}
+\title{Score Confidence Interval for a Proportion or a Binomial Distribution}
 \description{
   Score confidence of a proportion in one group
 }
@@ -17,14 +17,14 @@
 }
 \value{
   The result is a data.frame. There is no standard error.
-  \item{Prop}{proportion from the first group}
-  \item{lower}{lower confidence limit of Prop}
-  \item{upper}{upper confidence limit of Prop}
+  \item{PE}{point estimation for the proportion}
+  \item{Lower}{lower confidence limit of Prop}
+  \item{Upper}{upper confidence limit of Prop}
 }
 \examples{
   ScoreCI(104, 11037)
 }
 \seealso{
-  \code{\link{binom.test}}
+  \code{\link{binom.test}}, \code{\link{prop.test}}, \code{\link{LIbin}}
 }
 \author{Kyun-Seop Bae k@acr.kr}

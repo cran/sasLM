@@ -12,7 +12,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates relative risk and its score confidence interval of two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 significant digits.
+  It calculates relative risk and its confidence interval of two groups by inverse variance method. This supports stratification. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.
@@ -29,8 +29,5 @@
 }
 \seealso{
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RDinv}}, \code{\link{ORinv}}, \code{\link{ORcmh}}
-}
-\references{
-Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
 }
 \author{Kyun-Seop Bae k@acr.kr}

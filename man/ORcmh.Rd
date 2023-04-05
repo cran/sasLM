@@ -12,7 +12,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates odds ratio and its score confidence interval of two groups. This can be also used for meta-analysis.
+  It calculates odds ratio and its score confidence interval of two groups. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.

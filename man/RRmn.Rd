@@ -13,7 +13,7 @@
   \item{eps}{absolute value less than eps is regarded as negligible}
 }
 \details{
-  It calculates relative risk and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 significant digits.
+  It calculates relative risk and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses uniroot function, which usually gives at least 5 significant digits. Whereas PropCIs::riskscoreci function uses cubic equation approximation which gives only about 2 significant digits. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each strata and common value. There is no standard error.

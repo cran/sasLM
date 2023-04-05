@@ -5,6 +5,7 @@ RD = function(y1, n1, y2, n2, conf.level=0.95) # Risk Difference
   p2 = y2/n2
   pe = p1 - p2
   se = sqrt(p1*(1 - p1)/n1 + p2*(1 - p2)/n2)            # SE of pe
+  if (any(se < 1e-8)) warning("Note that standard error is too small!")
   z.crit = qnorm(0.5 + conf.level/2)
   lower = pe - z.crit*se
   upper = pe + z.crit*se

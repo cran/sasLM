@@ -7,6 +7,8 @@ RRinv = function(d0, conf.level=0.95)
   if (any(c(y1, n1 - y1, y2, n2 - y2) < 0) | any(n1*n2 == 0)) stop("Check the input!")
 
   r1 = RR(y1, n1, y2, n2, conf.level=conf.level)
+  if (any(r1$SElog < 1e-8)) warning("Note that standard error is too small!")
+  
   thi = log(r1$RR)
   wi = 1/(r1$SElog)^2
   wi0 = y1*n1/(n1 + n2)

@@ -13,7 +13,7 @@
   \item{eps}{absolute value less than eps is regarded as negligible}
 }
 \details{
-  It calculates odds ratio and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses nlminb minimization function, which usually gives about 7 significant digits. PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 significant digits.
+  It calculates odds ratio and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses uniroot function, which usually gives at least 5 significant digits. Whereas PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 significant digits. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.

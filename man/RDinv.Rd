@@ -12,7 +12,7 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates risk difference and its score confidence interval between two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This supports stratification. This implementation uses nlminb minimization function.
+  It calculates risk difference and its confidence interval between two groups by inverse variance method. If you need percent scale, multiply the output by 100. This supports stratification. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.
@@ -29,8 +29,5 @@
 }
 \seealso{
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RRinv}}, \code{\link{ORinv}}, \code{\link{ORcmh}}
-}
-\references{
-Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
 }
 \author{Kyun-Seop Bae k@acr.kr}

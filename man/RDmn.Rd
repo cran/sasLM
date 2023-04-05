@@ -8,12 +8,12 @@
   RDmn(d0, conf.level=0.95, eps=1e-8)
 }
 \arguments{
-  \item{d0}{A data.frame or matrix, of which each row means a stratum. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each stratum. The second group is usually the control group.}
+  \item{d0}{A data.frame or matrix, of which each row means a stratum. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each stratum. The second group is usually the control group. Maximum allowable value for n1 and n2 is 1e8.}
   \item{conf.level}{confidence level}
   \item{eps}{absolute value less than eps is regarded as negligible}
 }
 \details{
-  It calculates risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This supports stratification. This implementation uses nlminb minimization function.
+  It calculates risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This supports stratification. This implementation uses uniroot function which usually gives at least 5 significant digits. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.
@@ -32,6 +32,6 @@
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RDinv}}, \code{\link{RRinv}}, \code{\link{ORinv}}, \code{\link{ORcmh}}
 }
 \references{
-Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
+  Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
 }
 \author{Kyun-Seop Bae k@acr.kr}

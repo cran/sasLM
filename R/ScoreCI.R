@@ -5,6 +5,6 @@ ScoreCI = function(y, n, conf.level=0.95)
   z2 = z^2
   mp = (y + 0.5*z2)/(n + z2) # mid point but not point estimate
   eb = z/(n + z2)*sqrt(y*(n - y)/n + z2/4) # error bound
-  Res = data.frame(Prop = y/n, lower = mp - eb, upper = mp + eb)
+  Res = data.frame(PE = y/n, Lower = mp - eb, Upper = mp + eb)
   return(Res)
 }

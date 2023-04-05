@@ -9,6 +9,12 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
   p1 = y1/n1
   p2 = y2/n2
 
+  nr = nrow(d0)
+  Res1 = RRmn1(y1[1], n1[1], y2[1], n2[1], conf.level=conf.level)
+  rownames(Res1) = NULL
+  
+  if (nr == 1) return(Res1)
+
   p1p2rr = function(rr) {
     A = (n1 + n2)*rr                        # eq 12
     B = n1*rr + y1 + n2 + y2*rr
@@ -50,31 +56,23 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
     r1s = sum(w*r1)
     r2s = sum(w*r2)
     v = (r1*(1 - r1)/n1 + RR*RR*r2*(1 - r2)/n2)*(n1 + n2)/(n1 + n2 - 1)
-#    return(((r1s - r2s*RR)^2/sum(w*w*v) - v0)^2) # for nlminb
     return((r1s - r2s*RR)^2/sum(w*w*v) - v0) # for uniroot
   }
 
   options(warn=-1)
-#  if (RR < eps) { lower = 0
-#  } else { lower = nlminb(RR - eps, Obj, lower=0, upper=RR)$par }
-#  upper = nlminb(RR + eps, Obj, lower=RR)$par
   if (RR < eps) { lower = 0
   } else { lower = uniroot(Obj, interval=c(eps, RR - eps))$root }
   upper = uniroot(Obj, interval=c(RR + eps, 1e9))$root
-  options(warn=1)
+  options(warn=0)
 
-  nr = nrow(d0)
-  Res1 = RRmn1(y1[1], n1[1], y2[1], n2[1], conf.level=conf.level)
-  rownames(Res1) = NULL
-  if (nr > 1) {
-    for (i in 2:nr) {
-      Res1 = rbind(Res1, RRmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))
-    }
-    rownames(Res1) = rownames(d0)
-    p1s = sum(w2/sum(w2)*p1)
-    p2s = sum(w2/sum(w2)*p2)
-    Res2 = c(p1=p1s, p2=p2s, RR=RR, lower=lower, upper=upper)
-    Res1 = list(Strata=Res1, Common=Res2)
+  for (i in 2:nr) {
+    Res1 = rbind(Res1, RRmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))
   }
+  rownames(Res1) = rownames(d0)
+  p1s = sum(w2/sum(w2)*p1)
+  p2s = sum(w2/sum(w2)*p2)
+  Res2 = c(p1=p1s, p2=p2s, RR=RR, lower=lower, upper=upper)
+  Res1 = list(Strata=Res1, Common=Res2)
+
   return(Res1)
 }

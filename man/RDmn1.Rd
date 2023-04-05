@@ -9,17 +9,17 @@
 }
 \arguments{
   \item{y1}{positive event count of test (the first) group}
-  \item{n1}{total count of the test (the first) group}
+  \item{n1}{total count of the test (the first) group. Maximum allowable value is 1e8.}
   \item{y2}{positive event count of control (the second) group}
-  \item{n2}{total count of control (the second) group}
+  \item{n2}{total count of control (the second) group. Maximum allowable value is 1e8.}
   \item{conf.level}{confidence level}
   \item{eps}{absolute value less than eps is regarded as negligible}  
 }
 \details{
-  It calculates risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This does not support stratification. This implementation uses nlminb minimization function.
+  It calculates risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This does not support stratification. This implementation uses uniroot function which usually gives at least 5 significant digits.
 }
 \value{
-  The result is a data.frame. There is no standard error.
+  There is no standard error.
   \item{p1}{proportion from the first group, y1/n1}
   \item{p2}{proportion from the second group, y2/n2}
   \item{RD}{risk difference, p1 - p2}
