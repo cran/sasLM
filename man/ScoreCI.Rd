@@ -25,6 +25,6 @@
   ScoreCI(104, 11037)
 }
 \seealso{
-  \code{\link{binom.test}}, \code{\link{prop.test}}, \code{\link{LIbin}}
+  \code{\link{binom.test}}, \code{\link{prop.test}}
 }
 \author{Kyun-Seop Bae k@acr.kr}

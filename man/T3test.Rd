@@ -5,12 +5,13 @@
   Hypothesis test of Type III SS using an error term other than MSE. This corresponds to SAS PROC GLM's RANDOM /TEST clause.
 }
 \usage{
-  T3test(Formula, Data, Error="", eps=1e-8)
+  T3test(Formula, Data, H="", E="", eps=1e-8)
 }
 \arguments{
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{Error}{a vector of error terms.}
+  \item{H}{Hypothesis term}
+  \item{E}{Error tem}
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
@@ -21,6 +22,7 @@
   Returns one or more ANOVA table(s) of type III SS.
 }
 \examples{
-  T3test(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, Error=c("SEQ:SUBJ"))
+  T3test(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, E=c("SEQ:SUBJ"))
+  T3test(log(CMAX) ~ SEQ/SUBJ + PRD + TRT, BEdata, H="SEQ", E=c("SEQ:SUBJ"))
 }
 \author{Kyun-Seop Bae k@acr.kr}

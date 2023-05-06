@@ -51,13 +51,15 @@ RanTest = function(Formula, Data, Random, Type=3, eps=1e-8)
     if (length(intersect(Random, ColNames[[j]])) == 0) T5[-j, j] = 0
   }
 
-  for (i in 1:(nCol - 1)) {
-    for (j in (i + 1):nCol) {
-      if (T5[i, j] != 0) {
-        W0[i, j] = T5[i, j]/T5[j, j]
-        if (j < nCol) {
-          for (k in (j + 1):nCol) {
-            if (T5[j, k] != 0) T5[i, k] = T5[i, k] - W0[i, j]*T5[j, k]
+  if (nCol > 1) {
+    for (i in 1:(nCol - 1)) {
+      for (j in (i + 1):nCol) {
+        if (T5[i, j] != 0) {
+          W0[i, j] = T5[i, j]/T5[j, j]
+          if (j < nCol) {
+            for (k in (j + 1):nCol) {
+              if (T5[j, k] != 0) T5[i, k] = T5[i, k] - W0[i, j]*T5[j, k]
+            }
           }
         }
       }

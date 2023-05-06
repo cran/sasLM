@@ -1,6 +1,14 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.8 (2023-05-05)}{
+  \itemize{
+    \item{RanTest with no fixed effect and only 1 random effect return correct result.}
+    \item{T3test supports H and E options}
+    \item{LIbin, LIpois, LInorm, and RDLI are removed, and will be included in a separate package.}
+  }
+}
+
 \section{Version 0.9.7 (2023-04-05)}{
   \itemize{
     \item{Skewness function revised.}

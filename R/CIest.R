@@ -9,7 +9,7 @@ CIest = function(Formula, Data, Term, Contrast, conf.level=0.95)
   if (!(Term %in% attr(x$terms, "term.labels"))) stop(paste("There is no term: ", Term))
 
   colIndex = x$termIndices[Term][[1]]
-  if (length(Contrast) != length(colIndex)) stop("Constrast length is not appropriate!")
+  if (length(Contrast) != length(colIndex)) stop("Contrast length is not appropriate!")
 
   r2 = lfit(x, y)
 

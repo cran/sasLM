@@ -14,7 +14,7 @@
   \item{Resid}{if \code{TRUE}, fitted values (y hat) and residuals will be returned}
 }
 \details{
-  It performs the core function of SAS PROC ANOVA.
+  It performs the core function of SAS PROC GLM, and returns Type I SS. This accepts continuous independent variables also.
 }
 \value{
   The result table is comparable to that of SAS PROC ANOVA.
