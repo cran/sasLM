@@ -19,10 +19,10 @@
 \value{
   A vector of summarized values 
 }
-\author{Kyun-Seop Bae k@acr.kr}
-\keyword{Table Summary}
-\seealso{\code{\link{tsum}}, \code{\link{tsum1}}, \code{\link{tsum2}}, \code{\link{tsum3}}}
 \examples{
   tsum0(CO2, "uptake")
   tsum0(CO2, "uptake", repl=list(c("mean", "length"), c("Mean", "n")))
 }
+\seealso{\code{\link{tsum}}, \code{\link{tsum1}}, \code{\link{tsum2}}, \code{\link{tsum3}}}
+\keyword{Table Summary}
+\author{Kyun-Seop Bae k@acr.kr}

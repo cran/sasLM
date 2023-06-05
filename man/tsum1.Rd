@@ -21,9 +21,6 @@
 \value{
   A data.frame of summarized values. Row names are from \code{e} names. Column names are from the levels of x variable. 
 }
-\author{Kyun-Seop Bae k@acr.kr}
-\keyword{Table Summary}
-\seealso{\code{\link{tsum}}, \code{\link{tsum0}}, \code{\link{tsum2}}, \code{\link{tsum3}}}
 \examples{
   tsum1(CO2, "uptake", "Treatment")
   tsum1(CO2, "uptake", "Treatment", 
@@ -31,3 +28,6 @@
         ou=c("chilled", "nonchilled"),
         repl=list(c("median", "length"), c("med", "n")))
 }
+\seealso{\code{\link{tsum}}, \code{\link{tsum0}}, \code{\link{tsum2}}, \code{\link{tsum3}}}
+\keyword{Table Summary}
+\author{Kyun-Seop Bae k@acr.kr}

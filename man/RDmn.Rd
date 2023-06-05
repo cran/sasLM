@@ -34,4 +34,5 @@
 \references{
   Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
 }
+\keyword{2x2 Table}
 \author{Kyun-Seop Bae k@acr.kr}

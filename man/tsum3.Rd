@@ -27,9 +27,6 @@
 \value{
   A data.frame of summarized values. Column names are from the levels of \code{u}. Row names are basically from the levels of \code{l}. 
 }
-\author{Kyun-Seop Bae k@acr.kr}
-\keyword{Table Summary}
-\seealso{\code{\link{tsum}}, \code{\link{tsum0}}, \code{\link{tsum1}}, \code{\link{tsum2}}}
 \examples{
   tsum3(CO2, "uptake", c("Type", "Treatment"), "conc")
   tsum3(CO2, "uptake", c("Type", "Treatment"), "conc", 
@@ -38,3 +35,6 @@
         ol2=c("chilled", "nonchilled"),
         repl=list(c("median", "length"), c("med", "n")))
 }
+\seealso{\code{\link{tsum}}, \code{\link{tsum0}}, \code{\link{tsum1}}, \code{\link{tsum2}}}
+\keyword{Table Summary}
+\author{Kyun-Seop Bae k@acr.kr}

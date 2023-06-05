@@ -17,8 +17,9 @@
 \value{
   Nine residual diagnostic plots in a page.
 }
-\author{Kyun-Seop Bae k@acr.kr}
 \examples{
   pResD(lm(uptake ~ Plant + Type + Treatment + conc, CO2), "Residual Diagnostic Plot")
 }
+\keyword{Plot}
+\author{Kyun-Seop Bae k@acr.kr}
 

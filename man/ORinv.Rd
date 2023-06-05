@@ -30,4 +30,5 @@
 \seealso{
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RDinv}}, \code{\link{RRinv}}, \code{\link{ORcmh}}
 }
+\keyword{Meta-analysis}
 \author{Kyun-Seop Bae k@acr.kr}

@@ -32,4 +32,5 @@
 \seealso{
   \code{\link{RD}}, \code{\link{OR}}, \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}
 }
+\keyword{2x2 Table}
 \author{Kyun-Seop Bae k@acr.kr}

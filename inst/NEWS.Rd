@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.9 (2023-06-05)}{
+  \itemize{
+    \item{TTEST, mtest, tmtest, ztest, vtest functions are added.}
+    \item{Every time just before calling mvtnorm::pmvt, mvtnorm::qmvt, set.seed(5) is called.}
+  }
+}
+
 \section{Version 0.9.8 (2023-05-05)}{
   \itemize{
     \item{RanTest with no fixed effect and only 1 random effect return correct result.}

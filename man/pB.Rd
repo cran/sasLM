@@ -22,8 +22,9 @@
 \value{
   Ignore return values.
 }
-\author{Kyun-Seop Bae k@acr.kr}
 \examples{
-pB(hp ~ disp, mtcars)
-pB(mpg ~ disp, mtcars)
+  pB(hp ~ disp, mtcars)
+  pB(mpg ~ disp, mtcars)
 }
+\keyword{Plot}
+\author{Kyun-Seop Bae k@acr.kr}

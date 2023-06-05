@@ -33,7 +33,7 @@
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{RDmn}}, \code{\link{RRmn}}, \code{\link{ORmn}}
 }
 \references{
-Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
+  Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
 }
-
+\keyword{2x2 Table}
 \author{Kyun-Seop Bae k@acr.kr}

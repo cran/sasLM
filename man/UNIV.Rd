@@ -22,8 +22,8 @@
   \item{SD}{standard deviation excluding NA}
   \item{CV}{coefficient of variation in percent}
   \item{SEM}{standard error of the sample mean, the sample mean divided by nFinite}
-  \item{LowerConfLimit}{lower confidence limit of given confidence interval}
-  \item{UpperConfLimit}{upper confidence limit of given confidence interval}
+  \item{LowerCL}{lower confidence limit of mean}
+  \item{UpperCL}{upper confidence limit of mean}
   \item{TrimmedMean}{trimmed mean with trimming 1 - confidence level}
   \item{Min}{minimum value}
   \item{Q1}{first quartile value}
@@ -32,7 +32,9 @@
   \item{Max}{maximum value}
   \item{Range}{range of finite numbers. maximum - minimum}
   \item{IQR}{inter-quartile range type 2, which is SAS default}
-  \item{MAD}{mean absolute deviation}
+  \item{MAD}{median absolute deviation}
+  \item{VarLL}{lower confidence limit of variance}
+  \item{VarUL}{upper confidence limit of variance}
   \item{Skewness}{skewness}
   \item{SkewnessSE}{standard error of skewness}
   \item{Kurtosis}{kurtosis}
