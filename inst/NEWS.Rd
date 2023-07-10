@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.9.10 (2023-07-10)}{
+  \itemize{
+    \item{Typo correction}
+  }
+}
+
 \section{Version 0.9.9 (2023-06-05)}{
   \itemize{
     \item{TTEST, mtest, tmtest, ztest, vtest functions are added.}
