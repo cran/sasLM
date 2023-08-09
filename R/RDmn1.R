@@ -28,12 +28,26 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
   if (RD0 < -1 + eps) {
     LL = -1
   } else {
-    LL = uniroot(Obj, c(-1 + eps, RD0 - eps))$root
+    rTemp = try(uniroot(Obj, c(-1 + eps, RD0 - eps)), silent=T)
+    if (!inherits(rTemp, "try-error")) {
+      LL = rTemp$root
+    } else {
+      rTemp = try(uniroot(Obj, c(-1 + eps^2, RD0 - eps^2)), silent=T)
+      if (!inherits(rTemp, "try-error")) { LL = rTemp$root
+      } else { LL = NA }
+    }
   }
   if (RD0 > 1 - eps) {
     UL = 1
   } else {
-    UL = uniroot(Obj, c(RD0 + eps, 1 - eps))$root
+    rTemp = try(uniroot(Obj, c(RD0 + eps, 1 - eps)), silent=T)
+    if (!inherits(rTemp, "try-error")) {
+      UL = rTemp$root
+    } else {
+      rTemp = try(uniroot(Obj, c(RD0 + eps^2, 1 - eps^2)), silent=T)
+      if (!inherits(rTemp, "try-error")) { UL = rTemp$root
+      } else { UL = NA }
+    }
   }
   options(warn=0)
 

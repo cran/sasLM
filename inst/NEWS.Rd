@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 0.9.11 (2023-08-09)}{
+  \itemize{
+    \item{RDmn1 can handle more extreme cases.}
+  }
+}
 
 \section{Version 0.9.10 (2023-07-10)}{
   \itemize{
