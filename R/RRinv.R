@@ -14,7 +14,7 @@ RRinv = function(d0, conf.level=0.95)
   wi0 = y1*n1/(n1 + n2)
   pwi = wi0/sum(wi0)*100
   r1$pwi = pwi
-  sumwi = sum(wi) ; sumwi
+  sumwi = sum(wi)
 
   th.hat = sum(wi*thi)/sumwi
   seth.hat = sqrt(1/sumwi)
@@ -28,7 +28,7 @@ RRinv = function(d0, conf.level=0.95)
   pQ = 1 - pchisq(Q, k - 1)
   r3 = data.frame(Q=Q, prob=pQ)
 
-  tau2 = (Q - (k - 1))/(sumwi - sum(wi^2)/sumwi) # method of moment
+  tau2 = max(0, (Q - (k - 1))/(sumwi - sum(wi^2)/sumwi)) # method of moment
   wsi = 1/(1/wi + tau2)
   sumwsi = sum(wsi)
   pwsi = wsi/sumwsi*100

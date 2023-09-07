@@ -1,4 +1,4 @@
-e67636f62b2d06984bcd9f0208bd4e44 *DESCRIPTION
+4ddd3dd2f379227c79942ddaa80c337e *DESCRIPTION
 d5155fbc99258d97c5a81f6ba94c146b *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 4b68d0c61d3345c63af0cf1fd140a715 *R/BasicUtil.R
@@ -36,7 +36,7 @@ a1427a604207f3cb0953928d5dbbf1f8 *R/RDmn.R
 a8ae06da61ddd0ec42f116b7c690c51f *R/RDmn1.R
 14e2c5b33e217cf7bfc49883c1df4d49 *R/REG.R
 de2b3ea63d012ebd5ce2b3a6b14af61d *R/RR.R
-bc73673b32ee3a3872b9f2040ea7720d *R/RRinv.R
+457762616a1cd2ba394d793beba7fd77 *R/RRinv.R
 af6f104bcdb72e7c2bf887b784eea647 *R/RRmn.R
 2d0abbba93a0824518bbdf75f094a39e *R/RRmn1.R
 295ccb81e1898e0ed639b937e7ed5f16 *R/RanTest.R
@@ -88,11 +88,11 @@ dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-d88761e0a1d58ae2464e725da43ed43a *inst/NEWS.Rd
-6394bf75cc21fbecb8783808adeb292b *inst/doc/Report-Different-Simplest2307140927.pdf
-614ee42af317bfdaf76b711c6957b47b *inst/doc/Report-NOT-OKs2307140927.pdf
-b85fbe2231be195f02ee445408ceffc4 *inst/doc/Validation-Report-GLM-2307140928.pdf
-68723783b3a354561ae7b97305700be2 *inst/doc/sasLM-manual.pdf
+b3244a874acd0d16df3ce1b3b66abd5c *inst/NEWS.Rd
+1cc3602438a124fe05682bd403f8e1cf *inst/doc/Report-Different-Simplest2308290852.pdf
+14fcf95abce374c4cb9858fed7c2d8a4 *inst/doc/Report-NOT-OKs2308290853.pdf
+eb7fbaab50ef61bb5553308516fe8816 *inst/doc/Validation-Report-GLM-2308290853.pdf
+e6f136d5d2b92334d5d285c0ae976b53 *inst/doc/sasLM-manual.pdf
 10bfb83b55f6d373ba52964ebb98fc79 *man/BEdata.Rd
 0768a366ea7cb5ff59bd3697a0b2371e *man/BY.Rd
 b0b45bedacd173dff138ff1df8d65eb1 *man/BasicUtil.Rd
