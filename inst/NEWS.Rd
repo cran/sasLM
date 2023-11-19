@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.10.0 (2023-11-19)}{
+  \itemize{
+    \item{Functions for group sequential design (seqBound, CumAlpha, PocockBound, Drift, ExitP, seqCI) are added.}
+    \item{If the matrix dimension for Dunnett test is less than 11, Miwa algorithm is used for multi-variate t distribution.}
+  }
+}
+
 \section{Version 0.9.12 (2023-09-08)}{
   \itemize{
     \item{RRinv revised}

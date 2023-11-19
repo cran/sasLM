@@ -53,17 +53,27 @@ est = function(L, X, rx, conf.level=0.95, adj="lsd", paired=FALSE)
       mC = outer(vSD, vSD, "*")
       diag(mC) = 1
 #      mC = matrix(0.5, nrow=nL, ncol=nL) + diag(0.5, nrow=nL) # for balanced data only!
-      if (exists(".Random.seed")) Saved.seed = .Random.seed
-      set.seed(5)
-      D.crit = qmvt(0.5 + conf.level/2, df=rx$DFr, corr=mC)$quantile
+#      if (exists(".Random.seed")) Saved.seed = .Random.seed
+#      set.seed(5)
+#        D.crit = qmvt(0.5 + conf.level/2, df=rx$DFr, corr=mC)$quantile
+      if (dim(mC)[1] < 11) {
+        D.crit = qmvt(0.5 + conf.level/2, df=rx$DFr, corr=mC, algorithm=Miwa)$quantile
+      } else {
+        D.crit = qmvt(0.5 + conf.level/2, df=rx$DFr, corr=mC, seed=5)$quantile        
+      }
       Pval = rep(NA, nL)
       DL = rep(NA, nL)
       for (k in 1:nL) {
-        set.seed(5) # DescTools::DunnettTest forgot to set seed before pmvt
-        Pval[k] = 1 - pmvt(lower=rep(-abs(Tval[k]), nL), upper=rep(abs(Tval[k]), nL), df=rx$DFr, corr=mC)
+#        set.seed(5) # DescTools::DunnettTest forgot to set seed before pmvt
+#        Pval[k] = 1 - pmvt(lower=rep(-abs(Tval[k]), nL), upper=rep(abs(Tval[k]), nL), df=rx$DFr, corr=mC)
+        if (dim(mC)[1] < 11) {
+          Pval[k] = 1 - pmvt(lower=rep(-abs(Tval[k]), nL), upper=rep(abs(Tval[k]), nL), df=rx$DFr, corr=mC, algorithm=Miwa)
+        } else {
+          Pval[k] = 1 - pmvt(lower=rep(-abs(Tval[k]), nL), upper=rep(abs(Tval[k]), nL), df=rx$DFr, corr=mC, seed=5)
+        }
         DL[k] = D.crit*SE[k]
       }
-      if (exists("Saved.seed")) .Random.seed <<- Saved.seed
+#      if (exists("Saved.seed")) .Random.seed <<- Saved.seed
     } else {
       stop(paste0("Adjustment method ", adj, " is not supported!"))
     }

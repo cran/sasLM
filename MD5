@@ -1,5 +1,5 @@
-4ddd3dd2f379227c79942ddaa80c337e *DESCRIPTION
-d5155fbc99258d97c5a81f6ba94c146b *NAMESPACE
+32fc128bfa92a0a373323459765f7107 *DESCRIPTION
+7e49acbd6079a894b5341c5286f8865b *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 4b68d0c61d3345c63af0cf1fd140a715 *R/BasicUtil.R
 b965a41f2a4b8692b826cec9dac46d4c *R/CIest.R
@@ -7,9 +7,12 @@ b965a41f2a4b8692b826cec9dac46d4c *R/CIest.R
 f1a4840f4f125e8bd41898aeabaa9150 *R/CV.R
 518efde2b37b2beef4f799c93e2a8a06 *R/Coll.R
 a7bb210ed0cdf5be485e34a23078c786 *R/Cor.test.R
+af420ffa565c77301fb85f175dbedc7d *R/CumAlpha.R
 3451b863282cdaf2b63782ab86e2228f *R/Diffogram.R
+e982997c1ace6e867414309739f165dd *R/Drift.R
 e8df579727a52549b2ee4a6fea85a6ab *R/EMS.R
 da590ba59914fa2ee6f06770c6bda876 *R/ESTM.R
+18304a48f247a917f94ca0abd58e434d *R/ExitP.R
 7b0af65b0044c5a28bf13a612e5fba74 *R/G2SWEEP.R
 c61762ae0c3abaf761f1e493b74062f6 *R/GLM.R
 d843e93c060c350e489dfd9ad71ec9ae *R/Kurtosis.R
@@ -29,6 +32,7 @@ fcf9852ee0f05f4d402ed7acb376b0d3 *R/ORcmh.R
 71e36e2edaea399077ce90ddbf357c1b *R/ORmn1.R
 85513b8d0cb68ae649166e83983137f5 *R/PDIFF.R
 c8ac2df0a23573d26f5365cbd617248a *R/Pcor.test.R
+5f6163a7e7ed18ebfb068b3d9ed2ec64 *R/PocockBound.R
 a501e8efcaf8d852c2e212cd8f56afe2 *R/QuartileRange.R
 3c92def34c9007e8e4c879dcf33e317e *R/RD.R
 4f633af5235888546c97419253a1bdec *R/RDinv.R
@@ -64,7 +68,7 @@ b2c8a7685965b20c6226c398df0d2419 *R/corFisher.R
 43f96a747a116ac1b545b67302227a7a *R/e1.R
 cd65e87dfe876328588bd7e4a5985779 *R/e2.R
 61df8a6ce84a11b1e61acb3670b9b187 *R/e3.R
-051fdb1c15dd264929c800446d49dae7 *R/est.R
+714e5e9e09973a3ada70286cf94d5d2b *R/est.R
 16ad392b78b5ca7792fb51ed0618bc9d *R/estmb.R
 64fccdfd526cc895a4a1ce489181e55c *R/geoCV.R
 8f9ae18ffca7e207e331236b6936b0b3 *R/geoMean.R
@@ -78,6 +82,8 @@ b04c973738ec6cb501d0881188938e0b *R/pD.R
 b494e704f498bbd944299be338992a7f *R/pResD.R
 540a6b16a31173fff976f2df61ad7154 *R/regD.R
 64392293786c7d538917d704101bc406 *R/satt.R
+a72315b88d6b92f7d1a0c01e57c5a424 *R/seqBound.R
+82bffe46a62be3cf921fad7e293e7c7c *R/seqCI.R
 1578fc5a3aac5d4cc409a4c082561336 *R/sysdata.rda
 0eae258b2f354da4a8139b75da39f0fe *R/tmtest.R
 3c8eda9797f59fb3b3fb2ca68ec3df37 *R/trimmedMean.R
@@ -88,11 +94,11 @@ dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-b3244a874acd0d16df3ce1b3b66abd5c *inst/NEWS.Rd
-1cc3602438a124fe05682bd403f8e1cf *inst/doc/Report-Different-Simplest2308290852.pdf
-14fcf95abce374c4cb9858fed7c2d8a4 *inst/doc/Report-NOT-OKs2308290853.pdf
-eb7fbaab50ef61bb5553308516fe8816 *inst/doc/Validation-Report-GLM-2308290853.pdf
-e6f136d5d2b92334d5d285c0ae976b53 *inst/doc/sasLM-manual.pdf
+62e1478df43b645f7b609846ecffb1e5 *inst/NEWS.Rd
+e0a719ac464400ec43c7709f70acd43a *inst/doc/Report-Different-Simplest2311191638.pdf
+ed089853a246a3e1515a1e87eae00ac7 *inst/doc/Report-NOT-OKs2311191639.pdf
+9104ea11b620a55d55d11b57b65d4283 *inst/doc/Validation-Report-GLM-2311191640.pdf
+f55ab778f28c0dab788d0dac0d21f336 *inst/doc/sasLM-manual.pdf
 10bfb83b55f6d373ba52964ebb98fc79 *man/BEdata.Rd
 0768a366ea7cb5ff59bd3697a0b2371e *man/BY.Rd
 b0b45bedacd173dff138ff1df8d65eb1 *man/BasicUtil.Rd
@@ -101,10 +107,13 @@ a79bf3b416372085b18eb694657765b6 *man/CONTR.Rd
 fb8c71e9bbd4ffe2db8cb606f79db201 *man/CV.Rd
 276c44ec26ec136f95df8c50e5bade39 *man/Coll.Rd
 031e25a90f3961cafea41b38fed724a6 *man/Cor.test.Rd
+b200a1452d8f15b09a3666c0b1584e12 *man/CumAlpha.Rd
 0441d301857b9030653183842232fb4a *man/Diffogram.Rd
 c6ba513fc30da421a9e5f41a6043e69b *man/DoEdata.Rd
+c3bf95dde771dcd875ea1fce3075e923 *man/Drift.Rd
 af4a494ab626acbfaf350859fd5221ab *man/EMS.Rd
 f84ce78858bd7ed98dcd23c458c58123 *man/ESTM.Rd
+79f33f9ed046bbd2fbd1d680bed89763 *man/ExitP.Rd
 323d85a3566df26160f0635c03c10ae3 *man/G2SWEEP.Rd
 f894d91a18755207693bc17828d93089 *man/GLM.Rd
 eb04078f0afac0301502ae11350b4913 *man/Kurtosis.Rd
@@ -124,6 +133,7 @@ e75881abff41e2e08f880a693ae69ee6 *man/ORmn.Rd
 730baae3d0fd80960e12d4382d75a6f0 *man/ORmn1.Rd
 2ae8bd3030d5c5c86e8063473ea5ad43 *man/PDIFF.Rd
 4c0a9028a0b39dcddc0336cc1e88a7f5 *man/Pcor.test.Rd
+f1b21d92381de42d08af03165763a342 *man/PocockBound.Rd
 23ab9d0c7a05a657f67da3c91d414911 *man/QuartileRange.Rd
 436b08e6cde7203ac698b2371f5ec773 *man/RD.Rd
 58ffd19689d08ebfede1215d2915d114 *man/RDinv.Rd
@@ -175,6 +185,8 @@ e0c99a1f5b4554d9ba889a8db683742b *man/mtest.Rd
 406798c1b2751a63df1dcf1ceb9cd1ff *man/regD.Rd
 c1f9585d7d7f47e94d622b4e20dbc79c *man/sasLM-package.Rd
 6e2cbea5485346ccae8f72593c1300e6 *man/satt.Rd
+76f95944289b073fa21f8098f4606664 *man/seqBound.Rd
+fab05a4243a585a1c59e8fdbb0a0b95f *man/seqCI.Rd
 bd05a4b95ab93c6841b7909785a1637f *man/tmtest.Rd
 1e7756f068106d18f133a94eab43a547 *man/trimmedMean.Rd
 a3c3a6be0787b5715bae09fcbea1f757 *man/tsum.Rd
