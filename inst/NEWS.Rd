@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.10.1 (2024-01-24)}{
+  \itemize{
+    \item{dunnett adjustment no longer use Miwa algorithm}
+  }
+}
+
 \section{Version 0.10.0 (2023-11-19)}{
   \itemize{
     \item{Functions for group sequential design (seqBound, CumAlpha, PocockBound, Drift, ExitP, seqCI) are added.}

@@ -1,4 +1,4 @@
-32fc128bfa92a0a373323459765f7107 *DESCRIPTION
+2f9e8d69d4956509eaeff144748d2e74 *DESCRIPTION
 7e49acbd6079a894b5341c5286f8865b *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 4b68d0c61d3345c63af0cf1fd140a715 *R/BasicUtil.R
@@ -68,7 +68,7 @@ b2c8a7685965b20c6226c398df0d2419 *R/corFisher.R
 43f96a747a116ac1b545b67302227a7a *R/e1.R
 cd65e87dfe876328588bd7e4a5985779 *R/e2.R
 61df8a6ce84a11b1e61acb3670b9b187 *R/e3.R
-714e5e9e09973a3ada70286cf94d5d2b *R/est.R
+435bc6f9c8c737bfce0154a8ba7788a0 *R/est.R
 16ad392b78b5ca7792fb51ed0618bc9d *R/estmb.R
 64fccdfd526cc895a4a1ce489181e55c *R/geoCV.R
 8f9ae18ffca7e207e331236b6936b0b3 *R/geoMean.R
@@ -94,11 +94,11 @@ dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-62e1478df43b645f7b609846ecffb1e5 *inst/NEWS.Rd
+3b059796dff0cb8e5c4325776b9bfa0c *inst/NEWS.Rd
 e0a719ac464400ec43c7709f70acd43a *inst/doc/Report-Different-Simplest2311191638.pdf
 ed089853a246a3e1515a1e87eae00ac7 *inst/doc/Report-NOT-OKs2311191639.pdf
 9104ea11b620a55d55d11b57b65d4283 *inst/doc/Validation-Report-GLM-2311191640.pdf
-f55ab778f28c0dab788d0dac0d21f336 *inst/doc/sasLM-manual.pdf
+328affcfc762415d45f3b68499135839 *inst/doc/sasLM-manual.pdf
 10bfb83b55f6d373ba52964ebb98fc79 *man/BEdata.Rd
 0768a366ea7cb5ff59bd3697a0b2371e *man/BY.Rd
 b0b45bedacd173dff138ff1df8d65eb1 *man/BasicUtil.Rd
@@ -154,7 +154,7 @@ c2c7e1f87989a2bded0de044a87d3815 *man/SS.Rd
 8da7ae4411837c7035fa483cf8da3ed5 *man/Skewness.Rd
 b0eb46c5c7b53782025a45b353749765 *man/SkewnessSE.Rd
 7a404f769bf0735e5d2d8ab0db67b052 *man/T3MS.Rd
-211eef72c1f96a5eb2f8d4695b8d8015 *man/T3test.Rd
+c764f65eb766c01cfbdb13b77d7a2575 *man/T3test.Rd
 1d08befab8618a3216e3fffb7ae5ffd4 *man/TTEST.Rd
 fda40044748c74ff7ddbfc10faa4ba0d *man/UCL.Rd
 626b2c2e030ceba5a2dc6bb433962426 *man/UNIV.Rd

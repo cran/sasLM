@@ -11,7 +11,7 @@
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{H}{Hypothesis term}
-  \item{E}{Error tem}
+  \item{E}{Error term}
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{
