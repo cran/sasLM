@@ -1,6 +1,14 @@
 G2SWEEP = function(A, Augmented=FALSE, eps=1e-8)
 {
 #  eps2 = 1e-14
+  if (NROW(A) != NCOL(A)) {
+    if (Augmented) {
+      stop("Augmented=TRUE option can be used only for square matrix!")
+    } else {
+      return(g2inv(A, eps=eps))
+    }
+  }
+  
   idx = abs(diag(A)) > eps
   p = sum(idx, na.rm=T)
   p0 = ifelse(Augmented, p - 1, p)
@@ -35,7 +43,8 @@ G2SWEEP = function(A, Augmented=FALSE, eps=1e-8)
 #    B[abs(B) < eps2] = 0
 #  }
 
-  A[!idx, !idx] = 0
+  A[!idx, ] = 0
+  A[, !idx] = 0
   A[idx, idx] = B
   attr(A, "rank") = r
 

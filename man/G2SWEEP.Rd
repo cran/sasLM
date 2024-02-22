@@ -1,6 +1,6 @@
 \name{G2SWEEP}
 \alias{G2SWEEP}
-\title{Generalized inverse matrix of type 2, g2 inverse}
+\title{Generalized inverse matrix of type 2 for linear regression}
 \description{
   Generalized inverse is usually not unique. Some programs use this algorithm to get a unique generalized inverse matrix.
 }
@@ -8,8 +8,8 @@
   G2SWEEP(A, Augmented=FALSE, eps=1e-08) 
 }
 \arguments{
-  \item{A}{a matrix to be inverted}
-  \item{Augmented}{If this is \code{TRUE} and \code{A} is a model(design) matrix X, the last column should be X'y, the last row y'X, and the last cell y'y. See the reference and example for the detail.}
+  \item{A}{a matrix to be inverted. If \code{A} is not a square matrix, G2SWEEP calls g2inv function.}
+  \item{Augmented}{If this is \code{TRUE} and \code{A} is a model(design) matrix X, the last column should be X'y, the last row y'X, and the last cell y'y. See the reference and example for the detail. If the input matrix \code{A} is not a square matrix, \code{Augmented} option cannot be TRUE.}
   \item{eps}{Less than this value is considered as zero.}
 }
 \details{

@@ -1,6 +1,13 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.10.2 (2024-02-23)}{
+  \itemize{
+    \item{g2inv function for generalized type 2 inverse matrix for non-square matrix is newly introduced.}
+    \item{G2SWEEP checks if the input is a square matrix.}
+  }
+}
+
 \section{Version 0.10.1 (2024-01-24)}{
   \itemize{
     \item{dunnett adjustment no longer use Miwa algorithm}
@@ -249,7 +256,7 @@
     \item{\code{tsum0}, \code{tsum1}, \code{tsum2}, \code{tsum3} functions for the summary table of a continuous dependent variable}
     \item{\code{bk} function to beautify the output of knitr::kable()}
     \item{\code{bt} function to beautify the output of tsum2, tsum3}
-    \item{\code{G2SWEEP} function epxplained}
+    \item{\code{G2SWEEP} function explained}
     \item{\code{regD} function optimized}
     \item{\code{T3MS} renamed as \code{EMS}, because it can handle other types also.}
     \item{\code{CIest} function's arguments and return values changed.}
