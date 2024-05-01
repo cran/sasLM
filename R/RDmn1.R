@@ -6,11 +6,11 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 
   p1 = y1/n1                 # p of test (active) group
   p2 = y2/n2                 # p of control (placebo) group
-  RD0 = p1 - p2               # point estimate of risk difference
+  RD0 = p1 - p2              # point estimate of risk difference
   v0 = qchisq(conf.level, 1) # delta ofv for confidence interval
 
   Obj = function(rd) {  # find rd points of increased obj fx value (ofv) by v0
-    L3 = n1 + n2                                   # eq 27, These could be float number!!!
+    L3 = n1 + n2        # eq 27, These could be float number!!!
     L2 = (n1 + 2*n2)*rd - L3 - y1 - y2
     L1 = (n2*rd - L3 - 2*y2)*rd + y1 + y2
     L0 = y2*rd*(1 - rd)
@@ -21,35 +21,21 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
     p1t = p2t + rd
 
     var0 = (p1t*(1 - p1t)/n1 + p2t*(1 - p2t)/n2)*L3/(L3 - 1)
-    return((rd - RD0)^2/var0 - v0) # find roots of increased ofv by v0
+    ((rd - RD0)^2/var0 - v0)^2 # find roots of increased ofv by v0
   }
 
   options(warn=-1)
   if (RD0 < -1 + eps) {
     LL = -1
   } else {
-    rTemp = try(uniroot(Obj, c(-1 + eps, RD0 - eps)), silent=T)
-    if (!inherits(rTemp, "try-error")) {
-      LL = rTemp$root
-    } else {
-      rTemp = try(uniroot(Obj, c(-1 + eps^2, RD0 - eps^2)), silent=T)
-      if (!inherits(rTemp, "try-error")) { LL = rTemp$root
-      } else { LL = NA }
-    }
+    LL = nlminb(max(eps - 1, RD0 - eps), Obj, lower=max(-1, RD0 - 1), upper=RD0)$par
   }
   if (RD0 > 1 - eps) {
     UL = 1
   } else {
-    rTemp = try(uniroot(Obj, c(RD0 + eps, 1 - eps)), silent=T)
-    if (!inherits(rTemp, "try-error")) {
-      UL = rTemp$root
-    } else {
-      rTemp = try(uniroot(Obj, c(RD0 + eps^2, 1 - eps^2)), silent=T)
-      if (!inherits(rTemp, "try-error")) { UL = rTemp$root
-      } else { UL = NA }
-    }
+    UL = nlminb(min(1 - eps, RD0 + eps), Obj, lower=RD0, upper=min(RD0 + 1, 1))$par
   }
   options(warn=0)
 
-  return(c(p1 = p1, p2 = p2, RD = RD0, lower = LL, upper = UL))
+  c(p1 = p1, p2 = p2, RD = RD0, lower = LL, upper = UL)
 }

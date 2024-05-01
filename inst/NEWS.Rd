@@ -1,6 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
 
+\section{Version 0.10.3 (2024-03-25)}{
+  \itemize{
+    \item{UNIV can compute geometric mean and CV excluding NA values}
+  }
+}
+
 \section{Version 0.10.2 (2024-02-23)}{
   \itemize{
     \item{g2inv function for generalized type 2 inverse matrix for non-square matrix is newly introduced.}

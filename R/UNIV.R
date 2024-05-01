@@ -32,7 +32,7 @@ UNIV = function(y, conf.level = 0.95)
           SkewnessSE = SkewnessSE(y),
           Kurtosis = Kurtosis(y),
           KurtosisSE = KurtosisSE(y))
-  if (all(y > 0)) Res = c(Res, GeometricMean = geoMean(y), GeometricCV = geoCV(y))
+  if (all(y[!is.na(y)] > 0)) Res = c(Res, GeometricMean = geoMean(y), GeometricCV = geoCV(y))
   return(Res)
 }
 

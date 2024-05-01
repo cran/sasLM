@@ -1,4 +1,4 @@
-bf13091d24c50615e59ce8d8b48b0833 *DESCRIPTION
+d377f8c9f7fbcd0f1c9e0fe729b66f58 *DESCRIPTION
 7e49acbd6079a894b5341c5286f8865b *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 4b68d0c61d3345c63af0cf1fd140a715 *R/BasicUtil.R
@@ -37,7 +37,7 @@ a501e8efcaf8d852c2e212cd8f56afe2 *R/QuartileRange.R
 3c92def34c9007e8e4c879dcf33e317e *R/RD.R
 4f633af5235888546c97419253a1bdec *R/RDinv.R
 a1427a604207f3cb0953928d5dbbf1f8 *R/RDmn.R
-a8ae06da61ddd0ec42f116b7c690c51f *R/RDmn1.R
+fcb8b4555a0471bfc71f9c56e4905938 *R/RDmn1.R
 14e2c5b33e217cf7bfc49883c1df4d49 *R/REG.R
 de2b3ea63d012ebd5ce2b3a6b14af61d *R/RR.R
 457762616a1cd2ba394d793beba7fd77 *R/RRinv.R
@@ -56,7 +56,7 @@ b8b27e77e609552b2e37171bae24d432 *R/Skewness.R
 894144311db3c6e36ce16f4259c2bee6 *R/T3test.R
 43631786d47e999dc5e3dda7df52d0d4 *R/TTEST.R
 8f86f589bef2a581fff4ea6967c0d5b5 *R/UCL.R
-85831b6813682ff97ab6971bac188ef2 *R/UNIV.R
+a701e886680a4572b7ad0f006189f117 *R/UNIV.R
 998bbe5a8b4d7513f56f69664f18adfd *R/WhiteTest.R
 211cb9a439dddf01cc49e05541bb1efd *R/af.R
 df32d91aab784bcc6bfb872e0b206c62 *R/aov1.R
@@ -95,11 +95,10 @@ dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-48d8034dda1006d4c84e1ac01c78dc1f *inst/NEWS.Rd
-881d2bf5634702f339b5b22511aef6d1 *inst/doc/Report-Different-Simplest2402221546.pdf
-030c7539f22e954b647077c159a8028c *inst/doc/Report-NOT-OKs2402221547.pdf
-b86bea36c477825d16907633d6dde466 *inst/doc/Validation-Report-GLM-2402221547.pdf
-d3402d1afa422e120aacc95b7e2673ea *inst/doc/sasLM-manual.pdf
+7ac1b99d738c6cd7eb9f26ae0b8a5384 *inst/NEWS.Rd
+5d6643fe1db2cc051ac6dc795298193d *inst/doc/Report-Different-Simplest2403251100.pdf
+f34dc776f29ba6a9d2fe66ffa286f87b *inst/doc/Report-NOT-OKs2403251100.pdf
+b3a14be01fe12e5b7c623e4bdf1ac143 *inst/doc/Validation-Report-GLM-2403251101.pdf
 10bfb83b55f6d373ba52964ebb98fc79 *man/BEdata.Rd
 0768a366ea7cb5ff59bd3697a0b2371e *man/BY.Rd
 b0b45bedacd173dff138ff1df8d65eb1 *man/BasicUtil.Rd
