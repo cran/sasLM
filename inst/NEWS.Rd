@@ -1,7 +1,12 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 0.10.4 (2024-05-31)}{
+  \itemize{
+    \item{g2inv function bug with p=0 fixed.}
+  }
+}
 
-\section{Version 0.10.3 (2024-03-25)}{
+\section{Version 0.10.3 (2024-05-01)}{
   \itemize{
     \item{UNIV can compute geometric mean and CV excluding NA values}
   }

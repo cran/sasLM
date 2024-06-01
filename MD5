@@ -1,4 +1,4 @@
-d377f8c9f7fbcd0f1c9e0fe729b66f58 *DESCRIPTION
+ab7bc06d25850c075ac415bc00e5efb1 *DESCRIPTION
 7e49acbd6079a894b5341c5286f8865b *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 4b68d0c61d3345c63af0cf1fd140a715 *R/BasicUtil.R
@@ -70,7 +70,7 @@ cd65e87dfe876328588bd7e4a5985779 *R/e2.R
 61df8a6ce84a11b1e61acb3670b9b187 *R/e3.R
 435bc6f9c8c737bfce0154a8ba7788a0 *R/est.R
 16ad392b78b5ca7792fb51ed0618bc9d *R/estmb.R
-0e83e3dc82a2529744dfdcb2f08260f3 *R/g2inv.R
+376a536800d182601dadd1468c0fedca *R/g2inv.R
 64fccdfd526cc895a4a1ce489181e55c *R/geoCV.R
 8f9ae18ffca7e207e331236b6936b0b3 *R/geoMean.R
 13387f3af94994bfc65d18dcda7cc5b8 *R/is.cor.R
@@ -95,10 +95,10 @@ dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-7ac1b99d738c6cd7eb9f26ae0b8a5384 *inst/NEWS.Rd
-5d6643fe1db2cc051ac6dc795298193d *inst/doc/Report-Different-Simplest2403251100.pdf
-f34dc776f29ba6a9d2fe66ffa286f87b *inst/doc/Report-NOT-OKs2403251100.pdf
-b3a14be01fe12e5b7c623e4bdf1ac143 *inst/doc/Validation-Report-GLM-2403251101.pdf
+50aacd45b077262807ac3886fd36bbdd *inst/NEWS.Rd
+ddf523b38d2ecb491e2667acab71b447 *inst/doc/Report-Different-Simplest2406011131.pdf
+377d6500c5c7147dcf02eb7350b7c9e0 *inst/doc/Report-NOT-OKs2406011132.pdf
+f114ec7213d057e45b4c2a45fc08cae9 *inst/doc/Validation-Report-GLM-2406011134.pdf
 10bfb83b55f6d373ba52964ebb98fc79 *man/BEdata.Rd
 0768a366ea7cb5ff59bd3697a0b2371e *man/BY.Rd
 b0b45bedacd173dff138ff1df8d65eb1 *man/BasicUtil.Rd
