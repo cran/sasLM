@@ -1,5 +1,11 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 0.10.5 (2024-10-02)}{
+  \itemize{
+    \item{RDmn1 for extreme case (R1=1, R2=1) fixed.}
+  }
+}
+
 \section{Version 0.10.4 (2024-05-31)}{
   \itemize{
     \item{g2inv function bug with p=0 fixed.}

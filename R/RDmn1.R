@@ -10,6 +10,7 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
   v0 = qchisq(conf.level, 1) # delta ofv for confidence interval
 
   Obj = function(rd) {  # find rd points of increased obj fx value (ofv) by v0
+    if (rd == RD0) return(-v0)
     L3 = n1 + n2        # eq 27, These could be float number!!!
     L2 = (n1 + 2*n2)*rd - L3 - y1 - y2
     L1 = (n2*rd - L3 - 2*y2)*rd + y1 + y2
@@ -21,19 +22,19 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
     p1t = p2t + rd
 
     var0 = (p1t*(1 - p1t)/n1 + p2t*(1 - p2t)/n2)*L3/(L3 - 1)
-    ((rd - RD0)^2/var0 - v0)^2 # find roots of increased ofv by v0
+    (rd - RD0)^2/var0 - v0 # find roots of increased ofv by v0, for uniroot
   }
 
   options(warn=-1)
   if (RD0 < -1 + eps) {
     LL = -1
   } else {
-    LL = nlminb(max(eps - 1, RD0 - eps), Obj, lower=max(-1, RD0 - 1), upper=RD0)$par
+    LL = uniroot(Obj, c(-1 + eps, RD0))$root
   }
   if (RD0 > 1 - eps) {
     UL = 1
   } else {
-    UL = nlminb(min(1 - eps, RD0 + eps), Obj, lower=RD0, upper=min(RD0 + 1, 1))$par
+    UL = uniroot(Obj, c(RD0, 1 - eps))$root
   }
   options(warn=0)
 
