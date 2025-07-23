@@ -22,7 +22,7 @@
   The output format is very similar to var.test.
 }
 \examples{
-  vtest(10.5^2, 5190, 8.9^2, 3529) # NEJM 388;15 p1386
+  vtest(10.5^2, 3529, 8.9^2, 5190) # NEJM 388;15 p1386
   vtest(2.3^2, 13, 1.5^2, 11, conf.level=0.9) # Red book p240
 }
 \author{Kyun-Seop Bae k@acr.kr}

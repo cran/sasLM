@@ -1,5 +1,10 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 0.10.6 (2024-07-22)}{
+  \itemize{
+    \item{Thanks to Pete Laud, RDmn and RRmn are corrected. ORmn will be improved further later.}
+  }
+}
 \section{Version 0.10.5 (2024-10-02)}{
   \itemize{
     \item{RDmn1 for extreme case (R1=1, R2=1) fixed.}

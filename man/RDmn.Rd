@@ -27,6 +27,8 @@
   d1 = matrix(c(25, 339, 28, 335, 23, 370, 40, 364), nrow=2, byrow=TRUE)
   colnames(d1) =  c("y1", "n1", "y2", "n2")
   RDmn(d1)
+  d2 = data.frame(y1=c(4, 2, 10), n1=c(20, 20, 20), y2=c(8, 11, 2), n2=c(20, 20, 20))
+  RDmn(d2)
 }
 \seealso{
   \code{\link{RDmn1}}, \code{\link{RRmn1}}, \code{\link{ORmn1}}, \code{\link{RRmn}}, \code{\link{ORmn}}, \code{\link{RDinv}}, \code{\link{RRinv}}, \code{\link{ORinv}}, \code{\link{ORcmh}}

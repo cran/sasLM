@@ -5,7 +5,7 @@ seqBound = function(ti, alpha=0.05, side=2, t2=NULL, asf=1)
   if (asf == 1) {        # O'Brien-Flemming
     ai = 2*(1 - pnorm(qnorm(1 - alpha0/2)/sqrt(ti)))
   } else if (asf == 2) { # Pocock
-    ai = alpha0*log(1 + 1.718281828459*ti)
+    ai = alpha0*log1p(1.718281828459*ti)
   } else if (asf == 3) {
     ai = alpha0*ti
   } else if (asf == 4) {

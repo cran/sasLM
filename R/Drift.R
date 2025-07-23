@@ -6,7 +6,7 @@ Drift = function(bi, ti=NULL, Power=0.9)
   c0[lower.tri(c0)] = t(c0)[lower.tri(c0)]
 
 # pmvt (with noncentrality) is better than pmvnorm in calculating power and sample size. 
-# But, Lan-DeMets used multi-variate normal rather than multi-variate noncentral t distributionh.
+# But, Lan-DeMets used multi-variate normal rather than multi-variate noncentral t distribution.
 # I followed Lan-DeMets for the consistency with previous results.
   if (K < 11) {
     fx = function(TH) 1 - pmvnorm(upper=bi, mean=TH*sqrt(ti), corr=c0, algorithm=Miwa) - Power

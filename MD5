@@ -1,4 +1,4 @@
-745268b0f0d3dd4fab65a856cf89dfdd *DESCRIPTION
+f287fc1afa140fab3913e7e153fc7fed *DESCRIPTION
 7e49acbd6079a894b5341c5286f8865b *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 4b68d0c61d3345c63af0cf1fd140a715 *R/BasicUtil.R
@@ -9,10 +9,10 @@ f1a4840f4f125e8bd41898aeabaa9150 *R/CV.R
 a7bb210ed0cdf5be485e34a23078c786 *R/Cor.test.R
 af420ffa565c77301fb85f175dbedc7d *R/CumAlpha.R
 3451b863282cdaf2b63782ab86e2228f *R/Diffogram.R
-e982997c1ace6e867414309739f165dd *R/Drift.R
+18f369445e6413b8e7aebf85bcb559c1 *R/Drift.R
 e8df579727a52549b2ee4a6fea85a6ab *R/EMS.R
 da590ba59914fa2ee6f06770c6bda876 *R/ESTM.R
-18304a48f247a917f94ca0abd58e434d *R/ExitP.R
+a8344236f76bbc16d355b9c1920a0509 *R/ExitP.R
 5d7a3fc146c91da1f412929228464cf1 *R/G2SWEEP.R
 c61762ae0c3abaf761f1e493b74062f6 *R/GLM.R
 d843e93c060c350e489dfd9ad71ec9ae *R/Kurtosis.R
@@ -28,7 +28,7 @@ a079deb274ea47b432528499393a8d17 *R/N.R
 4938a2114b7ec46ca535857580abf6c2 *R/OR.R
 fcf9852ee0f05f4d402ed7acb376b0d3 *R/ORcmh.R
 94d508efb266a2f2fe3cf36220db61bb *R/ORinv.R
-7e7688bc604c2cafeefe5ef05b774560 *R/ORmn.R
+d7fbf4f21fda4b5b439e2fad4a9254d5 *R/ORmn.R
 71e36e2edaea399077ce90ddbf357c1b *R/ORmn1.R
 85513b8d0cb68ae649166e83983137f5 *R/PDIFF.R
 c8ac2df0a23573d26f5365cbd617248a *R/Pcor.test.R
@@ -36,12 +36,12 @@ c8ac2df0a23573d26f5365cbd617248a *R/Pcor.test.R
 a501e8efcaf8d852c2e212cd8f56afe2 *R/QuartileRange.R
 3c92def34c9007e8e4c879dcf33e317e *R/RD.R
 4f633af5235888546c97419253a1bdec *R/RDinv.R
-a1427a604207f3cb0953928d5dbbf1f8 *R/RDmn.R
-7a23adfbd76ea637dfa15d913b95feaa *R/RDmn1.R
+1aab78e7a07b423f04da743072508b89 *R/RDmn.R
+6558f674737d5360fb5c6dff19279030 *R/RDmn1.R
 14e2c5b33e217cf7bfc49883c1df4d49 *R/REG.R
 de2b3ea63d012ebd5ce2b3a6b14af61d *R/RR.R
 457762616a1cd2ba394d793beba7fd77 *R/RRinv.R
-af6f104bcdb72e7c2bf887b784eea647 *R/RRmn.R
+915a39b5c33d584ad199aed4f98560e4 *R/RRmn.R
 2d0abbba93a0824518bbdf75f094a39e *R/RRmn1.R
 295ccb81e1898e0ed639b937e7ed5f16 *R/RanTest.R
 cfd4a2760d18cc40baa5a25d25ee46e7 *R/Range.R
@@ -83,7 +83,7 @@ b04c973738ec6cb501d0881188938e0b *R/pD.R
 b494e704f498bbd944299be338992a7f *R/pResD.R
 540a6b16a31173fff976f2df61ad7154 *R/regD.R
 64392293786c7d538917d704101bc406 *R/satt.R
-a72315b88d6b92f7d1a0c01e57c5a424 *R/seqBound.R
+a4b81ee806839d4c10b48f8d3f2ef505 *R/seqBound.R
 82bffe46a62be3cf921fad7e293e7c7c *R/seqCI.R
 1578fc5a3aac5d4cc409a4c082561336 *R/sysdata.rda
 0eae258b2f354da4a8139b75da39f0fe *R/tmtest.R
@@ -95,7 +95,7 @@ dbd6d0c76fdf4aa08f68fc8a65f5fb68 *R/tsum1.R
 f973362d338028bb54b4006fd13a6384 *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-e0e8ac798fda09e2d0dd9ceea1a55b51 *inst/NEWS.Rd
+40031d8a32fc4e30f5c952010e7b5a86 *inst/NEWS.Rd
 0dc836d0b1b5397c04d59188e80e794e *inst/doc/Report-Different-Simplest2410021412.pdf
 fb02afb5b2c7061da4844b1b4fcd195e *inst/doc/Report-NOT-OKs2410021413.pdf
 12f21a0329553c14212b0ad1a663a990 *inst/doc/Validation-Report-GLM-2410021413.pdf
@@ -129,7 +129,7 @@ bb6fe1f7b40c41ddd3cc8f894ee94d8f *man/N.Rd
 5fa474ac86eaf848df5c5cb234ff9561 *man/OR.Rd
 6a3bc01c61e7574c9ca1bea2c55f2b12 *man/ORcmh.Rd
 d81f79068c3720ad164ada84edef2b7f *man/ORinv.Rd
-e75881abff41e2e08f880a693ae69ee6 *man/ORmn.Rd
+1347584f8850b00001cfacd29fab09a7 *man/ORmn.Rd
 730baae3d0fd80960e12d4382d75a6f0 *man/ORmn1.Rd
 2ae8bd3030d5c5c86e8063473ea5ad43 *man/PDIFF.Rd
 4c0a9028a0b39dcddc0336cc1e88a7f5 *man/Pcor.test.Rd
@@ -137,12 +137,12 @@ f1b21d92381de42d08af03165763a342 *man/PocockBound.Rd
 23ab9d0c7a05a657f67da3c91d414911 *man/QuartileRange.Rd
 436b08e6cde7203ac698b2371f5ec773 *man/RD.Rd
 58ffd19689d08ebfede1215d2915d114 *man/RDinv.Rd
-f55ba30a4443be91a937a11f94617e3c *man/RDmn.Rd
+32c24453e835578dce6cce1e42860ee1 *man/RDmn.Rd
 17ea59bddf9963821b26c3a902a5b6b1 *man/RDmn1.Rd
 0caedccd673ab39e6bd651d3ff947683 *man/REG.Rd
 2b54e6833b3b78ffcf6a4c3425970b23 *man/RR.Rd
 aec6dee87e81aafa7008b0deab210682 *man/RRinv.Rd
-cfef93f841e943ac7083039319760ffa *man/RRmn.Rd
+d29f847711b99356a0f5ee29c301505b *man/RRmn.Rd
 a86d2d1fb952dc079e4a73f1178b8fd0 *man/RRmn1.Rd
 2de54a9664dd49b2d67d99b8e2ec957b *man/RanTest.Rd
 2e660790b486b16061a01519696afa02 *man/Range.Rd
@@ -195,6 +195,6 @@ a3c3a6be0787b5715bae09fcbea1f757 *man/tsum.Rd
 279d304b22f6434b8887264ab9c20e64 *man/tsum1.Rd
 d299dff9f41061e2e65b70b424343df2 *man/tsum2.Rd
 be6222660e7d4d30bc84cb264b3bfd41 *man/tsum3.Rd
-496caf499a8f0657e1ab7d7b6af27f6a *man/vtest.Rd
+ebb538e912516f3d67a3cb3aed668c19 *man/vtest.Rd
 a16422c24fbfc98a115a22ccc00db828 *man/ztest.Rd
-76d241b9c3d4923fccd38f2ac7c76c37 *tests/Test.R
+24baf69f53cfdb07cd4d58843d181c22 *tests/Test.R

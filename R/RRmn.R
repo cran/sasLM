@@ -12,7 +12,7 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
   nr = nrow(d0)
   Res1 = RRmn1(y1[1], n1[1], y2[1], n2[1], conf.level=conf.level)
   rownames(Res1) = NULL
-  
+
   if (nr == 1) return(Res1)
 
   p1p2rr = function(rr) {
@@ -31,18 +31,18 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
       w = pw/sum(pw)
       r1s = sum(w*p[, 1])
       r2s = sum(w*p[, 2])
-      w = 1/((1 - r1s)/(1 - r2s)/n1 + pRR/n2)
+      w = 1/((1 - r1s)/(1 - r2s)/n1 + rr/n2)
       if (sum(abs(w - pw)) < 1e-8) break
       pw = w
     }
     return(w)
   }
 
-  w = n1*n2/(n1 + n2) # MH weight for initial guess
+  w = n1*n2/(n1 + n2)       # MH weight for initial guess
   pRR = sum(w/sum(w)*p1/p2) # initial guess with MH weight
   for (i in 1:50) {
     w2 = wrr(pRR)
-    RR = sum(w2/sum(w2)*p1/p2)
+    RR = sum(w2/sum(w2)*p1) / sum(w2/sum(w2)*p2)
     if (abs(RR - pRR) < eps) break
     pRR = RR
   }
@@ -53,15 +53,18 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
     r2 = p[, 2]
     w = wrr(rr)
     w = w/sum(w)
-    r1s = sum(w*r1)
-    r2s = sum(w*r2)
-    v = (r1*(1 - r1)/n1 + RR*RR*r2*(1 - r2)/n2)*(n1 + n2)/(n1 + n2 - 1)
-    return((r1s - r2s*RR)^2/sum(w*w*v) - v0) # for uniroot
+    r1s = sum(w*p1)
+    r2s = sum(w*p2)
+    v = (r1*(1 - r1)/n1 + rr*rr*r2*(1 - r2)/n2)*(n1 + n2)/(n1 + n2 - 1)
+    return((r1s - r2s*rr)^2/sum(w*w*v) - v0) # for uniroot
   }
 
   options(warn=-1)
-  if (RR < eps) { lower = 0
-  } else { lower = uniroot(Obj, interval=c(eps, RR - eps))$root }
+  if (RR < eps) { 
+    lower = 0
+  } else { 
+    lower = uniroot(Obj, interval=c(eps, RR - eps))$root 
+  }
   upper = uniroot(Obj, interval=c(RR + eps, 1e9))$root
   options(warn=0)
 

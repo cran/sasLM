@@ -24,8 +24,8 @@ RDmn = function(d0, conf.level=0.95, eps=1e-8)
     L1 = (n2*rd - L3 - 2*y2)*rd + y1 + y2
     L0 = y2*rd*(1 - rd)
     q = L2^3/(3*L3)^3 - L1*L2/(6*L3^2) + L0/(2*L3) # eq 28
-    p = sign(q)*sqrt(max(0, L2^2/(3*L3)^2 - L1/(3*L3)))
-    a = (pi + ifelse(p == 0, acos(0), acos(min(1, max(-1, q/p^3)))))/3
+    p = sign(q)*sqrt(pmax(0, L2^2/(3*L3)^2 - L1/(3*L3)))
+    a = (pi + ifelse(p == 0, acos(0), acos(pmin(1, pmax(-1, q/p^3)))))/3
     p2 = 2*p*cos(a) - L2/(3*L3)
     return(cbind(p1 = p2 + rd, p2))
   }
@@ -44,7 +44,7 @@ RDmn = function(d0, conf.level=0.95, eps=1e-8)
     return(w)
   }
 
-  w = n1*n2/(n1 + n2) # MH weight for initial guess
+  w = n1*n2/(n1 + n2)           # MH weight for initial guess
   pRD = sum(w/sum(w)*(p1 - p2)) # initial guess with MH weight
   for (i in 1:50) {
     w2 = wrd(pRD)

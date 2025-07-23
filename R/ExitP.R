@@ -11,7 +11,7 @@ ExitP = function(Theta, bi, ti=NULL)
   mi = Theta*sqrt(ti)
 
 # pmvt (with noncentrality) is better than pmvnorm in calculating power and sample size. 
-# But, Lan-DeMets used multi-variate normal rather than multi-variate noncentral t distributionh.
+# But, Lan-DeMets used multi-variate normal rather than multi-variate noncentral t distribution.
 # I followed Lan-DeMets for the consistency with previous results.
   if (K < 11) {
     for (i in 2:K) ep[i] = 1 - pmvnorm(upper=bi[1:i], mean=mi[1:i], corr=c0[1:i, 1:i], algorithm=Miwa)

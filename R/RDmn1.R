@@ -11,7 +11,7 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 
   Obj = function(rd) {  # find rd points of increased obj fx value (ofv) by v0
     if (rd == RD0) return(-v0)
-    L3 = n1 + n2        # eq 27, These could be float number!!!
+    L3 = n1 + n2             # eq 27, These could be float number!!!
     L2 = (n1 + 2*n2)*rd - L3 - y1 - y2
     L1 = (n2*rd - L3 - 2*y2)*rd + y1 + y2
     L0 = y2*rd*(1 - rd)
@@ -22,7 +22,7 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
     p1t = p2t + rd
 
     var0 = (p1t*(1 - p1t)/n1 + p2t*(1 - p2t)/n2)*L3/(L3 - 1)
-    (rd - RD0)^2/var0 - v0 # find roots of increased ofv by v0, for uniroot
+    (rd - RD0)^2/var0 - v0   # find roots of increased ofv by v0, for uniroot
   }
 
   options(warn=-1)
