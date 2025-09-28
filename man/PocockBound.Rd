@@ -23,6 +23,12 @@
 }
 \examples{
   PocockBound(K=2) # Z-value of upper bound for the two-stage design
+  PocockBound(K=3) # Z-value of upper bound for the two-stage design
+  PocockBound(K=4) # Z-value of upper bound for the two-stage design
+  PocockBound(K=5) # Z-value of upper bound for the two-stage design
+}
+\seealso{
+  \code{\link{seqBound}}, \code{\link{OBFBound}}
 }
 \references{
   Reboussin DM, DeMets DL, Kim K, Lan KKG. Computations for group sequential boundaries using the Lan-DeMets function method. Controlled Clinical Trials. 2000;21:190-207.

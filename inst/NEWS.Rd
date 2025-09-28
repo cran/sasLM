@@ -1,10 +1,19 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 0.10.7 (2024-09-28)}{
+  \itemize{
+    \item{CumAlpha function improved to handle chaning z values and arbitrary time points.}
+    \item{OBFBound function added for exact O'Brien-Flemming bounds.}
+    \item{GLM function validated again, and the result is OK.}
+  }
+}
+
 \section{Version 0.10.6 (2024-07-22)}{
   \itemize{
     \item{Thanks to Pete Laud, RDmn and RRmn are corrected. ORmn will be improved further later.}
   }
 }
+
 \section{Version 0.10.5 (2024-10-02)}{
   \itemize{
     \item{RDmn1 for extreme case (R1=1, R2=1) fixed.}
