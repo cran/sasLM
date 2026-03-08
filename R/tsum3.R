@@ -112,7 +112,7 @@ tsum3 = function(d, y, l, u, e=c("Mean", "SD", "N"), h=NULL, ol1="", ol2="", ou=
 
 # Relpace characters
   for (j in 1:3) {
-    for (k in 1:length(repl[[1]])) {
+    for (k in seq_along(repl[[1]])) {
       Res[Res[,j]==repl[[1]][k], j] = repl[[2]][k]
     }
   }

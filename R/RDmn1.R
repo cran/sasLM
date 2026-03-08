@@ -25,18 +25,16 @@ RDmn1 = function(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
     (rd - RD0)^2/var0 - v0   # find roots of increased ofv by v0, for uniroot
   }
 
-  options(warn=-1)
   if (RD0 < -1 + eps) {
     LL = -1
   } else {
-    LL = uniroot(Obj, c(-1 + eps, RD0))$root
+    LL = suppressWarnings(uniroot(Obj, c(-1 + eps, RD0))$root)
   }
   if (RD0 > 1 - eps) {
     UL = 1
   } else {
-    UL = uniroot(Obj, c(RD0, 1 - eps))$root
+    UL = suppressWarnings(uniroot(Obj, c(RD0, 1 - eps))$root)
   }
-  options(warn=0)
 
   c(p1 = p1, p2 = p2, RD = RD0, lower = LL, upper = UL)
 }

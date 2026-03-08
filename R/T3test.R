@@ -21,7 +21,7 @@ T3test = function(Formula, Data, H="", E="", eps=1e-8)
   strError = strsplit(Error, ":")
   strTerm = strsplit(RowNamesT1, ":")
   for (i in 1:nrow(T1)) {
-    for (j in 1:length(Error)) {
+    for (j in seq_along(Error)) {
       if (setequal(strTerm[[i]], strError[[j]])) Error[j] = RowNamesT1[i]
     }
   }
@@ -38,7 +38,7 @@ T3test = function(Formula, Data, H="", E="", eps=1e-8)
   T0 = T3MS(Formula, Data, L0)
 
   ToTest = NULL
-  for (i in 1:length(Error)) ToTest = union(ToTest, setdiff(rownames(T0[which(T0[, Error[i]] > 0), ]), Error[i]))
+  for (i in seq_along(Error)) ToTest = union(ToTest, setdiff(rownames(T0[which(T0[, Error[i]] > 0), ]), Error[i]))
   nTest = length(ToTest)
 
   Result = list()

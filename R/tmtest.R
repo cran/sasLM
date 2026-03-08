@@ -1,4 +1,4 @@
-tmtest = function(m1, s1, n1, m0, s0, n0, conf.level=0.95, nullHypo=0, var.equal=F)
+tmtest = function(m1, s1, n1, m0, s0, n0, conf.level=0.95, nullHypo=0, var.equal=FALSE)
 {
   sampMeans = c(m1, m0)
   PE = m1 - m0

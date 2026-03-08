@@ -34,7 +34,7 @@ pResD = function(rx, Title=NULL)
   points(CooksD)
   abline(h=c(0, 4/n), lty=3)
 
-  hist(e, freq=F, breaks=sqrt(n), xlab="Residual", ylab="Density", main="PLOT G", cex.main=0.9)
+  hist(e, freq=FALSE, breaks=sqrt(n), xlab="Residual", ylab="Density", main="PLOT G", cex.main=0.9)
   lines(density(e))
 
   rngY = range(yhat - mean(y))

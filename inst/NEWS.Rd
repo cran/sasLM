@@ -1,6 +1,18 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
-\section{Version 0.10.7 (2024-09-28)}{
+\section{Version 0.10.8 (2026-03-08)}{
+  \itemize{
+    \item{Code quality improvement: T/F replaced with TRUE/FALSE for CRAN policy compliance.}
+    \item{Global assignment (<<-) in ORmn removed using environment object pattern.}
+    \item{options(warn) replaced with suppressWarnings() in ORmn, RRmn, RDmn, RDmn1 to prevent options leak on error.}
+    \item{Unsafe 1:length() pattern replaced with seq_along()/seq_len() across 14 files.}
+    \item{Redundant comparison in G2SWEEP (BasicUtil.R) fixed.}
+    \item{Max function uses na.rm=TRUE for consistency with Min.}
+    \item{DESCRIPTION cleaned up: removed redundant Author/Maintainer fields.}
+  }
+}
+
+\section{Version 0.10.7 (2025-09-28)}{
   \itemize{
     \item{CumAlpha function improved to handle chaning z values and arbitrary time points.}
     \item{OBFBound function added for exact O'Brien-Flemming bounds.}
@@ -8,7 +20,7 @@
   }
 }
 
-\section{Version 0.10.6 (2024-07-22)}{
+\section{Version 0.10.6 (2025-07-22)}{
   \itemize{
     \item{Thanks to Pete Laud, RDmn and RRmn are corrected. ORmn will be improved further later.}
   }

@@ -17,7 +17,7 @@ Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
   ti = x$termIndices[Term][[1]]
   nti = length(ti)
 
-  L1 = L0[ti,,drop=F]
+  L1 = L0[ti,,drop=FALSE]
   nL = NROW(L1)
   rowNames = rownames(L1)
   newRowNames = vector(length=nL)
@@ -27,7 +27,7 @@ Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
     for (i in 1:nL) {
       cLevel0 = strsplit(rowNames[i], ":")[[1]]
       cLevel1 = vector(length=length(sTerm))
-      for (j in 1:length(cLevel0)) {
+      for (j in seq_along(cLevel0)) {
         cLevel1[j] = substr(cLevel0[j], nchar(sTerm[j]) + 1, nchar(cLevel0[j]))
       }
       newRowNames[i] = paste(cLevel1, collapse=":")

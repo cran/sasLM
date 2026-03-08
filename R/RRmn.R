@@ -59,14 +59,12 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
     return((r1s - r2s*rr)^2/sum(w*w*v) - v0) # for uniroot
   }
 
-  options(warn=-1)
-  if (RR < eps) { 
+  if (RR < eps) {
     lower = 0
-  } else { 
-    lower = uniroot(Obj, interval=c(eps, RR - eps))$root 
+  } else {
+    lower = suppressWarnings(uniroot(Obj, interval=c(eps, RR - eps))$root)
   }
-  upper = uniroot(Obj, interval=c(RR + eps, 1e9))$root
-  options(warn=0)
+  upper = suppressWarnings(uniroot(Obj, interval=c(RR + eps, 1e9))$root)
 
   for (i in 2:nr) {
     Res1 = rbind(Res1, RRmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))

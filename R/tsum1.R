@@ -9,7 +9,7 @@ tsum1 = function(d, y, u, e=c("Mean", "SD", "N"), ou="", repl=list(c("length"), 
   ne = length(e)
 
   rNames = e
-  for (k in 1:length(repl[[1]])) rNames[rNames == repl[[1]][k]] = repl[[2]][k]
+  for (k in seq_along(repl[[1]])) rNames[rNames == repl[[1]][k]] = repl[[2]][k]
 
   Res = matrix(nrow=ne, ncol=nc + 1)
   colnames(Res) = c(cNames, "Combined")
@@ -18,10 +18,10 @@ tsum1 = function(d, y, u, e=c("Mean", "SD", "N"), ou="", repl=list(c("length"), 
 
   for (j in 1:nc) {
     tV = d[d[,u] == cNames[j], y]
-    for (k in 1:length(e)) Res[k, j] = do.call(e[k], list(tV))
+    for (k in seq_along(e)) Res[k, j] = do.call(e[k], list(tV))
   }
 
-  for (k in 1:length(e)) Res[k, 1 + nc] = do.call(e[k], list(d[,y]))
+  for (k in seq_along(e)) Res[k, 1 + nc] = do.call(e[k], list(d[,y]))
 
   attr(Res, "y") = y
   attr(Res, "u") = u

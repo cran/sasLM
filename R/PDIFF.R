@@ -23,7 +23,7 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
       cCol = colnames(L0)[ti[i]]
       cStr = strsplit(cCol, ":")[[1]]
       tStr = vector()
-      for (j in 1:length(sTerm)) {
+      for (j in seq_along(sTerm)) {
         tStr[j] = substring(cStr[j], nchar(sTerm[j]) + 1)
       }
       ColNames[i] = paste(tStr, collapse=":")
@@ -97,13 +97,13 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
     colnames(Res) = c("Estimate", "Lower CL", "Upper CL", "Std. Error", "t value", "Df", "Pr(>|t|)")
     attr(Res, "Estimability") = estmb(Lx, x$X, rx$g2)
   } else {
-    Res = est(Lx, x$X, rx, conf.level=conf.level, adj=adj, paired=T)
+    Res = est(Lx, x$X, rx, conf.level=conf.level, adj=adj, paired=TRUE)
   }
   
   class(Res) = "anova"
   
   if (PLOT) {
-    L1 = L0[ti, , drop=F]
+    L1 = L0[ti, , drop=FALSE]
     nL = NROW(L1)
     rowNames = rownames(L1)
     newRowNames = vector(length=nL)
@@ -113,7 +113,7 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
       for (i in 1:nL) {
         cLevel0 = strsplit(rowNames[i], ":")[[1]]
         cLevel1 = vector(length=length(sTerm))
-        for (j in 1:length(cLevel0)) {
+        for (j in seq_along(cLevel0)) {
           cLevel1[j] = substr(cLevel0[j], nchar(sTerm[j]) + 1, nchar(cLevel0[j]))
         }
         newRowNames[i] = paste(cLevel1, collapse=":")

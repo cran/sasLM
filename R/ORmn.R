@@ -41,34 +41,33 @@ ORmn = function(d0, conf.level=0.95, eps=1e-8)
     return(w)
   }
 
-  w = n1*n2/(n1 + n2)  
+  env <- new.env(parent = emptyenv())
+  env$w <- n1*n2/(n1 + n2)
   Obj = function(or) {
     p = p1p2or(or)
     r1 = p[, 1]
     r2 = p[, 2]
-    w = wor(or)    
-    w <<- w/sum(w)
-    nume = sum(w*((p1 - r1)/(r1*(1 - r1)) - (p2 - r2)/(r2*(1 - r2))))
+    w = wor(or)
+    env$w <- w/sum(w)
+    nume = sum(env$w*((p1 - r1)/(r1*(1 - r1)) - (p2 - r2)/(r2*(1 - r2))))
     v = (1/(n1*r1*(1 - r1)) + 1/(n2*r2*(1 - r2)))*(n1 + n2)/(n1 + n2 - 1)
-    return(sqrt(nume^2/sum(w*w*v)) - z0)
+    return(sqrt(nume^2/sum(env$w*env$w*v)) - z0)
   }
 
   OR0 = ORcmh(d0)$Common$OR[[1]]
-  options(warn=-1)
-  if (OR0 < eps) { 
+  if (OR0 < eps) {
     lower = 0
-  } else { 
-    lower = uniroot(Obj, interval=c(eps, OR0 - eps))$root 
+  } else {
+    lower = suppressWarnings(uniroot(Obj, interval=c(eps, OR0 - eps))$root)
   }
-  upper = uniroot(Obj, interval=c(OR0 + eps, 1e9))$root
-  options(warn=0)
+  upper = suppressWarnings(uniroot(Obj, interval=c(OR0 + eps, 1e9))$root)
 
   for (i in 2:nr) {
     Res1 = rbind(Res1, ORmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))
   }
-  rownames(Res1) = rownames(d0)    
-  p1s = sum(w/sum(w)*p1)
-  p2s = sum(w/sum(w)*p2)  
+  rownames(Res1) = rownames(d0)
+  p1s = sum(env$w/sum(env$w)*p1)
+  p2s = sum(env$w/sum(env$w)*p2)  
   o1 = p1s/(1 - p1s)
   o2 = p2s/(1 - p2s)
   Res2 = c(odd1=o1, odd2=o2, OR=o1/o2, lower=lower, upper=upper)

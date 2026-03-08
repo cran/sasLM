@@ -5,14 +5,14 @@ Coll = function(Formula, Data)
   rx = lm(Formula, Data)
 
   mf = model.frame(Formula, Data)
-  for (i in 1:ncol(mf)) {
+  for (i in seq_len(ncol(mf))) {
     if (!is.numeric(mf[, i])) stop("All variables should be numeric!")
   }
 
   X = model.matrix(rx)
   V = vcov(rx)
   if (colnames(X)[1] == "(Intercept)") {
-    X = X[, -1, drop=F]
+    X = X[, -1, drop=FALSE]
     V = V[-1, -1]
   }
   colNames = colnames(X)

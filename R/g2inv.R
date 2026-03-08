@@ -1,10 +1,10 @@
 g2inv = function(A, eps=1e-8)
 {
   idx = abs(diag(A)) > eps
-  p = sum(idx, na.rm=T)
+  p = sum(idx, na.rm=TRUE)
   M = matrix(0, nrow=NCOL(A), ncol=NROW(A))
   if (p == 0) {attr(M, "rank") = 0 ; return(M) }
-  B = A[idx, idx, drop=F]
+  B = A[idx, idx, drop=FALSE]
   r = 0
   for (k in 1:p) {
     d = B[k, k]

@@ -5,7 +5,7 @@
   This produces essentially the same to t.test except using summarized input (sufficient statistics).
 }
 \usage{
-  tmtest(m1, s1, n1, m0, s0, n0, conf.level=0.95, nullHypo=0, var.equal=F)
+  tmtest(m1, s1, n1, m0, s0, n0, conf.level=0.95, nullHypo=0, var.equal=FALSE)
 }
 \arguments{
   \item{m1}{mean of the first (test, active, experimental) group}

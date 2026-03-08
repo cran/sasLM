@@ -1,7 +1,7 @@
 pivotJ = function(M, j, clear=TRUE, eps=1e-8)
 {
   for (k in j) {
-    if (any(abs(M[, k]) > eps) > 0) {
+    if (any(abs(M[, k]) > eps)) {
       Js = which(abs(as.vector(M[, k])) > eps)
       pivotRow = M[Js[1], ]/M[Js[1], k]
       nJ = length(Js)
@@ -469,7 +469,7 @@ CheckAlias = function(Formula, Data) # Why did I use this instead of 'alias' fun
 	} else {
 		ip = 1:Rank
 		dn = dimnames(QR$qr)[[2]]
-		Aliased = backsolve(QR$qr[ip, ip], QR$qr[ip, -ip, drop=F])
+		Aliased = backsolve(QR$qr[ip, ip], QR$qr[ip, -ip, drop=FALSE])
 		dimnames(Aliased) = list(dn[ip], dn[-ip])
 		Aliased = t(zapsmall(Aliased))
 	}
@@ -520,7 +520,7 @@ ex = function(x1, x2, g2, eps=1e-8)
     Col1 = x2$termIndices[Label1][[1]]
     Col2 = NULL
     if (length(Label2) > 0) {
-      for (j in 1:length(Label2)) Col2 = c(Col2, x2$termIndices[Label2[j]][[1]])
+      for (j in seq_along(Label2)) Col2 = c(Col2, x2$termIndices[Label2[j]][[1]])
     }
     Col0 = setdiff(1:nc, c(Col1, Col2))
 
@@ -614,16 +614,16 @@ WhiteH = function(X, we2) # we2 = weight * e^2
   K = NCOL(X)
   Df = K*(K + 1)/2
 
-  e2.in = scale(we2, scale=F)
+  e2.in = scale(we2, scale=FALSE)
 
   psi.i = matrix(nrow=n, ncol=Df)
-  for (i in 1:n) psi.i[i, ] = crossprod(X[i, , drop=F])[lower.tri(diag(K), T)]
-  psi.in = scale(psi.i, scale=F)
+  for (i in 1:n) psi.i[i, ] = crossprod(X[i, , drop=FALSE])[lower.tri(diag(K), TRUE)]
+  psi.in = scale(psi.i, scale=FALSE)
 
   Dn = apply(psi.in, 2, function(x) mean(e2.in*x))
 
   sumB = matrix(0, nrow=Df, ncol=Df)
-  for (i in 1:n) sumB = sumB + e2.in[i]^2*crossprod(psi.in[i, , drop=F])
+  for (i in 1:n) sumB = sumB + e2.in[i]^2*crossprod(psi.in[i, , drop=FALSE])
 
   iBn = G2SWEEP(sumB/n)
   Df1 = attr(iBn, "rank")

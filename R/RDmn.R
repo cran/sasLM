@@ -63,12 +63,10 @@ RDmn = function(d0, conf.level=0.95, eps=1e-8)
     return(sum(w*(rd - fRD))^2/sum(w*w*v) - v0) # for uniroot
   }
 
-  options(warn=-1)
   if (fRD < -1 + eps) { lower = -1
-  } else { lower = uniroot(Obj, c(max(-1, fRD - 1) + eps, fRD - eps))$root }
+  } else { lower = suppressWarnings(uniroot(Obj, c(max(-1, fRD - 1) + eps, fRD - eps))$root) }
   if (fRD > 1 - eps) { upper = 1
-  } else { upper = uniroot(Obj, c(fRD + eps, 1 - eps))$root }
-  options(warn=0)
+  } else { upper = suppressWarnings(uniroot(Obj, c(fRD + eps, 1 - eps))$root) }
 
   for (i in 2:nr) {
     Res1 = rbind(Res1, RDmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))

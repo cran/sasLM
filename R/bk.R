@@ -15,7 +15,7 @@ bk = function(ktab, rpltag=c("n", "N"), dig=10)
       cRpl = rpltag[i]
       ns1 = grep(paste0("[\\|][ ]*", cRpl, "[ ]*[\\|]"), ktab)
       if (length(ns1) > 0) {
-        for (j in 1:length(ns1)) {
+        for (j in seq_along(ns1)) {
           for (k in dig:1) {
             p0 = paste0(c(".", rep("0", k)), collapse="")
             r0 = paste0(rep(" ", k + 1), collapse="")

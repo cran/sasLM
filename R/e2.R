@@ -26,7 +26,7 @@ e2 = function(x, eps=1e-8)
     Col1 = x$termIndices[Label1][[1]]
     Col2 = NULL
     if (length(Label2) > 0) {
-      for (j in 1:length(Label2)) Col2 = c(Col2, x$termIndices[Label2[j]][[1]])
+      for (j in seq_along(Label2)) Col2 = c(Col2, x$termIndices[Label2[j]][[1]])
     }
     Col0 = setdiff(1:nc, c(Col1, Col2))
 

@@ -56,8 +56,8 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0
   class(T3) = "anova"
 
   fIntercept = attr(x0a$terms, "intercept")
-  if (length(Weights) == 1 & Weights[1] == 1) { MeanY = mean(mf0[, 1], na.rm=T)
-  } else { MeanY = sum(Weights*mf0[, 1], na.rm=T)/sum(Weights) } ## weighted mean
+  if (length(Weights) == 1 & Weights[1] == 1) { MeanY = mean(mf0[, 1], na.rm=TRUE)
+  } else { MeanY = sum(Weights*mf0[, 1], na.rm=TRUE)/sum(Weights) } ## weighted mean
   SST = sum(T1[T1[, "Df"] > 0, "Sum Sq"]) + r1x$SSE ##
 
   ANOVA = sumANOVA(r1, T1=NULL, SST, nObs, rownames(attr(terms(x0a), "factors"))[1])

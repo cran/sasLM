@@ -31,7 +31,7 @@ RanTest = function(Formula, Data, Random, Type=3, eps=1e-8)
   strTerm = strsplit(RowNamesT1, ":")
   nError = 0
   Error = NULL
-  for (i in 1:length(RowNamesT1)) {
+  for (i in seq_along(RowNamesT1)) {
     if (length(strTerm[[i]]) > 1 & length(intersect(Random, strTerm[[i]])) > 0) {
       nError = nError + 1
       Error = c(Error, RowNamesT1[i])
@@ -76,8 +76,8 @@ RanTest = function(Formula, Data, Random, Type=3, eps=1e-8)
   T4 = cbind(T4, eps=1)
 
   ToTest = NULL
-  for (i in 1:length(Error)) {
-    ToTest = union(ToTest, setdiff(rownames(T0[which(T0[, Error[i]] > 0), , drop=F]), Error[i]))
+  for (i in seq_along(Error)) {
+    ToTest = union(ToTest, setdiff(rownames(T0[which(T0[, Error[i]] > 0), , drop=FALSE]), Error[i]))
   }
   nTest = length(ToTest)
 

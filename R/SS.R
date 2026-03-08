@@ -12,7 +12,7 @@ SS = function(x, rx, L, eps=1e-8)
     Li = L[x$termIndices[[Labels[i]]], , drop=FALSE]
     Li = Li[!apply(Li, 1, function(x) all(abs(x) < eps2)), , drop=FALSE]
     if (NROW(Li) > 0) {
-      iiv = G2SWEEP(Li %*% rx$g2 %*% t(Li), Augmented=F, eps=eps2)
+      iiv = G2SWEEP(Li %*% rx$g2 %*% t(Li), Augmented=FALSE, eps=eps2)
 #      T1[i, "Df"] = NROW(Li)         # less accurate
       Lb.i = Li %*% rx$coefficients
       T1[i, "Df"] = attr(iiv, "rank") # more accurate

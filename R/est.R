@@ -37,7 +37,7 @@ est = function(L, X, rx, conf.level=0.95, adj="lsd", paired=FALSE)
     } else if (tolower(adj) == "scheffe") {
       DFg = round(0.5 + sqrt(1 + 8*nL)/2) - 1 # Df group
       Fs = rep(0, nL)
-      for (j in 1:nL) Fs[j] = cSS(L[j, , drop=F], rx)[["F value"]]
+      for (j in 1:nL) Fs[j] = cSS(L[j, , drop=FALSE], rx)[["F value"]]
       Fval = Fs/DFg
       Pval = 1 - pf(Fval, DFg, rx$DFr)
       DL = sqrt(DFg*qf(conf.level, DFg, rx$DFr))*SE

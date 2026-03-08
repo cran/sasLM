@@ -8,8 +8,8 @@ mtest = function(m1, s1, n1, m0, s0, n0, conf.level=0.95)
   colnames(T1) = c("Mean", "SD", "N", "SEM", "LCL", "UCL")
   rownames(T1) = c("Test", "Control")
 
-  r1 = tmtest(m1, s1, n1, m0, s0, n0, conf.level=conf.level, var.equal=T)
-  r2 = tmtest(m1, s1, n1, m0, s0, n0, conf.level=conf.level, var.equal=F)
+  r1 = tmtest(m1, s1, n1, m0, s0, n0, conf.level=conf.level, var.equal=TRUE)
+  r2 = tmtest(m1, s1, n1, m0, s0, n0, conf.level=conf.level, var.equal=FALSE)
 
   PE = rep(m1 - m0, 2)
   SE = c(r1$stderr, r2$stderr)

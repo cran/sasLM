@@ -5,5 +5,5 @@ Max = function(y)
   y = y[!is.na(y)]
   n = length(y)
   if (n == 0) return(NA)
-  max(y)
+  max(y, na.rm=TRUE)
 }

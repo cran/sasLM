@@ -36,7 +36,7 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
 
 ## FITNESS
     fIntercept = attr(x$terms, "intercept")
-    MeanY = sum(Weights*mf0[, 1], na.rm=T)/sum(Weights) # original scale
+    MeanY = sum(Weights*mf0[, 1], na.rm=TRUE)/sum(Weights) # original scale
 
     Rsq = ANOVA["MODEL", "Sum Sq"]/ANOVA[3, "Sum Sq"] # Corrected total or uncorrected total
     RMSE = sqrt(ANOVA["RESIDUALS", "Mean Sq"])
@@ -71,7 +71,7 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
     LCL0 = Res0[, "Estimate"] - ConfBound
     UCL0 = Res0[, "Estimate"] + ConfBound
     Res0 = cbind(Res0, 'Lower CL'=LCL0, 'Upper CL'=UCL0)
-    Res0 = Res0[, c("Estimate", "Std. Error", "Df", "Lower CL", "Upper CL", "t value", "Pr(>|t|)"), drop=F]
+    Res0 = Res0[, c("Estimate", "Std. Error", "Df", "Lower CL", "Upper CL", "t value", "Pr(>|t|)"), drop=FALSE]
     class(Res0) = "anova"
 
     Result = list(ANOVA=ANOVA, Fitness=Fit, Coefficients=Res0)

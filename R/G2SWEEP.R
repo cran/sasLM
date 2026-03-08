@@ -10,10 +10,10 @@ G2SWEEP = function(A, Augmented=FALSE, eps=1e-8)
   }
   
   idx = abs(diag(A)) > eps
-  p = sum(idx, na.rm=T)
+  p = sum(idx, na.rm=TRUE)
   p0 = ifelse(Augmented, p - 1, p)
   if (p == 0 | p0 < 1) { A[, ] = 0 ; attr(A, "rank") = 0 ; return(A) }
-  B = A[idx, idx, drop=F]
+  B = A[idx, idx, drop=FALSE]
 
 #  if (!Augmented) {
 #    s = apply(B, 1, function(x) (max(abs(x))*min(abs(x[x!=0])))^(1/4))

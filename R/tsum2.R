@@ -38,7 +38,7 @@ tsum2 = function(d, y, l, u, e=c("Mean", "SD", "N"), h=NULL, ol="", ou="", rm.du
     }
 # Group Stat
     tV1 = d[d[,u] == cNames[j], y]
-    for (k in 1:length(h)) {
+    for (k in seq_along(h)) {
       cr = nr*ne + k
       if (rm.dup == TRUE & k > 1) {
         Res[cr, 1] = ""
@@ -60,13 +60,13 @@ tsum2 = function(d, y, l, u, e=c("Mean", "SD", "N"), h=NULL, ol="", ou="", rm.du
   }
 
 # Last Block
-  for (k in 1:length(h)) {
+  for (k in seq_along(h)) {
     Res[nr*ne + k, 3 + nc] = do.call(h[k], list(d[, y]))
   }
 
 # Relpace characters
   for (j in 1:2) {
-    for (k in 1:length(repl[[1]])) {
+    for (k in seq_along(repl[[1]])) {
       Res[Res[,j]==repl[[1]][k], j] = repl[[2]][k]
     }
   }
