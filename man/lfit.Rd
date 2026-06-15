@@ -2,27 +2,27 @@
 \alias{lfit}
 \title{Linear Fit}
 \description{
-  Fits a least square linear model.
+  Fits a least squares linear model.
 }
 \usage{
   lfit(x, y, eps=1e-8)
 }
 \arguments{
-  \item{x}{a result of ModelMatrix}
-  \item{y}{a column vector of response, dependent variable}
-  \item{eps}{Less than this value is considered as zero.}
+  \item{x}{a result of \code{ModelMatrix}}
+  \item{y}{a column vector of the response (dependent) variable}
+  \item{eps}{A value less than this is considered zero.}
 }
 \details{
-  Minimum version of least square fit of a linear model
+  A minimal version of the least squares fit of a linear model
 }
 \value{
-  \item{coeffcients}{beta coefficients}
+  \item{coefficients}{beta coefficients}
   \item{g2}{g2 inverse}
   \item{rank}{rank of the model matrix}
-  \item{DFr}{degree of freedom for the residual}
+  \item{DFr}{degrees of freedom for the residual}
   \item{SSE}{sum of squares error}
   \item{SST}{sum of squares total}
-  \item{DFr2}{degree of freedom of the residual for beta coefficient}
+  \item{DFr2}{degrees of freedom of the residual for the beta coefficient}
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{

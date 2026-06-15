@@ -2,20 +2,20 @@
 \alias{e3}
 \title{Get a Contrast Matrix for Type III SS}
 \description{
-  Makes a contrast matrix for type III SS.
+  Makes a contrast matrix for Type III SS.
 }
 \usage{
   e3(x, eps=1e-8)
 }
 \arguments{
-  \item{x}{an output of ModelMatrix}
-  \item{eps}{Less than this value is considered as zero.}
+  \item{x}{an output of \code{ModelMatrix}}
+  \item{eps}{A value less than this is considered zero.}
 }
 \details{
-  It makes a contrast matrix for type III SS. If zapsmall is used, the result becomes more inaccurate.
+  It makes a contrast matrix for Type III SS. If \code{zapsmall} is used, the result becomes less accurate.
 }
 \value{
-  A contrast matrix for type III SS.
+  A contrast matrix for Type III SS.
 }
 \examples{
   round(e3(ModelMatrix(uptake ~ Plant + Type + Treatment + conc, CO2)), 12)

@@ -8,13 +8,13 @@
   WhiteTest(rx)
 }
 \arguments{
-  \item{rx}{a result of lm}
+  \item{rx}{a result of \code{lm}}
 }
 \details{
-  This is also called as White's general test for heteroskedasticity.
+  This is also called White's general test for heteroskedasticity.
 }
 \value{
-  Returns a direct test result by more coomplex theorem 2 , not by simpler corollary 1.
+  Returns a direct test result by the more complex Theorem 2, not by the simpler Corollary 1.
 }
 \examples{
   WhiteTest(lm(mpg ~ disp, mtcars))

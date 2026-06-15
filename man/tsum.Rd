@@ -9,16 +9,16 @@
 }
 \arguments{
   \item{Formula}{a conventional formula}
-  \item{Data}{a data.frame or a matrix}
-  \item{ColNames}{If there is no Formula, this will be used.}
-  \item{MaxLevel}{More than this will not be handled.}
+  \item{Data}{a \code{data.frame} or a matrix}
+  \item{ColNames}{If there is no \code{Formula}, this will be used.}
+  \item{MaxLevel}{An independent variable with more levels than this will not be handled.}
   \item{...}{arguments to be passed to \code{tsum0}, \code{tsum1}, \code{tsum2}, or \code{tsum3}}
 }
 \details{
-  A convenient summarization function for a continuous variable. This is a wrapper function to \code{tsum0}, \code{tsum1}, \code{tsum2}, or \code{tsum3}.
+  A convenient summarization function for a continuous variable. This is a wrapper function for \code{tsum0}, \code{tsum1}, \code{tsum2}, or \code{tsum3}.
 }
 \value{
-  A data.frame of descriptive summarization values. 
+  A \code{data.frame} of descriptive summarization values.
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{\code{\link{tsum0}}, \code{\link{tsum1}}, \code{\link{tsum2}}, \code{\link{tsum3}}}

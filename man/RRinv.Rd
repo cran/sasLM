@@ -2,25 +2,24 @@
 \alias{RRinv}
 \title{Relative Risk of two groups with strata by inverse variance method}
 \description{
-  Relative risk and its score confidence interval of two groups with stratification by inverse variance method
+  Relative risk and its confidence interval of two groups with stratification by the inverse variance method
 }
 \usage{
   RRinv(d0, conf.level=0.95)
 }
 \arguments{
-  \item{d0}{A data.frame or matrix, of which each row means a stratum. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each stratum. The second group is usually the control group.}
+  \item{d0}{A \code{data.frame} or matrix, of which each row represents a stratum. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for the sample size of each stratum. The second group is usually the control group.}
   \item{conf.level}{confidence level}
 }
 \details{
-  It calculates relative risk and its confidence interval of two groups by inverse variance method. This supports stratification. This can be used for meta-analysis also.
+  It calculates the relative risk and its confidence interval of two groups by the inverse variance method on the log scale. The common relative risk is given by both the fixed effect model and the DerSimonian-Laird random effects model, with Cochran's Q test for heterogeneity. This can be used for meta-analysis also.
 }
 \value{
-  The following output will be returned for each stratum and common value. There is no standard error.
-  \item{p1}{proportion from the first group, y1/n1}
-  \item{p2}{proportion from the second group, y2/n2}
-  \item{RR}{relative risk, p1/p2. The point estimate of common RR is calculated with MH weight.}
-  \item{lower}{lower confidence limit of RR}
-  \item{upper}{upper confidence limit of RR}
+  \item{RRs}{relative risk, its confidence interval, and the percent weights (pwi for the fixed effect model, pwsi for the random effects model) of each stratum}
+  \item{Heterogeneity}{Cochran's Q statistic for heterogeneity across the strata and its p-value}
+  \item{tau2}{between-strata variance estimated by the method of moments}
+  \item{Fixed}{common relative risk and its confidence interval by the fixed effect model with the inverse variance weights}
+  \item{Random}{common relative risk and its confidence interval by the DerSimonian-Laird random effects model}
 }
 \examples{
   d1 = matrix(c(25, 339, 28, 335, 23, 370, 40, 364), nrow=2, byrow=TRUE)

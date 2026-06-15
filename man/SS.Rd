@@ -11,13 +11,13 @@
   \item{x}{a result of \code{ModelMatrix} containing design information}
   \item{rx}{a result of \code{lfit}}
   \item{L}{linear hypothesis, a full matrix matching the information in \code{x}}
-  \item{eps}{Less than this value is considered as zero.}  
+  \item{eps}{Values less than this are considered as zero.}
 }
 \details{
-  It calculates sum of squares and completes the ANOVA table.
+  It calculates the sum of squares and completes the ANOVA table.
 }
 \value{
-  \item{ANOVA table}{a classical ANOVA table without the residual(Error) part.}
+  \item{ANOVA table}{a classical ANOVA table without the residual (Error) part.}
 }
 \seealso{
   \code{\link{ModelMatrix}},

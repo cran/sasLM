@@ -2,23 +2,23 @@
 \alias{Pcor.test}
 \title{Partial Correlation test of multiple columns}
 \description{
-  Testing partial correlation between many columns of data with Pearson method.
+  Testing partial correlation between many columns of data with the Pearson method.
 }
 \usage{
   Pcor.test(Data, x, y)
 }
 \arguments{
-  \item{Data}{a numeric matrix or data.frame}
+  \item{Data}{a numeric matrix or \code{data.frame}}
   \item{x}{names of columns to be tested}
   \item{y}{names of control columns}
 }
 \details{
-  It performs multiple partial correlation test. It uses "complete.obs" rows of x and y columns.
+  It performs multiple partial correlation tests. It uses "complete.obs" rows of the x and y columns.
 }
 \value{
-  Row names show which columns are used for the test
+  Row names show which columns are used for the test.
   \item{Estimate}{point estimate of correlation}
-  \item{Df}{degree of freedom}
+  \item{Df}{degrees of freedom}
   \item{t value}{t value of the t distribution}
   \item{Pr(>|t|)}{probability with the t distribution}
 }

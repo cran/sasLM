@@ -2,7 +2,7 @@
 \alias{Mean}
 \title{Mean without NA}
 \description{
-  mean without \code{NA} values.
+  Mean without \code{NA} values.
 }
 \usage{
   Mean(y)
@@ -11,7 +11,7 @@
   \item{y}{a vector of numerics}
 }
 \details{
-  It removes \code{NA} in the input vector. 
+  It removes \code{NA} values from the input vector.
 }
 \value{
   mean value

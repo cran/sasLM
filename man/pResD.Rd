@@ -2,20 +2,20 @@
 \alias{pResD}
 \title{Residual Diagnostic Plot for Regression}
 \description{
-  Nine residual diagnostics plots.
+  Nine residual diagnostic plots.
 }
 \usage{
   pResD(rx, Title=NULL)
 }
 \arguments{
-  \item{rx}{a result of lm, which can give \code{fitted}, \code{residuals}, and \code{rstandard}.}
+  \item{rx}{a result of \code{lm}, which can give \code{fitted}, \code{residuals}, and \code{rstandard}.}
   \item{Title}{title to be printed on the plot}
 }
 \details{
   SAS-style residual diagnostic plots.
 }
 \value{
-  Nine residual diagnostic plots in a page.
+  Nine residual diagnostic plots on a page.
 }
 \examples{
   pResD(lm(uptake ~ Plant + Type + Treatment + conc, CO2), "Residual Diagnostic Plot")

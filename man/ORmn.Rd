@@ -1,6 +1,6 @@
 \name{ORmn}
 \alias{ORmn}
-\title{Odds Ratio and Score CI of two groups with strata by MN method}
+\title{Odds Ratio and Score CI of two groups with strata by the MN method}
 \description{
   Odds ratio and its score confidence interval of two groups with stratification by the Miettinen and Nurminen method
 }
@@ -8,18 +8,18 @@
   ORmn(d0, conf.level=0.95, eps=1e-8)
 }
 \arguments{
-  \item{d0}{A data.frame or matrix, of which each row means a strata. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each strata. The second group is usually the control group.}
+  \item{d0}{A \code{data.frame} or matrix, of which each row means a stratum. This should have four columns named y1, n1, y2, and n2; y1 and y2 for events of each group, n1 and n2 for sample size of each stratum. The second group is usually the control group.}
   \item{conf.level}{confidence level}
   \item{eps}{absolute value less than eps is regarded as negligible}
 }
 \details{
-  It calculates odds ratio and its score confidence interval of the two groups. The confidence interval is asymmetric, and there is no standard error in the output. This supports stratification. This implementation uses uniroot function, which usually gives at least 5 significant digits. Whereas PropCIs::orscoreci function uses incremental or decremental search by the factor of 1.001 which gives only about 3 significant digits. This can be used for meta-analysis also.
+  It calculates the common odds ratio and its score confidence interval of two groups with stratification. The confidence interval is asymmetric, and there is no standard error in the output. For the stratified case, the inverse variance weighted score statistic with the bias correction is used, following Laud. The common odds ratio point estimate is the zero of the weighted score statistic, and the confidence bounds are found with the \code{uniroot} function. The result agrees with \code{ratesci::scoreci(contrast="OR", stratified=TRUE, skew=FALSE)} to at least 7 significant digits. For a single stratum, it returns the classical Miettinen-Nurminen interval of \code{\link{ORmn1}}. This can be used for meta-analysis also.
 }
 \value{
   The following output will be returned for each stratum and common value. There is no standard error.
-  \item{odd1}{odd from the first group, y1/(n1 - y1)}
-  \item{odd2}{odd from the second group, y2/(n2 - y2)}
-  \item{OR}{odds ratio, odd1/odd2. The point estimate of common OR is calculated with MN weight.}
+  \item{odd1}{odds from the first group, y1/(n1 - y1). For the common value, it is calculated with the weights at the point estimate.}
+  \item{odd2}{odds from the second group, y2/(n2 - y2). For the common value, it is calculated with the weights at the point estimate.}
+  \item{OR}{odds ratio of the stratum. The common OR is the zero of the inverse variance weighted score statistic.}
   \item{lower}{lower confidence limit of OR}
   \item{upper}{upper confidence limit of OR}
 }
@@ -35,6 +35,8 @@
 }
 \references{
   Miettinen O, Nurminen M. Comparative analysis of two rates. Stat Med 1985;4:213-26
+
+  Laud PJ. Equal-tailed confidence intervals for comparison of rates. Pharmaceutical Statistics 2017;16:334-348
 }
 \keyword{2x2 Table}
 \author{Kyun-Seop Bae k@acr.kr}

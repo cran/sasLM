@@ -2,7 +2,7 @@
 \alias{N}
 \title{Number of observations}
 \description{
-  Number of observations excluding \code{NA} values
+  Number of observations excluding \code{NA} values.
 }
 \usage{
   N(y)
@@ -11,9 +11,9 @@
   \item{y}{a vector of numerics}
 }
 \details{
-  It removes \code{NA} in the input vector. 
+  It removes \code{NA} values from the input vector.
 }
 \value{
-  Count of the observation
+  Count of the observations
 }
 \author{Kyun-Seop Bae k@acr.kr}

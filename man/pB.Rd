@@ -9,18 +9,18 @@
 }
 \arguments{
   \item{Formula}{a formula}
-  \item{Data}{a data.frame}
+  \item{Data}{a \code{data.frame}}
   \item{Resol}{resolution for the output}
   \item{conf.level}{confidence level}
-  \item{lx}{x position of legend}
-  \item{ly}{y position of legend}
+  \item{lx}{x position of the legend}
+  \item{ly}{y position of the legend}
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
-  It plots. Discard return values. If \code{lx} or \code{ly} is missing, the legend position is calculated automatically.
+  It plots. Discard the return values. If \code{lx} or \code{ly} is missing, the legend position is calculated automatically.
 }
 \value{
-  Ignore return values.
+  Ignore the return values.
 }
 \examples{
   pB(hp ~ disp, mtcars)

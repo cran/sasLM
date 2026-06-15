@@ -8,15 +8,15 @@
   RDmn1(y1, n1, y2, n2, conf.level=0.95, eps=1e-8)
 }
 \arguments{
-  \item{y1}{positive event count of test (the first) group}
-  \item{n1}{total count of the test (the first) group. Maximum allowable value is 1e8.}
-  \item{y2}{positive event count of control (the second) group}
-  \item{n2}{total count of control (the second) group. Maximum allowable value is 1e8.}
+  \item{y1}{positive event count of the test (the first) group}
+  \item{n1}{total count of the test (the first) group. The maximum allowable value is 1e8.}
+  \item{y2}{positive event count of the control (the second) group}
+  \item{n2}{total count of the control (the second) group. The maximum allowable value is 1e8.}
   \item{conf.level}{confidence level}
-  \item{eps}{absolute value less than eps is regarded as negligible}  
+  \item{eps}{an absolute value less than eps is regarded as negligible}
 }
 \details{
-  It calculates risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need percent scale, multiply the output by 100. This does not support stratification. This implementation uses uniroot function which usually gives at least 5 significant digits.
+  It calculates the risk difference and its score confidence interval between the two groups. The confidence interval is asymmetric, and there is no standard error in the output. If you need the percent scale, multiply the output by 100. This does not support stratification. This implementation uses the \code{uniroot} function, which usually gives at least 5 significant digits.
 }
 \value{
   There is no standard error.

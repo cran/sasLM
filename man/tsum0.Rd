@@ -1,17 +1,17 @@
 \name{tsum0}
 \alias{tsum0}
-\title{Table Summary 0 independent(x) variable}
+\title{Table Summary with 0 independent (x) variables}
 \description{
-  Summarize a continuous dependent(y) variable without any independent(x) variable.   
+  Summarize a continuous dependent (y) variable without any independent (x) variable.
 }
 \usage{
   tsum0(d, y, e=c("Mean", "SD", "N"), repl=list(c("length"), c("n")))
 }
 \arguments{
-  \item{d}{a data.frame or matrix with colnames}
+  \item{d}{a \code{data.frame} or matrix with column names}
   \item{y}{y variable name, a continuous variable}
-  \item{e}{a vector of summarize function names}
-  \item{repl}{list of strings to replace after summarize. The length of list should be 2, and both should have the same length.}
+  \item{e}{a vector of summary function names}
+  \item{repl}{a list of strings to replace after summarization. The length of the list should be 2, and both elements should have the same length.}
 }
 \details{
   A convenient summarization function for a continuous variable.

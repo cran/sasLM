@@ -2,7 +2,7 @@
 \alias{EMS}
 \title{Expected Mean Square Formula}
 \description{
-  Calculates a formula table for expected mean square of the given contrast. The default is for Type III SS.
+  Calculates a formula table for the expected mean square of the given contrast. The default is for Type III SS.
 }
 \usage{
   EMS(Formula, Data, Type=3, eps=1e-8)
@@ -11,7 +11,7 @@
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{Type}{type of sum of squares. The default is 3. Type 4 is not supported yet.}
-  \item{eps}{Less than this value is considered as zero.}  
+  \item{eps}{A value less than this is considered zero.}
 }
 \details{
   This is necessary for further hypothesis tests of nesting factors.

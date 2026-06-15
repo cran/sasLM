@@ -2,7 +2,7 @@
 \alias{tmtest}
 \title{Independent two means test similar to t.test with summarized input}
 \description{
-  This produces essentially the same to t.test except using summarized input (sufficient statistics).
+  This produces essentially the same result as \code{t.test}, except using summarized input (sufficient statistics).
 }
 \usage{
   tmtest(m1, s1, n1, m0, s0, n0, conf.level=0.95, nullHypo=0, var.equal=FALSE)
@@ -15,14 +15,14 @@
   \item{s0}{sample standard deviation of the second group}
   \item{n0}{sample size of the second group}
   \item{conf.level}{confidence level}
-  \item{nullHypo}{value for the difference of means under null hypothesis}
+  \item{nullHypo}{value for the difference of means under the null hypothesis}
   \item{var.equal}{assumption on the variance equality}
 }
 \details{
-  The default is Welch t-test with Satterthwaite approximation.
+  The default is the Welch t-test with the Satterthwaite approximation.
 }
 \value{
-  The output format is very similar to t.test
+  The output format is very similar to that of \code{t.test}.
 }
 \examples{
   tmtest(5.4, 10.5, 3529, 5.1, 8.9, 5190) # NEJM 388;15 p1386

@@ -21,7 +21,7 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
     C1 = y1 + y2
     p2t = (B - sqrt(B*B - 4*A*C1))/(2*A)
     p1t = p2t*rr
-    return(cbind(p1 = p2t*rr, p2 = p2t))
+    return(cbind(p1 = p1t, p2 = p2t))
   }
 
   wrr = function(rr, MaxIter=50) {
@@ -62,9 +62,9 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
   if (RR < eps) {
     lower = 0
   } else {
-    lower = suppressWarnings(uniroot(Obj, interval=c(eps, RR - eps))$root)
+    lower = suppressWarnings(uniroot(Obj, interval=c(eps, RR - eps), tol=1e-10)$root)
   }
-  upper = suppressWarnings(uniroot(Obj, interval=c(RR + eps, 1e9))$root)
+  upper = suppressWarnings(uniroot(Obj, interval=c(RR + eps, 1e9), tol=1e-10)$root)
 
   for (i in 2:nr) {
     Res1 = rbind(Res1, RRmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))
@@ -77,3 +77,4 @@ RRmn = function(d0, conf.level=0.95, eps=1e-8)
 
   return(Res1)
 }
+

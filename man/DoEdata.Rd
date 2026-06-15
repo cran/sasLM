@@ -47,7 +47,7 @@
   Example Datasets
 }
 \description{
-  Contains data frames to be used for textbooks
+  Contains data frames to be used for textbooks.
 }
 \details{
   This contains datasets for textbooks.

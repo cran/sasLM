@@ -21,9 +21,6 @@ EMS = function(Formula, Data, Type=3, eps=1e-8)
               "3" = e3(x, eps=eps),
               stop(paste("Type", Type, "is not supported!")))
 
-  r0 = lfit(x, y)
-  b = r0$coefficients
-
   Res = matrix(nrow=nTerm, ncol=nTerm)
   rownames(Res) = Terms
   colnames(Res) = Terms

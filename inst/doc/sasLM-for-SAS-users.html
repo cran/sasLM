@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Kyun-Seop Bae" />
+
+
+<title>sasLM for SAS Users</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">sasLM for SAS Users</h1>
+<h4 class="author">Kyun-Seop Bae</h4>
+
+
+
+<div id="why-saslm" class="section level2">
+<h2>Why sasLM?</h2>
+<p>Many statisticians move between SAS and R, and they expect the
+<em>same numbers</em> from both. For unbalanced or complex designs,
+however, popular R functions often produce sums of squares, standard
+errors, or least squares means that differ from those of SAS PROC GLM.
+The differences are not necessarily errors - they come from different
+conventions (types of sums of squares, coding of singular designs,
+denominators, quantile definitions, and so on).</p>
+<p><code>sasLM</code> implements the conventions of SAS so that the
+results match SAS PROC GLM, REG, ANOVA, TTEST, FREQ (2x2 tables), and
+UNIVARIATE. The package is written in base R with only
+<code>mvtnorm</code> as an additional dependency, and its results have
+been validated against SAS outputs and the textbooks listed in
+<code>?sasLM</code>.</p>
+</div>
+<div id="procedure-to-function-map" class="section level2">
+<h2>Procedure-to-function map</h2>
+<table>
+<colgroup>
+<col width="42%" />
+<col width="57%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>SAS</th>
+<th>sasLM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PROC GLM</td>
+<td><code>GLM</code>, <code>aov1</code>, <code>aov2</code>,
+<code>aov3</code>, <code>EMS</code></td>
+</tr>
+<tr class="even">
+<td>PROC GLM SOLUTION</td>
+<td><code>GLM(..., BETA=TRUE)</code>, <code>REG</code></td>
+</tr>
+<tr class="odd">
+<td>PROC GLM LSMEANS</td>
+<td><code>LSM</code>, <code>GLM(..., EMEAN=TRUE)</code></td>
+</tr>
+<tr class="even">
+<td>PROC GLM LSMEANS / PDIFF</td>
+<td><code>PDIFF</code>, <code>Diffogram</code></td>
+</tr>
+<tr class="odd">
+<td>PROC GLM ESTIMATE/CONTRAST</td>
+<td><code>est</code>, <code>ESTM</code>, <code>CIest</code>,
+<code>CONTR</code></td>
+</tr>
+<tr class="even">
+<td>PROC GLM RANDOM / TEST</td>
+<td><code>RanTest</code>, <code>EMS</code>, <code>T3test</code></td>
+</tr>
+<tr class="odd">
+<td>PROC GLM SLICE</td>
+<td><code>SLICE</code></td>
+</tr>
+<tr class="even">
+<td>PROC REG</td>
+<td><code>REG</code>, <code>lr</code>, <code>lr0</code>,
+<code>regD</code>, <code>Coll</code></td>
+</tr>
+<tr class="odd">
+<td>PROC ANOVA</td>
+<td><code>aov1</code></td>
+</tr>
+<tr class="even">
+<td>PROC TTEST</td>
+<td><code>TTEST</code>, <code>tmtest</code>, <code>mtest</code>,
+<code>vtest</code></td>
+</tr>
+<tr class="odd">
+<td>PROC UNIVARIATE</td>
+<td><code>UNIV</code> and the descriptive functions</td>
+</tr>
+<tr class="even">
+<td>PROC FREQ (2x2, stratified)</td>
+<td><code>RD</code>, <code>RR</code>, <code>OR</code>,
+<code>RDmn</code>, <code>RRmn</code>, <code>ORmn</code>,
+<code>ORcmh</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="proc-glm" class="section level2">
+<h2>PROC GLM</h2>
+<p>The SAS code</p>
+<pre><code>PROC GLM DATA=np;
+  CLASS block N P K;
+  MODEL yield = block N*P*K / SOLUTION;
+  LSMEANS N*P / CL;
+RUN;</code></pre>
+<p>corresponds to:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">GLM</span>(yield <span class="sc">~</span> block <span class="sc">+</span> N<span class="sc">*</span>P<span class="sc">*</span>K, npk)</span></code></pre></div>
+<pre><code>$ANOVA
+Response : yield
+                Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+MODEL           11 691.08  62.825  4.0688 0.01156 *
+RESIDUALS       12 185.29  15.441                  
+CORRECTED TOTAL 23 876.37                          
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$Fitness
+ Root MSE yield Mean Coef Var  R-square  Adj R-sq
+ 3.929447     54.875 7.160724 0.7885736 0.5947661
+
+$`Type I`
+      Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+block  5 343.29  68.659  4.4467 0.015939 * 
+N      1 189.28 189.282 12.2587 0.004372 **
+P      1   8.40   8.402  0.5441 0.474904   
+N:P    1  21.28  21.282  1.3783 0.263165   
+K      1  95.20  95.202  6.1657 0.028795 * 
+N:K    1  33.14  33.135  2.1460 0.168648   
+P:K    1   0.48   0.482  0.0312 0.862752   
+N:P:K  0                                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$`Type II`
+      Df  Sum Sq Mean Sq F value   Pr(&gt;F)   
+block  4 306.293  76.573  4.9592 0.013587 * 
+N      1 189.282 189.282 12.2587 0.004372 **
+P      1   8.402   8.402  0.5441 0.474904   
+N:P    1  21.282  21.282  1.3783 0.263165   
+K      1  95.202  95.202  6.1657 0.028795 * 
+N:K    1  33.135  33.135  2.1460 0.168648   
+P:K    1   0.482   0.482  0.0312 0.862752   
+N:P:K  0                                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$`Type III`
+CAUTION: Singularity Exists !
+      Df  Sum Sq Mean Sq F value   Pr(&gt;F)   
+block  4 306.293  76.573  4.9592 0.013587 * 
+N      1 189.282 189.282 12.2587 0.004372 **
+P      1   8.402   8.402  0.5441 0.474904   
+N:P    1  21.282  21.282  1.3783 0.263165   
+K      1  95.202  95.202  6.1657 0.028795 * 
+N:K    1  33.135  33.135  2.1460 0.168648   
+P:K    1   0.482   0.482  0.0312 0.862752   
+N:P:K  0                                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><code>GLM</code> returns the overall ANOVA, fit statistics, and the
+Type I, II, and III tables in one call. Note the agreement with SAS for
+this unbalanced design - this is the core purpose of the package.</p>
+<p>Coefficients as with the SOLUTION option:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">GLM</span>(yield <span class="sc">~</span> block <span class="sc">+</span> N<span class="sc">*</span>P<span class="sc">*</span>K, npk, <span class="at">BETA=</span><span class="cn">TRUE</span>)<span class="sc">$</span>Parameter</span></code></pre></div>
+<pre><code>            Estimate Estimable Std. Error Df t value  Pr(&gt;|t|)    
+(Intercept)   54.600         0     2.7785 12 19.6506 1.713e-10 ***
+block1        -2.325         0     2.7785 12 -0.8368   0.41907    
+block2         1.100         0     2.7785 12  0.3959   0.69913    
+block3         4.425         0     2.7785 12  1.5926   0.13724    
+block4        -6.225         0     2.7785 12 -2.2404   0.04477 *  
+block5        -5.825         0     2.7785 12 -2.0964   0.05791 .  
+block6         0.000         0     0.0000 12                      
+N0            -1.383         0     2.7785 12 -0.4979   0.62758    
+N1             0.000         0     0.0000 12                      
+P0             2.783         0     2.7785 12  1.0017   0.33625    
+P1             0.000         0     0.0000 12                      
+N0:P0         -3.767         0     3.2084 12 -1.1740   0.26317    
+N0:P1          0.000         0     0.0000 12                      
+N1:P0          0.000         0     0.0000 12                      
+N1:P1          0.000         0     0.0000 12                      
+K0             6.050         0     2.7785 12  2.1774   0.05013 .  
+K1             0.000         0     0.0000 12                      
+N0:K0         -4.700         0     3.2084 12 -1.4649   0.16865    
+N0:K1          0.000         0     0.0000 12                      
+N1:K0          0.000         0     0.0000 12                      
+N1:K1          0.000         0     0.0000 12                      
+P0:K0          0.567         0     3.2084 12  0.1766   0.86275    
+P0:K1          0.000         0     0.0000 12                      
+P1:K0          0.000         0     0.0000 12                      
+P1:K1          0.000         0     0.0000 12                      
+N0:P0:K0       0.000         0     0.0000 12                      
+N0:P0:K1       0.000         0     0.0000 12                      
+N0:P1:K0       0.000         0     0.0000 12                      
+N0:P1:K1       0.000         0     0.0000 12                      
+N1:P0:K0       0.000         0     0.0000 12                      
+N1:P0:K1       0.000         0     0.0000 12                      
+N1:P1:K0       0.000         0     0.0000 12                      
+N1:P1:K1       0.000         0     0.0000 12                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Least squares means with confidence limits:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">LSM</span>(weight <span class="sc">~</span> feed, chickwts, <span class="st">&quot;feed&quot;</span>)</span></code></pre></div>
+<pre><code>          Group   LSmean  LowerCL  UpperCL       SE Df
+sunflower  A    328.9167 297.2942 360.5392 15.83391 65
+casein     A    323.5833 291.9608 355.2058 15.83391 65
+meatmeal    B   276.9091 243.8805 309.9377 16.53798 65
+soybean     BC  246.4286 217.1518 275.7053 14.65936 65
+linseed      C  218.7500 187.1275 250.3725 15.83391 65
+horsebean     D 160.2000 125.5593 194.8407 17.34518 65</code></pre>
+<p>Pairwise differences as with LSMEANS / PDIFF, including the Tukey
+adjustment:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">PDIFF</span>(weight <span class="sc">~</span> feed, chickwts, <span class="st">&quot;feed&quot;</span>, <span class="at">adj=</span><span class="st">&quot;tukey&quot;</span>)</span></code></pre></div>
+<pre><code>                      Estimate Lower CL Upper CL Std. Error t value Df  Pr(&gt;|t|)    
+casein - horsebean     163.383   94.420  232.347     23.485  6.9568 65 3.070e-08 ***
+casein - linseed       104.833   39.079  170.587     22.392  4.6816 65 0.0002100 ***
+casein - meatmeal       46.674  -20.558  113.906     22.896  2.0386 65 0.3324584    
+casein - soybean        77.155   13.792  140.517     21.578  3.5756 65 0.0083653 ** 
+casein - sunflower      -5.333  -71.087   60.421     22.392 -0.2382 65 0.9998902    
+horsebean - linseed    -58.550 -127.514   10.414     23.485 -2.4930 65 0.1413329    
+horsebean - meatmeal  -116.709 -187.083  -46.335     23.966 -4.8698 65 0.0001062 ***
+horsebean - soybean    -86.229 -152.915  -19.542     22.710 -3.7969 65 0.0042167 ** 
+horsebean - sunflower -168.717 -237.680  -99.753     23.485 -7.1839 65 1.220e-08 ***
+linseed - meatmeal     -58.159 -125.391    9.073     22.896 -2.5402 65 0.1276965    
+linseed - soybean      -27.679  -91.041   35.684     21.578 -1.2827 65 0.7932853    
+linseed - sunflower   -110.167 -175.921  -44.413     22.392 -4.9198 65 8.843e-05 ***
+meatmeal - soybean      30.481  -34.414   95.375     22.100  1.3792 65 0.7391356    
+meatmeal - sunflower   -52.008 -119.240   15.224     22.896 -2.2715 65 0.2206962    
+soybean - sunflower    -82.488 -145.850  -19.126     21.578 -3.8228 65 0.0038845 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>The Dunnett test uses the first level as the control when
+<code>ref</code> is not given, as SAS does:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">PDIFF</span>(weight <span class="sc">~</span> feed, chickwts, <span class="st">&quot;feed&quot;</span>, <span class="at">adj=</span><span class="st">&quot;dunnett&quot;</span>)</span></code></pre></div>
+<pre><code>                   Estimate Lower CL Upper CL Std. Error t value Df  Pr(&gt;|t|)    
+horsebean - casein -163.383 -223.959 -102.808     23.485 -6.9568 65 4.559e-09 ***
+linseed - casein   -104.833 -162.590  -47.077     22.392 -4.6816 65 6.376e-05 ***
+meatmeal - casein   -46.674 -105.728   12.380     22.896 -2.0386 65   0.16711    
+soybean - casein    -77.155 -132.810  -21.500     21.578 -3.5756 65   0.00304 ** 
+sunflower - casein    5.333  -52.423   63.090     22.392  0.2382 65   0.99945    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="expected-mean-squares-and-random-effects" class="section level2">
+<h2>Expected mean squares and random effects</h2>
+<p><code>EMS</code> produces the expected mean squares table, and
+<code>RanTest</code> performs the tests with a random factor as the
+RANDOM / TEST statement of SAS PROC GLM:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">EMS</span>(yield <span class="sc">~</span> block <span class="sc">+</span> N<span class="sc">*</span>P<span class="sc">*</span>K, npk)</span></code></pre></div>
+<pre><code>      block  N  P  K N:P N:K P:K N:P:K
+block     4  0  0  0   0   0   0     0
+N         0 12  0  0   6   6   0     3
+P         0  0 12  0   6   0   6     3
+K         0  0  0 12   0   6   6     3
+N:P       0  0  0  0   6   0   0     3
+N:K       0  0  0  0   0   6   0     3
+P:K       0  0  0  0   0   0   6     3
+N:P:K     0  0  0  0   0   0   0     0</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">RanTest</span>(yield <span class="sc">~</span> block <span class="sc">+</span> N<span class="sc">*</span>P<span class="sc">*</span>K, npk, <span class="at">Random=</span><span class="st">&quot;block&quot;</span>)</span></code></pre></div>
+<pre><code>$ANOVA
+      Df  Sum Sq Mean Sq F value   Pr(&gt;F)   
+block  4 306.293  76.573  4.9592 0.013587 * 
+N      1 189.282 189.282 12.2587 0.004372 **
+P      1   8.402   8.402  0.5441 0.474904   
+K      1  95.202  95.202  6.1657 0.028795 * 
+N:P    1  21.282  21.282  1.3783 0.263165   
+N:K    1  33.135  33.135  2.1460 0.168648   
+P:K    1   0.482   0.482  0.0312 0.862752   
+N:P:K  0                                    
+Error 12 185.287  15.441                    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$EMS
+      block N P K N:P N:K P:K N:P:K eps
+block     4                           1
+N           Q       Q   Q         Q   1
+P             Q     Q       Q     Q   1
+K               Q       Q   Q     Q   1
+N:P                 Q             Q   1
+N:K                     Q         Q   1
+P:K                         Q     Q   1
+N:P:K                                 1
+
+attr(,&quot;Caution&quot;)
+[1] &quot;Test assumption: Q&#39;s in the corresponding EMS row are 0.&quot;</code></pre>
+</div>
+<div id="proc-reg" class="section level2">
+<h2>PROC REG</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">REG</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp, mtcars)</span></code></pre></div>
+<pre><code>$ANOVA
+Response : mpg
+                Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+MODEL            2  931.00  465.50  69.211 9.109e-12 ***
+RESIDUALS       29  195.05    6.73                      
+CORRECTED TOTAL 31 1126.05                              
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$Fitness
+ Root MSE mpg Mean Coef Var  R-square  Adj R-sq    PRESS    R2pred
+ 2.593412 20.09062 12.90857 0.8267855 0.8148396 246.5063 0.7810871
+
+$Coefficients
+            Estimate Std. Error Df Lower CL Upper CL t value  Pr(&gt;|t|)    
+(Intercept)   37.227    1.59879 29   33.957   40.497 23.2847 &lt; 2.2e-16 ***
+wt            -3.878    0.63273 29   -5.172   -2.584 -6.1287  1.12e-06 ***
+hp            -0.032    0.00903 29   -0.050   -0.013 -3.5187  0.001451 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Heteroscedasticity-consistent standard errors (HC0, HC3) and White’s
+test:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">REG</span>(mpg <span class="sc">~</span> wt, mtcars, <span class="at">HC=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>$ANOVA
+Response : mpg
+                Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+MODEL            1  847.73  847.73  91.375 1.294e-10 ***
+RESIDUALS       30  278.32    9.28                      
+CORRECTED TOTAL 31 1126.05                              
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$Fitness
+ Root MSE mpg Mean Coef Var  R-square  Adj R-sq    PRESS    R2pred
+ 3.045882 20.09062 15.16071 0.7528328 0.7445939 328.0228 0.7086954
+
+$Coefficients
+            Estimate Std. Error Df Lower CL Upper CL t value  Pr(&gt;|t|)    
+(Intercept)   37.285     1.8776 30   33.450   41.120  19.858 &lt; 2.2e-16 ***
+wt            -5.344     0.5591 30   -6.486   -4.203  -9.559 1.294e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$HC0
+            Estimate Std. Error Df Lower CL Upper CL t value  Pr(&gt;|t|)    
+(Intercept)   37.285     2.1253 30   32.945   41.626 17.5436 &lt; 2.2e-16 ***
+wt            -5.344     0.6337 30   -6.639   -4.050 -8.4337 2.062e-09 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$HC3
+            Estimate Std. Error Df Lower CL Upper CL t value  Pr(&gt;|t|)    
+(Intercept)   37.285    2.42678 30   32.329   42.241 15.3640 8.882e-16 ***
+wt            -5.344    0.73811 30   -6.852   -3.837 -7.2408 4.636e-08 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$`White Test`
+    Chisq        Df         p 
+1.0546002 2.0000000 0.5901963 </code></pre>
+<p>Weighted least squares follows the SAS WEIGHT statement: observations
+with nonpositive weights are excluded, and <code>Resid=TRUE</code>
+returns fitted values and residuals in the original scale as OUTPUT P=
+R= does.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>w <span class="ot">=</span> mtcars<span class="sc">$</span>cyl</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">REG</span>(mpg <span class="sc">~</span> wt <span class="sc">+</span> hp, mtcars, <span class="at">Weights=</span>w, <span class="at">Resid=</span><span class="cn">TRUE</span>)<span class="sc">$</span>Fitted)</span></code></pre></div>
+<pre><code>[1] 23.16925 22.25023 24.76409 21.02487 18.25006 20.29296</code></pre>
+</div>
+<div id="proc-ttest" class="section level2">
+<h2>PROC TTEST</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">TTEST</span>(mtcars<span class="sc">$</span>mpg[mtcars<span class="sc">$</span>am<span class="sc">==</span><span class="dv">0</span>], mtcars<span class="sc">$</span>mpg[mtcars<span class="sc">$</span>am<span class="sc">==</span><span class="dv">1</span>])</span></code></pre></div>
+<pre><code>$`Statistics by group`
+            Mean       SD  N       SEM      LCL      UCL
+Test    17.14737 3.833966 19 0.8795722 15.29946 18.99528
+Control 24.39231 6.166504 13 1.7102804 20.66593 28.11869
+
+$`Two groups t-test for the difference of means`
+Choose one row according to the variance equality assumption.
+                     PE     SE     Df     LCL     UCL t value Pr(&gt;|t|)    
+If Equal Var.   -7.2449 1.7644 30.000 -10.848 -3.6415 -4.1061 0.000285 ***
+If Unequal Var. -7.2449 1.9232 18.332 -11.280 -3.2097 -3.7671 0.001374 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+$`Variance confidence intervals by group`
+        Variance    VarLCL    VarUCL
+Test    14.69930  8.392571  32.14622
+Control 38.02577 19.553319 103.61743
+
+$`F-test for the ratio of variances`
+                PE     LCL    UCL Num Df Denom Df F value  Pr(&gt;F)  
+Var. Ratio 0.38656 0.12437 1.0703     18       12  0.3866 0.06691 .
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>With summarized input (mean, SD, n) only:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">tmtest</span>(<span class="fl">5.4</span>, <span class="fl">2.2</span>, <span class="dv">30</span>, <span class="fl">4.8</span>, <span class="fl">2.0</span>, <span class="dv">28</span>)</span></code></pre></div>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  mean of the test (m1) and mean of the control (m0)
+t = 1.0879, df = 55.965, p-value = 0.2813
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.504872  1.704872
+sample estimates:
+   Test Control 
+    5.4     4.8 </code></pre>
+</div>
+<div id="proc-univariate" class="section level2">
+<h2>PROC UNIVARIATE</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="fu">UNIV</span>(mtcars<span class="sc">$</span>mpg)</span></code></pre></div>
+<pre><code>         nAll           nNA       nFinite          Mean      Variance            SD            CV 
+  32.00000000    0.00000000   32.00000000   20.09062500   36.32410282    6.02694805   29.99880816 
+          SEM       LowerCL       UpperCL   TrimmedMean           Min            Q1        Median 
+   1.06542396   17.91767851   22.26357149   19.95333333   10.40000000   15.35000000   19.20000000 
+           Q3           Max         Range           IQR           MAD         VarLL         VarUL 
+  22.80000000   33.90000000   23.50000000    7.45000000    5.41149000   23.34652855   64.20343072 
+     Skewness    SkewnessSE      Kurtosis    KurtosisSE GeometricMean   GeometricCV 
+   0.67237714    0.41445735   -0.02200629    0.80937129   19.25006404   30.44976349 </code></pre>
+<p>The quartiles and the interquartile range use quantile type 2, the
+SAS default definition.</p>
+</div>
+<div id="x2-tables" class="section level2">
+<h2>2x2 tables</h2>
+<p>Risk difference, relative risk, and odds ratio with score confidence
+intervals:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="fu">RD</span>(<span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>   p1  p2  RD       SE        lower     upper
+1 0.7 0.3 0.4 0.204939 -0.001673089 0.8016731</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="fu">RR</span>(<span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>   p1  p2       RR     SElog     lower    upper
+1 0.7 0.3 2.333333 0.5255383 0.8329862 6.536056</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="fu">OR</span>(<span class="dv">7</span>, <span class="dv">10</span>, <span class="dv">3</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>      odd1      odd2       OR     SElog     lower    upper
+1 2.333333 0.4285714 5.444444 0.9759001 0.8040183 36.86729</code></pre>
+<p>See the vignette <em>Stratified 2x2 Tables</em> for the stratified
+Miettinen-Nurminen methods and meta-analysis.</p>
+</div>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<ul>
+<li>All functions take a formula and a <code>data.frame</code>; factors
+follow the order of levels, which corresponds to the sorted CLASS levels
+of SAS.</li>
+<li><code>GLM</code> is fast even for large data sets, since version
+1.0.0.</li>
+<li>For the philosophy and validation materials, see the references in
+<code>?sasLM</code>.</li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

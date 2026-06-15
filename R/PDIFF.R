@@ -12,7 +12,6 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
   L0 = llsm0(Formula, Data)
   nc = NCOL(L0)
 
-  Labels = labels(terms(x))
   ti = x$termIndices[Term][[1]]
   nti = length(ti)
 
@@ -55,6 +54,8 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
   if (reverse) Lx = -Lx
 
   if (tolower(adj) == "dunnett") { # adjust Lx
+    if (missing(ref)) ref = ColNames[1] # SAS uses the first level as the control
+    if (!(ref %in% ColNames)) stop("ref should be one of the levels of the Term!")
     nL = nrow(Lx)
     Names = strsplit(RowNames, " - ")
     RemoveI = NULL
@@ -68,8 +69,10 @@ PDIFF = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ref, PLOT=FALS
         RemoveI = c(RemoveI, i)
       }
     }
-    Lx = Lx[-RemoveI,]
-    RowNames = RowNames[-RemoveI]
+    if (length(RemoveI) > 0) {
+      Lx = Lx[-RemoveI, , drop=FALSE]
+      RowNames = RowNames[-RemoveI]
+    }
   }
 
   rownames(Lx) = RowNames

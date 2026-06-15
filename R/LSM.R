@@ -11,14 +11,10 @@ LSM = function(Formula, Data, Term, conf.level=0.95, adj="lsd", hideNonEst=TRUE,
   if (missing(Term) & length(labels(terms(x))) == 1) Term = labels(terms(x))
 
   if (missing(Term)) {
-    Res = lsm0(x, rx, Formula, Data, conf.level=conf.level, hideNonEst=hideNonEst)
+    Res = lsm0(rx, Formula, Data, conf.level=conf.level, hideNonEst=hideNonEst)
   } else {
     L0 = llsm0(Formula, Data)
-    nc = NCOL(L0)
-
-    Labels = labels(terms(x))
     ti = x$termIndices[Term][[1]]
-    nti = length(ti)
 
     L1 = L0[ti, , drop=FALSE]
     nL = NROW(L1)

@@ -55,18 +55,19 @@ RDmn = function(d0, conf.level=0.95, eps=1e-8)
 
   Obj = function(rd) {
     p = p1p2rd(rd)
-    p1 = p[, 1]
-    p2 = p[, 2]
-    v = (p1*(1 - p1)/n1 + p2*(1 - p2)/n2)*(n1 + n2)/(n1 + n2 - 1)
+    r1 = p[, 1]
+    r2 = p[, 2]
+    v = (r1*(1 - r1)/n1 + r2*(1 - r2)/n2)*(n1 + n2)/(n1 + n2 - 1)
     v[v < 0] = 0
     w = wrd(rd)
-    return(sum(w*(rd - fRD))^2/sum(w*w*v) - v0) # for uniroot
+    w = w/sum(w)
+    return(sum(w*(p1 - p2 - rd))^2/sum(w*w*v) - v0) # score statistic for uniroot
   }
 
   if (fRD < -1 + eps) { lower = -1
-  } else { lower = suppressWarnings(uniroot(Obj, c(max(-1, fRD - 1) + eps, fRD - eps))$root) }
+  } else { lower = suppressWarnings(uniroot(Obj, c(max(-1, fRD - 1) + eps, fRD - eps), tol=1e-10)$root) }
   if (fRD > 1 - eps) { upper = 1
-  } else { upper = suppressWarnings(uniroot(Obj, c(fRD + eps, 1 - eps))$root) }
+  } else { upper = suppressWarnings(uniroot(Obj, c(fRD + eps, 1 - eps), tol=1e-10)$root) }
 
   for (i in 2:nr) {
     Res1 = rbind(Res1, RDmn1(y1[i], n1[i], y2[i], n2[i], conf.level=conf.level))
@@ -78,3 +79,4 @@ RDmn = function(d0, conf.level=0.95, eps=1e-8)
   Res1 = list(Strata=Res1, Common=Res2)
   return(Res1)
 }
+

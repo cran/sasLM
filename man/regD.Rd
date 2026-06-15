@@ -2,7 +2,7 @@
 \alias{regD}
 \title{Regression of Conventional Way with Rich Diagnostics}
 \description{
-  \code{regD} provides rich diagnostics such as student residual, leverage(hat), Cook's D, studentized deleted residual, DFFITS, and DFBETAS.
+  \code{regD} provides rich diagnostics such as student residual, leverage (hat), Cook's D, studentized deleted residual, DFFITS, and DFBETAS.
 }
 \usage{
 regD(Formula, Data)
@@ -12,12 +12,12 @@ regD(Formula, Data)
   \item{Data}{a \code{data.frame} to be analyzed}
 }
 \details{
-  It performs the conventional regression analysis. This does not use g2 inverse, therefore it cannot handle a singular matrix. If the model(design) matrix is not full rank, use \code{REG} or fewer parameters.
+  It performs the conventional regression analysis. This does not use the g2 inverse; therefore, it cannot handle a singular matrix. If the model (design) matrix is not of full rank, use \code{REG} or fewer parameters.
 }
 \value{
   \item{Coefficients}{conventional coefficients summary with Wald statistics}
-  \item{Diagnostics}{Diagnostics table for detecting outlier or influential/leverage points. This includes fitted (Predicted), residual (Residual), standard error of residual(se_resid), studentized residual(RStudent), hat(Leverage), Cook's D, studentized deleted residual(sdResid), DIFFITS, and COVRATIO.}
-  \item{DFBETAS}{Column names are the names of coefficients. Each row shows how much each coefficient is affected by deleting the corressponding row of observation.}
+  \item{Diagnostics}{Diagnostics table for detecting outliers or influential/leverage points. This includes the fitted value (Predicted), residual (Residual), standard error of the residual (SE_Resid), studentized residual (Student_Res), hat (Leverage), Cook's D, studentized deleted residual (RStudent), DFFITS, and COVRATIO.}
+  \item{DFBETAS}{Column names are the names of coefficients. Each row shows how much each coefficient is affected by deleting the corresponding observation.}
 }
 \examples{
   regD(uptake ~ conc, CO2)

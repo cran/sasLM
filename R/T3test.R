@@ -52,12 +52,12 @@ T3test = function(Formula, Data, H="", E="", eps=1e-8)
       v4 = satt(vars=c(v2, r1$SSE/r1$DFr), dfs=c(df2, r1$DFr), ws=c(w2, 1 - w2))
 
       DF = c(df1, v4$Df)
-      SS = c(T1[ToTest[i], "Sum Sq"], v4$Variance * v4$Df)
+      SSq = c(T1[ToTest[i], "Sum Sq"], v4$Variance * v4$Df) # SSq not to shadow function SS
       MS = c(v1, v4$Variance)
       Fval = c(v1/v4$Variance, NA)
       Pval = c(1 - pf(Fval[1], df1, v4$Df), NA)
 
-      T3 = cbind(DF, SS, MS, Fval, Pval)
+      T3 = cbind(DF, SSq, MS, Fval, Pval)
       colnames(T3) = c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")
       rownames(T3) = c(ToTest[i], "Error")
       attr(T3, "heading") = paste0("Error: ", round(w2, 4), "*", Error, " + ", round(1 - w2, 4), "*MSE")

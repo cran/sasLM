@@ -13,10 +13,10 @@
   \item{conf.level}{confidence level}
 }
 \details{
-  Caution on choosing the row to use in the output.
+  Be cautious when choosing the row to use in the output.
 }
 \value{
-  The output format is comparable to SAS PROC TTEST.
+  The output format is comparable to that of SAS PROC TTEST.
 }
 \examples{
   TTEST(mtcars[mtcars$am==1, "mpg"], mtcars[mtcars$am==0, "mpg"])

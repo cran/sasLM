@@ -12,15 +12,15 @@
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
   \item{Term}{a factor name to be estimated}
-  \item{conf.level}{confidence level of confidence interval}
-  \item{adj}{"lsd", "tukey", "scheffe", "bon", "duncan", or "dunnett" to adjust p-value and confidence limit}
-  \item{ref}{reference or control level for Dunnett test}
-  \item{PLOT}{whether to plot or not the diffogram}
+  \item{conf.level}{confidence level of the confidence interval}
+  \item{adj}{"lsd", "tukey", "scheffe", "bon", "duncan", or "dunnett" to adjust the p-value and confidence limit}
+  \item{ref}{reference or control level for the Dunnett test. If missing, the first level is used, as SAS does.}
+  \item{PLOT}{whether to plot the diffogram}
   \item{reverse}{reverse A - B to B - A}
   \item{...}{arguments to be passed to \code{plot}}
 }
 \details{
-  It corresponds to PDIFF option of SAS PROC GLM.
+  It corresponds to the PDIFF option of SAS PROC GLM.
 }
 \value{
   Returns a table of expectations, t values and p-values. Output columns may vary according to the adjustment option.
@@ -28,9 +28,9 @@
   \item{Lower CL}{lower confidence limit}
   \item{Upper CL}{upper confidence limit}
   \item{Std. Error}{standard error of the point estimate}
-  \item{t value}{value for t distribution}
-  \item{Df}{degree of freedom}
-  \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
+  \item{t value}{value for the t distribution}
+  \item{Df}{degrees of freedom}
+  \item{Pr(>|t|)}{probability of a larger absolute t value from the t distribution with the residual's degrees of freedom}
 }
 \examples{
   PDIFF(uptake ~ Type*Treatment + as.factor(conc), CO2, "as.factor(conc)")

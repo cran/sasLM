@@ -1,5 +1,20 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 1.0.0 (2026-06-12)}{
+  \itemize{
+    \item{First stable release.}
+    \item{Large speed-up for big data: Type II/III contrast generation (ex, e2, e3) and REG no longer form an n-by-n projection (hat) matrix. With 20,000 rows and about 60 columns, GLM is more than 100 times faster (165 s to 1.3 s), REG about 48 times, and aov2/aov3/EMS/RanTest/T3test benefit similarly. Results are unchanged.}
+    \item{GLM and REG with Weights: Fitted and Residual are now returned in the original scale as SAS OUTPUT P= R= does. Previously they were returned in the sqrt(weight)-transformed scale.}
+    \item{GLM and REG with Weights: observations with nonpositive weights are now excluded from the analysis (including degrees of freedom) as SAS does, with a warning.}
+    \item{GLM and REG now validate the length of Weights and align it correctly when rows with NA are dropped from Data.}
+    \item{PDIFF with adj="dunnett": ref now defaults to the first level as SAS does, an invalid ref is rejected with a clear message, and the two-level case no longer fails.}
+    \item{UNIV now uses quantile type 2 (the SAS default) for Q1, Q3, and IQR as documented. It previously used type 6, the SPSS default.}
+    \item{All manual pages were reviewed and revised: typos and grammar corrected, and several value sections were aligned with the actual outputs (Cor.test, RDinv, RRinv, ORinv, ORcmh, UNIV, regD, seqBound, OR).}
+    \item{RDmn (stratified) confidence bounds now use the score statistic recomputed at each candidate value instead of a fixed point estimate approximation, and root-finding tolerances in RDmn and RRmn are tightened to 1e-10. RDmn and RRmn now agree with ratesci::scoreci(weighting="MN", skew=FALSE) to 8 decimal places including zero-cell strata.}
+    \item{ORmn (stratified) is improved as planned since 0.10.6. It now uses the inverse-variance weighted score with the score bias correction, and the common odds ratio point estimate is the zero of the weighted score statistic. It agrees with ratesci::scoreci(contrast="OR", stratified=TRUE, skew=FALSE) by Pete Laud to 7 decimal places over standard, multi-strata, zero-cell, and extreme cases. ORmn1 (single stratum) remains the classical Miettinen-Nurminen interval.}
+  }
+}
+
 \section{Version 0.10.8 (2026-03-08)}{
   \itemize{
     \item{Code quality improvement: T/F replaced with TRUE/FALSE for CRAN policy compliance.}
@@ -14,8 +29,8 @@
 
 \section{Version 0.10.7 (2025-09-28)}{
   \itemize{
-    \item{CumAlpha function improved to handle chaning z values and arbitrary time points.}
-    \item{OBFBound function added for exact O'Brien-Flemming bounds.}
+    \item{CumAlpha function improved to handle changing z values and arbitrary time points.}
+    \item{OBFBound function added for exact O'Brien-Fleming bounds.}
     \item{GLM function validated again, and the result is OK.}
   }
 }

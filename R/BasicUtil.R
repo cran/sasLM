@@ -23,11 +23,12 @@ sortColName = function(ColNames)
   if (nc > 1) {
     nr = length(sCol)
     tM = matrix(unlist(sCol), nrow=nr, byrow=TRUE)
-    sN = "order(nchar(tM[,1]), tM[,1]"
-    for (i in 2:nc) sN = paste0(sN, ", nchar(tM[,",i,"]), tM[,", i,"]")
-    sN = paste0(sN, ")")
-    Ord = eval(parse(text=sN))
-    Res = ColNames[Ord]
+    oArgs = vector("list", 2*nc)
+    for (i in 1:nc) {
+      oArgs[[2*i - 1]] = nchar(tM[, i])
+      oArgs[[2*i]] = tM[, i]
+    }
+    Res = ColNames[do.call(order, oArgs)]
   } else {
     Res = ColNames
   }
@@ -110,7 +111,7 @@ sumREG = function(r1, X)
   return(Parameter)
 }
 
-lsm0 = function(x, rx, Formula, Data, conf.level=0.95, hideNonEst=TRUE)
+lsm0 = function(rx, Formula, Data, conf.level=0.95, hideNonEst=TRUE)
 {
   Lx = llsm0(Formula, Data)
 
@@ -368,11 +369,8 @@ plotDiff = function(lSM, m0, conf.level=0.95, ...)
   nL = nrow(m0)
   nc = ncol(m0)
 
-  nLevel =  length(lSM)
-
   rowNames = rownames(m0)
   Names = strsplit(rowNames, " - ")
-  Lnames = sort(unique(unlist(Names)))
 
   hDL0 = max((m0[,3] - m0[,2])/4) # Half DL is necessary
   if (is.na(hDL0) | is.nan(hDL0)) stop("SE is not available!")
@@ -478,7 +476,7 @@ CheckAlias = function(Formula, Data) # Why did I use this instead of 'alias' fun
   return(Res)
 }
 
-ex = function(x1, x2, g2, eps=1e-8)
+ex = function(x1, x2, eps=1e-8)
 {
   eps2 = eps/max(abs(x1$X))
   Res = NULL
@@ -528,21 +526,21 @@ ex = function(x1, x2, g2, eps=1e-8)
     X1 = x2$X[, Col1]
     X2 = x2$X[, Col2]
 
-    if (NCOL(X0) > 0) {
-      Mx = X0 %*% G2SWEEP(crossprod(X0), Augmented=FALSE, eps=eps) %*% t(X0)
-      Mx[abs(Mx) < eps] = 0
-      M = diag(NCOL(Mx)) - Mx
-      X1pM  = crossprod(X1, M)
+    if (NCOL(X0) > 0) { # X1'M X1 and X1'M X2 with M = I - X0 G0 X0', without forming the n x n projection
+      G0 = G2SWEEP(crossprod(X0), Augmented=FALSE, eps=eps)
+      A1 = crossprod(X0, X1)
+      X1pMX1 = crossprod(X1) - crossprod(A1, G0 %*% A1)
+      X1pMX2 = crossprod(X1, X2) - crossprod(A1, G0 %*% crossprod(X0, X2))
     } else {
-      X1pM = t(X1)
+      X1pMX1 = crossprod(X1)
+      X1pMX2 = crossprod(X1, X2)
     }
-    X1pMX1 = X1pM %*% X1
     gX1pMX1 = G2SWEEP(X1pMX1, Augmented=FALSE, eps=eps)
 
     L2 = M0[x2$termIndices[Label1][[1]], , drop=FALSE]
     L2[, Col0] = 0
     L2[, Col1] = gX1pMX1 %*% X1pMX1
-    L2[, Col2] = gX1pMX1 %*% X1pM %*% X2
+    L2[, Col2] = gX1pMX1 %*% X1pMX2
     L2[abs(L2) < eps] = 0
 
     DF1 = NROW(L2[!apply(L2, 1, function(x) all(abs(x) < eps)), , drop=FALSE])

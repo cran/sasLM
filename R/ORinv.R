@@ -8,12 +8,6 @@ ORinv = function(d0, conf.level=0.95)
 
   r1 = OR(y1, n1, y2, n2, conf.level=conf.level)
 
-  ai = y1
-  bi = n1 - y1
-  ci = y2
-  di = n2 - y2
-  ni = n1 + n2
-
   thi = log(r1$OR)
   vi = r1$SElog^2
   wi = 1/vi

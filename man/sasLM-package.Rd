@@ -4,7 +4,7 @@
 \docType{package}
 \title{'SAS' Linear Model}
 \description{
-  This is a core implementation of 'SAS' procedures for linear models - GLM, REG, and ANOVA. Some packages provide type II and type III SS. However, the results of nested and complex designs are often different from those of 'SAS'. A different result does not necessarily mean incorrectness. However, many want the same result with 'SAS'. This package aims to achieve that. 
+  This is a core implementation of 'SAS' procedures for linear models - GLM, REG, and ANOVA. Some packages provide type II and type III SS. However, the results of nested and complex designs are often different from those of 'SAS'. A different result does not necessarily mean incorrectness. However, many want the same results as 'SAS'. This package aims to achieve that.
   Reference: Littell RC, Stroup WW, Freund RJ (2002, ISBN:0-471-22174-0).
 }
 \details{
@@ -31,7 +31,7 @@ BEdata = af(BEdata, c("SEQ", "SUBJ", "PRD", "TRT")) # Columns as factor
 formula1 = log(CMAX) ~ SEQ/SUBJ + PRD + TRT # Model
 GLM(formula1, BEdata) # ANOVA tables of Type I, II, III SS
 RanTest(formula1, BEdata, Random="SUBJ") # Hypothesis test with SUBJ as random
-ci0 = CIest(formula1, BEdata, "TRT", c(-1, 1), 0.90) # 90$ CI
+ci0 = CIest(formula1, BEdata, "TRT", c(-1, 1), 0.90) # 90% CI
 exp(ci0[, c("Estimate", "Lower CL", "Upper CL")]) # 90% CI of GMR
 
 ## 'nlme' or SAS PROC MIXED is preferred for an unbalanced case

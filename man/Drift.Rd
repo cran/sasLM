@@ -2,18 +2,18 @@
 \alias{Drift}
 \title{Drift defined by Lan and DeMets for Group Sequential Design}
 \description{
-  Calculate the drift value with given upper bounds (z-valuse), times of test, and power.
+  Calculate the drift value with given upper bounds (z-values), times of test, and power.
 }
 \usage{
   Drift(bi, ti=NULL, Power=0.9)
 }
 \arguments{
   \item{bi}{upper bound z-values}
-  \item{ti}{times of test. These should be in the range of [0, 1]. If omitted, even-interval is assumed.}
+  \item{ti}{times of test. These should be in the range of [0, 1]. If omitted, equal intervals are assumed.}
   \item{Power}{target power at the final test}
 }
 \details{
-  It calculates the drift value with given upper bound z-values, times of test, and power. If the times of test is not given, even-interval is assumed. \code{mvtnorm::pmvt} (with noncentrality) is better than pmvnorm in calculating power and sample size. But, Lan-DeMets used multi-variate normal rather than multi-variate noncentral t distributionh. This function followed Lan-DeMets for the consistency with previous results.
+  It calculates the drift value with given upper bound z-values, times of test, and power. If the times of test are not given, equal intervals are assumed. \code{mvtnorm::pmvt} (with noncentrality) is better than \code{pmvnorm} in calculating power and sample size. However, Lan-DeMets used the multivariate normal rather than the multivariate noncentral t distribution. This function follows Lan-DeMets for consistency with previous results.
 }
 \value{
   Drift value for the given condition

@@ -13,9 +13,6 @@ T3MS = function(Formula, Data, L0, eps=1e-8)
 
   if (missing(L0)) L0 = e3(x, eps=eps)
 
-  r0 = lfit(x, y)
-  b = r0$coefficients
-
   Res = matrix(nrow=nTerm, ncol=nTerm)
   rownames(Res) = Terms
   colnames(Res) = Terms

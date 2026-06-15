@@ -2,23 +2,23 @@
 \alias{G2SWEEP}
 \title{Generalized inverse matrix of type 2 for linear regression}
 \description{
-  Generalized inverse is usually not unique. Some programs use this algorithm to get a unique generalized inverse matrix.
+  A generalized inverse is usually not unique. Some programs use this algorithm to get a unique generalized inverse matrix.
 }
 \usage{
   G2SWEEP(A, Augmented=FALSE, eps=1e-08) 
 }
 \arguments{
-  \item{A}{a matrix to be inverted. If \code{A} is not a square matrix, G2SWEEP calls g2inv function.}
-  \item{Augmented}{If this is \code{TRUE} and \code{A} is a model(design) matrix X, the last column should be X'y, the last row y'X, and the last cell y'y. See the reference and example for the detail. If the input matrix \code{A} is not a square matrix, \code{Augmented} option cannot be TRUE.}
-  \item{eps}{Less than this value is considered as zero.}
+  \item{A}{a matrix to be inverted. If \code{A} is not a square matrix, G2SWEEP calls the \code{g2inv} function.}
+  \item{Augmented}{If this is \code{TRUE} and \code{A} is a model (design) matrix X, the last column should be X'y, the last row y'X, and the last cell y'y. See the reference and example for details. If the input matrix \code{A} is not a square matrix, the \code{Augmented} option cannot be \code{TRUE}.}
+  \item{eps}{A value less than this is considered zero.}
 }
 \details{
-  Generalized inverse of g2-type is used by some softwares to do linear regression. See 'SAS Technical Report R106, The Sweep Operator: Its importance in Statistical Computing' by J. H. Goodnight for the detail.
+  The generalized inverse of g2-type is used by some software to do linear regression. See 'SAS Technical Report R106, The Sweep Operator: Its Importance in Statistical Computing' by J. H. Goodnight for details.
 }
 \value{
   \item{when Augmented=FALSE}{ordinary g2 inverse}
-  \item{when Augmented=TRUE}{g2 inverse and beta hats in the last column and the last row, and sum of square error (SSE) in the last cell}
-  \item{attribute "rank"}{the rank of input matrix}
+  \item{when Augmented=TRUE}{g2 inverse and beta hats in the last column and the last row, and the sum of squares error (SSE) in the last cell}
+  \item{attribute "rank"}{the rank of the input matrix}
 }
 \author{Kyun-Seop Bae k@acr.kr}
 \seealso{

@@ -11,7 +11,7 @@
   \item{y}{a numeric vector}
 }
 \details{
-  It removes \code{NA}. This is sqrt(exp(var(log(x))) - 1)*100.
+  It removes \code{NA}. This is \code{sqrt(exp(var(log(y))) - 1)*100}.
 }
 \value{
   Geometric coefficient of variation in percentage.  

@@ -2,17 +2,17 @@
 \alias{g2inv}
 \title{Generalized type 2 inverse matrix, g2 inverse}
 \description{
-  Generalized inverse is usually not unique. Some programs use this algorithm to get a unique generalized inverse matrix. This uses SWEEP operator and works for non-square matrix also.
+  A generalized inverse is usually not unique. Some programs use this algorithm to get a unique generalized inverse matrix. This uses the SWEEP operator and works for non-square matrices also.
 }
 \usage{
   g2inv(A, eps=1e-08) 
 }
 \arguments{
   \item{A}{a matrix to be inverted}
-  \item{eps}{Less than this value is considered as zero.}
+  \item{eps}{A value less than this is considered zero.}
 }
 \details{
-  See 'SAS Technical Report R106, The Sweep Operator: Its importance in Statistical Computing' by J. H. Goodnight for the detail.
+  See 'SAS Technical Report R106, The Sweep Operator: Its Importance in Statistical Computing' by J. H. Goodnight for details.
 }
 \value{
   g2 inverse

@@ -2,7 +2,7 @@
 \alias{Median}
 \title{Median without NA}
 \description{
-  median without \code{NA} values.
+  Median without \code{NA} values.
 }
 \usage{
   Median(y)
@@ -11,7 +11,7 @@
   \item{y}{a vector of numerics}
 }
 \details{
-  It removes \code{NA} in the input vector. 
+  It removes \code{NA} values from the input vector.
 }
 \value{
   median value

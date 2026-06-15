@@ -2,7 +2,7 @@
 \alias{mtest}
 \title{Independent two groups t-test similar to PROC TTEST with summarized input}
 \description{
-  This is comparable to SAS PROC TTEST except using summarized input (sufficient statistics).
+  This is comparable to SAS PROC TTEST, except that it uses summarized input (sufficient statistics).
 }
 \usage{
   mtest(m1, s1, n1, m0, s0, n0, conf.level=0.95)
@@ -20,7 +20,7 @@
   This uses summarized input. This also produces confidence intervals of means and variances by group.
 }
 \value{
-  The output format is comparable to SAS PROC TTEST.
+  The output format is comparable to that of SAS PROC TTEST.
 }
 \examples{
   mtest(5.4, 10.5, 3529, 5.1, 8.9, 5190) # NEJM 388;15 p1386

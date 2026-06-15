@@ -11,11 +11,7 @@ Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
   if (missing(Term) & length(labels(terms(x))) == 1) Term = labels(terms(x))
 
   L0 = llsm0(Formula, Data)
-  nc = NCOL(L0)
-
-  Labels = labels(terms(x))
   ti = x$termIndices[Term][[1]]
-  nti = length(ti)
 
   L1 = L0[ti,,drop=FALSE]
   nL = NROW(L1)
@@ -42,10 +38,5 @@ Diffogram = function(Formula, Data, Term, conf.level=0.95, adj="lsd", ...)
   r1 = r1[order(r1[,1], decreasing=TRUE),]
 
   m0 = PDIFF(Formula, Data, Term, conf.level=conf.level, adj=adj)
-  if (tolower(adj) == "dunnett") {
-#    plotDunnett(m0, ...)
-    return(NULL)
-  } else {
-    plotDiff(r1[,1], m0, conf.level=conf.level, ...)
-  }
+  plotDiff(r1[,1], m0, conf.level=conf.level, ...)
 }

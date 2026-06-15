@@ -2,7 +2,7 @@
 \alias{trimmedMean}
 \title{Trimmed Mean}
 \description{
-  Trimmed mean wrapping \code{mean} function.
+  Trimmed mean wrapping the \code{mean} function.
 }
 \usage{
   trimmedMean(y, Trim=0.05)
@@ -15,6 +15,6 @@
   It removes \code{NA} in the input vector.
 }
 \value{
-  The value of trimmed mean
+  The value of the trimmed mean
 }
 \author{Kyun-Seop Bae k@acr.kr}

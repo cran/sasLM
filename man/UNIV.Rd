@@ -12,33 +12,34 @@
   \item{conf.level}{confidence level for confidence limit}
 }
 \details{
-  A convenient and comprehensive function for descriptive statistics. NA is removed during the calculation. This is similar to SAS PROC UNIVARIATE.
+  A convenient and comprehensive function for descriptive statistics. \code{NA} is removed during the calculation. This is similar to SAS PROC UNIVARIATE.
 }
 \value{
   \item{nAll}{count of all elements in the input vector}
-  \item{nNA}{count of NA element}
+  \item{nNA}{count of \code{NA} elements}
   \item{nFinite}{count of finite numbers}
-  \item{Mean}{mean excluding NA}
-  \item{SD}{standard deviation excluding NA}
+  \item{Mean}{mean excluding \code{NA}}
+  \item{Variance}{variance excluding \code{NA}}
+  \item{SD}{standard deviation excluding \code{NA}}
   \item{CV}{coefficient of variation in percent}
-  \item{SEM}{standard error of the sample mean, the sample mean divided by nFinite}
+  \item{SEM}{standard error of the sample mean, the sample standard deviation divided by the square root of nFinite}
   \item{LowerCL}{lower confidence limit of mean}
   \item{UpperCL}{upper confidence limit of mean}
-  \item{TrimmedMean}{trimmed mean with trimming 1 - confidence level}
+  \item{TrimmedMean}{trimmed mean with a trimming proportion of 1 - confidence level}
   \item{Min}{minimum value}
-  \item{Q1}{first quartile value}
+  \item{Q1}{first quartile value with quantile type 2, the SAS default}
   \item{Median}{median value}
-  \item{Q3}{third quartile value}
+  \item{Q3}{third quartile value with quantile type 2, the SAS default}
   \item{Max}{maximum value}
-  \item{Range}{range of finite numbers. maximum - minimum}
-  \item{IQR}{inter-quartile range type 2, which is SAS default}
+  \item{Range}{range of finite numbers, maximum - minimum}
+  \item{IQR}{interquartile range with quantile type 2, the SAS default}
   \item{MAD}{median absolute deviation}
   \item{VarLL}{lower confidence limit of variance}
   \item{VarUL}{upper confidence limit of variance}
   \item{Skewness}{skewness}
   \item{SkewnessSE}{standard error of skewness}
   \item{Kurtosis}{kurtosis}
-  \item{KurtosisSE}{kurtosis}
+  \item{KurtosisSE}{standard error of kurtosis}
   \item{GeometricMean}{geometric mean, calculated only when all given values are positive.}
   \item{GeometricCV}{geometric coefficient of variation in percent, calculated only when all given values are positive.}
 }

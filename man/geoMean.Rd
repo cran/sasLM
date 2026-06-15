@@ -2,7 +2,7 @@
 \alias{geoMean}
 \title{Geometric Mean without NA}
 \description{
-  mean without \code{NA} values.
+  Geometric mean without \code{NA} values.
 }
 \usage{
   geoMean(y)

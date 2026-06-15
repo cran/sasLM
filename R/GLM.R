@@ -4,7 +4,20 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0
     stop("Dependent variable should be provided!")
   }
 
+  if (!(length(Weights) %in% c(1, NROW(Data)))) {
+    stop("Weights should be a scalar or have the same length as the number of rows of Data!")
+  }
+  if (any(is.na(Weights))) stop("Weights should not contain NA!")
+  if (length(Weights) == 1) Weights = rep(Weights, NROW(Data))
+  if (any(Weights <= 0)) {
+    warning(sum(Weights <= 0), " observation(s) with nonpositive weight excluded as SAS does!")
+    Data = Data[Weights > 0, , drop=FALSE]
+    Weights = Weights[Weights > 0]
+  }
+
   mf0 = model.frame(Formula, Data)
+  naa = attr(mf0, "na.action")
+  if (!is.null(naa)) Weights = Weights[-naa] # align Weights with rows kept by model.frame
   nObs = NROW(mf0)
   srwi = sqrt(Weights) ##
   y = srwi*mf0[, 1] ##
@@ -13,12 +26,13 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0
 
   x0a = ModelMatrix(Formula, Data, KeepOrder=TRUE)
   x0b = ModelMatrix(Formula, Data, KeepOrder=FALSE)
+  X0u = x0a$X # unscaled design matrix for original-scale prediction
   x0a$X = srwi*x0a$X ##
   x0b$X = srwi*x0b$X ##
   r1 = lfit(x0a, y)
   r2 = lfit(x0b, y)
   r3 = r2
-  rex = ex(x0a, x0b, r2$g2)
+  rex = ex(x0a, x0b)
   nPara = NCOL(x0a$X)
   vESTM = estmb(diag(nPara), x0a$X, r1$g2)
 
@@ -31,6 +45,7 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0
       Data[, colnames(Data) %in% aNames] = 0
       x1 = ModelMatrix(Formula, Data, KeepOrder=TRUE)
       x2 = ModelMatrix(Formula, Data, KeepOrder=FALSE)
+      X0u = x1$X
       x1$X = srwi*x1$X ##
       x2$X = srwi*x2$X ##
       r1 = lfit(x1, y)
@@ -56,8 +71,7 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0
   class(T3) = "anova"
 
   fIntercept = attr(x0a$terms, "intercept")
-  if (length(Weights) == 1 & Weights[1] == 1) { MeanY = mean(mf0[, 1], na.rm=TRUE)
-  } else { MeanY = sum(Weights*mf0[, 1], na.rm=TRUE)/sum(Weights) } ## weighted mean
+  MeanY = sum(Weights*mf0[, 1])/sum(Weights) ## weighted mean; mf0 has no NA rows
   SST = sum(T1[T1[, "Df"] > 0, "Sum Sq"]) + r1x$SSE ##
 
   ANOVA = sumANOVA(r1, T1=NULL, SST, nObs, rownames(attr(terms(x0a), "factors"))[1])
@@ -86,17 +100,17 @@ GLM = function(Formula, Data, BETA=FALSE, EMEAN=FALSE, Resid=FALSE, conf.level=0
   }
 
   if (EMEAN) {
-    Result[[iNext]] = lsm0(x2, r2, Formula, Data, conf.level=conf.level)
+    Result[[iNext]] = lsm0(r2, Formula, Data, conf.level=conf.level)
     names(Result)[iNext] = "Expected Mean"
     iNext = iNext + 1
   }
 
   if (Resid) {
-    yhat = as.numeric(x1$X %*% r1$coefficients)
+    yhat = as.numeric(X0u %*% r1$coefficients) # original scale as SAS OUTPUT P= R=
     Result[[iNext]] = yhat
     names(Result)[iNext] = "Fitted"
 
-    Result[[iNext + 1]] = y - yhat
+    Result[[iNext + 1]] = mf0[, 1] - yhat
     names(Result)[iNext + 1] = "Residual"
   }
 

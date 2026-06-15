@@ -2,7 +2,7 @@
 \alias{af}
 \title{Convert some columns of a data.frame to factors}
 \description{
-  Conveniently convert some columns of data.frame into factors.
+  Conveniently convert some columns of a \code{data.frame} into factors.
 }
 \usage{
   af(DataFrame, Cols)

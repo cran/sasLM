@@ -1,25 +1,25 @@
 \name{tsum1}
 \alias{tsum1}
-\title{Table Summary 1 independent(x) variable}
+\title{Table Summary with 1 independent (x) variable}
 \description{
-  Summarize a continuous dependent(y) variable with one independent(x) variable.   
+  Summarize a continuous dependent (y) variable with one independent (x) variable.
 }
 \usage{
   tsum1(d, y, u, e=c("Mean", "SD", "N"), ou="", repl=list(c("length"), ("n")))
 }
 \arguments{
-  \item{d}{a data.frame or matrix with colnames}
-  \item{y}{y variable name. a continuous variable}
+  \item{d}{a \code{data.frame} or matrix with column names}
+  \item{y}{y variable name, a continuous variable}
   \item{u}{x variable name, upper side variable}
-  \item{e}{a vector of summarize function names}
-  \item{ou}{order of levels of upper side x variable}
-  \item{repl}{list of strings to replace after summarize. The length of list should be 2, and both should have the same length.}
+  \item{e}{a vector of summary function names}
+  \item{ou}{order of levels of the upper side x variable}
+  \item{repl}{a list of strings to replace after summarization. The length of the list should be 2, and both elements should have the same length.}
 }
 \details{
   A convenient summarization function for a continuous variable with one x variable.
 }
 \value{
-  A data.frame of summarized values. Row names are from \code{e} names. Column names are from the levels of x variable. 
+  A \code{data.frame} of summarized values. Row names are from \code{e} names. Column names are from the levels of the x variable.
 }
 \examples{
   tsum1(CO2, "uptake", "Treatment")

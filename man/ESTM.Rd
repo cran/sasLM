@@ -1,6 +1,6 @@
 \name{ESTM}
 \alias{ESTM}
-\alias{ESTMIMATE}
+\alias{ESTIMATE}
 \title{Estimate Linear Function}
 \description{
   Estimates Linear Function with a formula and a dataset.
@@ -9,22 +9,22 @@
   ESTM(L, Formula, Data, conf.level=0.95)
 }
 \arguments{
-  \item{L}{a matrix of linear functions rows to be tested}
+  \item{L}{a matrix of linear function rows to be tested}
   \item{Formula}{a conventional formula for a linear model}
   \item{Data}{a \code{data.frame} to be analyzed}
-  \item{conf.level}{confidence level of confidence limit}
+  \item{conf.level}{confidence level of the confidence limit}
 }
 \details{
-  It tests rows of linear functions. Linear function means linear combination of estimated coefficients. It is similar to SAS PROC GLM ESTIMATE. This is a convenient version of \code{est} function.
+  It tests rows of linear functions. A linear function means a linear combination of estimated coefficients. It is similar to the ESTIMATE statement of SAS PROC GLM. This is a convenient version of the \code{est} function.
 }
 \value{
   \item{Estimate}{point estimate of the input linear contrast}
   \item{Lower CL}{lower confidence limit}
   \item{Upper CL}{upper confidence limit}
   \item{Std. Error}{standard error of the point estimate}
-  \item{t value}{value for t distribution}
-  \item{Df}{degree of freedom}
-  \item{Pr(>|t|)}{probability of larger than absolute t value from t distribution with residual's degree of freedom}
+  \item{t value}{value for the t distribution}
+  \item{Df}{degrees of freedom}
+  \item{Pr(>|t|)}{probability of a larger absolute t value from the t distribution with the residual degrees of freedom}
 }
 \examples{
   ESTM(t(c(0, -1, 1)), uptake ~ Type, CO2) # Quevec - Mississippi 

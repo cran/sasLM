@@ -34,21 +34,21 @@ e2 = function(x, eps=1e-8)
     X1 = x$X[, Col1]
     X2 = x$X[, Col2]
 
-    if (NCOL(X0) > 0) {
-      Mx = X0 %*% G2SWEEP(crossprod(X0), Augmented=FALSE, eps=eps) %*% t(X0)
-      Mx[abs(Mx) < eps] = 0
-      M = diag(NCOL(Mx)) - Mx
-      X1pM  = crossprod(X1, M)
+    if (NCOL(X0) > 0) { # X1'M X1 and X1'M X2 with M = I - X0 G0 X0', without forming the n x n projection
+      G0 = G2SWEEP(crossprod(X0), Augmented=FALSE, eps=eps)
+      A1 = crossprod(X0, X1)
+      X1pMX1 = crossprod(X1) - crossprod(A1, G0 %*% A1)
+      X1pMX2 = crossprod(X1, X2) - crossprod(A1, G0 %*% crossprod(X0, X2))
     } else {
-      X1pM = t(X1)
+      X1pMX1 = crossprod(X1)
+      X1pMX2 = crossprod(X1, X2)
     }
-    X1pMX1 = X1pM %*% X1
     gX1pMX1 = G2SWEEP(X1pMX1, Augmented=FALSE, eps=eps)
 
     L2 = M0[x$termIndices[Label1][[1]], , drop=FALSE]
     L2[, Col0] = 0
     L2[, Col1] = gX1pMX1 %*% X1pMX1
-    L2[, Col2] = gX1pMX1 %*% X1pM %*% X2
+    L2[, Col2] = gX1pMX1 %*% X1pMX2
     L2[abs(L2) < eps] = 0
     DF1 = NROW(L2[!apply(L2, 1, function(x) all(abs(x) < eps)), , drop=FALSE])
 

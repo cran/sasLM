@@ -9,8 +9,6 @@ lr0 = function(Formula, Data)
 
   cn = colnames(mf)[-1]
   ni = ncol(mf) - 1
-  my = mean(mf[,1])
-  SST = as.numeric(crossprod(mf[,1] - my))
 
   Res = matrix(nrow=ni, ncol=6)
   colnames(Res) = c("Intercept", "SE(Intercept)", "Slope", "SE(Slope)", "Rsq", "Pr(>F)")

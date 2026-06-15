@@ -2,14 +2,14 @@
 \alias{Coll}
 \title{Collinearity Diagnostics}
 \description{
-  Collearity diagnostics with tolerance, VIF, eigenvalue, condition index, variance proportions
+  Collinearity diagnostics with tolerance, VIF, eigenvalue, condition index, and variance proportions
 }
 \usage{
   Coll(Formula, Data)
 }
 \arguments{
-  \item{Formula}{fomula of the model}
-  \item{Data}{input data as a matrix or data.frame}
+  \item{Formula}{formula of the model}
+  \item{Data}{input data as a matrix or a \code{data.frame}}
 }
 \details{
   Sometimes collinearity diagnostics after multiple linear regression are necessary.

@@ -2,18 +2,18 @@
 \alias{bk}
 \title{Beautify the output of knitr::kable}
 \description{
-  Trailing zeros after integer is somewhat annoying. This removes those in the vector of strings.   
+  Trailing zeros after integers are somewhat annoying. This removes them from the vector of strings.
 }
 \usage{
   bk(ktab, rpltag=c("n", "N"), dig=10)
 }
 \arguments{
   \item{ktab}{an output of \code{knitr::kable}}
-  \item{rpltag}{tag string of replacement rows. This is usually "n" which means the sample count.}
+  \item{rpltag}{tag string of replacement rows. This is usually "n", which means the sample count.}
   \item{dig}{maximum digits of decimals in the \code{kable} output}
 }
 \details{
-  This is convenient if used with tsum0, tsum1, tsum2, tsum3, This requires \code{knitr::kable}.
+  This is convenient if used with \code{tsum0}, \code{tsum1}, \code{tsum2}, or \code{tsum3}. This requires \code{knitr::kable}.
 }
 \value{
   A new processed vector of strings. The class is still \code{knitr_kable}.

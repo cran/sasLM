@@ -2,7 +2,7 @@
 \alias{SkewnessSE}
 \title{Standard Error of Skewness}
 \description{
-  Standard errof of the skewness with a conventional formula.
+  Standard error of the skewness with a conventional formula.
 }
 \usage{
   SkewnessSE(y)

@@ -14,6 +14,6 @@
   It removes \code{NA} in the input vector. 
 }
 \value{
-  A scalar value of a range
+  A scalar value of the range
 }
 \author{Kyun-Seop Bae k@acr.kr}

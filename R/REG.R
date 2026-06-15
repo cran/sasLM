@@ -4,7 +4,20 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
     stop("Dependent variable should be provided!")
   }
 
+  if (!(length(Weights) %in% c(1, NROW(Data)))) {
+    stop("Weights should be a scalar or have the same length as the number of rows of Data!")
+  }
+  if (any(is.na(Weights))) stop("Weights should not contain NA!")
+  if (length(Weights) == 1) Weights = rep(Weights, NROW(Data))
+  if (any(Weights <= 0)) {
+    warning(sum(Weights <= 0), " observation(s) with nonpositive weight excluded as SAS does!")
+    Data = Data[Weights > 0, , drop=FALSE]
+    Weights = Weights[Weights > 0]
+  }
+
   mf0 = model.frame(Formula, Data)
+  naa = attr(mf0, "na.action")
+  if (!is.null(naa)) Weights = Weights[-naa] # align Weights with rows kept by model.frame
   y = mf0[, 1]
   n = length(y)
   yName = colnames(mf0)[1]
@@ -18,8 +31,8 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
   }
 
   x = ModelMatrix(Formula, Data, KeepOrder=TRUE)
+  X0u = x$X # unscaled design matrix for original-scale prediction
 
-  if (length(Weights) == 1 & Weights[1] == 1) Weights = rep(1, n)
   rw = sqrt(Weights) ##
   x$X = rw*x$X       ##
   y = rw*y          ##
@@ -46,7 +59,7 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
     Residual = y - yhat
     we2 = (Residual)^2 # we2 = weighted residual^2
     iXpX = r0$g2
-    hii = diag(x$X %*% iXpX %*% t(x$X))
+    hii = rowSums((x$X %*% iXpX) * x$X) # diag of the hat matrix without forming n x n
     PRESS = sum(we2/(1 - hii)^2)
     R2pred = 1 - PRESS/SST
 
@@ -84,10 +97,10 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
 #    Res3 = Res0
       Res4 = Res0
 
-      HC0 = iXpX %*% (t(x$X) %*% diag(we2, nrow=n) %*% x$X) %*% iXpX
+      HC0 = iXpX %*% crossprod(x$X, we2*x$X) %*% iXpX
 #    HC1 = n/(n - p)*HC0
-#    HC2 = iXpX %*% (t(x$X) %*% diag(we2/(1 - hii)) %*% x$X) %*% iXpX
-      HC3 = iXpX %*% (t(x$X) %*% diag(we2/(1 - hii)^2, nrow=n) %*% x$X) %*% iXpX
+#    HC2 = iXpX %*% crossprod(x$X, we2/(1 - hii)*x$X) %*% iXpX
+      HC3 = iXpX %*% crossprod(x$X, we2/(1 - hii)^2*x$X) %*% iXpX
 
       Res1[, "Std. Error"] = sqrt(diag(HC0))
 #    Res2[, "Std. Error"] = sqrt(diag(HC1))
@@ -131,10 +144,11 @@ REG = function(Formula, Data, conf.level=0.95, HC=FALSE, Resid=FALSE, Weights=1,
     }
 
     if (Resid) {
-      Result[[iNext]] = yhat
+      yhatO = as.numeric(X0u %*% r0$coefficients) # original scale as SAS OUTPUT P= R=
+      Result[[iNext]] = yhatO
       names(Result)[iNext] = "Fitted"
 
-      Result[[iNext + 1]] = Residual
+      Result[[iNext + 1]] = mf0[, 1] - yhatO
       names(Result)[iNext + 1] = "Residual"
     }
 

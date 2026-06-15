@@ -1,26 +1,26 @@
 \name{OBFBound}
 \alias{OBFBound}
-\title{O'Brien-Flemming bounds for cumulative Z-test in Group Sequential Design}
+\title{O'Brien-Fleming bounds for cumulative Z-test in Group Sequential Design}
 \description{
-  Sequential O'Brien-Flemming upper bounds for cumulative Z-test on accumaltive data. Z values are correlated. This is usually used for group sequential design.
+  Sequential O'Brien-Fleming upper bounds for the cumulative Z-test on accumulating data. Z values are correlated. This is usually used for group sequential design.
 }
 \usage{
   OBFBound(K, alpha=0.05, side=2, ti=NULL, c0=NULL)
 }
 \arguments{
-  \item{K}{count of tests including the final}
+  \item{K}{count of tests, including the final one}
   \item{alpha}{goal alpha value for the last test at time 0.}
-  \item{side}{1=one-side test, 2=two-side test}
-  \item{ti}{times for test. These should be [0, 1]. If not specified, equal interval is assumed.}
-  \item{c0}{correlation matrix. if not specified, Brownian motion assummed.}
+  \item{side}{1=one-sided test, 2=two-sided test}
+  \item{ti}{times for test. These should be in [0, 1]. If not specified, equal intervals are assumed.}
+  \item{c0}{correlation matrix. If not specified, Brownian motion is assumed.}
 }
 \details{
-  It calculates O'Brien-Flemming upper z-bounds and cumulative alpha-values for the repeated test in group sequential design.
+  It calculates O'Brien-Fleming upper z-bounds and cumulative alpha-values for the repeated test in group sequential design.
 }
 \value{
   The result is a matrix.
   \item{ti}{time of test}
-  \item{z}{O'Brien-Flemming upper z-bound}
+  \item{z}{O'Brien-Fleming upper z-bound}
   \item{cum.alpha}{cumulative alpha-value}
 }
 \examples{

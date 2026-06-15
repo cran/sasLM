@@ -40,7 +40,6 @@ RanTest = function(Formula, Data, Random, Type=3, eps=1e-8)
 
   T0 = EMS(Formula, Data, Type=Type, eps=eps)
   ColNames = strsplit(colnames(T0), ":")
-  RowNames = strsplit(rownames(T0), ":")
   nCol = ncol(T0)
 
   W0 = matrix(0, ncol=nCol, nrow=nCol)
@@ -93,12 +92,12 @@ RanTest = function(Formula, Data, Random, Type=3, eps=1e-8)
       v4 = satt(vars=v2, dfs=df2, ws=w2)
 
       DF = c(df1, v4$Df)
-      SS = c(T1[ToTest[i], "Sum Sq"], v4$Variance * v4$Df)
+      SSq = c(T1[ToTest[i], "Sum Sq"], v4$Variance * v4$Df) # SSq not to shadow function SS
       MS = c(v1, v4$Variance)
       Fval = c(v1/v4$Variance, NA)
       Pval = c(1 - pf(Fval[1], df1, v4$Df), NA)
 
-      T3 = cbind(DF, SS, MS, Fval, Pval)
+      T3 = cbind(DF, SSq, MS, Fval, Pval)
       colnames(T3) = c("Df", "Sum Sq", "Mean Sq", "F value", "Pr(>F)")
       rownames(T3) = c(ToTest[i], "Error")
 

@@ -2,7 +2,7 @@
 \alias{LCL}
 \title{Lower Confidence Limit}
 \description{
-  The estimate of the lower bound of confidence limit using t-distribution
+  The estimate of the lower bound of the confidence limit using the t-distribution
 }
 \usage{
   LCL(y, conf.level=0.95)
@@ -15,7 +15,7 @@
   It removes \code{NA} in the input vector. 
 }
 \value{
-  The estimate of the lower bound of confidence limit using t-distribution
+  The estimate of the lower bound of the confidence limit using the t-distribution
 }
 \seealso{
   \code{\link{UCL}}
