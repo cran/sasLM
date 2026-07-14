@@ -1,0 +1,102 @@
+---
+title: "Stratified 2x2 Tables: Miettinen-Nurminen and Friends"
+author: "Kyun-Seop Bae"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Stratified 2x2 Tables: Miettinen-Nurminen and Friends}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+options(width = 100)
+library(sasLM)
+```
+
+## A single 2x2 table
+
+For one 2x2 table, `RD`, `RR`, and `OR` give the risk difference, relative risk,
+and odds ratio with their score confidence intervals:
+
+```{r}
+RD(7, 10, 3, 10) # y1, n1, y2, n2
+RR(7, 10, 3, 10)
+OR(7, 10, 3, 10)
+```
+
+The Miettinen-Nurminen (MN) score intervals for a single stratum are
+`RDmn1`, `RRmn1`, and `ORmn1`:
+
+```{r}
+RDmn1(7, 10, 3, 10)
+RRmn1(7, 10, 3, 10)
+ORmn1(7, 10, 3, 10)
+```
+
+These intervals perform well even in extreme cases such as zero cells:
+
+```{r}
+RDmn1(10, 10, 0, 10)
+RRmn1(10, 10, 1, 10)
+```
+
+## Stratified analysis by the MN score method
+
+When the data have strata (centers, studies, subgroups), provide a `data.frame`
+with columns `y1, n1, y2, n2`, one row per stratum:
+
+```{r}
+d0 = data.frame(y1=c(25, 23), n1=c(339, 370), y2=c(28, 40), n2=c(335, 364))
+RDmn(d0)
+RRmn(d0)
+ORmn(d0)
+```
+
+The `Strata` part shows the per-stratum MN intervals, and the `Common` part shows
+the common (pooled) estimate with its stratified score confidence interval.
+
+Since version 1.0.0:
+
+* `RDmn` and `RRmn` agree with `ratesci::scoreci(weighting="MN", skew=FALSE)` by
+  Pete Laud to 8 decimal places, including zero-cell strata.
+* `ORmn` uses the inverse variance weighted score statistic with the score bias
+  correction following Laud, and agrees with
+  `ratesci::scoreci(contrast="OR", stratified=TRUE, skew=FALSE)` to at least
+  7 significant digits.
+
+## Inverse variance (meta-analysis) and CMH methods
+
+The `*inv` functions pool by the inverse variance method and report both the
+fixed effect and DerSimonian-Laird random effects results with Cochran's Q test -
+the standard meta-analysis summary:
+
+```{r}
+d1 = data.frame(y1=c(25, 23), n1=c(339, 370), y2=c(28, 40), n2=c(335, 364))
+RRinv(d1)
+```
+
+The Cochran-Mantel-Haenszel common odds ratio:
+
+```{r}
+ORcmh(d1)
+```
+
+## Example: aspirin and coronary heart disease
+
+`aspirinCHD` contains six trials of aspirin versus placebo for post-myocardial
+infarction mortality:
+
+```{r}
+aspirinCHD
+ORmn(aspirinCHD)$Common
+ORinv(aspirinCHD)$Common
+```
+
+## Choosing a method
+
+* **MN score (`RDmn`, `RRmn`, `ORmn`)**: recommended for clinical trials with strata;
+  asymmetric intervals with excellent small-sample coverage; no standard error reported.
+* **Inverse variance (`RDinv`, `RRinv`, `ORinv`)**: the classical meta-analysis
+  approach with fixed and random effects and a heterogeneity test.
+* **CMH (`ORcmh`)**: the familiar Cochran-Mantel-Haenszel common odds ratio.

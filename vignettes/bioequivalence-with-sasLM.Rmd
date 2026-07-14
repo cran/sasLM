@@ -1,0 +1,81 @@
+---
+title: "Bioequivalence and Crossover Analysis with sasLM"
+author: "Kyun-Seop Bae"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bioequivalence and Crossover Analysis with sasLM}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+options(width = 100)
+library(sasLM)
+```
+
+## The standard 2x2 crossover analysis
+
+Average bioequivalence with a 2x2 crossover design is conventionally analyzed with
+SAS PROC GLM:
+
+```
+PROC GLM DATA=be;
+  CLASS SEQ SUBJ PRD TRT;
+  MODEL LNCMAX = SEQ SUBJ(SEQ) PRD TRT;
+  RANDOM SUBJ(SEQ) / TEST;
+  LSMEANS TRT / CL ALPHA=0.1;
+  ESTIMATE 'T - R' TRT -1 1 / CL ALPHA=0.1;
+RUN;
+```
+
+The package ships `BEdata`, real data from a 2x2 bioequivalence study with three
+hospitalization groups. The same analysis with `sasLM`:
+
+```{r}
+BEdata = af(BEdata, c("ADM", "SEQ", "PRD", "TRT", "SUBJ")) # columns as factors
+formula1 = log(CMAX) ~ SEQ/SUBJ + PRD + TRT
+GLM(formula1, BEdata)
+```
+
+`SEQ/SUBJ` denotes subjects nested within sequence, equivalent to
+`SEQ SUBJ(SEQ)` of SAS. The Type I, II, and III tables above match SAS PROC GLM
+for this unbalanced data set (91 subjects).
+
+## Testing SEQ against the correct error term
+
+The sequence effect must be tested against the subject-within-sequence mean square,
+not the residual. This is what the RANDOM / TEST statement of SAS does:
+
+```{r}
+RanTest(formula1, BEdata, Random="SUBJ")
+```
+
+## The 90% confidence interval of the geometric mean ratio
+
+The two-one-sided-tests (TOST) procedure at the 5% level is operationally the
+90% confidence interval of T/R in the log scale:
+
+```{r}
+ci0 = CIest(formula1, BEdata, "TRT", c(-1, 1), conf.level=0.90)
+ci0
+exp(ci0[, c("Estimate", "Lower CL", "Upper CL")]) # GMR and its 90% CI
+```
+
+The exponentiated estimate and confidence limits are the geometric mean ratio (GMR)
+and its 90% confidence interval. Bioequivalence is concluded when the interval is
+contained in [0.80, 1.25].
+
+## Least squares means of treatments
+
+```{r}
+LSM(formula1, BEdata, "TRT", conf.level=0.90)
+```
+
+## Notes
+
+* For unbalanced designs with missing periods, a mixed effects model
+  (SAS PROC MIXED or the 'nlme' package) is generally preferred; see the example
+  in `?sasLM` for the equivalent `nlme::lme` call.
+* The author's 'BE' package builds the complete bioequivalence workflow
+  (including sample size and outlier diagnostics) on top of 'sasLM'.

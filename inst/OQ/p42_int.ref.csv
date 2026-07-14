@@ -1,0 +1,61 @@
+"table","term","stat","value"
+"ANOVA","MODEL","Df",5
+"ANOVA","MODEL","Sum Sq",51.04444
+"ANOVA","MODEL","Mean Sq",10.20889
+"ANOVA","MODEL","F value",4.699744
+"ANOVA","MODEL","Pr(>F)",0.01311331
+"ANOVA","RESIDUALS","Df",12
+"ANOVA","RESIDUALS","Sum Sq",26.06667
+"ANOVA","RESIDUALS","Mean Sq",2.172222
+"ANOVA","CORRECTED TOTAL","Df",17
+"ANOVA","CORRECTED TOTAL","Sum Sq",77.11111
+"Fitness","","Root MSE",1.473846
+"Fitness","","Y Mean",5.222222
+"Fitness","","Coef Var",28.22258
+"Fitness","","R-square",0.6619597
+"Fitness","","Adj R-sq",0.5211095
+"TypeI","Sire","Df",2
+"TypeI","Sire","Sum Sq",11.11111
+"TypeI","Sire","Mean Sq",5.555556
+"TypeI","Sire","F value",2.557545
+"TypeI","Sire","Pr(>F)",0.1187989
+"TypeI","Ration","Df",1
+"TypeI","Ration","Sum Sq",9.707865
+"TypeI","Ration","Mean Sq",9.707865
+"TypeI","Ration","F value",4.469094
+"TypeI","Ration","Pr(>F)",0.05612862
+"TypeI","Sire:Ration","Df",2
+"TypeI","Sire:Ration","Sum Sq",30.22547
+"TypeI","Sire:Ration","Mean Sq",15.11273
+"TypeI","Sire:Ration","F value",6.957269
+"TypeI","Sire:Ration","Pr(>F)",0.009858859
+"TypeII","Sire","Df",2
+"TypeII","Sire","Sum Sq",15.68287
+"TypeII","Sire","Mean Sq",7.841433
+"TypeII","Sire","F value",3.609867
+"TypeII","Sire","Pr(>F)",0.0592384
+"TypeII","Ration","Df",1
+"TypeII","Ration","Sum Sq",9.707865
+"TypeII","Ration","Mean Sq",9.707865
+"TypeII","Ration","F value",4.469094
+"TypeII","Ration","Pr(>F)",0.05612862
+"TypeII","Sire:Ration","Df",2
+"TypeII","Sire:Ration","Sum Sq",30.22547
+"TypeII","Sire:Ration","Mean Sq",15.11273
+"TypeII","Sire:Ration","F value",6.957269
+"TypeII","Sire:Ration","Pr(>F)",0.009858859
+"TypeIII","Sire","Df",2
+"TypeIII","Sire","Sum Sq",21.00075
+"TypeIII","Sire","Mean Sq",10.50037
+"TypeIII","Sire","F value",4.833932
+"TypeIII","Sire","Pr(>F)",0.02885299
+"TypeIII","Ration","Df",1
+"TypeIII","Ration","Sum Sq",3.59187
+"TypeIII","Ration","Mean Sq",3.59187
+"TypeIII","Ration","F value",1.653546
+"TypeIII","Ration","Pr(>F)",0.2227363
+"TypeIII","Sire:Ration","Df",2
+"TypeIII","Sire:Ration","Sum Sq",30.22547
+"TypeIII","Sire:Ration","Mean Sq",15.11273
+"TypeIII","Sire:Ration","F value",6.957269
+"TypeIII","Sire:Ration","Pr(>F)",0.009858859

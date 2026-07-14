@@ -1,0 +1,162 @@
+---
+title: "sasLM for SAS Users"
+author: "Kyun-Seop Bae"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{sasLM for SAS Users}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+options(width = 100)
+library(sasLM)
+```
+
+## Why sasLM?
+
+Many statisticians move between SAS and R, and they expect the *same numbers* from both.
+For unbalanced or complex designs, however, popular R functions often produce sums of squares,
+standard errors, or least squares means that differ from those of SAS PROC GLM.
+The differences are not necessarily errors - they come from different conventions
+(types of sums of squares, coding of singular designs, denominators, quantile definitions, and so on).
+
+`sasLM` implements the conventions of SAS so that the results match SAS PROC GLM, REG,
+ANOVA, TTEST, FREQ (2x2 tables), and UNIVARIATE. The package is written in base R with
+only `mvtnorm` as an additional dependency, and its results have been validated against
+SAS outputs and the textbooks listed in `?sasLM`.
+
+## Procedure-to-function map
+
+| SAS                         | sasLM                                  |
+|-----------------------------|----------------------------------------|
+| PROC GLM                    | `GLM`, `aov1`, `aov2`, `aov3`, `EMS`   |
+| PROC GLM SOLUTION           | `GLM(..., BETA=TRUE)`, `REG`           |
+| PROC GLM LSMEANS            | `LSM`, `GLM(..., EMEAN=TRUE)`          |
+| PROC GLM LSMEANS / PDIFF    | `PDIFF`, `Diffogram`                   |
+| PROC GLM ESTIMATE/CONTRAST  | `est`, `ESTM`, `CIest`, `CONTR`        |
+| PROC GLM RANDOM / TEST      | `RanTest`, `EMS`, `T3test`             |
+| PROC GLM SLICE              | `SLICE`                                |
+| PROC REG                    | `REG`, `lr`, `lr0`, `regD`, `Coll`     |
+| PROC ANOVA                  | `aov1`                                 |
+| PROC TTEST                  | `TTEST`, `tmtest`, `mtest`, `vtest`    |
+| PROC UNIVARIATE             | `UNIV` and the descriptive functions   |
+| PROC FREQ (2x2, stratified) | `RD`, `RR`, `OR`, `RDmn`, `RRmn`, `ORmn`, `ORcmh` |
+
+## PROC GLM
+
+The SAS code
+
+```
+PROC GLM DATA=np;
+  CLASS block N P K;
+  MODEL yield = block N*P*K / SOLUTION;
+  LSMEANS N*P / CL;
+RUN;
+```
+
+corresponds to:
+
+```{r}
+GLM(yield ~ block + N*P*K, npk)
+```
+
+`GLM` returns the overall ANOVA, fit statistics, and the Type I, II, and III tables
+in one call. Note the agreement with SAS for this unbalanced design - this is the
+core purpose of the package.
+
+Coefficients as with the SOLUTION option:
+
+```{r}
+GLM(yield ~ block + N*P*K, npk, BETA=TRUE)$Parameter
+```
+
+Least squares means with confidence limits:
+
+```{r}
+LSM(weight ~ feed, chickwts, "feed")
+```
+
+Pairwise differences as with LSMEANS / PDIFF, including the Tukey adjustment:
+
+```{r}
+PDIFF(weight ~ feed, chickwts, "feed", adj="tukey")
+```
+
+The Dunnett test uses the first level as the control when `ref` is not given, as SAS does:
+
+```{r}
+PDIFF(weight ~ feed, chickwts, "feed", adj="dunnett")
+```
+
+## Expected mean squares and random effects
+
+`EMS` produces the expected mean squares table, and `RanTest` performs the tests
+with a random factor as the RANDOM / TEST statement of SAS PROC GLM:
+
+```{r}
+EMS(yield ~ block + N*P*K, npk)
+RanTest(yield ~ block + N*P*K, npk, Random="block")
+```
+
+## PROC REG
+
+```{r}
+REG(mpg ~ wt + hp, mtcars)
+```
+
+Heteroscedasticity-consistent standard errors (HC0, HC3) and White's test:
+
+```{r}
+REG(mpg ~ wt, mtcars, HC=TRUE)
+```
+
+Weighted least squares follows the SAS WEIGHT statement: observations with
+nonpositive weights are excluded, and `Resid=TRUE` returns fitted values and
+residuals in the original scale as OUTPUT P= R= does.
+
+```{r}
+w = mtcars$cyl
+head(REG(mpg ~ wt + hp, mtcars, Weights=w, Resid=TRUE)$Fitted)
+```
+
+## PROC TTEST
+
+```{r}
+TTEST(mtcars$mpg[mtcars$am==0], mtcars$mpg[mtcars$am==1])
+```
+
+With summarized input (mean, SD, n) only:
+
+```{r}
+tmtest(5.4, 2.2, 30, 4.8, 2.0, 28)
+```
+
+## PROC UNIVARIATE
+
+```{r}
+UNIV(mtcars$mpg)
+```
+
+The quartiles and the interquartile range use quantile type 2, the SAS default definition.
+
+## 2x2 tables
+
+Risk difference, relative risk, and odds ratio with score confidence intervals:
+
+```{r}
+RD(7, 10, 3, 10)
+RR(7, 10, 3, 10)
+OR(7, 10, 3, 10)
+```
+
+See the vignette *Stratified 2x2 Tables* for the stratified Miettinen-Nurminen
+methods and meta-analysis.
+
+## Notes
+
+* All functions take a formula and a `data.frame`; factors follow the order of levels,
+  which corresponds to the sorted CLASS levels of SAS.
+* `GLM` is fast even for large data sets, since version 1.0.0.
+* For the philosophy and validation materials, see the references in `?sasLM`.

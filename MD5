@@ -1,5 +1,5 @@
-8f2a22f6325cfce4bc3496e6a31fed8e *DESCRIPTION
-7e49acbd6079a894b5341c5286f8865b *NAMESPACE
+48451354b9adf53c4237ee48dc1262fe *DESCRIPTION
+5d2d09aa70bb2c953deb786c575c50a5 *NAMESPACE
 cdda50a4952fffa00f8d480d3c97e3fc *R/BY.R
 9d8263976934f05f6630cb2407b93be9 *R/BasicUtil.R
 b965a41f2a4b8692b826cec9dac46d4c *R/CIest.R
@@ -15,6 +15,7 @@ da590ba59914fa2ee6f06770c6bda876 *R/ESTM.R
 a8344236f76bbc16d355b9c1920a0509 *R/ExitP.R
 1e4883b2612ba67204d0e3e080b254c5 *R/G2SWEEP.R
 5a0aa6e964f32619f4ea89da5f47ead1 *R/GLM.R
+1b773487a75c098da047e8661d40656d *R/IQLM.R
 45baf9b03cbe679bb6c1fce3ac55d1b0 *R/Kurtosis.R
 a77320a3a6b5243930ea18c828373dc7 *R/KurtosisSE.R
 d7c6125d3efa30d85384bcd581a527bc *R/LCL.R
@@ -26,6 +27,7 @@ aaf8079fc28a28f0449d07978f2f3263 *R/Min.R
 522afd7da284a96586fb5a255ece115a *R/ModelMatrix.R
 a079deb274ea47b432528499393a8d17 *R/N.R
 596af2aa8442723c1362f1da68d4af40 *R/OBFBound.R
+b1034873cb52203d3940422c24a64507 *R/OQLM.R
 4938a2114b7ec46ca535857580abf6c2 *R/OR.R
 fcf9852ee0f05f4d402ed7acb376b0d3 *R/ORcmh.R
 604db341998980c956f97027a5ced0c8 *R/ORinv.R
@@ -34,6 +36,7 @@ fcf9852ee0f05f4d402ed7acb376b0d3 *R/ORcmh.R
 7ea37bfb9e316c5b29f9d2c25fd4f881 *R/PDIFF.R
 c8ac2df0a23573d26f5365cbd617248a *R/Pcor.test.R
 ff4f655106819c31511435276b5a088f *R/PocockBound.R
+a560733ee2bf82d3e0e805efec8d8ec6 *R/QualReportLM.R
 a501e8efcaf8d852c2e212cd8f56afe2 *R/QuartileRange.R
 3c92def34c9007e8e4c879dcf33e317e *R/RD.R
 4f633af5235888546c97419253a1bdec *R/RDinv.R
@@ -59,6 +62,7 @@ aae9f109be6a8b9a5afff8c3eaeb1096 *R/T3MS.R
 8f86f589bef2a581fff4ea6967c0d5b5 *R/UCL.R
 b6394f49099d011d03613e369528b56a *R/UNIV.R
 998bbe5a8b4d7513f56f69664f18adfd *R/WhiteTest.R
+cec01fa180d6659f76309a8f055546ca *R/addSigFieldLM.R
 211cb9a439dddf01cc49e05541bb1efd *R/af.R
 df32d91aab784bcc6bfb872e0b206c62 *R/aov1.R
 c35b8f5bd93a9f0b42651dc587b9d52c *R/aov2.R
@@ -86,6 +90,7 @@ aa84ab5ef17f004db46da647aa8e55fa *R/pResD.R
 64392293786c7d538917d704101bc406 *R/satt.R
 a4b81ee806839d4c10b48f8d3f2ef505 *R/seqBound.R
 82bffe46a62be3cf921fad7e293e7c7c *R/seqCI.R
+3308d20327487d7a6fcd24f5c35647df *R/signPDFLM.R
 1578fc5a3aac5d4cc409a4c082561336 *R/sysdata.rda
 652e4aff8290f548a95e04bab528cb2e *R/tmtest.R
 3c8eda9797f59fb3b3fb2ca68ec3df37 *R/trimmedMean.R
@@ -95,21 +100,30 @@ bb44a6cc8f9961a2f187f7f95d45c17a *R/tsum0.R
 81fcd57e350b9a40bc2f34f6e9dbbee5 *R/tsum2.R
 aa5ac4433e6456298ca9f75df7c1974b *R/tsum3.R
 cafe0ba2d629ed74424934a6f7d7cf18 *R/vtest.R
+aca06778bc8566363fc47615fb7be073 *R/writeMD5LM.R
 333f0b583abc00dd2fe6c06da8d76c8c *R/ztest.R
-a479c2486bab010582087b436e279ee4 *inst/NEWS.Rd
-c5672489dcfed2bc28c3b350a3dc1374 *inst/doc/Report-Different-Simplest2606121557.pdf
-b0589e05bd5157a4cbaae396f7e46482 *inst/doc/Report-NOT-OKs2606121557.pdf
-373513065a7c145a59ad4b6dcf329dc5 *inst/doc/Validation-Report-GLM-2606121701.pdf
+4f1cf8c7fc268a57df3d15c94682aa66 *build/vignette.rds
+f0db2b4ca8062eb17cfe304500f6cde3 *inst/NEWS.Rd
+67113192c526dce210a6ee0db00feb4e *inst/OQ/ARS20-8p42.csv
+62592c093c47d109ac3eacfd3cd1d10f *inst/OQ/ARS20-8p8.csv
+e8d7fabfe4e47eaff20c7f83175cb2cb *inst/OQ/Goodnight-p7.csv
+5c423c3495fd05c80cef5b56cd681d40 *inst/OQ/OQcfg.csv
+b8f1b9d709d1842284d73008c34ee046 *inst/OQ/goodnight_p7.ref.csv
+e92af7109c6bf3eac2c64db677d36108 *inst/OQ/p42_add.ref.csv
+7f60df3fc4954f72eca6ec258f7c0ca4 *inst/OQ/p42_int.ref.csv
+2e4d976cd45853db881a67c81912a645 *inst/OQ/p8.ref.csv
 d14158e5579a36452a9347cb2d7b7dd8 *inst/doc/bioequivalence-with-sasLM.R
 64f92c62f45ad5411f723a33663bd418 *inst/doc/bioequivalence-with-sasLM.Rmd
 026acdde040a2d58c6a0dc5c9dfeb6f6 *inst/doc/bioequivalence-with-sasLM.html
-f8a22f28df7b7e4356eee5eca2223cd5 *inst/doc/index.html
 ed29d874c8d93ef678ee22b6f598f9b8 *inst/doc/sasLM-for-SAS-users.R
 fcc76c2544f39c2d3e945aa052a85bc7 *inst/doc/sasLM-for-SAS-users.Rmd
 3fc3aef4f9a02c5f9213de3813177b9c *inst/doc/sasLM-for-SAS-users.html
 6a336aada25335771bfbb980cdfbb440 *inst/doc/stratified-2x2-tables.R
 5d0eb490bbd800ecaceaffed7d62a398 *inst/doc/stratified-2x2-tables.Rmd
 b61fc85821b990e3326c16fbefafe3cc *inst/doc/stratified-2x2-tables.html
+c5672489dcfed2bc28c3b350a3dc1374 *inst/extdoc/Report-Different-Simplest2606121557.pdf
+b0589e05bd5157a4cbaae396f7e46482 *inst/extdoc/Report-NOT-OKs2606121557.pdf
+373513065a7c145a59ad4b6dcf329dc5 *inst/extdoc/Validation-Report-GLM-2606121701.pdf
 c0b668a46a046be89d1c84c8250fe5e8 *man/BEdata.Rd
 66c371c045b3aa752fd8daaf0ac2cc17 *man/BY.Rd
 b0b45bedacd173dff138ff1df8d65eb1 *man/BasicUtil.Rd
@@ -127,6 +141,7 @@ c71f61d33ebecd9b07d1d7f65c44e059 *man/CumAlpha.Rd
 e44c20520565701e65519c37ef357f72 *man/ExitP.Rd
 cb2ada18982db17d57d1a50dbdebe15e *man/G2SWEEP.Rd
 3d121faf1f81e4b7038d7a4f73feb559 *man/GLM.Rd
+725c1cedbc863cae5d5040855758bce6 *man/IQLM.Rd
 eb04078f0afac0301502ae11350b4913 *man/Kurtosis.Rd
 0441560e3543289d9cef57d30d34e1ba *man/KurtosisSE.Rd
 c3b03b68c4a88323cbee285c862f4a62 *man/LCL.Rd
@@ -138,6 +153,7 @@ be3b24ea6310363b26b9c8eb6d622490 *man/Median.Rd
 6b3d63aed1b9c364dbfca3346eb5bbad *man/ModelMatrix.Rd
 26d8689e1f4179076db747d121474ea0 *man/N.Rd
 0d13ec7425cbf358edfce721d11a2590 *man/OBFBound.Rd
+67bc786db880377ea147e4479e42f880 *man/OQLM.Rd
 a2594a601c49268110ce69ae5d049875 *man/OR.Rd
 5c467cc8aff0a25bf24b7b446d0e85d2 *man/ORcmh.Rd
 51b8e14d8460c885aa4d613c5413b9c7 *man/ORinv.Rd
@@ -171,6 +187,7 @@ ba75e679decee8dc1c5246d0be8dad03 *man/TTEST.Rd
 4afa907da4468fbd805ec34404d135e0 *man/UCL.Rd
 9b09a334cf8b0b913b8fd6155bd8cb40 *man/UNIV.Rd
 b692b7bb49326c384ef96677554b4dea *man/WhiteTest.Rd
+6c875822c3ae80aa6d1ba5ec460a95a7 *man/addSigFieldLM.Rd
 38ff681f64bf316bfdca9527be32553d *man/af.Rd
 735683df2167c8aebe881dfa38e89e1d *man/aov1.Rd
 1eb87999b93636a15bee535fb3c0d9e6 *man/aov2.Rd
@@ -200,6 +217,7 @@ a32bc6c1bdbfce88490718d0f169b09f *man/regD.Rd
 b6191280cb9c2ed7a061b39e9c7e82e7 *man/satt.Rd
 64af2b167f1b4677279f26dbc02e94d0 *man/seqBound.Rd
 169f410004f3d12642921e729a862421 *man/seqCI.Rd
+3bc6b2b7f1e2d178dd0eccad7fe45ecc *man/signPDFLM.Rd
 744920174fca2414f26cd91ebc204dd5 *man/tmtest.Rd
 4128d82c147ab78f38c8ca4f8d76488e *man/trimmedMean.Rd
 d41910041079eb926c46fda89ce3d7e4 *man/tsum.Rd
@@ -208,5 +226,9 @@ d41910041079eb926c46fda89ce3d7e4 *man/tsum.Rd
 d5991fc27bc7d24a2cbf70a2e1900e57 *man/tsum2.Rd
 f500ce47f46aa358dab6b9d02339394a *man/tsum3.Rd
 872295eeb225b6aa51416a623939c49d *man/vtest.Rd
+a20604c1c5c68dd3b7ea82c5f0923965 *man/writeMD5LM.Rd
 d05c0a7ff724e5991bc7ef76dd46ac70 *man/ztest.Rd
 24baf69f53cfdb07cd4d58843d181c22 *tests/Test.R
+64f92c62f45ad5411f723a33663bd418 *vignettes/bioequivalence-with-sasLM.Rmd
+fcc76c2544f39c2d3e945aa052a85bc7 *vignettes/sasLM-for-SAS-users.Rmd
+5d0eb490bbd800ecaceaffed7d62a398 *vignettes/stratified-2x2-tables.Rmd

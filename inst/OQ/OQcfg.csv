@@ -1,0 +1,5 @@
+"id","desc","datafile","formula","factors","reffile","source"
+"p8","Harvey ARS20-8 p8: one-way GLM(Barrow ~ Ration), 18 obs","ARS20-8p8.csv","Barrow ~ Ration","PigNo;Ration","p8.ref.csv","Harvey WR. ARS20-8 (1960) p8; Validation-Report-GLM sec 2.1; SAS PROC GLM confirmed 2026-06-20 (SAS OnDemand)"
+"p42_add","Harvey ARS20-8 p42: two-way additive GLM(Y ~ Sire + Ration), unbalanced","ARS20-8p42.csv","Y ~ Sire + Ration","Ration;Pig;Sire","p42_add.ref.csv","Harvey WR. ARS20-8 (1960) p42; Validation-Report-GLM sec 2.2; SAS PROC GLM confirmed 2026-06-20 (SAS OnDemand)"
+"p42_int","Harvey ARS20-8 p42: two-way with interaction GLM(Y ~ Sire + Ration + Sire:Ration)","ARS20-8p42.csv","Y ~ Sire + Ration + Sire:Ration","Ration;Pig;Sire","p42_int.ref.csv","Harvey WR. ARS20-8 (1960) p42; Validation-Report-GLM sec 2.2; SAS PROC GLM confirmed 2026-06-20 (SAS OnDemand)"
+"goodnight_p7","Goodnight (1976) p7: balanced 2x2 factorial GLM(y ~ A + B + A:B)","Goodnight-p7.csv","y ~ A + B + A:B","A;B","goodnight_p7.ref.csv","Goodnight JH. (1976) p7; Validation-Report-GLM sec 4; SAS PROC GLM confirmed 2026-06-20 (SAS OnDemand)"

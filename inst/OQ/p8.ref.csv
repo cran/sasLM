@@ -1,0 +1,31 @@
+"table","term","stat","value"
+"ANOVA","MODEL","Df",2
+"ANOVA","MODEL","Sum Sq",11.11111
+"ANOVA","MODEL","Mean Sq",5.555556
+"ANOVA","MODEL","F value",1.262626
+"ANOVA","MODEL","Pr(>F)",0.3113166
+"ANOVA","RESIDUALS","Df",15
+"ANOVA","RESIDUALS","Sum Sq",66
+"ANOVA","RESIDUALS","Mean Sq",4.4
+"ANOVA","CORRECTED TOTAL","Df",17
+"ANOVA","CORRECTED TOTAL","Sum Sq",77.11111
+"Fitness","","Root MSE",2.097618
+"Fitness","","Barrow Mean",5.222222
+"Fitness","","Coef Var",40.16715
+"Fitness","","R-square",0.1440922
+"Fitness","","Adj R-sq",0.02997118
+"TypeI","Ration","Df",2
+"TypeI","Ration","Sum Sq",11.11111
+"TypeI","Ration","Mean Sq",5.555556
+"TypeI","Ration","F value",1.262626
+"TypeI","Ration","Pr(>F)",0.3113166
+"TypeII","Ration","Df",2
+"TypeII","Ration","Sum Sq",11.11111
+"TypeII","Ration","Mean Sq",5.555556
+"TypeII","Ration","F value",1.262626
+"TypeII","Ration","Pr(>F)",0.3113166
+"TypeIII","Ration","Df",2
+"TypeIII","Ration","Sum Sq",11.11111
+"TypeIII","Ration","Mean Sq",5.555556
+"TypeIII","Ration","F value",1.262626
+"TypeIII","Ration","Pr(>F)",0.3113166

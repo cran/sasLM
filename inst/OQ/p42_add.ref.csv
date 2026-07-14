@@ -1,0 +1,46 @@
+"table","term","stat","value"
+"ANOVA","MODEL","Df",3
+"ANOVA","MODEL","Sum Sq",20.81898
+"ANOVA","MODEL","Mean Sq",6.939659
+"ANOVA","MODEL","F value",1.725911
+"ANOVA","MODEL","Pr(>F)",0.2074878
+"ANOVA","RESIDUALS","Df",14
+"ANOVA","RESIDUALS","Sum Sq",56.29213
+"ANOVA","RESIDUALS","Mean Sq",4.020867
+"ANOVA","CORRECTED TOTAL","Df",17
+"ANOVA","CORRECTED TOTAL","Sum Sq",77.11111
+"Fitness","","Root MSE",2.00521
+"Fitness","","Y Mean",5.222222
+"Fitness","","Coef Var",38.39764
+"Fitness","","R-square",0.2699867
+"Fitness","","Adj R-sq",0.1135553
+"TypeI","Sire","Df",2
+"TypeI","Sire","Sum Sq",11.11111
+"TypeI","Sire","Mean Sq",5.555556
+"TypeI","Sire","F value",1.381681
+"TypeI","Sire","Pr(>F)",0.2833795
+"TypeI","Ration","Df",1
+"TypeI","Ration","Sum Sq",9.707865
+"TypeI","Ration","Mean Sq",9.707865
+"TypeI","Ration","F value",2.414371
+"TypeI","Ration","Pr(>F)",0.1425356
+"TypeII","Sire","Df",2
+"TypeII","Sire","Sum Sq",15.68287
+"TypeII","Sire","Mean Sq",7.841433
+"TypeII","Sire","F value",1.950185
+"TypeII","Sire","Pr(>F)",0.1790038
+"TypeII","Ration","Df",1
+"TypeII","Ration","Sum Sq",9.707865
+"TypeII","Ration","Mean Sq",9.707865
+"TypeII","Ration","F value",2.414371
+"TypeII","Ration","Pr(>F)",0.1425356
+"TypeIII","Sire","Df",2
+"TypeIII","Sire","Sum Sq",15.68287
+"TypeIII","Sire","Mean Sq",7.841433
+"TypeIII","Sire","F value",1.950185
+"TypeIII","Sire","Pr(>F)",0.1790038
+"TypeIII","Ration","Df",1
+"TypeIII","Ration","Sum Sq",9.707865
+"TypeIII","Ration","Mean Sq",9.707865
+"TypeIII","Ration","F value",2.414371
+"TypeIII","Ration","Pr(>F)",0.1425356

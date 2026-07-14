@@ -1,5 +1,16 @@
 \name{NEWS}
 \title{News for Package \pkg{sasLM}}
+\section{Version 1.0.1 (2026-06-20)}{
+  \itemize{
+    \item{\code{IQLM} added: a self-contained Installation Qualification (IQ) report in pdf documenting whether \pkg{sasLM} is correctly installed, intact, loadable, and operational (environment, version, dependency satisfaction, MD5 file integrity, namespace/exports, a functional \code{GLM} check against a SAS reference, an overall QUALIFIED/NOT QUALIFIED verdict, a sessionInfo appendix, and a per-file md5 checksum appendix).}
+    \item{\code{OQLM} added: a self-contained Operational Qualification (OQ) report in pdf. It runs a set of \code{GLM} scenarios (shipped in \file{inst/OQ}) on the user's machine and lists every computed value - the ANOVA table, the fit statistics, and the Type I, II and III sums of squares - next to its SAS/textbook reference value, with the absolute and relative difference and a pass flag, and an overall verdict. The first release covers \code{GLM}; other procedures can be added by extending \file{inst/OQ}. Reference values are the SAS PROC GLM / textbook results documented in the package validation report.}
+    \item{\code{writeMD5LM} added: writes the standard R \file{MD5} integrity manifest into an installed package directory (using \code{tools::md5sum}) so that the \code{IQLM} file-integrity check reports PASS for local installs. CRAN installs already include this manifest.}
+    \item{\code{addSigFieldLM} added (and a \code{sigField} argument to \code{IQLM}/\code{OQLM}): insert Adobe Acrobat Reader signature fields into the report PDF (pure base-R PDF incremental update, no external tools) so it can be signed with one click in the free Acrobat Reader, instead of printing and scanning.}
+    \item{\code{signPDFLM} and \code{verifyPDFLM} added: digitally sign a report PDF (a detached SHA-256 signature written to \file{<pdf>.sig}, using the \pkg{openssl} package) and verify it, as a scriptable alternative.}
+    \item{No change to any existing computation. The three vignette sources (\file{bioequivalence-with-sasLM.Rmd}, \file{sasLM-for-SAS-users.Rmd}, \file{stratified-2x2-tables.Rmd}) were moved from \file{inst/doc} to the standard \file{vignettes} directory and \code{VignetteBuilder: knitr} was declared, so the vignettes are registered and rebuilt by the build tools instead of being shipped as pre-built static files.}
+    \item{The static validation report PDFs were moved from \file{inst/doc} to \file{inst/extdoc} so they are plain installed files (they were never registered vignettes) and are no longer removed by build tools that treat \file{inst/doc} as a vignette-output directory.}
+  }
+}
 \section{Version 1.0.0 (2026-06-12)}{
   \itemize{
     \item{First stable release.}

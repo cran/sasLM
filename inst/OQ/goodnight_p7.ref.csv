@@ -1,0 +1,61 @@
+"table","term","stat","value"
+"ANOVA","MODEL","Df",3
+"ANOVA","MODEL","Sum Sq",13.60265
+"ANOVA","MODEL","Mean Sq",4.534217
+"ANOVA","MODEL","F value",2.807
+"ANOVA","MODEL","Pr(>F)",0.1721202
+"ANOVA","RESIDUALS","Df",4
+"ANOVA","RESIDUALS","Sum Sq",6.4613
+"ANOVA","RESIDUALS","Mean Sq",1.615325
+"ANOVA","CORRECTED TOTAL","Df",7
+"ANOVA","CORRECTED TOTAL","Sum Sq",20.06395
+"Fitness","","Root MSE",1.270954
+"Fitness","","y Mean",5.4725
+"Fitness","","Coef Var",23.22438
+"Fitness","","R-square",0.6779647
+"Fitness","","Adj R-sq",0.4364382
+"TypeI","A","Df",1
+"TypeI","A","Sum Sq",10.81125
+"TypeI","A","Mean Sq",10.81125
+"TypeI","A","F value",6.692926
+"TypeI","A","Pr(>F)",0.06087173
+"TypeI","B","Df",1
+"TypeI","B","Sum Sq",1.3122
+"TypeI","B","Mean Sq",1.3122
+"TypeI","B","F value",0.8123443
+"TypeI","B","Pr(>F)",0.4183903
+"TypeI","A:B","Df",1
+"TypeI","A:B","Sum Sq",1.4792
+"TypeI","A:B","Mean Sq",1.4792
+"TypeI","A:B","F value",0.915729
+"TypeI","A:B","Pr(>F)",0.3927891
+"TypeII","A","Df",1
+"TypeII","A","Sum Sq",10.81125
+"TypeII","A","Mean Sq",10.81125
+"TypeII","A","F value",6.692926
+"TypeII","A","Pr(>F)",0.06087173
+"TypeII","B","Df",1
+"TypeII","B","Sum Sq",1.3122
+"TypeII","B","Mean Sq",1.3122
+"TypeII","B","F value",0.8123443
+"TypeII","B","Pr(>F)",0.4183903
+"TypeII","A:B","Df",1
+"TypeII","A:B","Sum Sq",1.4792
+"TypeII","A:B","Mean Sq",1.4792
+"TypeII","A:B","F value",0.915729
+"TypeII","A:B","Pr(>F)",0.3927891
+"TypeIII","A","Df",1
+"TypeIII","A","Sum Sq",10.81125
+"TypeIII","A","Mean Sq",10.81125
+"TypeIII","A","F value",6.692926
+"TypeIII","A","Pr(>F)",0.06087173
+"TypeIII","B","Df",1
+"TypeIII","B","Sum Sq",1.3122
+"TypeIII","B","Mean Sq",1.3122
+"TypeIII","B","F value",0.8123443
+"TypeIII","B","Pr(>F)",0.4183903
+"TypeIII","A:B","Df",1
+"TypeIII","A:B","Sum Sq",1.4792
+"TypeIII","A:B","Mean Sq",1.4792
+"TypeIII","A:B","F value",0.915729
+"TypeIII","A:B","Pr(>F)",0.3927891
